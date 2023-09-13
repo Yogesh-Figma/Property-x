@@ -1,0 +1,13 @@
+.header {
+    font-size: 16px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    height: 60px;
+    background: #fff;
+    filter: drop-shadow(8px 8px 40px rgba(107, 107, 107, 0.20)) drop-shadow(4px 4px 4px rgba(107, 107, 107, 0.11));
+    .links {
+        span {
+            margin-right: 30px;
+        }
+    }
+}

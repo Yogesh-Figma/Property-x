@@ -1,0 +1,19 @@
+.insight-and-articles {
+    .insight-card {
+        height: 420px;
+        margin-left:35px;
+        .ing-img-container {
+            height: 250px;
+            border-radius: 10px;
+        }
+        .info {
+            margin-top:12px;
+            font-size: 20px;
+            line-height: 150%;
+        }
+        .sub-info {
+            margin-top:5px;
+            font-size: 14px;
+        }
+    }
+}

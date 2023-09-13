@@ -1,0 +1,36 @@
+.trusted-dev-card {
+    padding: 15px 20px;
+    position: relative;
+    font-weight: 400;
+    font-family: var(--microsoft-sans-font);
+    margin-left: 35px;
+    .sub-heading-2 {      
+        line-height: normal;
+        letter-spacing: 0.8px;
+        text-align: center;
+    }
+    .image-container {
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 9px;
+        .verified-image {
+            position: absolute;
+            right: 5px;
+        }
+    }
+    .property-info {
+        font-size: 12px;
+        margin-top:12px;
+        .body-txt {
+            font-size: 10px;
+        }
+    }
+    .chip {
+       span { 
+        font-size: 10px;
+        color: #70757A;
+        font-family: var(--microsoft-sans-font);
+       }
+    }
+}

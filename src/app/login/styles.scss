@@ -1,0 +1,113 @@
+.login-modal {
+    .close-icon {
+        right: 25px;
+        top: 25px;
+    }
+
+    .login-container {
+        .login-info {
+            margin-left:67px;
+            .heading {
+                font-size: 36px;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: 1.8px;
+                margin-bottom: 18px;
+            }
+
+            .property-x {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                letter-spacing: 0.32px;
+            }
+
+            .login-in-to {
+                margin-bottom: 39px;
+            }
+
+            .verify-mobile {
+                margin-bottom: 10px;
+            }
+
+            .login-input-container {
+                fieldset {
+                    border: none;
+                }
+
+                .input-label-no-shrink {
+                    transform: translate(109px, 14px) scale(1);
+                }
+
+                .login-bar-btn {
+                    width: 157px;
+                    height: 48px;
+                    border-radius: 25px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    letter-spacing: 0.8px;
+                }
+
+                .login-input {
+                    padding: 0;
+
+                    input {
+                        padding: 0;
+                    }
+                }
+
+                .vertical-line {
+                    border-left: 1px solid #D3D3D3;
+                    height: 24px;
+                    margin-right: 28px;
+                }
+
+                .country-code {
+                    color: #000;
+                    font-family: var(--microsoft-sans-font);
+                    font-style: normal;
+                    line-height: normal;
+                    letter-spacing: 0.32px;
+                    margin-left: 28px;
+                    margin-right: 25px;
+                }
+            }
+            .or-con {
+                margin-top: 42px;
+                margin-bottom: 41px;
+                font-size: 14px;
+            }
+            .login-with-google, .login-with-facebook {
+                border-radius: 25px;
+                border: 1px solid #D3D3D3;
+                padding: 13px 0 16px;
+                font-size: 14px;
+                margin-bottom: 9px;
+                img {
+                    margin-right:7px;
+                }
+            }
+            .otp-container {
+                margin-top: 39px;
+                .otp {
+                    margin-bottom: 11px;
+                }
+                .otp-input-container {
+                    margin-bottom: 25px;
+                    fieldset {
+                        border: none;
+                    }
+                }
+                .otp-verify-btn {
+                    width: 100%;
+                }
+            }
+            .terms-of-service {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
