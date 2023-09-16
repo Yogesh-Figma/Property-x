@@ -1,5 +1,12 @@
 .footer {
     background: #EAEAEA;
+    .trophy-container {
+        margin-top: 37px;
+        border-radius: 10px;
+        background: #FFF;
+        width: 98px;
+        height: 98px;
+    }
     div:not(.property-x) {
         font-family: var(--microsoft-sans-font);
         color: var(--text-color-shark);
@@ -64,6 +71,16 @@
     }
     .social-media-links {
         margin-top: 22px;
+    }
+    .contact-icons-container {
+        margin-top: 20px;
+        .contact-image-wrapper {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 45px;
+            margin-right: 35px;
+        }
     }
 
 }

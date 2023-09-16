@@ -5,15 +5,20 @@ import Login from "./login"
 import Image from 'next/image';
 import propertyXLogo from '@/app/icons/property_x.svg'
 import Link from 'next/link'
+import CompactSearchBar from './components/ui/compactSearchBar';
 
-const Header = ({}) => {
+const locations = []
+const Header = ({ }) => {
 
     return <div className='header d-flex justify-content-between container-fluid sub-heading align-items-center'>
-        <div className="property-x"><Link href="/"><Image src={propertyXLogo} width={120} height={23}/></Link></div>
+        <div className="property-x"><Link href="/"><Image src={propertyXLogo} width={120} height={23} /></Link></div>
+        <div className='header-search-container'>
+            <CompactSearchBar height='30px' width={383} showLocationMenu={true}/>
+        </div>
         <div className='links'>
             <span>Download the App</span>
             <span>Post a Property</span>
-            <NextLinkButton text={"Login"} href={"?login=true"}/>
+            <NextLinkButton text={"Login"} href={"?login=true"} />
             <Login />
         </div>
     </div>

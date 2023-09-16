@@ -24,7 +24,7 @@ const TrustedDevelopers = () => {
                                     <span>144 <span className='body-txt'>Properties</span></span>
                                 </div>
                             </div>
-                            <div className='chip'><Chip label="Buran" variant="outlined" /></div>
+                            <div className='chip-container'><Chip label="Buran" variant="outlined" /></div>
                         </div>
                     </Card>
                 </div>)}

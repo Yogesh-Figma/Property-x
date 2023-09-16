@@ -112,7 +112,7 @@ a {
 }
 
 .heading {
-  font-family: var(--helvetica-regular-font);
+  font-family: var(--helvetica-bold-font);
   color: #202124;
   font-weight: 700;
 }
@@ -177,4 +177,36 @@ a {
 input[type=number] {
   -webkit-appearance: none;
   -moz-appearance: textfield;
+}
+
+.drop-down {
+  border-radius: 17px;
+  border: 1px solid #D3D3D3;
+  background: #FFF;
+  padding:5px 12px 5px 28px;
+  cursor:pointer;
+}
+.drop-down-list {
+  z-index:100;
+  top:35px;
+  left:0;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: rgb(230, 230, 230) 0px 2px 0px 0px, rgba(0, 0, 0, 0.1) 0px 0px 20px 0px;
+  background-color: rgb(255, 255, 255);
+}
+
+.drop-down-list .chip {
+  display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.drop-down-list .chip-drop-down-item.selected {
+  background: rgba(220, 20, 60, 0.18);
+  color: white;
+  border-color: transparent;
 }

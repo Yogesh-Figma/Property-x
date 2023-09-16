@@ -3,11 +3,16 @@ import Image from 'next/image';
 import './footer.scss'
 import CompactSearchBar from './components/ui/compactSearchBar';
 import propertyXLogo from '@/app/icons/property_x.svg'
+import facebookIcon from "@/app/icons/ri_facebook-fill.svg"
+import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg"
+import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg"
+import instagramIcon from "@/app/icons/ant-design_instagram-filled.svg"
+import Link from 'next/link'
 
 
 const LINKS1 = [
     { name: "About Us", url: "#" },
-    { name: "Contact Us", url: "#" },
+    { name: "Contact Us", url: "contactus" },
     { name: "Post your property", url: "#" },
     { name: "FAQs", url: "#" },
     { name: "Terms of Services", url: "#" },
@@ -37,23 +42,29 @@ const Footer = () => {
             <section className="">
                 <div className="text-center text-md-starts">
                     <div className='row search-box-container g-0'>
-                        <div className="property-x col-4 d-flex align-items-center justify-content-center"><Image src={propertyXLogo} width={120} height={23}/></div>
+                        <div className="property-x col-4 d-flex align-items-center justify-content-center">
+                            <Image src={propertyXLogo} width={120} height={23} />
+                        </div>
                         <div className='foot-search-bar col-8'>
                             <CompactSearchBar width="45vw" height="50px" showSearchIcon={true} />
                         </div>
                     </div>
                     <div className="row g-0">
-                        <div className='col-4'></div>
+                        <div className='col-4'>
+                            <div className='trophy-container d-flex align-items-center justify-content-center'>
+                                <Image src={"/trophy.svg"} width={70} height={70} />
+                            </div>
+                        </div>
                         <div className='col-8'>
                             <div className='row footerLinksColumns g-0'>
                                 <div className='col-4'>
-                                    {LINKS1.map(item => <a href={item.url} className="text-reset text-start">{item.name}</a>)}
+                                    {LINKS1.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                                 <div className='col-4'>
-                                    {LINKS2.map(item => <a href={item.url} className="text-reset text-start">{item.name}</a>)}
+                                    {LINKS2.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                                 <div className='col-4'>
-                                    {LINKS3.map(item => <a href={item.url} className="text-reset text-start">{item.name}</a>)}
+                                    {LINKS3.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                             </div>
                         </div>
@@ -82,8 +93,23 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className='social-media-links additional-page-padding'>
-                            <div className='head text-start keep-touch'>Keep in Touch</div>
-                            <div className='copyRight text-end'>Copyright 2023 Property X All Rights Reserved.</div>
+                            <div className='head text-start keep-touch'>Keep in Touch
+                                <div className="contact-icons-container">
+                                    <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+                                        <Image className="img" width={30} height={30} alt="Ri facebook fill" src={facebookIcon} />
+                                    </div>
+                                    <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+                                        <Image className="img" width={30} height={30} alt="Ri twitter x fill" src={twitterIcon} />
+                                    </div>
+                                    <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+                                        <Image className="img" width={30} height={30} alt="Ri linkedin fill" src={linkedinIcon} />
+                                    </div>
+                                    <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+                                        <Image className="img" width={30} height={30} alt="Ant design instagram" src={instagramIcon} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='copy-right text-end'>Copyright 2023 Property X All Rights Reserved.</div>
                         </div>
                     </div>
                 </div>
