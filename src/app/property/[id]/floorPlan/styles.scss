@@ -1,0 +1,26 @@
+.floor-plan {
+    ul {
+        list-style: none;
+        /* Remove default bullets */
+    }
+
+    ul li::before {
+        content: "\2022";
+        color: #DC143C;
+        font-size: 19px;
+        display: inline-block;
+        width: 18px;
+        margin-left: -32px;
+    }
+
+    .card-item {
+        margin-left: 30px;
+        padding: 35px 14px 35px 40px;
+    }
+
+    .image-container {
+        overflow: hidden;
+        width: 466px;
+        height: 300px;
+    }
+}

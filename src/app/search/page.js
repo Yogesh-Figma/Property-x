@@ -6,9 +6,8 @@ import Card from '@/app/components/card';
 import ContactUsForm from '@/app/components/ui/contactUsForm';
 import SimilarProjects from './similarProjects';
 import SimilarProperties from './similarProperties';
-import Image from 'next/image';
-import horizontailGradientLine from '@/app/icons/horizontal_gradient_line.svg'
 import Map from '../components/ui/map';
+import Heading from '@/app/components/heading';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -43,13 +42,11 @@ export default function Page() {
         </div>
         <div className='additional-page-padding'>
             <div className='similar'>
-                <div className='sub-heading project-heading'>Similar Projects</div>
-                <Image src={horizontailGradientLine} height={4} width={64} />
+                <Heading label={"Similar Projects"}/>
                 <SimilarProjects />
             </div>
             <div className='similar'>
-                <div className='sub-heading project-heading'>Similar Properties</div>
-                <Image src={horizontailGradientLine} height={4} width={64} />
+                <Heading label={"Similar Properties"}/>
                 <SimilarProperties />
             </div>
         </div>

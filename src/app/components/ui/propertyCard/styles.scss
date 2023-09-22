@@ -1,4 +1,4 @@
-.property-card,.property-card-2 {
+.property-card,.property-card-2,.project-card {
     .absolute-price {
         right: 12px;
         bottom: 11px;
@@ -47,9 +47,19 @@
     }
 }
 
-.property-card {
+.project-card {
+        width: 370px;
+    .info-container {
+        padding: 10px 15px;
+    }
+    .e-visit {
+        margin-bottom: 8px;
+    }
     .price-container {
-        margin-top: 5px;
+        margin-top: 2px;
+        img {
+            margin-left: 4px;
+        }
     }
 }
 
@@ -62,25 +72,38 @@
 }
 
 .property-card-3 {
-    .property-info {
-        height: 100%;
-    }
+    min-height: 488px;
     .address, .bhk {
         font-size: 12px;
         line-height: normal;
         letter-spacing: 0.6px;
     }
+    .img-container {
+        height: 350px;
+        width: 100%;
+     }
 
     .info-container {
-        padding-left: 20px;
-        padding-top: 29px;
-        padding-bottom: 31px;
+        padding: 20px 30px;
+        .price-container {
+            .price {
+                line-height: normal;
+                letter-spacing: 1px;
+                font-size: 20px;
+            }
+        }
+        .address-cnt {
+            margin-top: 20px;
+        }
+        .e-visit {
+            margin-right: 18px;
+        }
     }
-    .developer-info {
+    .appreciation-icon {
+        margin-left: 13px;
+    }
+    .view-project {
         font-size: 12px;
-    }
-    .developer-info,.info {
-        margin-bottom: 47px;
     }
     .dev-img-container {
         margin-right: 10px;
@@ -90,11 +113,6 @@
         font-style: normal;
         line-height: normal;
         letter-spacing: 1px;
-    }
-    button {
-        margin-top: 37px;
-        display: block;
-        margin:37px auto 0;
     }
 }
 
@@ -153,7 +171,6 @@
             margin-left: auto;
             margin-top: 22px;
             margin-bottom: 2px;
-            background: linear-gradient(91deg, #DC143C -133.34%, #B1EEF0 105.31%);
         }
         .dev-text {
             margin-top: 8px;

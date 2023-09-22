@@ -5,7 +5,7 @@ import './styles.scss';
 
 const TrendingProjects = () => {
     return (<div className='trending-projects'>
-        <CardSlider carouselSettings={{slidesToShow:1.5, slidesToScroll:1}}>
+        <CardSlider carouselSettings={{slidesToShow:1.5, slidesToScroll:1, responsive: []}}>
             {[1,2,3,4,5,6].map(item =><PropertyCard3 
             title={"Gaur Krishn Villas"} 
             bhk={"2, 3, 4 BHK"}

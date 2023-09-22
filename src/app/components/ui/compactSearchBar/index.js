@@ -23,7 +23,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", showSearchIcon, sh
 
 
     return (
-        <div className='search-bar-container d-flex'>
+        <div className='compact-search-bar-container d-flex'>
             {!!showLocationMenu && <div className='location-container'><DropDown label={"Location"} handleChange={handleLocationChange} value={location} values={LOCATIONS} /></div>}
             <div className='compact-search-bar body-txt'>
                 <TextField

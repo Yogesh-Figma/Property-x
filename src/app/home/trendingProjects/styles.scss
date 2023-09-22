@@ -1,10 +1,9 @@
 .trending-projects {
-    .card {
+    .card-item {
         margin-left:60px;
         overflow: hidden;
-        height: 350px;
     }
-    .slick-slide:last-child .card {
+    .slick-slide:last-child .card-item {
         margin-right: 5px;
     }
 }

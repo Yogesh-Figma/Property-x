@@ -10,7 +10,7 @@ import HomePageStats from './home/homePageStats';
 import SearchBar from './home/searchBar';
 import InsightAndArticles from './home/insightAndArticles'
 import Testimonials from './home/testimonials'
-import FeaturedProperties from './home/featuredProperties/featuredProperties'
+import FeaturedProperties from './home/featuredProperties'
 import UpComingProjects from './home/upComingProjects/upComingProjects'
 
 export default function Home() {

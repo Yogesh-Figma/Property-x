@@ -10,6 +10,46 @@ import instagramSaveIcon from '@/app/icons/save_instagram.svg'
 import shareIcon from '@/app/icons/share.svg'
 import './styles.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
+import propertyGraph from '@/app/icons/property_graph.svg'
+
+const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy }) => {
+    return (
+        <div>
+            <Card className='project-card'>
+                <div className='img-container position-relative'>
+                    <Image src={imgsrc} fill={true} />
+                    {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{price}</div>}
+                </div>
+                <div className='info-container'>
+                    <div className='row g-0'>
+                        <div className='title sub-heading-2 col-8'>{title}</div>
+                        {!!rating && <div className='col-4'>
+                            <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
+                                <Image src={starIcon} width={10} height={10} /></span>
+                            </div>
+                        </div>}
+                    </div>
+                    <div className='row g-0'>
+                        <div className='col-8'>
+                        {!!address && <div className='address body-txt'>{address}</div>}
+                        {!!bhk && <div className='bhk sub-heading-3'>{bhk}</div>}
+                        <div className='price-container d-flex align-items-center'>
+                                <span className='price sub-heading-2'>{price}</span>
+                                <Image src={propertyGraph} width={20} height={20} />
+                                <span className='property-appreciation'>04.30%</span>
+                        </div>
+                        </div>
+                        <div className='btn-cnt d-flex flex-column col-4 align-self-end'>
+                            <Button className="e-visit" text='e-Visit' height={20} rounded={true} />
+                            <Button text='Book Now' height={20} rounded={true} />
+                            </div>
+                    </div>
+
+                </div>
+            </Card>
+        </div>)
+
+}
 
 const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy }) => {
     return (
@@ -28,15 +68,18 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                             </div>
                         </div>}
                     </div>
-                    {!!bhk && <div className='bhk sub-heading-3'>{bhk}</div>}
-                    {!!address && <div className='address body-txt'>{address}</div>}
-                    {!!price && <div className='price-container d-flex justify-content-between align-items-center'>
-                        {!!isProperty && !!postedBy ? <div className='posted-by'>Posted by {postedBy}</div> :
-                            <div className='price sub-heading-2'>{price}</div>
-                        }
-                        <Button text='Book Now' height={20} rounded={true} />
-                    </div>
-                    }
+                    <div className='row g-0'>
+                        {!!bhk && <div className='bhk sub-heading-3'>{bhk}</div>}
+                        {!!address && <div className='address body-txt'>{address}</div>}
+                        
+                        <div className='price-container d-flex justify-content-between align-items-start'>
+                            <div className='posted-by'>Posted by {postedBy}</div>
+                            <div className='btn-cnt'>
+                            <Button text='Book Now' height={20} rounded={true} />
+                            </div>
+                        </div>
+                        </div>
+
                 </div>
             </Card>
         </div>)
@@ -69,32 +112,37 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by }
 
 const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage }) => {
     return (<div>
-        <Card className='property-card-3 overflow-hidden row'>
+        <Card className='property-card-3'>
+            <div className='img-container position-relative'>
+                <Image src={imgsrc} fill={true} />
+            </div>
             <div className='row g-0 property-info'>
-                <div className='info-container col-4'>
-                    <div className='developer-info'>
+                <div className='info-container'>
+                    <div className='developer-info d-flex justify-content-between align-items-start'>
                         <div className='d-flex'>
                             <div className='dev-img-container position-relative'>
                                 <Image src={devImage} width={40} height={40} />
                             </div>
                             <div>
-                                {!!by && <div className='by sub-heading-2'>{by}</div>}
-                                <Link href="/project" className='sub-heading-2'>View Project</Link>
+                                <div className='d-flex align-items-center'><span className='by sub-heading-2'>{by}</span><Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  <span className='property-appreciation'>04.30%</span></div>
+                                <Link href="/project" className='sub-heading-2 view-project'>View Project</Link>
                             </div>
                         </div>
+                        <div className='price-container text-end'>
+                            {!!price && <div className='price sub-heading-2'>{price}</div>}
+                            {!!bhk && <div className='bhk'>{bhk}</div>}
+                        </div>
                     </div>
-                    <div className='info'>
-                        <div className='title sub-heading-2'>{title}</div>
-                        {!!address && <div className='address'>{address}</div>}
+                    <div className='address-cnt d-flex justify-content-between align-items-start'>
+                        <div className='info'>
+                            <div className='title sub-heading-2'>{title}</div>
+                            {!!address && <div className='address'>{address}</div>}
+                        </div>
+                        <div className='btn-cnt d-flex'>
+                            <Button className="e-visit" text='e-Visit' height={40} rounded={true} />
+                            <Button text='Book Now' height={40} rounded={true} />
+                        </div>
                     </div>
-                    <div className='price-container col-5'>
-                        {!!price && <div className='price sub-heading-2'>{price}</div>}
-                        {!!bhk && <div className='bhk'>{bhk}</div>}
-                    </div>
-                    <Button text='Book Now' height={40} rounded={true} />
-                </div>
-                <div className='img-container position-relative col-8'>
-                    <Image src={imgsrc} fill={true} />
                 </div>
             </div>
         </Card>
@@ -112,10 +160,10 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                 <div className='info-container col-8 d-flex flex-column'>
                     <div className='d-flex align-items-center justify-content-between'>
                         <div className='title heading'>{title}</div>
-                        <div className='rera'>RERA<Image src={tickIcon} width={12} height={12}/></div>
+                        <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>
                         <div className='share-container'>
-                            <Image src={instagramSaveIcon} width={20} height={20}/>
-                            <Image src={shareIcon} width={24} height={24}/>
+                            <Image src={instagramSaveIcon} width={20} height={20} />
+                            <Image src={shareIcon} width={24} height={24} />
                         </div>
                     </div>
                     {!!by && <div className='by'>By {by}</div>}
@@ -138,11 +186,11 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                         </div>}
                     </div>
                     <div className='sub-info'>{subInfo}</div>
-                    <NextLinkButton aClassName="ml-auto" className="schedule-visit" text='Schedule a Visit' height={25} rounded={true} href="/" />
+                    <NextLinkButton aClassName="ml-auto" className="schedule-visit btn-gradient" text='Schedule a Visit' height={25} rounded={true} href="/" />
                     <div className='d-flex dev-book-cnt align-items-center'>
-                        <Image src={devImage} width={66} height={33} className='dev-image'/>
+                        <Image src={devImage} width={66} height={33} className='dev-image' />
                         <div className='by'>
-                            <div>{by}</div>
+                            <div className='sub-heading-2'>{by}</div>
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         <div className='booking-btn-container ml-auto'>
@@ -157,4 +205,4 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
 }
 
 
-export { PropertyCard, PropertyCard2, PropertyCard3, PropertyCard4 };
+export { ProjectCard, PropertyCard, PropertyCard2, PropertyCard3, PropertyCard4 };
