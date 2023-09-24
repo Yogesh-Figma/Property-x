@@ -8,15 +8,16 @@ import SimilarProjects from './similarProjects';
 import SimilarProperties from './similarProperties';
 import Map from '../components/ui/map';
 import Heading from '@/app/components/heading';
+import PropertyDetails from './propertyDetails';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export default function Page() {
     return (<div className='search-page container-fluid'>
         <Filter />
-        <div className='row additional-page-padding'>
+        <div className='row'>
             <div className='col-6 property-cards'>
-                {[1,2,3,4,5,6].map(item => <div className='property-card-cont'>
+                {[1, 2, 3, 4, 5, 6].map(item => <div className='property-card-cont'>
                     <PropertyCard4 title={"Gaur Krishn Villas"}
                         bhk={"2, 3, 4 BHK"}
                         address={"Sector 10, Greater Noida West, Greater Noida"}
@@ -30,25 +31,26 @@ export default function Page() {
                     />
                 </div>)}
             </div>
-            <div className='col-5'>
-                <div className='map-container'>
+            <div className='col-6 property-detail'>
+               <PropertyDetails />
+                {/* <div className='map-container'>
                     <Map lat={28.5355} long={77.391029} apiKey={API_KEY}/>
                 </div>
                 <Card className="contact-us-card">
                     <div className='contact-support text-center sub-heading-2'>Contact Support</div>
                     <ContactUsForm />
-                </Card>
+                </Card> */}
             </div>
-        </div>
+        </div >
         <div className='additional-page-padding'>
             <div className='similar'>
-                <Heading label={"Similar Projects"}/>
+                <Heading label={"Similar Projects"} />
                 <SimilarProjects />
             </div>
             <div className='similar'>
-                <Heading label={"Similar Properties"}/>
+                <Heading label={"Similar Properties"} />
                 <SimilarProperties />
             </div>
         </div>
-    </div>)
+    </div >)
 }

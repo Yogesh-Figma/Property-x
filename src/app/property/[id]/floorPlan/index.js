@@ -5,7 +5,7 @@ import "./styles.scss"
 import Card from '@/app/components/card'
 
 const FloorPlan = () => {
-    return (<div className='floor-plan'>
+    return (<div className='property-floor-plan'>
         <CardSlider carouselSettings={{ slidesToShow: 2, slidesToScroll: 1 }}>
             {[1, 2, 3, 4].map(item => <div className='floor-plan-card-container'>
                 <Card className='d-flex'>

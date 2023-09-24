@@ -150,7 +150,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 // Search page property card
-const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height = 258 }) => {
+const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height }) => {
     return (<div style={{ height }}>
         <Card className='property-card-4 overflow-hidden row'>
             <div className='row g-0 property-info'>
@@ -186,7 +186,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                         </div>}
                     </div>
                     <div className='sub-info'>{subInfo}</div>
-                    <NextLinkButton aClassName="ml-auto" className="schedule-visit btn-gradient" text='Schedule a Visit' height={25} rounded={true} href="/" />
+                    {/* <NextLinkButton aClassName="ml-auto" className="schedule-visit btn-gradient" text='Schedule a Visit' height={25} rounded={true} href="/" /> */}
                     <div className='d-flex dev-book-cnt align-items-center'>
                         <Image src={devImage} width={66} height={33} className='dev-image' />
                         <div className='by'>

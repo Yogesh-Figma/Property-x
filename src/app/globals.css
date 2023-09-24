@@ -248,3 +248,17 @@ input[type=number] {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.brochure-btn {
+  color: #202124;
+  border: 1px solid #007CFF;
+  background: #FFF;
+}
+
+.schedule-visit-btn {
+  background: #FF5017;
+}
+
+.talk-consulation-btn {
+  background: #25D366;
+}

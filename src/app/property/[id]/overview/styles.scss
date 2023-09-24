@@ -1,0 +1,27 @@
+.property-overview {
+    padding: 25px 30px 13px 30px;
+
+    .overview-sub-info {
+        margin-bottom: 33px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        img {
+            margin-right: 10px;
+        }
+    }
+
+    .btn-container {
+        margin-top: 14px;
+
+        .overview-btn {
+            margin-left: 15px;
+
+            span {
+                margin-right: 1px;
+            }
+        }
+    }
+}
