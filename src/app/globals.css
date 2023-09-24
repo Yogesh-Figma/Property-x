@@ -262,3 +262,8 @@ input[type=number] {
 .talk-consulation-btn {
   background: #25D366;
 }
+
+.slick-prev, .slick-next {
+  width: 50px !important;
+  height: 50px !important;
+}
