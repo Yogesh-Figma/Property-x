@@ -4,31 +4,31 @@ import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import "./styles.scss"
 
-const AMENITIES = [{ name: "Gated Community", img: "/amenities/gate.svg" },
-{ name: "24/7 Power Backup", img: "/amenities/generator.svg" },
-{ name: "Water Conservation", img: "/amenities/water.svg" },
-{ name: "Open Parking", img: "/amenities/parking.svg" },
-{ name: "CCTV", img: "/amenities/cctv.svg" },
-{ name: "Store Water Drains", img: "/amenities/storm_water_drain.svg" },
-{ name: "Solid Waste Management", img: "/amenities/solid_waste_management.svg" },
-{ name: "Swimming Pool", img: "/amenities/swimming_pool.svg" },
-{ name: "Multipurpose Hall", img: "/amenities/convention.svg" },
-{ name: "Jogging Track", img: "/amenities/jogging.svg" },
-{ name: "Meter Room", img: "/amenities/electric_meter.svg" },
-{ name: "Fire Fighting System", img: "/amenities/sprinkler.svg" },
-{ name: "Landscape Garden", img: "/amenities/forest.svg" },
-{ name: "Gymnasium", img: "/amenities/gym.svg" },
-{ name: "Children’s Play Area", img: "/amenities/playground.svg" }];
+const AMENITIES = [{ name: "Gated Community", img: "/amenities/gate.svg?url" },
+{ name: "24/7 Power Backup", img: "/amenities/generator.svg?url" },
+{ name: "Water Conservation", img: "/amenities/water.svg?url" },
+{ name: "Open Parking", img: "/amenities/parking.svg?url" },
+{ name: "CCTV", img: "/amenities/cctv.svg?url" },
+{ name: "Store Water Drains", img: "/amenities/storm_water_drain.svg?url" },
+{ name: "Solid Waste Management", img: "/amenities/solid_waste_management.svg?url" },
+{ name: "Swimming Pool", img: "/amenities/swimming_pool.svg?url" },
+{ name: "Multipurpose Hall", img: "/amenities/convention.svg?url" },
+{ name: "Jogging Track", img: "/amenities/jogging.svg?url" },
+{ name: "Meter Room", img: "/amenities/electric_meter.svg?url" },
+{ name: "Fire Fighting System", img: "/amenities/sprinkler.svg?url" },
+{ name: "Landscape Garden", img: "/amenities/forest.svg?url" },
+{ name: "Gymnasium", img: "/amenities/gym.svg?url" },
+{ name: "Children’s Play Area", img: "/amenities/playground.svg?url" }];
 
 
 export default () => {
-    return (<>
+    return (<div id="amenities">
         <Heading label={"Amenities"} />
-        <Card className='property-amenities d-flex flex-wrap'>
+        <Card className='property-amenities'>
             {AMENITIES.map((item, index) => <div className='amenity text-center' key={index}>
                 <Image src={item.img} width={45} height={45} />
                 <div className='sub-info'>{item.name}</div>
             </div>)}
         </Card>
-    </>)
+    </div>)
 }

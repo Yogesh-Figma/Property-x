@@ -3,14 +3,14 @@ import Card from '@/app/components/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/app/components/button';
-import starIcon from '@/app/icons/ic_baseline-star.svg'
-import downloadIcon from '@/app/icons/download_file.svg'
-import tickIcon from '@/app/icons/tick.svg'
-import instagramSaveIcon from '@/app/icons/save_instagram.svg'
-import shareIcon from '@/app/icons/share.svg'
+import starIcon from '@/app/icons/ic_baseline-star.svg?url'
+import downloadIcon from '@/app/icons/download_file.svg?url'
+import tickIcon from '@/app/icons/tick.svg?url'
+import heartIcon from '@/app/icons/heart.svg?url'
+import shareIcon from '@/app/icons/share.svg?url'
 import './styles.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
-import propertyGraph from '@/app/icons/property_graph.svg'
+import propertyGraph from '@/app/icons/property_graph.svg?url'
 
 const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy }) => {
     return (
@@ -40,8 +40,8 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                         </div>
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end'>
-                            <Button className="e-visit" text='e-Visit' height={20} rounded={true} />
-                            <Button text='Book Now' height={20} rounded={true} />
+                            <Button className="e-visit" text='e-Visit' height={20} rounded={true} variant='outlined'/>
+                            <Button text='View More' height={20} rounded={true} />
                             </div>
                     </div>
 
@@ -75,7 +75,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                         <div className='price-container d-flex justify-content-between align-items-start'>
                             <div className='posted-by'>Posted by {postedBy}</div>
                             <div className='btn-cnt'>
-                            <Button text='Book Now' height={20} rounded={true} />
+                            <Button text='View More' height={20} rounded={true} />
                             </div>
                         </div>
                         </div>
@@ -139,8 +139,8 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                             {!!address && <div className='address'>{address}</div>}
                         </div>
                         <div className='btn-cnt d-flex'>
-                            <Button className="e-visit" text='e-Visit' height={40} rounded={true} />
-                            <Button text='Book Now' height={40} rounded={true} />
+                            <Button className="e-visit" text='e-Visit' height={40} rounded={true} variant='outlined'/>
+                            <Button text='View More' height={40} rounded={true} />
                         </div>
                     </div>
                 </div>
@@ -162,8 +162,8 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                         <div className='title heading'>{title}</div>
                         <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>
                         <div className='share-container'>
-                            <Image src={instagramSaveIcon} width={20} height={20} />
-                            <Image src={shareIcon} width={24} height={24} />
+                            <Image src={heartIcon} width={20} height={20} className='heart-icon'/>
+                            <Image src={shareIcon} width={24} height={24} className='share-icon'/>
                         </div>
                     </div>
                     {!!by && <div className='by'>By {by}</div>}
@@ -194,8 +194,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton text='Brochure' height={25} rounded={true} variant="outlined" href="/" className="brochure-btn" endIcon={<Image src={downloadIcon} width={12} height={12.5} />} />
-                            <NextLinkButton text='Book Now' height={25} rounded={true} href="/" />
+                            <NextLinkButton text='View' height={25} rounded={true} href="/" />
                         </div>
                     </div>
                 </div>

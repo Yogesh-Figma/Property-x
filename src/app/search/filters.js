@@ -4,7 +4,7 @@ import "./filter.scss"
 import ChipDropDown from '@/app/components/chipDropDown';
 import Chip from '@/app/components/chip';
 import Image from 'next/image';
-import moreFilter from '@/app/icons/more_filter_icon.svg'
+import moreFilter from '@/app/icons/more_filter_icon.svg?url'
 
 
 const AMENITIES = [{value:"Parking", label:"Parking"},{value:"park", label:"park"},{value:"Power Backup", label:"Power Backup"},{value:"Lift", label:"Lift"},{value:"Gymnasium", label:"Gymnasium"},{value:"Swimming Pool", label:"Swimming Pool"},{value:"Gas Pipeline", label:"Gas Pipeline"},{value:"Security Personnel", label:"Security Personnel"}]

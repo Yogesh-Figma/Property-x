@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-import NextArrow from '../icons/next_arrow.svg';
-import PrevArrow from '../icons/prev_arrow.svg';
+import NextArrow from '../icons/next_arrow.svg?url';
+import PrevArrow from '../icons/prev_arrow.svg?url';
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;

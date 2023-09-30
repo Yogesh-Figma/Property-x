@@ -2,11 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import './footer.scss'
 import CompactSearchBar from './components/ui/compactSearchBar';
-import propertyXLogo from '@/app/icons/property_x.svg'
-import facebookIcon from "@/app/icons/ri_facebook-fill.svg"
-import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg"
-import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg"
-import instagramIcon from "@/app/icons/ant-design_instagram-filled.svg"
+import propertyXLogo from '@/app/icons/property_x.svg?url'
+import facebookIcon from "@/app/icons/ri_facebook-fill.svg?url"
+import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg?url"
+import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg?url"
+import instagramIcon from "@/app/icons/ant-design_instagram-filled.svg?url"
 import Link from 'next/link'
 
 
@@ -52,7 +52,7 @@ const Footer = () => {
                     <div className="row g-0">
                         <div className='col-4'>
                             <div className='trophy-container d-flex align-items-center justify-content-center'>
-                                <Image src={"/trophy.svg"} width={70} height={70} />
+                                <Image src={"/trophy.svg?url"} width={70} height={70} />
                             </div>
                         </div>
                         <div className='col-8'>
@@ -83,8 +83,8 @@ const Footer = () => {
                             <div className='col-4 download-app-container'>
                                 <div className='head text-start'>Download the App</div>
                                 <div className='d-flex appLogo justify-content-end'>
-                                    <Image width={144.6} height={51.64} style={{ maxWidth: "144.6px" }} src="/playStoreLogo.svg" className='col' />
-                                    <Image width={144.6} height={51.64} style={{ maxWidth: "144.6px" }} src="/appleStoreLogo.svg" className='col' />
+                                    <Image width={144.6} height={51.64} style={{ maxWidth: "144.6px" }} src="/playStoreLogo.svg?url" className='col' />
+                                    <Image width={144.6} height={51.64} style={{ maxWidth: "144.6px" }} src="/appleStoreLogo.svg?url" className='col' />
                                 </div>
                                 <div className='d-flex mt-4'>
                                     <div className='qr-code'><Image width={100} height={100} src="/qrCode.png" /></div>

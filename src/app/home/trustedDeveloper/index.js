@@ -2,7 +2,7 @@ import CardSlider from '../../components/slider';
 import React from 'react';
 import Card from '../../components/card'
 import Image from 'next/image';
-import verified_icon from '../../icons/ic_round-verified-user.svg'
+import verified_icon from '../../icons/ic_round-verified-user.svg?url'
 import './styles.scss'
 import Chip from '../../components/chip';
 

@@ -237,11 +237,6 @@ input[type=number] {
   background: linear-gradient(91deg, #DC143C -133.34%, #B1EEF0 105.31%);
 }
 
-.e-visit {
-  background: #1B74E9;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25) inset, 0px -5px 10px 0px rgba(0, 0, 0, 0.25) inset;
-}
-
 .property-appreciation {
   background: var(--Growth-colour1, linear-gradient(87deg, #008813 4.04%, #13A200 30.84%, #03BC00 55.29%, #03C900 76.69%, #00DE13 101.86%));
   background-clip: text;
@@ -255,15 +250,15 @@ input[type=number] {
   background: #FFF;
 }
 
-.schedule-visit-btn {
-  background: #FF5017;
-}
-
-.talk-consulation-btn {
-  background: #25D366;
-}
-
 .slick-prev, .slick-next {
   width: 50px !important;
   height: 50px !important;
+}
+
+.best-buy-txt {
+  background: var(--Highlight-colour, linear-gradient(121deg, #EE0979 31.62%, #F52F49 46.89%, #FA4F21 61.81%, #FE6309 73.63%, #FF6A00 80.87%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }

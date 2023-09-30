@@ -4,8 +4,8 @@ import "./styles.scss"
 
 export default ({}) => {
     return (
-        <>
-            <Heading label={"Description"} />
+        <div id="description">
+            <Heading label={"Description"}/>
             <Card className='property-description'>
                 <p className="project-title sub-heading">Welcome to the world of T And T Digitown, where convenience and comfort converge.</p>
                 <div className='project-location'>Siddharth Vihar, Ghaziabad</div>
@@ -37,6 +37,6 @@ export default ({}) => {
                     the area is excellently connected to different parts of the city through a reliable public transport network.
                 </div>
             </Card>
-        </>
+        </div>
     )
 }

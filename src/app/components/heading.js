@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import horizontailGradientLine from '@/app/icons/horizontal_gradient_line.svg'
+import horizontailGradientLine from '@/app/icons/horizontal_gradient_line.svg?url'
 
 
 export default function Heading({ label }) {

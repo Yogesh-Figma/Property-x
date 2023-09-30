@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
-import TeenyIconsBuilding from '../../icons/teenyicons_building-outline.svg'
-import RegularHandshake from '../../icons/fa-regular_handshake.svg'
-import IconoirGroup from '../../icons/iconoir_group.svg'
-import PixelArtBuilding from '../../icons/pixelarticons_buildings.svg'
+import TeenyIconsBuilding from '../../icons/teenyicons_building-outline.svg?url'
+import RegularHandshake from '../../icons/fa-regular_handshake.svg?url'
+import IconoirGroup from '../../icons/iconoir_group.svg?url'
+import PixelArtBuilding from '../../icons/pixelarticons_buildings.svg?url'
 import "./styles.scss"
 
 const HomePageStats = () => {

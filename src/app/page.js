@@ -5,7 +5,7 @@ import './page.scss'
 import TrustedDevelopers from './home/trustedDeveloper'
 import FeaturedProjects from './home/featuredProjects'
 import TrendingProjects from './home/trendingProjects'
-import bannerImage from './staticImages/homePageBanner.svg'
+import bannerImage from './staticImages/homePageBanner.svg?url'
 import HomePageStats from './home/homePageStats';
 import SearchBar from './home/searchBar';
 import InsightAndArticles from './home/insightAndArticles'
@@ -70,10 +70,10 @@ export default function Home() {
             <div className='download-app-sub-txt sub-heading'>Unlock the Seamless Booking Experience with us</div>
           </div>
           <div className='download-link-container d-flex align-items-center'>
-            <Image src={"/appleStoreLogo.svg"} height={72} width={201} />
-            <Image src={"/playStoreLogo.svg"} height={72} width={201} />
+            <Image src={"/appleStoreLogo.svg?url"} height={72} width={201} />
+            <Image src={"/playStoreLogo.svg?url"} height={72} width={201} />
             <div className='scan-txt sub-heading-2'>Scan the QR and download the App</div>
-            <Image src={"/qrCode.svg"} height={100} width={100} className='qr-code-img'/>
+            <Image src={"/qrCode.svg?url"} height={100} width={100} className='qr-code-img'/>
           </div>
           <Image src={"/appImage.png"} height={400} width={464} className='download-logo position-absolute d-none d-xl-block'/>
         </div>

@@ -4,7 +4,7 @@ import Button from '@/app/components/button';
 import { InputAdornment, TextField } from "@mui/material";
 import './styles.scss'
 import Image from 'next/image';
-import searchIcon from '@/app/icons/iconamoon_search.svg'
+import searchIcon from '@/app/icons/iconamoon_search.svg?url'
 import DropDown from '@/app/components/dropDown';
 
 

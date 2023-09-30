@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import crossIcon from '@/app/icons/cross_icon.svg'
+import crossIcon from '@/app/icons/cross_icon.svg?url'
 
 
 

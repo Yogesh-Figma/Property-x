@@ -1,10 +1,10 @@
 import ContactUsForm from '../components/ui/contactUsForm';
 import Image from 'next/image';
 import './styles.scss'
-import facebookIcon from "@/app/icons/ri_facebook-fill.svg"
-import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg"
-import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg"
-import instagramIcon from "@/app/icons/ant-design_instagram-filled.svg"
+import facebookIcon from "@/app/icons/ri_facebook-fill.svg?url"
+import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg?url"
+import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg?url"
+import instagramIcon from "@/app/icons/ant-design_instagram-filled.svg?url"
 
 
 const ContactUs = () => {

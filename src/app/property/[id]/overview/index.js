@@ -1,20 +1,20 @@
 import Card from '@/app/components/card';
 import Heading from '@/app/components/heading';
-import abstractShape from '@/app/icons/abstract_shape.svg'
-import apartment from '@/app/icons/apartment.svg'
-import property from '@/app/icons/property.svg'
-import startDate from '@/app/icons/start_date.svg'
-import shareIcon from '@/app/icons/solar_share-linear.svg'
-import callIcon from '@/app/icons/call.svg'
-import saveIcon from '@/app/icons/save.svg'
-import scheduleIcon from '@/app/icons/schedule.svg'
+import abstractShape from '@/app/icons/abstract_shape.svg?url'
+import apartment from '@/app/icons/apartment.svg?url'
+import property from '@/app/icons/property.svg?url'
+import startDate from '@/app/icons/start_date.svg?url'
+import callIcon from '@/app/icons/call.svg?url'
+import shareIcon from '@/app/icons/share.svg?url'
+import heartIcon from '@/app/icons/heart.svg?url'
+import scheduleIcon from '@/app/icons/schedule.svg?url'
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import "./styles.scss"
 
 export default ({ showBtn }) => {
     return (
-        <>
+        <div id="overview">
             <Heading label={"Overview"} />
             <Card className='property-overview'>
                 <div className='property-short-info-cnt d-flex flex-wrap justify-content-between'>
@@ -48,12 +48,12 @@ export default ({ showBtn }) => {
                         </div>
                     </div>
                 </div>
-               {showBtn && <div className='btn-container d-flex justify-content-end'>
-                    <NextLinkButton className="btn-gradient overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" icon={<Image src={scheduleIcon} width={20} height={20} />} />
-                    <NextLinkButton className="btn-gradient overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" icon={<Image src={callIcon} width={20} height={20} />} />
-                    <NextLinkButton className="btn-gradient overview-btn" text='Save' height={40} rounded={true} href="/" icon={<Image src={saveIcon} width={19} height={19} />} />
-                    <NextLinkButton className="btn-gradient overview-btn" text='Share' height={40} rounded={true} href="/" icon={<Image src={shareIcon} width={18} height={18} />} />
+               {showBtn && <div className='btn-container d-flex justify-content-end align-items-center'>
+               <NextLinkButton variant="outlined" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
+                    <NextLinkButton variant="outlined" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+                    <Image src={heartIcon} width={20} height={20} className='heart-icon'></Image>
+                    <Image src={shareIcon} width={24} height={24} className='share-icon'></Image>
                 </div>}
             </Card>
-        </>)
+        </div>)
 }

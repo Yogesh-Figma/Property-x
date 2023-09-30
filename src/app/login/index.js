@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { TextField, Modal } from "@mui/material";
 import Button from '@/app/components/button';
 import Box from '@mui/material/Box';
-import CloseIcon from '@/app/icons/icon_close-small.svg'
+import CloseIcon from '@/app/icons/icon_close-small.svg?url'
 import Checkbox from '@mui/material/Checkbox';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
@@ -65,7 +65,7 @@ const Login = ({ open, otpSent=true }) => {
             <Box sx={{ ...styles.modal }} className=" position-relative">
                 <Image src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose}/>
                 <div className='login-container d-flex'>
-                    <Image src={"./undrawBuilding.svg"} width={438} height={334} />
+                    <Image src={"/undrawBuilding.svg"} width={438} height={334} />
                     <div className='login-info'>
                         <div className='heading'>Log in</div>
                         <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>Property X</span> account.</div>

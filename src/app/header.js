@@ -3,7 +3,7 @@ import './header.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import Login from "./login"
 import Image from 'next/image';
-import propertyXLogo from '@/app/icons/property_x.svg'
+import propertyXLogo from '@/app/icons/property_x.svg?url'
 import Link from 'next/link'
 import CompactSearchBar from './components/ui/compactSearchBar';
 

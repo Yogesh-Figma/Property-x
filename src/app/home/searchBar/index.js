@@ -3,11 +3,11 @@
 import React from 'react';
 import './styles.scss'
 import { Container, InputAdornment, TextField, Tabs, Tab, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import fluentLocation from '../../icons/fluent_my-location-12-regular.svg';
-import solidVoice from '../../icons/icon-park-solid_voice.svg';
+import fluentLocation from '../../icons/fluent_my-location-12-regular.svg?url';
+import solidVoice from '../../icons/icon-park-solid_voice.svg?url';
 import Image from 'next/image';
 import NextLinkButton from '@/app/components/nextLinkButton';
-import searchIcon from '@/app/icons/iconamoon_search_white.svg'
+import searchIcon from '@/app/icons/iconamoon_search_white.svg?url'
 
 const TAB_LABELS = ["Buy", "Rent", "Lease", "Commercial", "Residential", "Projects"];
 
