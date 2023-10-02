@@ -1,0 +1,58 @@
+import React from 'react'
+import Image from 'next/image';
+import './styles.scss'
+import NextLinkButton from '@/app/components/nextLinkButton';
+import Heading from '@/app/components/heading';
+import Card from '@/app/components/card';
+import YoutubePlayer from '@/app/components/youtubePlayer';
+
+export default ({ }) => {
+    return (<div className='post-property container-fluid'>
+        <div className='container additional-page-padding'>
+            <div className="property-txt d-flex flex-column align-items-center text-center">
+                <div className="heading">Post a Property</div>
+                <p className="maximize-your sub-heading-3">
+                    Maximize your property&#39;s exposure by listing it with us.
+                    <br />
+                    Join our platform to effortlessly reach a wide audience of potential guests eager to book your space.
+                </p>
+            </div>
+            <div className='d-flex'>
+                <div className=''>
+                    <Heading label={"I want to Post..."} />
+                    <div className="property-btn d-flex justify-content-between">
+                        <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/property/post/residential"} />
+                        <NextLinkButton rounded={true} text={"Commercial Property"} height={50} href={"/property/post/commercial"} />
+                    </div>
+                </div>
+                <div className='sticky-note-container position-relative'>
+                    <Image className="header" alt="Header" fill={true} src="/stickyNote.svg" />
+                </div>
+            </div>
+            <Heading label={"How it works?"} />
+            <Card className="info-container">
+                <div className='video-container d-flex'>
+                    <div className='video-1-container'><YoutubePlayer videoId={"hNAbQYU0wpg"} height={242} width={363}/></div>
+                    <div className='video-2-container'><YoutubePlayer videoId={"hNAbQYU0wpg"} height={242} width={363} /></div>
+                </div>
+                <p className="info">
+                    Lorem ipsum dolor sit amet consectetur. Sed nunc pellentesque arcu ultrices neque ornare et posuere
+                    scelerisque. Eu cum lorem sed orci pulvinar elementum ullamcorper vitae. Nunc lacus vel amet diam pharetra
+                    feugiat at tempus fames. Rhoncus arcu cursus ut elementum maecenas nam. Sit aliquet nunc maecenas nibh est
+                    volutpat vestibulum. Ut molestie molestie id scelerisque gravida aliquam duis ornare. Molestie sed viverra
+                    velit iaculis ullamcorper pharetra at penatibus. Viverra egestas pharetra vestibulum arcu cras vitae mi
+                    eleifend senectus. Commodo eget tristique volutpat donec morbi netus. Lorem ipsum dolor sit amet
+                    consectetur. Sed nunc pellentesque arcu ultrices neque ornare et posuere scelerisque. Eu cum lorem sed orci
+                    pulvinar elementum ullamcorper vitae. Nunc lacus vel amet diam pharetra feugiat at tempus fames. Rhoncus
+                    arcu cursus ut elementum maecenas nam. Sit aliquet nunc maecenas nibh est volutpat vestibulum. Ut molestie
+                    molestie id scelerisque gravida aliquam duis ornare. Molestie sed viverra velit iaculis ullamcorper pharetra
+                    at penatibus. Viverra egestas pharetra vestibulum arcu cras vitae mi eleifend senectus. Commodo eget
+                    tristique volutpat donec morbi netus.Lorem ipsum dolor sit amet consectetur. Sed nunc pellentesque arcu
+                    ultrices neque ornare et posuere scelerisque. Eu cum lorem sed orci pulvinar elementum ullamcorper vitae.
+                    Nunc lacus vel amet diam pharetra feugiat at tempus fames. Rhoncus arcu cursus ut elementum maecenas nam.
+                    Sit aliquet nunc
+                </p>
+            </Card>
+        </div>
+    </div>)
+}

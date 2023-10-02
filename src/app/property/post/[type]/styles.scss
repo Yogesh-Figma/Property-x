@@ -1,0 +1,63 @@
+.post-property-form {
+    .search-icon {
+        line-height: 20px;
+        svg {
+            width: 20px;
+            height: 20px;
+            path {
+                stroke : #70757A !important;
+            }
+        }
+    }
+    padding-top: 50px;
+    padding-bottom: 58px;
+    .steps {
+        margin-top:54px;
+    }
+    .sq-ft {
+        width: 47px;
+        color: #70757A;
+    }
+    .heading {
+        font-size: 36px;
+        line-height: normal;
+        letter-spacing: 1.8px;
+        + .sub-info {
+            margin-top: 6px;
+        }
+    }
+   
+    .form-tab-container .tab {
+        margin-right: 42px;
+    }
+    .form-element-heading {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .review-location {
+        top: 84px;
+        right: 150px;
+    }
+    .next-button {
+        margin-top: 40px;
+        width: 157px;
+    }
+    .photo-and-video-cnt {
+        .undraw-building {
+            margin-left: 30px;
+            margin-top: 57px;
+        }
+    }
+    .pricing-and-post {
+        .undraw-sale {
+            margin-left: 90px;
+        }
+        .rupee-icon {
+           font-size: 16px;
+            color: #4D5156;
+        }
+        .post-property-cnt {
+            margin-top: 50px;
+        }
+    }
+}

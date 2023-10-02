@@ -5,13 +5,17 @@ import Image from 'next/image';
 import verified_icon from '../../icons/ic_round-verified-user.svg?url'
 import './styles.scss'
 import Chip from '../../components/chip';
+import VerticalGradientLine from '@/app/icons/vertical_gradient_line.svg'
 
 const TrustedDevelopers = () => {
     return (<div className='trusted-developers'>
-        <CardSlider carouselSettings={{ slidesToShow: 4, slidesToScroll: 1 }}>
+        <CardSlider carouselSettings={{ slidesToShow: 3.5, slidesToScroll: 1 }}>
             {[1, 2, 3, 4, 5, 6, 7, 9, 10].map(i =>
                 <div>
-                    <Card className='trusted-dev-card'>
+                    <Card className='trusted-dev-card position-relative'>
+                        <div className='vertical-line'>
+                            <VerticalGradientLine />
+                        </div>
                         <div className='d-flex flex-column justify-content-between h-100'>
                             <div className='sub-container'>
                                 <div className='image-container d-flex '>
@@ -20,11 +24,23 @@ const TrustedDevelopers = () => {
                                 </div>
                                 <div className='sub-heading-2'>Struti Developers & Builders</div>
                                 <div className='property-info d-flex justify-content-between'>
-                                    <span>34Yrs<span className='body-txt'> Experience</span></span>
-                                    <span>144 <span className='body-txt'>Properties</span></span>
+                                    <span>1990<span className='body-txt'> Year Estd</span></span>
+                                    <span>34<span className='body-txt'> Years Experience</span></span>
+                                    <span>144 <span className='body-txt'>Projects</span></span>
                                 </div>
                             </div>
-                            <div className='chip-container'><Chip label="Buran" variant="outlined" /></div>
+                            <div className='horizontal-line'></div>
+                            <div className='chip-container'>
+                                <Chip label="Mumbai" variant="randomColor" />
+                                <Chip label="Thane" variant="randomColor" />
+                                <Chip label="Gurgaon" variant="randomColor" />
+                                <Chip label="Faridabad" variant="randomColor" />
+                                <Chip label="Pune" variant="randomColor" />
+                                <Chip label="Kurukshetra" variant="randomColor" />
+                                <Chip label="Nagpur" variant="randomColor" />
+                                <Chip label="Navi Mumbai" variant="randomColor" />
+                                <Chip label="Bengaluru" variant="randomColor" />
+                            </div>
                         </div>
                     </Card>
                 </div>)}
