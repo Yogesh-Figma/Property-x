@@ -111,7 +111,7 @@ export default ({ formData, handleChange, changeStep }) => {
                 <DragDropFile uploadText="Upload PAN Card" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
                 <Heading label={"Photos and Signature"} />
                 <DragDropFile uploadText="Upload Photo" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                <DragDropFile uploadText="Upload Signature" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
+                <DragDropFile uploadText="Add Signature" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
                 <Heading label={"Nominee and Owner details"} />
                 <div className="row  form-row">
                     <div className="col-6">

@@ -13,8 +13,8 @@ import PersonalDetails from './personalDetails';
 const STEPS = ["Inventory Selection", "Personal Details", "Payment and Book"]
 
 export default ({ params: { type } }) => {
-    const [activeStep, changeStep] = React.useState(1);
-    const [formData, setFormData] = React.useState({ tower: "", bhkType: "", floor: "", apartment: "", firstName:"", lastName:"", mobileNo:"", email:"", address:"", aadhaarNo:"", panNo:"", nomineeName:"", nomineeRelation:"", declaration:false });
+    const [activeStep, changeStep] = React.useState(0);
+    const [formData, setFormData] = React.useState({ tower: "", bhkType: "", floor: "", apartment: "", firstName:"", lastName:"", mobileNo:"", email:"", address:"", aadhaarNo:"", panNo:"", nomineeName:"", nomineeRelation:"", selectedPaymentMethod:"", declaration:false });
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));

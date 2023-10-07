@@ -1,6 +1,7 @@
 .book-property-form {
     padding-top: 50px;
     padding-bottom: 58px;
+
     .next-button {
         margin-top: 30px;
         width: 157px;
@@ -21,18 +22,22 @@
     .inventory-selection {
         .site-plan-cnt {
             margin-top: 50px;
+
             .property-card {
                 width: 25%;
             }
+
             .site-plan {
-                flex: 1;               
+                flex: 1;
             }
+
             .site-plan-image {
                 border-radius: 10px;
                 overflow: hidden;
                 margin-left: 36px;
             }
         }
+
         .sub-heading-space {
             margin-right: 30px;
         }
@@ -93,6 +98,7 @@
         .floor-cnt {
             .floor-tabs {
                 margin-bottom: 10px;
+
                 .tab {
                     margin-bottom: 20px;
                 }
@@ -116,29 +122,37 @@
         .form-row {
             padding-top: 30px;
         }
+
         .post-form-input {
             label {
                 color: #70757A;
                 transform: translate(23px, 15px) scale(1);
             }
+
             input {
                 padding-left: 22px;
             }
         }
+
         .file-upload-form {
-            color:  #70757A;
+            color: #70757A;
+
             .file-list .preview-container {
                 width: 45px;
                 height: 45px;
             }
+
             .form-file-upload {
                 height: 116px;
             }
-            .label-file-upload  {
-               justify-content: flex-start;
-               padding-left: 46px;
+
+            .label-file-upload {
+                justify-content: flex-start;
+                padding-left: 46px;
             }
+
             margin-top: 20px;
+
             .upload-button {
                 background: rgba(211, 211, 211, 0.50);
                 color: #202124;
@@ -147,8 +161,57 @@
                 margin-right: 30px;
             }
         }
+
         .declaration-txt {
             margin-left: 20px;
+        }
+    }
+
+    .payment-and-book {
+        .user-info {
+            margin-top: 30px;
+            padding: 10px 30px 30px;
+
+            .details {
+                width: 60%;
+            }
+
+            .project-heading {
+                margin-top: 0px;
+                color: #4D5156;
+                font-size: 16px;
+                padding-top: 20px;
+            }
+
+            .sub-info.row {
+                margin-bottom: 10px;
+            }
+
+            .signature-container {
+                margin-top: 15px;
+                width: 116px;
+                height: 40px;
+                border-radius: 5px;
+                border: 1px solid #EAEAEA;            
+            }
+        }
+        .payment-methods {
+            margin-top: 40px;
+            
+            .tab {
+                width: 270px;
+                height: 80px;
+                border-radius: 40px;
+                margin-right: 49px;
+                background: #FFF;
+                border: 0px;
+                box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
+                &.selected {
+                    border: none;
+                    background: #DC143C;
+                    color: #fff;
+                }
+            }
         }
     }
 }
