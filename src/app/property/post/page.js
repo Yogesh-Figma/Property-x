@@ -21,8 +21,8 @@ export default ({ }) => {
                 <div className=''>
                     <Heading label={"I want to Post..."} />
                     <div className="property-btn d-flex justify-content-between">
-                        <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/property/post/residential"} />
-                        <NextLinkButton rounded={true} text={"Commercial Property"} height={50} href={"/property/post/commercial"} />
+                        <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/property/post/Residential"} />
+                        <NextLinkButton rounded={true} text={"Commercial Property"} height={50} href={"/property/post/Commercial"} />
                     </div>
                 </div>
                 <div className='sticky-note-container position-relative'>

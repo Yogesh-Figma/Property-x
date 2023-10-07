@@ -16,8 +16,8 @@ const Header = ({ }) => {
             <CompactSearchBar height='30px' width={383} showLocationMenu={true}/>
         </div>
         <div className='links'>
-            <span>Download the App</span>
-            <span>Post a Property</span>
+            <span className='heading-normal'>Download the App</span>
+            <span className='heading-normal'> <Link href="/property/post" className='text-decoration-none'>Post a Property</Link></span>
             <NextLinkButton text={"Login"} href={"?login=true"} />
             <Login />
         </div>

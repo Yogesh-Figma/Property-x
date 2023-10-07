@@ -17,12 +17,12 @@ const MenuProps = {
   },
 };
 
-export default function DropDown({label, handleChange, value, values, multiple, width}) {
+export default function DropDown({label, handleChange, value, values, multiple, width, className, variant="standard", hideLabel= false}) {
   const theme = useTheme();
 
   return (
     <div>
-      <FormControl sx={{ width: width }} variant="standard">
+      <FormControl sx={{ width: width }} variant={variant} className={className}>
         <Select
           multiple={multiple}
           displayEmpty
@@ -30,7 +30,7 @@ export default function DropDown({label, handleChange, value, values, multiple, 
           onChange={handleChange}
           input={<Input disableUnderline={true}/>}
           renderValue={(selected) => {
-            if (selected.length === 0) {
+            if (!hideLabel && selected.length === 0) {
               return label;
             }
             return selected;

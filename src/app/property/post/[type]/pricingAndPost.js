@@ -32,7 +32,7 @@ export default ({ formData, handleChange, postProperty }) => {
             </div>
         </div>
         <div className='d-flex justify-content-center post-property-cnt'>
-                <Button className="post-property" rounded={true} height={48} text={"Post Property"} onClick={postProperty} />
+                <Button className="post-property-btn" rounded={true} height={48} text={"Post Property"} onClick={postProperty} />
             </div>
     </div>
 }

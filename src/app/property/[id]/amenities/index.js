@@ -4,7 +4,7 @@ import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import "./styles.scss"
 
-const AMENITIES = [{ name: "Gated Community", img: "/amenities/gate.svg?url" },
+export const AMENITIES = [{ name: "Gated Community", img: "/amenities/gate.svg?url" },
 { name: "24/7 Power Backup", img: "/amenities/generator.svg?url" },
 { name: "Water Conservation", img: "/amenities/water.svg?url" },
 { name: "Open Parking", img: "/amenities/parking.svg?url" },
@@ -21,12 +21,12 @@ const AMENITIES = [{ name: "Gated Community", img: "/amenities/gate.svg?url" },
 { name: "Children’s Play Area", img: "/amenities/playground.svg?url" }];
 
 
-export default () => {
+export default ({ imageWidth=45, imageHeight=45}) => {
     return (<div id="amenities">
         <Heading label={"Amenities"} />
         <Card className='property-amenities'>
             {AMENITIES.map((item, index) => <div className='amenity text-center' key={index}>
-                <Image src={item.img} width={45} height={45} />
+                <Image src={item.img} width={imageWidth} height={imageHeight} />
                 <div className='sub-info'>{item.name}</div>
             </div>)}
         </Card>

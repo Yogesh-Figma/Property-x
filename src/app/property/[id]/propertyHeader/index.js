@@ -9,7 +9,7 @@ import Rating from '@/app/components/rating';
 import nearByIcon from '@/app/icons/near_by.svg?url';
 import './styles.scss'
 
-export default ({ }) => {
+export default ({ id }) => {
     return (<div className='property-header'>
         <div className='row g-0'>
             <div className='property-sub-info col-8'>
@@ -54,7 +54,7 @@ export default ({ }) => {
             </div>
             <div>
                 <NextLinkButton className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />
-                <NextLinkButton text='Book Now' height={30} rounded={true} href="/" />
+                <NextLinkButton text='Book Now' height={30} rounded={true} href={`/property/booking/${id}`} />
             </div>
         </div>
     </div>)

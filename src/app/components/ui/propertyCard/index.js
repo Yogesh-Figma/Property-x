@@ -12,7 +12,7 @@ import './styles.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import propertyGraph from '@/app/icons/property_graph.svg?url'
 
-const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy }) => {
+const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
     return (
         <div>
             <Card className='project-card'>
@@ -39,9 +39,9 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                                 <span className='property-appreciation'>04.30%</span>
                         </div>
                         </div>
-                        <div className='btn-cnt d-flex flex-column col-4 align-self-end'>
+                        <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
                             <Button className="e-visit" text='e-Visit' height={20} rounded={true} variant='outlined'/>
-                            <Button text='View More' height={20} rounded={true} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/property/${id}`}/>
                             </div>
                     </div>
 
@@ -51,7 +51,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
 
 }
 
-const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy }) => {
+const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
     return (
         <div>
             <Card className='property-card'>
@@ -75,7 +75,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                         <div className='price-container d-flex justify-content-between align-items-start'>
                             <div className='posted-by'>Posted by {postedBy}</div>
                             <div className='btn-cnt'>
-                            <Button text='View More' height={20} rounded={true} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/property/${id}`}/>
                             </div>
                         </div>
                         </div>
@@ -87,7 +87,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
 }
 
 
-const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by }) => {
+const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id }) => {
     return (<div>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
@@ -110,7 +110,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by }
     </div>)
 }
 
-const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage }) => {
+const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id }) => {
     return (<div>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
@@ -140,7 +140,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                         </div>
                         <div className='btn-cnt d-flex'>
                             <Button className="e-visit" text='e-Visit' height={40} rounded={true} variant='outlined'/>
-                            <Button text='View More' height={40} rounded={true} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/property/${id}`}/>
                         </div>
                     </div>
                 </div>
@@ -150,19 +150,19 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 // Search page property card
-const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, propertyId }) => {
+const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, propertyId, verticalView }) => {
     return (<div style={{ height }}>
-        <Card className='property-card-4 overflow-hidden row position-relative'>
+        <Card className='property-card-4 overflow-hidden row position-relative g-0'>
             <div className='row g-0 property-info'>
                 <div className='img-container position-relative col-4'>
                     <Image src={imgsrc} fill={true} />
                 </div>
-                <div className='info-container col-8 d-flex flex-column'>
+                <div className={`info-container d-flex flex-column ${verticalView ? 'col-12':'col-8'}`}>
                     <div className='d-flex align-items-center justify-content-between'>
                         <div className='title heading'>{title}</div>
                         <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>
                         <div className='share-container'>
-                            <Image src={heartIcon} width={20} height={20} className='heart-icon'/>
+                        {!verticalView && <Image src={heartIcon} width={20} height={20} className='heart-icon'/>}
                             <Image src={shareIcon} width={24} height={24} className='share-icon'/>
                         </div>
                     </div>
@@ -193,9 +193,9 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                             <div className='sub-heading-2'>{by}</div>
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
-                        <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton text='View' height={25} rounded={true} href="/" />
-                        </div>
+                        {!verticalView &&  <div className='booking-btn-container ml-auto'>
+                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href="/" />
+                        </div>}
                     </div>
                 </div>
             </div>

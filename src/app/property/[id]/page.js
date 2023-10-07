@@ -22,7 +22,7 @@ import Map from '@/app/components/ui/map'
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const BREADCRUMB = [{ name: "Home", url: "#" }, { name: "Ghaziabad", url: "#" }, { name: "Siddharth Vihar", url: "#" }, { name: "Siddharth Vihar", url: "#" },]
-export default function Page() {
+export default function Page({params: { id}}) {
     return (<div className='property-page container-fluid'>
         <div className='additional-page-padding'>
             <div className='message sub-heading'>Explore T&T Digitown’s virtual tour starting from Noida City Center Metro Station.*</div>
@@ -32,7 +32,7 @@ export default function Page() {
             <div className='property-subtext sub-info d-flex justify-content-between'><span>*Please note: The starting location may change in the future.</span>
             <span className='vr-message ml-auto'>Use VR Headset for better experience.</span>
             </div>
-            <PropertyHeader />
+            <PropertyHeader id={id}/>
         </div>
         <div className='additional-page-padding'>
             <div className='row g-0 property-additional-info'>

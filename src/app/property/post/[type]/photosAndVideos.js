@@ -14,7 +14,7 @@ export default ({ formData, handleChange, changeStep }) => {
         <Heading label={"Upload Photos and Videos"}/>
         <div className='d-flex'>
             <div className='upload-container'>
-                <DragDropFile files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image, SUPPORTED_FILE_TYPE.video]} multiple/>
+                <DragDropFile files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image, SUPPORTED_FILE_TYPE.video]} multiple={true}/>
             </div>
             <Image className='undraw-building' src={"/undrawUpload.svg"} width={304} height={258} />
         </div>

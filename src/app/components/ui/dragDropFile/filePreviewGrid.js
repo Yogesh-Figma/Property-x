@@ -14,9 +14,10 @@ const convertBytesToKB = (bytes) =>
 // ImageList Component//
 const FilePreviewGrid = ({ files, removeFile }) => {
   // Return the list of files//
+  const filesData = Object.keys(files);
   return (
-    <section className="file-list d-flex">{
-      Object.keys(files).map((fileName, index) => {
+    filesData.length != 0 && <section className={`file-list d-flex`}>{
+      filesData.map((fileName, index) => {
         let file = files[fileName];
         let isImageFile = file.type.split("/")[0] === "image";
         return (<div className="preview-container position-relative">
@@ -32,7 +33,7 @@ const FilePreviewGrid = ({ files, removeFile }) => {
               <span>{convertBytesToKB(file.size)} kb</span>
             </aside>
           </div>}
-          <div className="delete-icon position-absolute align-items-center justify-content-center" onClick={() => removeFile(fileName)}>
+          <div className="delete-icon position-absolute align-items-center justify-content-center" onClick={(event) => { event.stopPropagation(); removeFile(fileName)}}>
                 <DeleteIcon className="fas fa-trash-alt" />
               </div>
         </div>)

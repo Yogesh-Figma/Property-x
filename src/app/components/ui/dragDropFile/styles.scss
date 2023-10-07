@@ -1,5 +1,5 @@
 .file-upload-form {
-    #form-file-upload {
+    .form-file-upload {
         width: 645px;
         height: 315px;
         text-align: center;
@@ -9,14 +9,22 @@
             display: none;
         }
 
-        #label-file-upload {
+        .label-file-upload {
             height: 100%;
             border-width: 2px;
             border-radius: 15px;
             border: 2px dashed #D3D3D3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        #label-file-upload.drag-active {
+        .upload-text {
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .label-file-upload.drag-active {
             background-color: #ffffff;
         }
         .upload-button {
@@ -55,11 +63,10 @@
             }
 
             .delete-icon {
-                top: 0;
-                left: 0;
+                left: 50%;
+                transform: translateY(-50%) translateX(-50%);
+                top: 50%;
                 z-index: 1;
-                width: 85px;
-                height: 85px;
                 display: none;
             }
 
@@ -77,6 +84,11 @@
         }
 
 
+    }
+    .single-file-upload .file-list {
+        position: relative;
+        z-index: 4;
+        margin-top: 0;
     }
 
 }

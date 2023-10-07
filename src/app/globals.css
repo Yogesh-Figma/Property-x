@@ -117,6 +117,11 @@ a {
   font-weight: 700;
 }
 
+.heading-normal {
+  font-family: var(--helvetica-regular-font);
+  color: #202124;
+}
+
 .sub-heading {
   font-family: var(--helvetica-regular-font);
   color: #4D5156;
@@ -261,4 +266,9 @@ input[type=number] {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
+}
+
+.default-loading-screen {
+  height: (80vw - 60px);
+  background-color: #fff;
 }
