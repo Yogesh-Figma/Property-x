@@ -18,12 +18,14 @@ import VideoIcon from '@/app/icons/video.svg'
 import ImagesIcon from '@/app/icons/images.svg'
 import Tabs from './tabs';
 import Map from '@/app/components/ui/map'
+import GalleryModal from '@/app/components/galleryModal'
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const BREADCRUMB = [{ name: "Home", url: "#" }, { name: "Ghaziabad", url: "#" }, { name: "Siddharth Vihar", url: "#" }, { name: "Siddharth Vihar", url: "#" },]
 export default function Page({params: { id}}) {
     return (<div className='property-page container-fluid'>
+        <GalleryModal data={[]} />
         <div className='additional-page-padding'>
             <div className='message sub-heading'>Explore T&T Digitown’s virtual tour starting from Noida City Center Metro Station.*</div>
             <div className='dev-project-image-cnt position-relative'>
@@ -40,10 +42,12 @@ export default function Page({params: { id}}) {
                     <div className='property-images position-relative'>
                         <Image src={"/samplePropertyImage.jpeg"} fill={true} />
                         <div className='compare position-absolute d-flex align-items-center justify-content-center'><CompareIcon /><span>Compare</span></div>
-                        <div className='images-video-count position-absolute d-flex'>
-                            <div className='image-cnt d-flex align-items-center justify-content-center'><ImagesIcon />18</div>
-                            <div className='video-cnt d-flex align-items-center justify-content-center'><VideoIcon />2</div>
-                        </div>
+                        <Link href={"?gallery=true"}>
+                            <div className='images-video-count position-absolute d-flex'>
+                                <div className='image-cnt d-flex align-items-center justify-content-center'><ImagesIcon />18</div>
+                                <div className='video-cnt d-flex align-items-center justify-content-center'><VideoIcon />2</div>
+                            </div>
+                        </Link>
                     </div>
                     <div className='property-value row'>
                         <div className='property-growth-cnt col-5'>
