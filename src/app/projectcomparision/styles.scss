@@ -1,85 +1,123 @@
 
+.comparison-table-container {
+    margin-top: 54px;
+    min-width: 1060px;
+    .comparison-table {
+        width: 100%;
+        font-size: .875rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        table {
+          
+            table-layout: fixed;
 
-.comparison-table {
-    width: 100%;
-    font-size: .875rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar
-}
+            th {
+                font-family: var(--helvetica-bold-font);
+                color: #202124;
+                font-weight: 700;
+            }
+            tr th:first-child {
+                border-left: transparent;
+            }
+            tr td:last-child {
+                border-right: transparent;
+            }
+        }
 
-.comparison-table table {
-    min-width: 41rem;
-    table-layout: fixed
-}
+        .table-header {
+            vertical-align: top;
+            tr {
+                border: 0px;
+            }
+            .remove-item {
+                position: absolute;
+                right: 10px;
+                top: 5px;
+            }
 
-.comparison-table table tbody+tbody {
-    border-top-width: 1px
-}
+            .sub-info {
+                font-size: 12px;
+            }
 
-.comparison-table .table-bordered thead td {
-    border-bottom-width: 1px
-}
+            td {
+                border: none !important;
+            }
 
-.comparison-table .comparison-item {
-    position: relative;
-    padding: .875rem .75rem 1.125rem;
-    border: 1px solid #e7e7e7;
-    background-color: #fff;
-    text-align: center
-}
+            .comparision-header {
+                .heading {
+                    margin-bottom: 15px;
+                    font-size: 20px;
+                }
 
-.comparison-table .comparison-item .comparison-item-thumb {
-    display: block;
-    width: 5rem;
-    margin-right: auto;
-    margin-bottom: .75rem;
-    margin-left: auto
-}
 
-.comparison-table .comparison-item .comparison-item-thumb>img {
-    display: block;
-    width: 100%
-}
+                .informed-choices {
+                    margin-bottom: 13px;
+                }
+            }
 
-.comparison-table .comparison-item .comparison-item-title {
-    display: block;
-    width: 100%;
-    margin-bottom: 14px;
-    color: #222;
-    font-weight: 600;
-    text-decoration: none
-}
+            .comparison-item {
+                position: relative;
+                margin: 20px 10px;
+                padding: 10px;
+                border-radius: 10px;
+                border: 1px solid #EAEAEA;
+                background: #FFF;
+                text-align: center;
+                min-height: 199px;
+                .add-proj {
+                    margin-bottom: 20px;
+                }
+            }
 
-.comparison-table .comparison-item .comparison-item-title:hover {
-    text-decoration: underline
-}
+        }
 
-.comparison-table .comparison-item .btn {
-    margin: 0
-}
+        .proj-summary {
+            .overview-btn {
+                margin-top: 20px;
+                width: 140px;
+                font-size: 12px;
+                height: 30px;
+            }
+            td,
+            th {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
 
-.comparison-table .comparison-item .remove-item {
-    display: block;
-    position: absolute;
-    top: -.3125rem;
-    right: -.3125rem;
-    width: 1.375rem;
-    height: 1.375rem;
-    border-radius: 50%;
-    background-color: #f44336;
-    color: #fff;
-    text-align: center;
-    cursor: pointer
-}
-
-.comparison-table .comparison-item .remove-item .feather {
-    width: .875rem;
-    height: .875rem
-}
-.table-bordered th, .table-bordered td {
-    border: 1px solid #e7e7e7;
-}
-.bg-secondary {
-    background-color: #f7f7f7 !important;
+            td {
+                padding-left: 55px;
+                padding-right: 10px;
+            }
+            .amenities {
+                .amenity {
+                    margin-bottom: 20px;
+                    .sub-info {
+                        margin-left: 20px;
+                    }
+                }
+            }
+            .proj-canvas, .floor-plan {
+                td {
+                    padding-left: 10px;
+                }
+            }
+            .paginated-floor-plan {
+                .project-heading {
+                    font-size: 12px;
+                    margin-top: 0px;
+                }
+                .MuiPagination-ul {
+                    button {
+                        height: 20px;
+                    }
+                }
+                .floor-plan-container {
+                    border-radius: 10px;
+                    border: 1px solid #EAEAEA;
+                    margin-top: 30px;
+                    padding: 15px;
+                }
+            }
+        }
+    }
 }

@@ -53,7 +53,7 @@ export default ({ id }) => {
                 <NextLinkButton variant="outlined" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="/" />
             </div>
             <div>
-                <NextLinkButton className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />
+                <NextLinkButton variant="outlined" className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />
                 <NextLinkButton text='Book Now' height={30} rounded={true} href={`/property/booking/${id}`} />
             </div>
         </div>

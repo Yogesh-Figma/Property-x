@@ -14,7 +14,7 @@ import propertyGraph from '@/app/icons/property_graph.svg?url'
 
 const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
     return (
-        <div>
+        <div style={{width:width}}>
             <Card className='project-card'>
                 <div className='img-container position-relative'>
                     <Image src={imgsrc} fill={true} />
@@ -53,7 +53,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
 
 const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
     return (
-        <div>
+        <div style={{width:width}}>
             <Card className='property-card'>
                 <div className='img-container position-relative'>
                     <Image src={imgsrc} fill={true} />

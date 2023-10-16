@@ -1,61 +1,78 @@
-.trusted-dev-card {
-    padding: 15px 20px;
-    position: relative;
-    font-weight: 400;
-    font-family: var(--microsoft-sans-font);
-    margin-left: 35px;
-
-    .vertical-line {
-        svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-        }
+.trusted-developers {
+    .slick-track {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
     }
 
-    .sub-heading-2 {
-        line-height: normal;
-        letter-spacing: 0.8px;
-        text-align: center;
+    .slick-slide {
+        min-width: 334px;
     }
 
-    .image-container {
-        align-items: flex-start;
-        justify-content: center;
+    .trusted-dev-card {
         position: relative;
-        margin-bottom: 9px;
+        font-weight: 400;
+        font-family: var(--microsoft-sans-font);
+        margin-right: 35px;
 
-        .verified-image {
-            position: absolute;
-            right: 5px;
-        }
-    }
-
-    .property-info {
-        font-size: 12px;
-        margin-top: 12px;
-
-        .body-txt {
-            font-size: 10px;
-        }
-    }
-
-    .chip-container {
-        .chip {
-            margin-right: 10px;
+        .trusted-dev-card-info {
+            padding: 15px 20px;
         }
 
-        span {
-            font-size: 10px;
-            color: #70757A;
-            font-family: var(--microsoft-sans-font);
-        }
-    }
+        .vertical-line {
+            width: 14px;
 
-    .horizontal-line {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        border-bottom: 2px solid rgba(112, 117, 122, 0.60);
+            svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+            }
+        }
+
+        .sub-heading-2 {
+            line-height: normal;
+            letter-spacing: 0.8px;
+            text-align: center;
+        }
+
+        .image-container {
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 9px;
+
+            .verified-image {
+                position: absolute;
+                right: 5px;
+            }
+        }
+
+        .property-info {
+            font-size: 12px;
+            margin-top: 12px;
+
+            .body-txt {
+                font-size: 10px;
+            }
+        }
+
+        .chip-container {
+            .chip {
+                margin-right: 10px;
+            }
+
+            span {
+                font-size: 10px;
+                color: #70757A;
+                font-family: var(--microsoft-sans-font);
+            }
+        }
+
+        .horizontal-line {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(112, 117, 122, 0.60);
+        }
     }
 }

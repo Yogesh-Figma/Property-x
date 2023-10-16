@@ -78,7 +78,6 @@ function DragDropFile({ uploadText, updateFilesCb, multiple, supportedFileTypes 
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-        debugger;
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             handleNewFileUpload({target:{files:e.dataTransfer.files}})
         }
@@ -86,7 +85,6 @@ function DragDropFile({ uploadText, updateFilesCb, multiple, supportedFileTypes 
 
     // triggers when file is selected with click
     const handleChange = function (e) {
-        debugger;
         e.preventDefault();
         if (e.target.files && e.target.files[0]) {
             handleNewFileUpload(e)
@@ -95,7 +93,6 @@ function DragDropFile({ uploadText, updateFilesCb, multiple, supportedFileTypes 
 
     // triggers the input when the button is clicked
     const onButtonClick = () => {
-        debugger;
         inputRef.current.click();
     };
 

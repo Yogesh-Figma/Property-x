@@ -13,7 +13,7 @@ const SamplePrevArrow = (props) => {
       className={className}
       style={{ ...style, display: "block" }}
       onClick={onClick}>
-        <Image src={PrevArrow} width={50} height={50}/>
+        <Image src={PrevArrow} width={130} height={130}/>
     </div>
   );
 }
@@ -26,7 +26,7 @@ const SampleNextArrow = (props) => {
       style={{ ...style, display: "block" }}
       onClick={onClick}
     >
-      <Image src={NextArrow} width={50} height={50}/>
+      <Image src={NextArrow} width={130} height={130}/>
     </div>
   );
 }

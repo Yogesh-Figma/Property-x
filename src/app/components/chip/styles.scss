@@ -1,0 +1,11 @@
+.chip {
+    border-radius: 35px;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    padding: 2px 10px;
+  }
+  .chip-end-icon {
+    margin-left:6px;
+    cursor:pointer;
+  }

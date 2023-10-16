@@ -5,18 +5,18 @@ import Image from 'next/image';
 import verified_icon from '../../icons/ic_round-verified-user.svg?url'
 import './styles.scss'
 import Chip from '../../components/chip';
-import VerticalGradientLine from '@/app/icons/vertical_gradient_line.svg'
+import verticalGradientLine from '@/app/icons/vertical_gradient_line.svg?url'
 
 const TrustedDevelopers = () => {
     return (<div className='trusted-developers'>
-        <CardSlider carouselSettings={{ slidesToShow: 3.5, slidesToScroll: 1 }}>
+        <CardSlider carouselSettings={{ slidesToShow:3, slidesToScroll:1,  variableWidth: true, responsive:[]}}>
             {[1, 2, 3, 4, 5, 6, 7, 9, 10].map(i =>
-                <div>
-                    <Card className='trusted-dev-card position-relative'>
-                        <div className='vertical-line'>
-                            <VerticalGradientLine />
+                <div style={{minWidth:"334px",width:"334px"}}>
+                    <Card className='trusted-dev-card position-relative d-flex'>
+                        <div className='vertical-line position-relative'>
+                            <Image className="" src={verticalGradientLine} fill={true} />
                         </div>
-                        <div className='d-flex flex-column justify-content-between h-100'>
+                        <div className='d-flex flex-column justify-content-between h-100 trusted-dev-card-info'>
                             <div className='sub-container'>
                                 <div className='image-container d-flex '>
                                     <Image src="/strutiDeveloper.png" width={60} height={60} />

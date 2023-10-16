@@ -1,4 +1,21 @@
 .featured-properties {
+    .slick-slider {
+        margin-left: 0px;
+        margin-right: 50px;
+        .slick-prev {
+            left: 25px;
+        }
+    }
+    .slick-list {
+        margin-right: -100px !important;
+        padding-left: 100px !important;
+    }
+    .slick-slide {
+        min-width: 250px;
+    }
+    // .slick-initialized .slick-track {
+    //     min-width: 1500px !important;
+    // }
     .card-item {
         margin-left:20px;
     }

@@ -33,24 +33,24 @@ export default function Home() {
           <TrendingProjects />
         </div>
         <div className='developer-container'>
-          <div className='sub-heading text-center title'>Trusted Developers</div>
-          <div className='sub-heading-3 text-center sub-title'>Our Top Developer Picks for You</div>
-          <TrustedDevelopers />
-        </div>
-        <div className='developer-container additional-page-padding'>
           <div className='sub-heading text-center title'>Featured Projects</div>
           <div className='sub-heading-3 text-center sub-title'>Tailored Exclusively to Suit Your Preferences</div>
           <FeaturedProjects />
         </div>
-        <div className='developer-container additional-page-padding'>
+        <div className='developer-container'>
           <div className='sub-heading text-center title'>Featured Properties</div>
           <div className='sub-heading-3 text-center sub-title'>Individually Selected to Match Your Desires</div>
           <FeaturedProperties />
         </div>
         <div className='developer-container'>
-          <div className='sub-heading text-center title'>Upcoming Projects</div>
+          <div className='sub-heading text-center title'>Launching Soon</div>
           <div className='sub-heading-3 text-center sub-title'>The Future of Living: A Glimpse into Our Upcoming Projects</div>
           <UpComingProjects />
+        </div>
+        <div className='developer-container'>
+          <div className='sub-heading text-center title'>Trusted Developers</div>
+          <div className='sub-heading-3 text-center sub-title'>Our Top Developer Picks for You</div>
+          <TrustedDevelopers />
         </div>
         <HomePageStats />
         <div className='developer-container'>

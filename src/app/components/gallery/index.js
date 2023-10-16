@@ -62,7 +62,6 @@ export default ({ galleryTabs =  GALLERY_TABS }) => {
   const [selectedTab, selectTab] = React.useState(galleryTabs ? galleryTabs[0].value :"");
     const handleChange = (event) => {
         const { name, value } = event.target;
-        debugger;
         selectTab(value);
     }
 
