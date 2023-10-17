@@ -49,8 +49,8 @@ export default ({ id }) => {
         </div>
         <div className='d-flex align-items-center justify-content-between btn-cnt'>
             <div>
-                <NextLinkButton variant="outlined" className="talk-to-consultation" text='Talk to Consultant' height={30} rounded={true} href="/" />
-                <NextLinkButton variant="outlined" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="/" />
+                <NextLinkButton variant="outlined-noborder" className="talk-to-consultation" text='Talk to Consultant' height={30} rounded={true} href="/" />
+                <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="/" />
             </div>
             <div>
                 <NextLinkButton variant="outlined" className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />

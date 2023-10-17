@@ -49,8 +49,8 @@ export default ({ showBtn }) => {
                     </div>
                 </div>
                {showBtn && <div className='btn-container d-flex justify-content-end align-items-center'>
-               <NextLinkButton variant="outlined" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
-                    <NextLinkButton variant="outlined" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+               <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
+                    <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
                     <Image src={heartIcon} width={20} height={20} className='heart-icon'></Image>
                     <Image src={shareIcon} width={24} height={24} className='share-icon'></Image>
                 </div>}

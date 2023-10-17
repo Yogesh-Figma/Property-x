@@ -111,7 +111,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id }) => {
-    return (<div>
+    return (<div style={{width:width}}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
                 <Image src={imgsrc} fill={true} />
@@ -150,7 +150,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 // Search page property card
-const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, propertyId, verticalView }) => {
+const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, propertyId, verticalView, href="/" }) => {
     return (<div style={{ height }}>
         <Card className='property-card-4 overflow-hidden row position-relative g-0'>
             <div className='row g-0 property-info'>
@@ -194,7 +194,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         {!verticalView &&  <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href="/" />
+                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/property/${propertyId}`} />
                         </div>}
                     </div>
                 </div>

@@ -13,6 +13,7 @@
             font-weight: 700;
             line-height: normal;
             letter-spacing: 1px;
+            color: #4D5156;
         }
     }
     .input-label-no-shrink {
@@ -27,6 +28,7 @@
         background-color: #ffffff;
         border: 1px solid;
         border-color: #808080;
+        border-radius: 34px;
         height: 69px;
         input {
             padding-left:19px;
@@ -50,9 +52,8 @@
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
-        line-height: 22px;
         letter-spacing: 1.2px;
-        padding:20px 16px 19px;
         margin-left: 25px;
+        width: 185px;
     }
 }

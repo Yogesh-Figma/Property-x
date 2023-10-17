@@ -55,7 +55,7 @@ const SearchBar = () => {
                 label={shrink ? "" : "Search by Locality, Project, City, Builder"}
                 value={searchTerm}
                 onChange={handleSearchTermChange}
-                sx={{ maxWidth: "1035px", minWidth: "600px", borderRadius: "8px", width:"38vw"}}
+                sx={{ maxWidth: "1035px", minWidth: "600px", width:"38vw"}}
                 InputLabelProps={{
                     shrink: shrink,
                     className: shrink ? "body-txt" : "body-txt input-label-no-shrink"
@@ -90,7 +90,7 @@ const SearchBar = () => {
                     ),
                 }}
             />
-            <NextLinkButton text={"Search"} href="/search" icon={<Image src={searchIcon} width={30} height={30}/>} className={"search-bar-btn"}/>
+            <NextLinkButton text={"Search"} rounded={true} href="/search" height={68} icon={<Image src={searchIcon} width={30} height={30}/>} className={"search-bar-btn"}/>
         </div>
     </div>)
 }

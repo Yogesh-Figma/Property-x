@@ -4,7 +4,7 @@ import { PropertyCard } from '@/app/components/ui/propertyCard'
 
 const SimilarProperties = () => {
     return (<div className='similar-properties'>
-        <CardSlider carouselSettings={{ slidesToShow: 4, slidesToScroll: 1 }}>
+        <CardSlider carouselSettings={{ slidesToShow: 4, slidesToScroll: 1, variableWidth: true }}>
             {[1, 2, 3, 4, 5, 6].map(item => <PropertyCard
                 isProperty={true}
                 title={"Gaur Krishn Villas"}
@@ -13,7 +13,7 @@ const SimilarProperties = () => {
                 address={"Sector 10, Greater Noida West, Greater Noida"}
                 price={"₹40L-85L"}
                 imgsrc={"/samplePropertyImage.jpeg"}
-                width={"250px"}
+                width={"270px"}
                 height={"275px"}
                 devImage={"/devSampleImage.jpeg"} />)}
         </CardSlider>

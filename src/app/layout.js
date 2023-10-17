@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
 
 
-const helveticaBold = localFont({ src: './fonts/Helvetica_Bold.ttf', variable:'--helvetica-bold-font' })
+const helveticaBold = localFont({ src: './fonts/Helvetica-Bold-Font.ttf', variable:'--helvetica-bold-font' })
 const helveticaRegular = localFont({ src: './fonts/Helvetica_Regular.otf', variable:'--helvetica-regular-font'})
 const microsoftSans = localFont({ src: './fonts/micross.ttf', variable:'--microsoft-sans-font' })
 

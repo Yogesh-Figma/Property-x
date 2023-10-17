@@ -185,15 +185,15 @@ const ProjectComparision = ({ projectList }) => {
                         <td className='d-flex align-items-center flex-column'>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
-                                <NextLinkButton variant="outlined" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
-                                <NextLinkButton variant="outlined" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
                             </div>
                         </td>
                         <td className=''>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
-                                <NextLinkButton variant="outlined" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
-                                <NextLinkButton variant="outlined" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
                             </div>
                         </td>
 
