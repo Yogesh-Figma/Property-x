@@ -15,7 +15,8 @@ const SimilarProperties = () => {
                 imgsrc={"/samplePropertyImage.jpeg"}
                 width={250}
                 height={"275px"}
-                devImage={"/devSampleImage.jpeg"} />)}
+                devImage={"/devSampleImage.jpeg"}
+                id={item} />)}
         </CardSlider>
     </div>)
 }

@@ -3,8 +3,14 @@ import Heading from '@/app/components/heading';
 import Input from '@/app/components/input';
 import Image from 'next/image';
 import Button from "@/app/components/button";
+import { useForm } from "react-hook-form";
 
 export default ({ formData, handleChange, postProperty }) => {
+
+    const { control, handleSubmit } = useForm({
+        reValidateMode: "onBlur"
+    });
+    
     return <div className="pricing-and-post">
         <Heading label={"Add Price Details"} />
         <div className='d-flex'>

@@ -10,6 +10,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
 import Input from '@/app/components/input';
+import { useForm } from "react-hook-form";
+
 
 const styles = {
     input: {
@@ -35,15 +37,21 @@ const styles = {
 };
 
 const Login = ({ open, otpSent=true }) => {
-    const [inputData, handleInput] = React.useState("");
+    const [formData, setFormData] = React.useState({"mobileno":""});
     const router = useRouter();
     const [otp, handleOtp] = React.useState("")
     const searchParams = useSearchParams()
-    const loginModalEnabled = searchParams.get('login') || false
-    const shrink = inputData.length > 0;
+    const loginModalEnabled = !!
+    searchParams.get('login') || false
+    const shrink = formData.mobileno.length > 0;
+    const { control, handleSubmit, setValue } = useForm({
+        reValidateMode: "onBlur"
+    });
 
     const handleInputChange = (event) => {
-        handleInput(event.target.value);
+        const { name, value } = event.target;
+        setValue(name, value);
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
     const handleClose=()=>{
@@ -51,7 +59,9 @@ const Login = ({ open, otpSent=true }) => {
     }
 
     const handleOtpChange = (event) => {
-        handleOtp(event.target.value);
+        const { name, value } = event.target;
+        setValue("otp", value);
+        handleOtp(value);
     }
 
     return (
@@ -71,16 +81,23 @@ const Login = ({ open, otpSent=true }) => {
                         <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>Property X</span> account.</div>
                         <div className='sub-heading-3 verify-mobile'>Please Verify your Mobile Number</div>
                         <Input
+                            name={"mobileno"}
+                            control={control}
                             rounded={true}
                             className='login-input-container'
                             label={"Enter your mobile number"}
-                            value={inputData}
+                            value={formData.mobileno}
                             onChange={handleInputChange}
                             width={471}
                             height={50}
+                            minLength={10}
+                            maxLength={10}
+                            isNumber={true}
+                            required={true}
                             inputLabelClassName={"body-txt input-label-no-shrink"}
                             inputLabelShrinkClassName={"body-txt"}
                             inputPropClassName={"login-input"}
+                            errorMessage={"Please enter valid phone number"}
                             startAdornment={
                                 <div className='d-flex align-items-center'>
                                     <div className='country-code'> +91 </div>
@@ -92,15 +109,22 @@ const Login = ({ open, otpSent=true }) => {
                         {otpSent ? <div className='otp-container'>
                             <div className='otp'>Enter OTP</div>
                             <Input
+                                isNumber={true}
+                                name='otp'
+                                required={true}
+                                control={control}
                                 rounded={true}
                                 width ={471}
                                 height={50}
                                 onChange={handleOtpChange}
                                 inputPropClassName={"login-input"}
                                 value={otp}
+                                errorMessage={"Please enter valid OTP"}
+                                maxLength={4}
+                                minLength={4}
                             />
                             <div className='terms-of-service d-flex align-items-center'> <Checkbox />I agree to Terms of Services, and Privacy Policy.</div>
-                            <Button text={"Verify OTP"} className={"otp-verify-btn"} rounded={true} height={50}/>
+                            <Button text={"Verify OTP"} className={"otp-verify-btn"} rounded={true} height={50} onClick={handleSubmit(()=>{})}/>
                         </div> : <>
                             <div className='or-con text-center sub-heading-3'>Or</div>
                             <div className='login-with-google d-flex align-items-center justify-content-center'>
@@ -109,7 +133,7 @@ const Login = ({ open, otpSent=true }) => {
                             </div>
                             <div className='login-with-facebook d-flex align-items-center justify-content-center mb-0'>
                                 <Image src={"/facebookImage.png"} width={20} height={20} />
-                                <div className='sub-heading-3'>Login with Google</div>
+                                <div className='sub-heading-3'>Login with Facebook</div>
                             </div>
                         </>}
                     </div>

@@ -31,7 +31,7 @@ export default function Page({ params,
                         by={"XYZ Builders"}
                         possessionInfo={"Dec, 2023"}
                         avgPrice={"14.00/sq.ft"}
-                        propertyId={item}                       
+                        id={item}                  
                         subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
                     />
                 </div>)}

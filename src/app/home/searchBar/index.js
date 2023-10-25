@@ -8,6 +8,7 @@ import solidVoice from '../../icons/icon-park-solid_voice.svg?url';
 import Image from 'next/image';
 import NextLinkButton from '@/app/components/nextLinkButton';
 import searchIcon from '@/app/icons/iconamoon_search_white.svg?url'
+import DropDown from '@/app/components/dropDown'
 
 const TAB_LABELS = ["Buy", "Rent", "Lease", "Commercial", "Residential", "Projects"];
 
@@ -23,9 +24,10 @@ const muiTab = {
 
 const SearchBar = () => {
     const [activeTab, setActiveTab] = React.useState(0);
-    const [location, setLocation] = React.useState();
+    const [location, setLocation] = React.useState("");
     const [searchTerm, setSearchTerm] = React.useState("");
     const shrink = searchTerm.length > 0;
+    const LOCATIONS = [{ label: "Delhi", value: "Delhi" },{ label: "Gurgaon", value: "Gurgaon" },{ label: "Noida", value: "Noida" }]
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
@@ -46,7 +48,7 @@ const SearchBar = () => {
                 backgroundColor: "#dc143c"
             }
         }}>
-            {TAB_LABELS.map(label => <Tab label={label} />)}
+            {TAB_LABELS.map((label, index) => <Tab key={index} label={label} />)}
         </Tabs>
         <div className='search-box-row'>
             <TextField
@@ -64,21 +66,7 @@ const SearchBar = () => {
                     className: "search-input",
                     startAdornment: (
                         <div className='d-flex align-items-center'>
-                            <FormControl variant="standard" sx={{ m: 1, minWidth: 87, border: "0" }} className='sub-heading-3 search-location-dropdown'>
-                                <InputLabel id="select-standard-label">Location</InputLabel>
-                                <Select
-                                    disableUnderline={true}
-                                    labelId="select-standard-label"
-                                    id="select-standard"
-                                    value={location}
-                                    onChange={handleLocation}
-                                    label="Location"
-                                >
-                                    <MenuItem value={10}>Gurgaon</MenuItem>
-                                    <MenuItem value={20}>Delhi</MenuItem>
-                                    <MenuItem value={30}>Banglore</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={location} values={LOCATIONS} />
                             <div className='vertical-line'></div>
                         </div>
                     ),

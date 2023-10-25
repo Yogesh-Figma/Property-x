@@ -36,7 +36,7 @@ export default ({ formData, handleChange, changeStep }) => {
                 by={"XYZ Builders"}
                 possessionInfo={"Dec, 2023"}
                 avgPrice={"14.00/sq.ft"}
-                propertyId={"123"}
+                id={"123"}
                 subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
             />
             </div>
@@ -48,11 +48,11 @@ export default ({ formData, handleChange, changeStep }) => {
         <div className="tower-bhk-cnt d-flex section align-items-center">
             <div className="tower-cnt d-flex align-items-center">
                 <span className="sub-heading-space sub-heading-2">Tower</span>
-                <DropDown className={"selection-dropdown"} label={"Tower"} handleChange={(event) => handleChange("tower", event.target.value)} value={formData.tower} values={towers} />
+                <DropDown className={"selection-dropdown"} label={"Tower"} handleChange={(event) => handleChange({target:{name:"tower", value:event.target.value}})} value={formData.tower} values={towers} />
             </div>
             <div className="bhk-cnt d-flex align-items-center">
                 <span className="sub-heading-space sub-heading-2">BHK Type</span>
-                <DropDown className={"selection-dropdown"} label={"BHK"} handleChange={(event) => handleChange("bhkType", event.target.value)} value={formData.bhkType} values={bhkTypes} />
+                <DropDown className={"selection-dropdown"} label={"BHK"} handleChange={(event) =>  handleChange({target:{name:"bhkType", value:event.target.value}})} value={formData.bhkType} values={bhkTypes} />
             </div>
         </div>
         <div className="floor-cnt section">

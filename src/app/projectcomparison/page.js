@@ -6,14 +6,13 @@ import { AMENITIES } from "@/app/property/[id]/amenities";
 import Image from 'next/image';
 import NextLinkButton from '@/app/components/nextLinkButton';
 import Rating from '@/app/components/rating';
-import { InputAdornment} from "@mui/material";
-import { useEffect } from 'react';
 import Button from '@/app/components/button';
 import CrossIcon from '@/app/icons/cross_icon_filled.svg'
 import AutoCompleteSearch from '@/app/components/autoCompleteSearch';
 import PaginatedFloorPlan from './paginatedFloorPlan';
+import { useAppContext } from '@/lib/appContext';
 
-const ProjectComparision = ({ projectList }) => {
+const ProjectComparision = ({ }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [selectedProjects, selectProject] = React.useState([{ projectName: "Nirala Estate", priceRange: "", rating: "", id: "", location: "", status: "", configuration: "", size: "", area: "", possesionDate: "", reraNumber: "", floorPlanImg: "", amenities: [], convasImg: "" }]);
     const handleCross = () => {
@@ -53,7 +52,7 @@ const ProjectComparision = ({ projectList }) => {
                         </td>
                         <td className=''>
                             <div class="comparison-item d-flex flex-column align-items-center">
-                                <span class="remove-item"> <CrossIcon className="cross-icon" /></span>
+                                <span class="remove-item cursor-pointer"> <CrossIcon className="cross-icon" /></span>
                                 <div className='prop-image'>
                                     <Image src={"/mahunDeveloperImg.png"} width={157} height={94} />
                                 </div>
@@ -73,7 +72,8 @@ const ProjectComparision = ({ projectList }) => {
                             </div>
                         </td>
                         <td>
-                            <div class="comparison-item d-flex flex-column align-items-center"><span class="remove-item"> <CrossIcon /></span>
+                            <div class="comparison-item d-flex flex-column align-items-center">
+                                <span class="remove-item cursor-pointer"> <CrossIcon /></span>
                                 <div className='prop-image'>
                                     <Image src={"/mahunDeveloperImg.png"} width={157} height={94} />
                                 </div>

@@ -5,11 +5,12 @@ import Footer from './footer';
 import Header from './header'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
+import { AppProvider } from "@/lib/appContext";
 
 
-const helveticaBold = localFont({ src: './fonts/Helvetica-Bold-Font.ttf', variable:'--helvetica-bold-font' })
-const helveticaRegular = localFont({ src: './fonts/Helvetica_Regular.otf', variable:'--helvetica-regular-font'})
-const microsoftSans = localFont({ src: './fonts/micross.ttf', variable:'--microsoft-sans-font' })
+const helveticaBold = localFont({ src: './fonts/Helvetica-Bold-Font.ttf', variable: '--helvetica-bold-font' })
+const helveticaRegular = localFont({ src: './fonts/Helvetica_Regular.otf', variable: '--helvetica-regular-font' })
+const microsoftSans = localFont({ src: './fonts/micross.ttf', variable: '--microsoft-sans-font' })
 
 export const metadata = {
   title: 'Create Next App',
@@ -21,19 +22,19 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body style={{
-        '--bs-body-color':'#4D5156',
-          '--bs-body-font-family':microsoftSans.style.fontFamily,
-          '--helvetica-bold-font': helveticaBold.style.fontFamily,
-         '--helvetica-regular-font': helveticaRegular.style.fontFamily,
-          '--microsoft-sans-font': microsoftSans.style.fontFamily,
-          '--text-color-crimson':'#DC143C',
-          '--text-color-shark':'#202124',
-          '--text-color-abbey':'#4D5156',
-          display:"unset"
-        }}>
+        '--bs-body-color': '#4D5156',
+        '--bs-body-font-family': microsoftSans.style.fontFamily,
+        '--helvetica-bold-font': helveticaBold.style.fontFamily,
+        '--helvetica-regular-font': helveticaRegular.style.fontFamily,
+        '--microsoft-sans-font': microsoftSans.style.fontFamily,
+        '--text-color-crimson': '#DC143C',
+        '--text-color-shark': '#202124',
+        '--text-color-abbey': '#4D5156',
+        display: "unset"
+      }}>
         <Header />
-        {children}
-        <Footer/>
+        <AppProvider>{children}</AppProvider>
+        <Footer />
       </body>
     </html>
   )

@@ -267,7 +267,7 @@ input[type=number] {
     margin-top: -33px;
 }
 
-.slick-slider {
+/* .slick-slider {
   visibility: hidden;
   height: 1px;
   transition: height 0.2s linear;
@@ -275,7 +275,7 @@ input[type=number] {
 .slick-slider.slick-initialized {
   height: auto;
   visibility: visible;
-}
+} */
 .best-buy-txt {
   background: var(--Highlight-colour, linear-gradient(121deg, #EE0979 31.62%, #F52F49 46.89%, #FA4F21 61.81%, #FE6309 73.63%, #FF6A00 80.87%));
   background-clip: text;
@@ -293,4 +293,16 @@ input[type=number] {
 .default-loading-screen {
   height: (80vw - 60px);
   background-color: #fff;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.error-helper-text {
+  color: #d32f2f;
+  font-weight: 400;
+  font-size: 0.75rem;
+  margin-left: 14px;
+  margin-top:3px;
 }

@@ -11,7 +11,7 @@ const Chip = ({ label, className, onClick, showCrossIcon, handleCross, variant }
   return (
     <div className={`chip ${className}`} onClick={onClick} style={variant == 'randomColor' ? { backgroundColor:randomColor}:{border: "0.5px solid #C7C7C7"}}>
       <span>{label}</span>
-      {!!showCrossIcon && <Image className="chip-end-icon" src={crossIcon} width={7} height={7} onClick={handleCross} />}
+      {!!showCrossIcon && <Image className="chip-end-icon cursor-pointer" src={crossIcon} width={7} height={7} onClick={handleCross} />}
     </div>)
 }
 export default Chip;

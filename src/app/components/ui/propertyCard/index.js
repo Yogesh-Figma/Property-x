@@ -14,7 +14,7 @@ import propertyGraph from '@/app/icons/property_graph.svg?url'
 
 const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
     return (
-        <div style={{width:width}}>
+        <div style={{width:width}} key={id}>
             <Card className='project-card'>
                 <div className='img-container position-relative'>
                     <Image src={imgsrc} fill={true} />
@@ -88,7 +88,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
 
 
 const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id }) => {
-    return (<div>
+    return (<div key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
                 <Image src={imgsrc} fill={true} />
@@ -111,7 +111,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id }) => {
-    return (<div style={{width:width}}>
+    return (<div style={{width:width}}  key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
                 <Image src={imgsrc} fill={true} />
@@ -150,8 +150,8 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 // Search page property card
-const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, propertyId, verticalView, href="/" }) => {
-    return (<div style={{ height }}>
+const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, id, verticalView, href="/" }) => {
+    return (<div style={{ height }}  key={id}>
         <Card className='property-card-4 overflow-hidden row position-relative g-0'>
             <div className='row g-0 property-info'>
                 <div className='img-container position-relative col-4'>
@@ -199,7 +199,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                     </div>
                 </div>
             </div>
-            <Link text='' href={"?id="+propertyId} className='stretched-link'/>
+            <Link text='' href={"?id="+id} className='stretched-link'/>
         </Card>
     </div>)
 }

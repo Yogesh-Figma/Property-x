@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import './footer.scss'
 import CompactSearchBar from './components/ui/compactSearchBar';
-import propertyXLogo from '@/app/icons/property_x.svg?url'
+import Logo from '@/app/icons/logo.svg'
 import facebookIcon from "@/app/icons/ri_facebook-fill.svg?url"
 import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg?url"
 import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg?url"
@@ -43,7 +43,7 @@ const Footer = () => {
                 <div className="text-center text-md-starts">
                     <div className='row search-box-container g-0'>
                         <div className="property-x col-4 d-flex align-items-center justify-content-center">
-                            <Image src={propertyXLogo} width={120} height={23} />
+                            <Logo width={121} height={23} />
                         </div>
                         <div className='foot-search-bar col-8'>
                             <CompactSearchBar width="45vw" height="50px" showSearchIcon={true} />
