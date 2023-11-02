@@ -14,6 +14,7 @@ const ContactUsForm = () => {
         }
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     }
+    
     return (<div className='contact-us-form'>
         <Input
             rounded={true}
@@ -57,7 +58,7 @@ const ContactUsForm = () => {
             onChange={handleChange}
             height={108}
         />
-        <div className='consent-message body-txt'>"I consent to sharing my personal information for the purpose of contacting the support team at Property X. I understand that my information will be used exclusively for addressing my query and will adhere to the website's Privacy Policy."</div>
+        <div className='consent-message body-txt'>"I consent to sharing my personal information for the purpose of contacting the support team at Go Propify. I understand that my information will be used exclusively for addressing my query and will adhere to the website's Privacy Policy."</div>
         <div className='d-flex support-btn-container justify-content-between'>
             <Button rounded={true} height={30} text={"Send Query"}/>
             <Button rounded={true} height={30} text={"Schedule Virtual Consultation"}/>

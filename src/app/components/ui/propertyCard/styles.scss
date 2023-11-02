@@ -127,7 +127,11 @@
     font-size: 10px;
     .info-container  {
         padding: 21px 9px 14px;
-        .share-container:first-child {
+        .rating-cnt {
+            color: #4D5156;
+            margin-right: 30px;
+        }
+        .share-container svg:first-child {
             margin-right: 6px;
         }
         .price div:first-child {
@@ -138,6 +142,39 @@
         .vertical-border {
             border-left: 1px solid #D3D3D3;
             height: 32px;
+        }
+        .price-details {
+            .possession-info, .avg-price {
+                flex: 0.4;
+            }
+            .avg-price {
+                text-align: center;
+            }
+            .price {
+                flex:0.2;
+            }
+           
+        }
+        .sub-container {
+            flex: 0.7;
+            margin-top: 10px;
+        }
+        .overview-btn {
+            margin-left: 10px;
+        }
+        .schedule-date-cnt {
+            flex: 0.3;
+            padding-left: 10px;
+            .date-cnt,.time-cnt {
+                font-size: 16px;
+                text-align: center;
+                height: 34px;
+                border-radius: 5px;
+                border: 1px solid #EAEAEA;
+            }
+            .time-cnt {
+                margin-top: 10px;
+            }
         }
         .rera {
             font-size: 10px;
@@ -166,13 +203,13 @@
         }
         .address {
             letter-spacing: 0.5px;
-            margin-bottom: 9px;
         }
         .sub-info {
             white-space: nowrap;
             width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-top: 12px;
         }
         .schedule-visit {
             margin-left: auto;

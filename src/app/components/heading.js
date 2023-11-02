@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import horizontailGradientLine from '@/app/icons/horizontal_gradient_line.svg?url'
+import HorizontailGradientLine from '@/app/icons/horizontal_gradient_line.svg'
 
 
-export default function Heading({ label }) {
+export default function Heading({ label, className }) {
     return (<>
-        <div className='sub-heading project-heading'>{label}</div>
-        <Image src={horizontailGradientLine} height={4} width={64} />
+        <div className={`sub-heading project-heading ${className}`}>{label}</div>
+        <HorizontailGradientLine style={{display: "block", marginTop:"5px"}}/>
     </>)
 }
 

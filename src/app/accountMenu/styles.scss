@@ -1,0 +1,55 @@
+#account-menu {
+    .account-menu-tabs {
+        padding: 20px;
+        .profile-short-info {
+            .profile-image {
+                width: 60px;
+                height: 60px;
+                border-radius: 60px;
+                border: 1px solid #EAEAEA;
+                overflow: hidden;
+                margin-right: 10px;
+            }
+            .email, .phone-no {
+                font-size: 12px;
+            }
+            margin-bottom: 12px;
+        }
+        .divider {
+            margin-bottom: 10px;
+            border-color: #EAEAEA;
+        }
+        .tabs {
+            .tab-items, .tab-items-heading {
+                font-size: 16px;
+                font-family: var(--microsoft-sans-font);               
+                margin-top: 0;
+                + svg {
+                    margin-bottom: 15px;
+                }
+               
+            }
+            .tab-items {
+                margin-bottom: 20px;
+ 
+            }
+        }
+        .social-btn {
+            .contact-us-link {
+                text-decoration: underline;
+                margin-bottom: 20px;
+            }
+            .contact-image-wrapper {
+                width: 24px;
+                height: 24px;
+                background: #FFF;
+                border-radius: 24px;
+                box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.25);
+                margin-right: 18px;
+                &:last-child {
+                    margin-right: 0px;
+                }
+            }
+        }
+    }
+}

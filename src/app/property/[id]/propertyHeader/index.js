@@ -2,9 +2,9 @@
 import React from 'react';
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
-import shareIcon from '@/app/icons/share.svg?url'
-import heartIcon from '@/app/icons/heart.svg?url'
-import googleMapIcon from '@/app/icons/google_map.svg?url'
+import ShareIcon from '@/app/icons/share.svg'
+import HeartIcon from '@/app/icons/heart.svg'
+import GoogleMapIcon from '@/app/icons/google_map.svg'
 import Rating from '@/app/components/rating';
 import nearByIcon from '@/app/icons/near_by.svg?url';
 import './styles.scss'
@@ -36,9 +36,9 @@ export default ({ id }) => {
             </div>
             <div className='property-price-info col-4 text-end'>
                 <div className='property-share-icons d-flex align-items-center justify-content-end'>
-                    <Image src={googleMapIcon} width={24} height={24}></Image>
-                    <Image src={heartIcon} width={20} height={20} className='heart-icon'></Image>
-                    <Image src={shareIcon} width={24} height={24} className='share-icon'></Image>
+                    <GoogleMapIcon width={24} height={24}/>
+                    <HeartIcon width={22} height={20}/>
+                    <ShareIcon width={24} height={24} />
                 </div>
                 <div className=''><span className='best-buy-txt'>Best Buy</span>Price Range</div>
                 <div className="price-range-cnt">

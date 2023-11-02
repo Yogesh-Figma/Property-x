@@ -5,8 +5,8 @@ import apartment from '@/app/icons/apartment.svg?url'
 import property from '@/app/icons/property.svg?url'
 import startDate from '@/app/icons/start_date.svg?url'
 import callIcon from '@/app/icons/call.svg?url'
-import shareIcon from '@/app/icons/share.svg?url'
-import heartIcon from '@/app/icons/heart.svg?url'
+import ShareIcon from '@/app/icons/share.svg'
+import HeartIcon from '@/app/icons/heart.svg'
 import scheduleIcon from '@/app/icons/schedule.svg?url'
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
@@ -51,8 +51,8 @@ export default ({ showBtn }) => {
                {showBtn && <div className='btn-container d-flex justify-content-end align-items-center'>
                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
                     <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
-                    <Image src={heartIcon} width={20} height={20} className='heart-icon'></Image>
-                    <Image src={shareIcon} width={24} height={24} className='share-icon'></Image>
+                    <HeartIcon width={22} height={20} className='heart-icon' />
+                    <ShareIcon width={24} height={24} className='share-icon'/>
                 </div>}
             </Card>
         </div>)

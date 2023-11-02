@@ -1,11 +1,12 @@
 .search-bar {
     background-color: #ffffff;
     border-radius: 15px;
-    box-shadow: 8px 8px 40px #6b6b6b33, 4px 4px 4px #6b6b6b1c;   
-    padding:34px 20px 24px;
+    box-shadow: 8px 8px 40px #6b6b6b33, 4px 4px 4px #6b6b6b1c;
+    padding: 34px 20px 24px;
 
     .search-tabs {
         margin-bottom: 22px;
+
         button {
             font-family: var(--helvetica-regular-font);
             font-size: 20px;
@@ -16,22 +17,40 @@
             color: #4D5156;
         }
     }
+
     .input-label-no-shrink {
-        transform: translate(140px, 24px) scale(1);
+        transform: translate(122px, 24px) scale(1);
     }
+
     .vertical-line {
         border-left: 1px solid #808080;
         height: 33px;
     }
 
-    .search-input {
-        background-color: #ffffff;
-        border: 1px solid;
-        border-color: #808080;
-        border-radius: 34px;
-        height: 69px;
-        input {
-            padding-left:19px;
+    .search-input-container {
+        .Mui-focused {
+            color: #70757A;
+        }
+        .search-input {
+            background-color: #ffffff;
+            border-radius: 34px;
+            height: 69px;
+
+            input {
+                padding-left: 19px;
+            }
+
+            &.MuiInputBase-root {
+                .MuiOutlinedInput-notchedOutline {
+                    border: 1px solid #D3D3D3;
+                }
+
+                &:hover {
+                    .MuiOutlinedInput-notchedOutline {
+                        border-color: #D3D3D3;
+                    }
+                }
+            }
         }
     }
 
@@ -48,6 +67,7 @@
             align-items: center;
         }
     }
+
     .search-bar-icons {
         img {
             background-color: #dc143c99;
@@ -57,6 +77,7 @@
             margin-left: 20px;
         }
     }
+
     .search-bar-btn {
         font-family: var(--helvetica-regular-font);
         font-size: 24px;

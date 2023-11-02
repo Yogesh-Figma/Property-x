@@ -30,7 +30,7 @@ const LINKS2 = [
     { name: "Sitemap", url: "#" }]
 
 const LINKS3 = [
-    { name: "Property X Reviews", url: "#" }, { name: "About Us", url: "#" },
+    { name: "Propify Reviews", url: "#" }, { name: "About Us", url: "#" },
     { name: "Real Estate Guide", url: "#" },
     { name: "Awards & Recognition", url: "#" },
     { name: "Media Coverage", url: "#" },
