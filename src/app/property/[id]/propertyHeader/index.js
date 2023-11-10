@@ -7,6 +7,7 @@ import HeartIcon from '@/app/icons/heart.svg'
 import GoogleMapIcon from '@/app/icons/google_map.svg'
 import Rating from '@/app/components/rating';
 import nearByIcon from '@/app/icons/near_by.svg?url';
+import ScheduleCalendar from '@/app/scheduleCalender';
 import './styles.scss'
 
 export default ({ id }) => {
@@ -50,7 +51,7 @@ export default ({ id }) => {
         <div className='d-flex align-items-center justify-content-between btn-cnt'>
             <div>
                 <NextLinkButton variant="outlined-noborder" className="talk-to-consultation" text='Talk to Consultant' height={30} rounded={true} href="/" />
-                <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="/" />
+                <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="?schedule=123" />
             </div>
             <div>
                 <NextLinkButton variant="outlined" className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />

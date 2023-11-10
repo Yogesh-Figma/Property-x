@@ -9,7 +9,7 @@
 
         button {
             font-family: var(--helvetica-regular-font);
-            font-size: 20px;
+            font-size: clamp(12px, 2vw, 20px);
             font-style: normal;
             font-weight: 700;
             line-height: normal;
@@ -19,7 +19,7 @@
     }
 
     .input-label-no-shrink {
-        transform: translate(122px, 24px) scale(1);
+        // transform: translate(122px, 24px) scale(1);
     }
 
     .vertical-line {
@@ -27,27 +27,39 @@
         height: 33px;
     }
 
-    .search-input-container {
-        .Mui-focused {
-            color: #70757A;
+    .search-box {
+        border-radius: 32px;
+        flex: 1;
+        border: 1px solid #D3D3D3;
+        .location-container {
+            padding-left: 35px;
         }
-        .search-input {
-            background-color: #ffffff;
-            border-radius: 34px;
-            height: 69px;
-
-            input {
-                padding-left: 19px;
+        .search-input-container {
+            .Mui-focused {
+                color: #70757A;
             }
 
-            &.MuiInputBase-root {
-                .MuiOutlinedInput-notchedOutline {
-                    border: 1px solid #D3D3D3;
+            .search-input {
+                background-color: #ffffff;
+                border-radius: 34px;
+                height: 69px;
+
+                input {
+                    padding-left: 19px;
                 }
 
-                &:hover {
+                &.MuiInputBase-root {
+                    border: none;
+
                     .MuiOutlinedInput-notchedOutline {
-                        border-color: #D3D3D3;
+                        border: none;
+                        // border: 1px solid #D3D3D3;
+                    }
+
+                    &:hover {
+                        .MuiOutlinedInput-notchedOutline {
+                            // border-color: #D3D3D3;
+                        }
                     }
                 }
             }

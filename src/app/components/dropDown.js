@@ -41,7 +41,7 @@ export default function DropDown({label, handleChange, value, values, multiple, 
           {values.map((item) => (
             <MenuItem
               key={item.label}
-              value={item.label}            
+              value={item.value}            
             >
               {item.label}
             </MenuItem>

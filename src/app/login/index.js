@@ -41,8 +41,7 @@ const Login = ({ open, otpSent=true }) => {
     const router = useRouter();
     const [otp, handleOtp] = React.useState("")
     const searchParams = useSearchParams()
-    const loginModalEnabled = !!
-    searchParams.get('login') || false
+    const loginModalEnabled = !!searchParams.get('login') || false
     const shrink = formData.mobileno.length > 0;
     const { control, handleSubmit, setValue } = useForm({
         reValidateMode: "onBlur"

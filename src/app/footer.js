@@ -41,12 +41,12 @@ const Footer = () => {
         <footer className={"text-center text-lg-start text-muted footer container-fluid"}>
             <section className="">
                 <div className="text-center text-md-starts">
-                    <div className='row search-box-container g-0'>
+                    <div className='row search-box-container g-0 d-flex'>
                         <div className="property-x col-4 d-flex align-items-center justify-content-center">
                             <Logo width={121} height={23} />
                         </div>
                         <div className='foot-search-bar col-8'>
-                            <CompactSearchBar width="45vw" height="50px" showSearchIcon={true} />
+                            <CompactSearchBar width={"100%"} height="50px" maxWidth={600} showSearchIcon={true} />
                         </div>
                     </div>
                     <div className="row g-0">

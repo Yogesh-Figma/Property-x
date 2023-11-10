@@ -10,11 +10,13 @@ import HeartIcon from '@/app/icons/heart.svg'
 import scheduleIcon from '@/app/icons/schedule.svg?url'
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
+import ScheduleCalendar from '@/app/scheduleCalender';
 import "./styles.scss"
 
 export default ({ showBtn }) => {
     return (
         <div id="overview">
+             <ScheduleCalendar />
             <Heading label={"Overview"} />
             <Card className='property-overview'>
                 <div className='property-short-info-cnt d-flex flex-wrap justify-content-between'>
@@ -50,7 +52,7 @@ export default ({ showBtn }) => {
                 </div>
                {showBtn && <div className='btn-container d-flex justify-content-end align-items-center'>
                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
-                    <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+                    <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                     <HeartIcon width={22} height={20} className='heart-icon' />
                     <ShareIcon width={24} height={24} className='share-icon'/>
                 </div>}

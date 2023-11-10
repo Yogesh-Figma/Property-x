@@ -1,5 +1,8 @@
 .footer {
     background: #EAEAEA;
+    .compact-search-bar {
+        flex: 1;
+    }
     .trophy-container {
         margin-top: 37px;
         border-radius: 10px;
@@ -47,6 +50,7 @@
         margin-bottom: 28px;
     }
     .foot-search-bar {
+        flex: 1;
         padding-left: 20vw;
     }
     .qr-code-msg {

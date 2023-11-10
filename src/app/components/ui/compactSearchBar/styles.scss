@@ -1,8 +1,6 @@
 .compact-search-bar-container {
     .compact-search-bar {
         .search-input-container {
-            max-width: 600px;
-            min-width: 200px;
             fieldset {
                 border:none;
             }
@@ -27,6 +25,7 @@
     .location-container {
         width: 120px;
         padding-right: 10px;
+        margin-left: 10px;
         text-align: right;
     }
 }

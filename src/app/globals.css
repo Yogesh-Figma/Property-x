@@ -316,3 +316,24 @@ svg.edit_svg__edit-icon:hover path{
 svg.share_svg__share-icon:hover g, svg.google_map_svg__google-map:hover g{
     stroke: #DC143C;
 }
+
+&::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+&::-webkit-scrollbar-track {
+  background: #D9D9D9;
+  border-radius: 4px;
+}
+
+/* Handle */
+&::-webkit-scrollbar-thumb {
+  background: #70757A;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+&::-webkit-scrollbar-thumb:hover {
+  background: #70757A;;
+}

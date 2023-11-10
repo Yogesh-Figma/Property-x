@@ -30,6 +30,7 @@ export default async function RootLayout({ children }) {
         '--text-color-crimson': '#DC143C',
         '--text-color-shark': '#202124',
         '--text-color-abbey': '#4D5156',
+        '--bs-body-font-size':'clamp(12px, 1.5vw, 1rem)',
         display: "unset"
       }}>
         <Header />

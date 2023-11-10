@@ -9,7 +9,7 @@ import DropDown from '@/app/components/dropDown';
 
 
 const LOCATIONS = [{label:"Noida",value:"noida"},{label:"Gurugram",value:"gurugram"},{label:"New Delhi",value:"delhi"}]
-const CompactSearchBar = ({ height = "30px", width = "600px", showSearchIcon, showLocationMenu }) => {
+const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showSearchIcon, showLocationMenu }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [location, changeLocation] = React.useState("");
 
@@ -32,7 +32,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", showSearchIcon, sh
                     type="search"
                     value={searchTerm}
                     onChange={handleSearchTermChange}
-                    sx={{ borderRadius: "30px", background: "#fff", height: { height }, width: { width } }}
+                    sx={{ borderRadius: "30px", background: "#fff", height: height, width:width, maxWidth:maxWidth }}
                     InputLabelProps={{
                         className: ""
                     }}

@@ -11,6 +11,7 @@ import CrossIcon from '@/app/icons/cross_icon_filled.svg'
 import AutoCompleteSearch from '@/app/components/autoCompleteSearch';
 import PaginatedFloorPlan from './paginatedFloorPlan';
 import { useAppContext } from '@/lib/appContext';
+import ScheduleCalendar from '@/app/scheduleCalender';
 
 const ProjectComparision = ({ }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
@@ -39,6 +40,7 @@ const ProjectComparision = ({ }) => {
     ]
 
     return (<div class="container-fluid comparison-table-container mb-2">
+        <ScheduleCalendar />
         <div class="comparison-table">
             <table class="table table-bordered">
                 <thead class="table-header">
@@ -186,14 +188,14 @@ const ProjectComparision = ({ }) => {
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                             </div>
                         </td>
                         <td className=''>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                             </div>
                         </td>
 
