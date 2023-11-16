@@ -1,5 +1,10 @@
 .search-page {
     padding-bottom: 100px;
+    .project-heading {
+        + svg {
+            margin-bottom: 20px;
+        }
+    }
     .property-cards, .property-detail {
         margin-bottom: -20px;
         padding-bottom: 20px;
@@ -7,6 +12,10 @@
         padding-right: 20px;
         overflow: scroll;
         overflow-x: hidden; 
+        @media (max-width: 1199px){
+            overflow: visible;
+            height: unset; 
+        }
         &::-webkit-scrollbar {
             width: 5px;
           }

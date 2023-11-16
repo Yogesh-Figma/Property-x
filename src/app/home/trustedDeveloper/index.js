@@ -9,7 +9,7 @@ import verticalGradientLine from '@/app/icons/vertical_gradient_line.svg?url'
 
 const TrustedDevelopers = () => {
     return (<div className='trusted-developers'>
-        <CardSlider carouselSettings={{ slidesToShow:3, slidesToScroll:1,  variableWidth: true, responsive:[]}}>
+        <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll:1,  variableWidth: true, responsive:[]}}>
             {[1, 2, 3, 4, 5, 6, 7, 9, 10].map(i =>
                 <div style={{minWidth:"334px",width:"334px"}}>
                     <Card className='trusted-dev-card position-relative d-flex'>

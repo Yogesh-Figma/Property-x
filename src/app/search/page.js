@@ -20,7 +20,7 @@ export default function Page({ params,
     return (<div className='search-page container-fluid'>
         <Filter />
         <div className='row search-section-cnt'>
-            <div className='col-6 property-cards'>
+            <div className='col-xl-6 col-12 property-cards  overflow-lg-scroll'>
                 {[1, 2, 3, 4, 5, 6].map(item => <div className='property-card-cont'>
                     <PropertyCard4 title={"Gaur Krishn Villas"}
                         bhk={"2, 3, 4 BHK"}
@@ -36,7 +36,7 @@ export default function Page({ params,
                     />
                 </div>)}
             </div>
-            <div className='col-6'>
+            <div className='col-6 d-xl-block d-none'>
                 <div className='property-detail'>
                     <PropertyDetails id={searchParams?.id} />
                 </div>
@@ -49,7 +49,7 @@ export default function Page({ params,
                 </Card> */}
             </div>
         </div >
-        <Link className='d-flex justify-content-end align-items-center property-detail-link sub-heading' href={"/property/" + (searchParams?.id||0)}>View Full Details <Image src={RightLink} width={28} height={28} /></Link>
+        <Link className='d-xl-flex d-none justify-content-end align-items-center property-detail-link sub-heading' href={"/property/" + (searchParams?.id||0)}>View Full Details <Image src={RightLink} width={28} height={28} /></Link>
         <div className='additional-page-padding'>
             <div className='similar'>
                 <Heading label={"Similar Projects"} />

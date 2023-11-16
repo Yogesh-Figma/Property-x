@@ -6,6 +6,9 @@
     background: #fff;
     z-index: 4;
     position: relative;
+    .logo-link {
+        margin-left: 20px;
+    }
     filter: drop-shadow(8px 8px 40px rgba(107, 107, 107, 0.20)) drop-shadow(4px 4px 4px rgba(107, 107, 107, 0.11));
     .links {
         span {
@@ -15,11 +18,19 @@
     .compact-search-bar {
         border: 1px solid #D3D3D3;
         border-radius: 15px;
-        width: 100%;
+        width: 27vw;
+        max-width: 383px;
     }
     .heading-normal {
         a {
             color: #202124;
         }
+    }
+}
+.ham-list {
+    .ham-item {
+        color: #202124;
+        font-family: Helvetica;
+        padding: 10px 20px;
     }
 }

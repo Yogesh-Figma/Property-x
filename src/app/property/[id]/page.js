@@ -19,6 +19,7 @@ import ImagesIcon from '@/app/icons/images.svg'
 import Tabs from './tabs';
 import Map from '@/app/components/ui/map'
 import GalleryModal from '@/app/components/galleryModal'
+import { Divider } from '@mui/material';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const samplePropertyData = {
@@ -124,7 +125,7 @@ export default function Page({params: { id}}) {
         </div>
         <div className='additional-page-padding'>
             <div className='row g-0 property-additional-info'>
-                <div className='col-8'>
+                <div className='col-lg-8'>
                     <div className='property-images position-relative'>
                         <Image src={"/samplePropertyImage.jpeg"} fill={true} />
                         <CompareProjects />
@@ -135,37 +136,42 @@ export default function Page({params: { id}}) {
                             </div>
                         </Link>
                     </div>
-                    <div className='property-value row'>
-                        <div className='property-growth-cnt col-5'>
-                            <div className='property-growth'>
-                                <div className='helv-txt'>Current property value</div>
-                                <div className='prop-grw-price-range'>83.17L-1.22Cr</div>
+                    <div className='property-value row g-0 mt-0 mt-lg-4'>
+                        <div className='property-growth-cnt col-lg-5 col-12'>
+                            <div className='property-growth d-flex d-lg-block justify-content-between'>
+                                <div className='d-lg-block d-flex'>
+                                    <div className='helv-txt'>Current property value</div>
+                                    <div className='prop-grw-price-range ms-3 ms-lg-0 mb-lg-3 mt-lg-3'>83.17L-1.22Cr</div>
+                                </div>
                                 <div className='growth-rate d-flex align-items-center'>Growth rate <Image src={propertyGraph} width={20} height={20} />
-                                    <span className='property-appreciation'>04.30%</span></div>
+                                    <span className='property-appreciation'>04.30%</span>
+                                </div>
                             </div>
                         </div>
-                        <div className='property-graph col-7'>
-                            <div>Property Value Over Time</div>
-                            <LineGraph height={"123px"} width={"100%"} />
+                        <div className='property-graph col-7 d-lg-block d-none'>
+                            <div>
+                                <div>Property Value Over Time</div>
+                                <LineGraph height={"123px"} width={"100%"} />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className='col-4 property-info-right-menu'>
-                <div className='property-map-container'>
-                    <Map lat={28.5355} long={77.391029} apiKey={API_KEY}/>
-                </div>
-                <div className='horizontal-line'></div>
-                <div className='similar-nearby'>
-                    <div className='similar-project-txt'>Similar Project Nearby</div>
-                    <div className='sub-info'>10km away from the searched location</div>
-                    <div className='nearby position-relative'>
-                        <Image src={"/samplePropertyImage.jpeg"} className='nearby-prop-image' fill={true}/>
-                        <div className='nearby-prop-info position-absolute'>
-                            <div className='title heading'>Nirala Estate</div>
-                            <div className='address'>Techzone 4, Greater Noida West</div>
+                <div className='d-flex d-lg-block col-lg-4 property-info-right-menu ps-lg-4 mt-4 mt-lg-0'>
+                    <div className='property-map-container mb-lg-4'>
+                        <Map lat={28.5355} long={77.391029} apiKey={API_KEY} className={"mb-0"}/>
+                    </div>
+                    <Divider className='divider-line d-none d-lg-block' /> 
+                    <div className='similar-nearby ps-4 ps-lg-0 pt-lg-3 d-none d-md-block'>
+                        <div className='similar-project-txt'>Similar Project Nearby</div>
+                        <div className='sub-info'>10km away from the searched location</div>
+                        <div className='nearby position-relative'>
+                            <Image src={"/samplePropertyImage.jpeg"} className='nearby-prop-image' fill={true}/>
+                            <div className='nearby-prop-info position-absolute'>
+                                <div className='title heading'>Nirala Estate</div>
+                                <div className='address'>Techzone 4, Greater Noida West</div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
             <Tabs />

@@ -1,6 +1,12 @@
 .property-page {
     padding-top: 40px;
 
+    .project-heading {
+        + svg {
+            margin-bottom: 20px;
+        }
+    }
+
     .property-subtext {
         margin: 10px 0 20px 0;
         .vr-message {
@@ -25,22 +31,22 @@
         margin-bottom: 75px;
         margin-top: 30px;
 
-        .horizontal-line {
+        .divider-line {
             border-bottom: 2px solid #EAEAEA;
         }
 
         .similar-nearby {
-            margin-top: 9px;
-
             .nearby-prop-image {
                 border-radius: 12px;
-                margin-top: 14px;
             }
 
             .similar-project-txt {
                 font-size: 24px;
                 font-family: var(--helvetica-regular-font);
                 color: #202124;
+                & + .sub-info {
+                    margin-bottom: 14px;
+                }
             }
 
             .nearby {
@@ -61,20 +67,26 @@
         }
 
         .property-info-right-menu {
-            padding-left: 40px;
+            .property-map-container {
+                flex: 1;
+                min-height: 170px;
+            }
         }
 
         .google-map-container {
             height: 212px;
-
             .map-container {
                 width: 100%;
-                height: 527px;
+                height: 100%;
             }
-
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 32px;
+        }
+
+        @media (max-width: 992px) {
+            .google-map-container {
+                height: 100%;
+            }
         }
 
         .property-images {
@@ -128,18 +140,15 @@
         }
 
         .property-value {
-            height: 170px;
+            // height: 170px;
             width: 100%;
             margin-right: 20px;
             margin-top: 27px;
 
-            .prop-grw-price-range {
-                margin-top: 16px;
-                margin-bottom: 32px;
+            .prop-grw-price-range {                
             }
 
-            .property-growth-cnt {
-                padding-right: 20px;
+            .property-growth-cnt {              
 
                 .property-growth {
                     height: 100%;
@@ -152,14 +161,16 @@
                 }
             }
 
-            .property-graph {
-                padding: 10px 24px 8px 24px;
-                height: 100%;
-                border-radius: 10px;
-                background: #F8F8F8;
-
-                .line-graph {
+            .property-graph {                
+                padding-left: 20px;
+                > div {
+                    padding: 10px 24px 8px 24px;
+                    height: 100%;
+                    border-radius: 10px;
                     background: #F8F8F8;
+                    .line-graph {
+                        background: #F8F8F8;
+                    }
                 }
             }
         }

@@ -6,8 +6,8 @@ import Card from '@/app/components/card'
 
 const FloorPlan = () => {
     return (<div className='property-floor-plan'>
-        <CardSlider carouselSettings={{ slidesToShow: 2, slidesToScroll: 1 }}>
-            {[1, 2, 3, 4].map(item => <div className='floor-plan-card-container'>
+        <CardSlider carouselSettings={{  slidesToShow: null, slidesToShow: 2, slidesToScroll: 1, variableWidth:true }}>
+            {[1, 2, 3, 4].map(item => <div className='floor-plan-card-container' style={{ width: 704 }}>
                 <Card className='d-flex'>
                     <div className='floor-info'>
                         <ul>

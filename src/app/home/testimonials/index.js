@@ -6,7 +6,7 @@ import './styles.scss'
 
 const Testimonials = ({ }) => {
     return (<div className='testimonials'>
-        <CardSlider carouselSettings={{slidesToShow:3, slidesToScroll:1,  variableWidth: true, responsive:[] }}>
+        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll:1,  variableWidth: true, responsive:[] }}>
             {[1, 2, 3, 4, 5, 6].map(item => <div style={{width:"287px"}}>
                 <Card className='test-card'>
                     <div className='test-txt'>“I was amazed by the personalized service I received from Property X. Their in-depth knowledge of the Indian real estate market helped me find the perfect home in my preferred location. A big thank you!”</div>

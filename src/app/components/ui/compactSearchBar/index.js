@@ -6,6 +6,7 @@ import './styles.scss'
 import Image from 'next/image';
 import searchIcon from '@/app/icons/iconamoon_search.svg?url'
 import DropDown from '@/app/components/dropDown';
+import Link from 'next/link'
 
 
 const LOCATIONS = [{label:"Noida",value:"noida"},{label:"Gurugram",value:"gurugram"},{label:"New Delhi",value:"delhi"}]
@@ -40,7 +41,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showS
                         className: `search-input${showSearchIcon ? "-icon" : ""}`,
                         endAdornment: (
                             <InputAdornment position="end">
-                                {showSearchIcon ? <Image src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} />}
+                                <Link href="/search" className='search-link' passHref>{showSearchIcon ? <Image src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} />}</Link>
                             </InputAdornment>
                         ),
                     }}

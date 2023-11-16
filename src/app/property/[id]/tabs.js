@@ -27,7 +27,7 @@ const scrollEffect = (targetRef) => {
 export default ({ }) => {
     return (<Card className='position-sticky property-tab-card'>
         <CardSlider carouselSettings={{
-            variableWidth: true, swipeToSlide: false, className: "property-tabs", responsive: [{
+            variableWidth: true, slideToScroll:4, swipeToSlide: false, className: "property-tabs", responsive: [{
                 breakpoint: 2000,
                 settings: {
                     nextArrow: null, prevArrow: null
@@ -41,7 +41,7 @@ export default ({ }) => {
             }]
         }}>
             {tabsData.map(item => <div style={{ width: item.width }} className='property-tab'>
-                <Link activeClass="active" className="property-tab-link text-decoration-none" to={item.to} spy={true} smooth={false} offset={-90} >
+                <Link activeClass="active" className="property-tab-link text-decoration-none text-nowrap" to={item.to} spy={true} smooth={false} offset={-90} >
                     {item.txt}
                 </Link>
             </div>)}

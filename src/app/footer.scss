@@ -2,6 +2,7 @@
     background: #EAEAEA;
     .compact-search-bar {
         flex: 1;
+        text-align: left;
     }
     .trophy-container {
         margin-top: 37px;
@@ -49,9 +50,7 @@
         padding-top: 18px;
         margin-bottom: 28px;
     }
-    .foot-search-bar {
-        flex: 1;
-        padding-left: 20vw;
+    .foot-search-bar {      
     }
     .qr-code-msg {
         width: 181px;

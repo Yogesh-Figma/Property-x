@@ -41,36 +41,38 @@ const Footer = () => {
         <footer className={"text-center text-lg-start text-muted footer container-fluid"}>
             <section className="">
                 <div className="text-center text-md-starts">
-                    <div className='row search-box-container g-0 d-flex'>
-                        <div className="property-x col-4 d-flex align-items-center justify-content-center">
-                            <Logo width={121} height={23} />
+                    <div className='row search-box-container g-0'>
+                        <div className="col-4 mb-4 mb-lg-0">
+                            <div className='property-x d-flex align-items-center justify-content-center'>
+                                <Logo width={121} height={23} />
+                            </div>
                         </div>
-                        <div className='foot-search-bar col-8'>
+                        <div className='foot-search-bar col-lg-8'>
                             <CompactSearchBar width={"100%"} height="50px" maxWidth={600} showSearchIcon={true} />
                         </div>
                     </div>
                     <div className="row g-0">
-                        <div className='col-4'>
+                        <div className='col-xl-4 mb-5'>
                             <div className='trophy-container d-flex align-items-center justify-content-center'>
                                 <Image src={"/trophy.svg"} width={70} height={70} />
                             </div>
                         </div>
-                        <div className='col-8'>
+                        <div className='col-xl-8'>
                             <div className='row footerLinksColumns g-0'>
-                                <div className='col-4'>
+                                <div className='col-lg-4 col-6'>
                                     {LINKS1.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
-                                <div className='col-4'>
+                                <div className='col-lg-4 col-6'>
                                     {LINKS2.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
-                                <div className='col-4'>
+                                <div className='col-lg-4'>
                                     {LINKS3.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                             </div>
                         </div>
                         <div className='hr'></div>
-                        <div className='g-0 additional-page-padding d-flex justify-content-between'>
-                            <div className='col-4 text-start about-us'>
+                        <div className='g-0 additional-page-padding d-lg-flex justify-content-between'>
+                            <div className='col-lg-4 text-start about-us mb-4 mb-lg-0'>
                                 <div className='head'>About Us</div>
                                 <div className='text-justify'>We're your trusted partners in finding your dream home or making wise property investments. With a passion for delivering excellence, we've curated a diverse selection of properties that cater to every lifestyle and aspiration. Backed by a team of experienced professionals, we bring you personalized solutions that go beyond transactions – we're here to guide you through the entire journey. Welcome to a world of possibilities with Us.</div>
                             </div>
@@ -80,7 +82,7 @@ const Footer = () => {
                                 <div className='connect-info'>Customer Care <div className='connect-info-sub'>customercare@example.com</div></div>
                                 <div className='connect-info'>Call us on <div className='connect-info-sub'>9876 543 2198</div></div>
                             </div>
-                            <div className='col-4 download-app-container'>
+                            <div className='col-4 download-app-container d-none d-lg-block'>
                                 <div className='head text-start'>Download the App</div>
                                 <div className='d-flex appLogo justify-content-end'>
                                     <Image width={144.6} height={51.64} style={{ maxWidth: "144.6px" }} src="/playStoreLogo.svg" className='col' />
