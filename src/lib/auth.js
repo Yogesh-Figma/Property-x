@@ -1,58 +1,55 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { generateToken, getCurrentUser } from '@/clients/authenticationClient' 
 
 export const authOptions = {
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "?login=true",
-  },
+  // pages: {
+  //   signIn: "?login=true",
+  // },
   providers: [
     CredentialsProvider({
       id: 'credentials',
-      name: 'my-project',
+      name: 'propify',
       credentials: {
-        email: {
-          label: 'email',
-          type: 'email',
-          placeholder: 'jsmith@example.com',
+        mobileno: {
+          label: 'Mobile No',
+          type: 'mobileno',
+          placeholder: '',
         },
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials, req) {
         const payload = {
-          email: credentials.email,
+          mobileno: credentials.mobileno,
           password: credentials.password,
         };
-
-        const res = await fetch('', {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const user = await res.json();
-        if (!res.ok) {
-          throw new Error(user.message);
+        try {
+          debugger
+          const user = await generateToken(credentials.mobileno, credentials.password);
+          if (user) {
+            const userInfo = await getCurrentUser(user.token);
+            return { token: user.token, username: user.username, ...userInfo };
+          }
+          else {
+            return null;
+          }
         }
-        // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user;
+        catch (e) {
+          debugger
+          throw new Error("Invalid username or password");
         }
-
-        // Return null if user data could not be retrieved
-        return null;
       },
     }),
     // ...add more providers here
   ],
   callbacks: {
     async jwt({ token, user, account }) {
-      if (account && user) {
+      if (!!user) {
         return {
           ...token,
+          user,
           accessToken: user.token,
           refreshToken: user.refreshToken,
         };
@@ -62,8 +59,15 @@ export const authOptions = {
     },
 
     async session({ session, token }) {
-      session.user.accessToken = token.accessToken;
-        
+      if (Date.now() / 1000 > token?.accessTokenExpires && token?.refreshTokenExpires && Date.now() / 1000 > token?.refreshTokenExpires) {
+        throw new Error("Refresh token has expired. Please log in again to get a new refresh token.");
+      }
+
+      const accessTokenData = JSON.parse(atob(token.accessToken.split(".")?.at(1)));
+      session.user = token.user;
+      token.accessTokenExpires = accessTokenData.exp;
+      session.token = token?.accessToken;
+
       return session;
     },
   },

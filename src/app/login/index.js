@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
 import Input from '@/app/components/input';
 import { useForm } from "react-hook-form";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 
 const styles = {
@@ -36,13 +37,12 @@ const styles = {
     }
 };
 
-const Login = ({ open, otpSent=true }) => {
-    const [formData, setFormData] = React.useState({"mobileno":""});
+const Login = ({ open }) => {
+    const [formData, setFormData] = React.useState({"mobileno":"", "otp":""});
+    const [otpSent, setOtpSent] = React.useState(false);
     const router = useRouter();
-    const [otp, handleOtp] = React.useState("")
     const searchParams = useSearchParams()
     const loginModalEnabled = !!searchParams.get('login') || false
-    const shrink = formData.mobileno.length > 0;
     const { control, handleSubmit, setValue } = useForm({
         reValidateMode: "onBlur"
     });
@@ -57,10 +57,15 @@ const Login = ({ open, otpSent=true }) => {
         router.back();
     }
 
-    const handleOtpChange = (event) => {
-        const { name, value } = event.target;
-        setValue("otp", value);
-        handleOtp(value);
+    const sendOtp = () => {
+        setOtpSent(true);
+    }
+
+    const verifyCredentialAndLogin = () => {
+        signIn("credentials", {redirect: false, mobileno:formData.mobileno, password:"amit1234" })
+        .then(() => {
+            handleClose();
+        })
     }
 
     return (
@@ -103,7 +108,7 @@ const Login = ({ open, otpSent=true }) => {
                                     <div className='vertical-line'></div>
                                 </div>
                             }
-                            endAdornment={<Button text={"Get OTP"} className={"login-bar-btn"} rounded={true} height={48}/>}                        
+                            endAdornment={<Button text={"Get OTP"} className={"login-bar-btn"} rounded={true} height={48} onClick={sendOtp}/>}                        
                         />
                         {otpSent ? <div className='otp-container'>
                             <div className='otp'>Enter OTP</div>
@@ -115,15 +120,15 @@ const Login = ({ open, otpSent=true }) => {
                                 rounded={true}
                                 width ={471}
                                 height={50}
-                                onChange={handleOtpChange}
+                                onChange={handleInputChange}
                                 inputPropClassName={"login-input"}
-                                value={otp}
+                                value={formData.otp}
                                 errorMessage={"Please enter valid OTP"}
                                 maxLength={4}
                                 minLength={4}
                             />
                             <div className='terms-of-service d-flex align-items-center'> <Checkbox />I agree to Terms of Services, and Privacy Policy.</div>
-                            <Button text={"Verify OTP"} className={"otp-verify-btn"} rounded={true} height={50} onClick={handleSubmit(()=>{})}/>
+                            <Button text={"Verify OTP"} className={"otp-verify-btn"} rounded={true} height={50} onClick={handleSubmit(()=>{ verifyCredentialAndLogin() })}/>
                         </div> : <>
                             <div className='or-con text-center sub-heading-3'>Or</div>
                             <div className='login-with-google d-flex align-items-center justify-content-center'>

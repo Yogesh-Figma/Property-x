@@ -13,10 +13,12 @@ import facebookIcon from "@/app/icons/ri_facebook-fill.svg?url"
 import twitterIcon from "@/app/icons/ri_twitter-x-fill.svg?url"
 import linkedinIcon from "@/app/icons/ri_linkedin-fill.svg?url"
 import instagramIcon from "@/app/icons/ant-design_instagram-filled.svg?url"
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const { data: { user } } = useSession();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -66,15 +68,15 @@ export default function AccountMenu() {
               <Image src={"/propertyStatsImg.jpeg"} width={120} height={120} />
             </div>
             <div>
-              <div className='name'>Rahul verma</div>
-              <div className='email'>rahulverma@gmail.com</div>
-              <div className='phone-no'>+91 9876 543 210</div>
+              <div className='name'>{user.firstName + " " + user.lastName}</div>
+              <div className='email'>{user.email}</div>
+              <div className='phone-no'>{user.phone}</div>
             </div>
           </div>
           <Divider className="divider" />
           <div className='tabs'>
             {TABS.map((item, index) => <Link href={"/profile?t=" + item.value}> {index == 0 ? <Heading className='tab-items-heading' label={item.label} /> : <div className="tab-items cursor-pointer">{item.label}</div>}</Link>)}
-            <div className="tab-items cursor-pointer">Logout</div>
+            <div className="tab-items cursor-pointer" onClick={()=> signOut()}>Logout</div>
           </div>
           <Divider className="divider" />
           <div className="social-btn d-flex flex-column align-items-center">

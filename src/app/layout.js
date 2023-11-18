@@ -7,7 +7,6 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
 import { AppProvider } from "@/lib/appContext";
 
-
 const helveticaBold = localFont({ src: './fonts/Helvetica-Bold-Font.ttf', variable: '--helvetica-bold-font' })
 const helveticaRegular = localFont({ src: './fonts/Helvetica_Regular.otf', variable: '--helvetica-regular-font' })
 const microsoftSans = localFont({ src: './fonts/micross.ttf', variable: '--microsoft-sans-font' })
@@ -30,11 +29,15 @@ export default async function RootLayout({ children }) {
         '--text-color-crimson': '#DC143C',
         '--text-color-shark': '#202124',
         '--text-color-abbey': '#4D5156',
-        '--bs-body-font-size':'clamp(12px, 1.5vw, 1rem)',
+        '--bs-body-font-size': 'clamp(12px, 1.5vw, 1rem)',
         display: "unset"
       }}>
-        <Header />
-        <AppProvider>{children}</AppProvider>
+        <AppProvider session={session}>
+          <>
+            <Header />
+            {children}
+          </>
+        </AppProvider>
         <Footer />
       </body>
     </html>
