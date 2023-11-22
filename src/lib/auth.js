@@ -25,8 +25,7 @@ export const authOptions = {
           mobileno: credentials.mobileno,
           password: credentials.password,
         };
-        try {
-          debugger
+        try {          
           const user = await generateToken(credentials.mobileno, credentials.password);
           if (user) {
             const userInfo = await getCurrentUser(user.token);
@@ -36,8 +35,7 @@ export const authOptions = {
             return null;
           }
         }
-        catch (e) {
-          debugger
+        catch (e) {          
           throw new Error("Invalid username or password");
         }
       },

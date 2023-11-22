@@ -118,9 +118,9 @@ export default function Page({params: { id}}) {
             <div className='dev-project-image-cnt position-relative'>
                 <Image className='dev-project-image' src={"/mahunDeveloperImg.png"} fill={true} />
             </div>
-            <div className='property-subtext sub-info d-flex justify-content-between'><span>*Please note: The starting location may change in the future.</span>
+            {/* <div className='property-subtext sub-info d-flex justify-content-between'><span>*Please note: The starting location may change in the future.</span>
             <span className='vr-message ml-auto'>Use VR Headset for better experience.</span>
-            </div>
+            </div> */}
             <PropertyHeader id={id}/>
         </div>
         <div className='additional-page-padding'>

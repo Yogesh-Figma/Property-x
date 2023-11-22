@@ -111,8 +111,8 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
     </div>)
 }
 
-const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id }) => {
-    return (<div style={{ width: width }} key={id}>
+const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id,maxWidth }) => {
+    return (<div style={{ width: width, maxWidth:maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
                 <Image src={imgsrc} fill={true} />

@@ -31,7 +31,10 @@ const nextConfig = {
     fileLoaderRule.exclude = /\.svg$/i
 
     return config
-  }
+  },
+  sassOptions: {
+    additionalData: `@import "src/app/_variables.scss";`,
+  },
 }
 
 module.exports = nextConfig

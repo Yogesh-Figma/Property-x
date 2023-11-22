@@ -2,7 +2,7 @@
     font-size: 16px;
     padding-top: 17px;
     padding-bottom: 17px;
-    height: 60px;
+    min-height: 60px;
     background: #fff;
     z-index: 4;
     position: relative;
@@ -25,6 +25,11 @@
         a {
             color: #202124;
         }
+    }
+    .search-small-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 20px;
     }
 }
 .ham-list {

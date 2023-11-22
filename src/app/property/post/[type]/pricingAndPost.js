@@ -13,7 +13,7 @@ export default ({ formData, handleChange, postProperty }) => {
     
     return <div className="pricing-and-post">
         <Heading label={"Add Price Details"} />
-        <div className='d-flex'>
+        <div className='d-block d-lg-flex'>
             <div className='property-cost-cnt'>
                 <div className="form-element-heading">Cost</div>
                 <Input
@@ -33,7 +33,7 @@ export default ({ formData, handleChange, postProperty }) => {
                     }
                 />
             </div>
-            <div className='undraw-sale'>
+            <div className='undraw-sale d-none d-lg-inline-block'>
                 <Image src={"/undrawSale.svg"} width={480} height={239} />
             </div>
         </div>

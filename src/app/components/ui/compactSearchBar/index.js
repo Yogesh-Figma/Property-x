@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 
 const LOCATIONS = [{label:"Noida",value:"Noida"},{label:"Gurugram",value:"Gurugram"},{label:"New Delhi",value:"New Delhi"}]
-const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showSearchIcon, showLocationMenu }) => {
+const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showSearchIcon, showLocationMenu, className }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [location, changeLocation] = React.useState("");
 
@@ -24,7 +24,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showS
 
 
     return (
-        <div className='compact-search-bar-container d-flex'>
+        <div className={`compact-search-bar-container d-flex ${className}`}>
             {!!showLocationMenu && <div className='location-container'>
                 <DropDown label={"Location"} handleChange={handleLocationChange} value={location} values={LOCATIONS} /></div>}
             <div className='compact-search-bar body-txt'>

@@ -17,23 +17,24 @@ export default ({ }) => {
                     Join our platform to effortlessly reach a wide audience of potential guests eager to book your space.
                 </p>
             </div>
-            <div className='d-flex'>
+            <div className='d-flex mb-5 mb-xl-0'>
                 <div className=''>
                     <Heading label={"I want to Post..."} />
-                    <div className="property-btn d-flex justify-content-between">
+                    <div className="property-btn d-sm-flex justify-content-between">
                         <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/property/post/Residential"} />
-                        <NextLinkButton rounded={true} text={"Commercial Property"} height={50} href={"/property/post/Commercial"} />
+                        <br />
+                        <NextLinkButton className="mt-4 mt-sm-0" rounded={true} text={"Commercial Property"} height={50} href={"/property/post/Commercial"} />
                     </div>
                 </div>
-                <div className='sticky-note-container position-relative'>
+                <div className='sticky-note-container position-relative d-none d-xl-inline-block'>
                     <Image className="header" alt="Header" fill={true} src="/stickyNote.svg" />
                 </div>
             </div>
             <Heading label={"How it works?"} />
             <Card className="info-container">
-                <div className='video-container d-flex'>
+                <div className='video-container d-lg-flex'>
                     <div className='video-1-container'><YoutubePlayer videoId={"hNAbQYU0wpg"} height={242} width={363}/></div>
-                    <div className='video-2-container'><YoutubePlayer videoId={"hNAbQYU0wpg"} height={242} width={363} /></div>
+                    <div className='video-2-container mt-4 mt-lg-0'><YoutubePlayer videoId={"hNAbQYU0wpg"} height={242} width={363} /></div>
                 </div>
                 <p className="info">
                     Lorem ipsum dolor sit amet consectetur. Sed nunc pellentesque arcu ultrices neque ornare et posuere

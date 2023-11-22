@@ -7,7 +7,7 @@
     .search-tabs {
         margin-bottom: 22px;
 
-        button {
+    button {
             font-family: var(--helvetica-regular-font);
             font-size: clamp(12px, 2vw, 20px);
             font-style: normal;
@@ -15,6 +15,13 @@
             line-height: normal;
             letter-spacing: 1px;
             color: #4D5156;
+            padding-left: 0px;
+            padding-right: 0px;
+            min-width: 24px;
+            margin-right: 1vw;
+            &:first-child {
+                margin-left: 1vw;
+            }
         }
     }
 
@@ -86,7 +93,18 @@
             border-radius: 30px;
             padding: 4px;
             box-sizing: content-box;
-            margin-left: 20px;
+            margin-right: 20px;
+        }
+    }
+    .search-bar-compact-btn {
+        width: 88px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: -3px;
+        .MuiButton-startIcon {
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 

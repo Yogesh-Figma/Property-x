@@ -4,6 +4,7 @@
         z-index: -1;
     }
     .stats {
+        min-width: 139px;
         flex:1;
     }
     .stats-container {
@@ -14,9 +15,33 @@
         margin:75px 50px;
     }
     .image-container {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         background: #DC143C;
-        border-radius: 9999px
+        border-radius: 100px;
     }
+
+    // @media (max-width:  --small-screen) {
+    //     .image-container { 
+    //         width: 100px;
+    //         height: 100px;
+    //     }
+        
+    // }
+
+    // @media (max-width:  --medium-screen) {
+    //     .image-container { 
+    //         width: 100px;
+    //         height: 100px;
+    //     }
+    // }
+
+    @media (max-width:  $grid-breakpoints-lg) {
+        .image-container { 
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+
 }

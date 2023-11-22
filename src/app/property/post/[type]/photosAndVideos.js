@@ -12,11 +12,11 @@ export default ({ formData, handleChange, changeStep }) => {
 
     return <div className="photo-and-video-cnt">
         <Heading label={"Upload Photos and Videos"}/>
-        <div className='d-flex'>
+        <div className='d-flex mt-4'>
             <div className='upload-container'>
                 <DragDropFile files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image, SUPPORTED_FILE_TYPE.video]} multiple={true}/>
             </div>
-            <Image className='undraw-building' src={"/undrawUpload.svg"} width={304} height={258} />
+            <Image className='undraw-building d-none d-lg-inline-block' src={"/undrawUpload.svg"} width={304} height={258} />
         </div>
         <div className='d-flex justify-content-end'>
             <Button className="next-button" rounded={true} height={48} text={"Next"} onClick={handleNext} />

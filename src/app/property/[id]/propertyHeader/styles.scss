@@ -62,7 +62,7 @@
     }
 
     .dev-by {
-        margin-top: 12px;
+       
     }
 
     .label {
@@ -72,8 +72,8 @@
     .property-share-icons {
         margin-bottom: 7px;
 
-        img {
-            margin-left: 20px;
+        svg {
+            margin-left: 16px;
         }
     }
 
@@ -83,6 +83,8 @@
 
         .price {
             letter-spacing: 0.4px;
+            font-size: 20px;
+            font-family: var(--helvetica-bold-font);
         }
 
         .taxes-applicable {

@@ -14,7 +14,6 @@ const FURNISH_TYPE = [{ label: "Fully Furnished", value: "fully_furnished" }, { 
 
 export default ({ formData, handleChange, changeStep }) => {
     const handleNext = () => {
-        debugger;
         changeStep(1);
     }
     const { control, handleSubmit, register, setValue,  formState: { errors } } = useForm({
@@ -38,7 +37,7 @@ export default ({ formData, handleChange, changeStep }) => {
             <div className="form-element-heading">Building/Project/Society (Optional)</div>
             <Input               
                 rounded={true}
-                width={"42%"}
+                width={"62%"}
                 className='form-input'
                 label={""}
                 name="society"
@@ -86,7 +85,7 @@ export default ({ formData, handleChange, changeStep }) => {
                     </span>
                 }
             />
-            <Image src={"/location_review.png"} width={342} height={329} className="review-location position-absolute" />
+            <Image src={"/location_review.png"} width={342} height={329} className="review-location position-absolute d-none d-lg-block" />
         </div>
         <div className="form-element-heading">BHK Type</div>
         <FormTabs errorMessage={"Required"} name="bhkType" items={BHK_TYPE} selectedTab={formData.bhkType} onClick={handleChangeWrapper} errors={errors} register={register}/>

@@ -63,12 +63,19 @@ const SearchBar = () => {
                     value={searchTerm}
                     onChange={handleSearchTermChange}
                     sx={{
-                        maxWidth: "1035px", minWidth: "323px", flex: 1, '& .MuiFormLabel-root': {
+                        width:"60vw",
+                        maxWidth: "790px",
+                         minWidth: "323px", 
+                         flex: 1, 
+                        '& .MuiFormLabel-root': {
                             fontSize: 'clamp(12px, 1.5vw, 1rem)',
                             top: "50%",
                             transform: "translateY(-50%)",
-                            paddingLeft:"22px"
-                        }
+                            paddingLeft:"22px"                          
+                        },
+                        '& .MuiInputBase-root':{
+                            paddingRight:"0px"
+                        }                        
                     }}
                     InputLabelProps={{
                         shrink: shrink,
@@ -77,15 +84,20 @@ const SearchBar = () => {
                     InputProps={{
                         className: "search-input",
                         endAdornment: (
-                            <InputAdornment position="end" className='search-bar-icons d-lg-flex d-none'>
-                                <Image src={fluentLocation} width={24} height={24} />
-                                <Image src={solidVoice} width={24} height={24} />
+                            <InputAdornment position="end" className=''>
+                                <div className='d-lg-flex search-bar-icons d-none'>
+                                    <Image src={fluentLocation} width={24} height={24} />
+                                    <Image src={solidVoice} width={24} height={24} />
+                                </div>
+                                <div className='d-lg-none d-flex'>
+                                    <NextLinkButton text={""} rounded={true} href="/search" height={72} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-compact-btn"} />
+                                </div>
                             </InputAdornment>
                         ),
                     }}
                 />
             </div>
-            <NextLinkButton text={"Search"} rounded={true} href="/search" height={68} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-btn"} />
+            <NextLinkButton text={"Search"} rounded={true} href="/search" height={68} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-btn d-none d-lg-inline-flex"} />
         </div>
     </div>)
 }

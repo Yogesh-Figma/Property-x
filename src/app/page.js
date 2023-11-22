@@ -22,7 +22,7 @@ export default function Home() {
         <div className='d-flex justify-content-end position-relative'>
           <Image className='banner-image overflow-container-fluid' src={bannerImage} />
         </div>
-        <div className='banner-content position-absolute'><span className='content-1 heading'>Prime Property Deals at Your Fingertips <br /></span><span className='content-2 sub-heading'>The Ultimate Property Booking<br />Destination</span>
+        <div className='banner-content position-absolute  d-none d-lg-block'><span className='content-1 heading'>Prime Property Deals at Your Fingertips <br /></span><span className='content-2 sub-heading'>The Ultimate Property Booking<br />Destination</span>
         </div>
       </div>
       <div className='search-bar-container d-flex align-items-center justify-content-center position-relative'>
@@ -67,7 +67,7 @@ export default function Home() {
           <div className='sub-heading-3 text-center sub-title'>Words from Our Delighted Customers</div>
           <Testimonials />
         </div>
-        <div className='download-app position-relative'>
+        <div className='download-app position-relative d-none d-lg-block'>
           <div className='download-app-txt-cnt'>
             <div className='download-app-txt heading'>Open door with a Tap</div>
             <div className='download-app-txt heading'>Download the App</div>

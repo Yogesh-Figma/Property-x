@@ -75,7 +75,7 @@
 .property-card-3 {
     min-height: 488px;
     .address, .bhk {
-        font-size: 12px;
+        font-size: clamp(8px, 1.5vw, 12px);
         line-height: normal;
         letter-spacing: 0.6px;
     }
@@ -90,7 +90,7 @@
             .price {
                 line-height: normal;
                 letter-spacing: 1px;
-                font-size: 20px;
+                font-size: clamp(12px, 2vw, 20px);
             }
         }
         .address-cnt {
@@ -98,29 +98,48 @@
         }
         .e-visit {
             margin-right: 18px;
-            width: 140px;
-            font-size: 20px;
+            max-width: 140px;
+            font-size: clamp(12px, 2vw, 20px);
+            width: 16vw;
         }
         .property-card-btn {
-            width: 144px;
-            font-size: 20px;
+            max-width: 144px;
+            font-size: clamp(12px, 2vw, 20px);
+            width: 20vw;
         }
     }
     .appreciation-icon {
         margin-left: 13px;
     }
     .view-project {
-        font-size: 12px;
+        font-size: clamp(8px, 1.5vw, 12px);
     }
     .dev-img-container {
         margin-right: 10px;
     }
     .by {
-        font-size: 20px;
+        font-size: clamp(12px, 2vw, 20px);
         font-style: normal;
         line-height: normal;
         letter-spacing: 1px;
     }
+
+    @media (max-width:  $grid-breakpoints-md) {
+        .by {
+        }
+        .e-visit {
+
+
+        }
+        .property-card-btn {
+
+        }
+        .price-container {
+            .price {                       
+            }
+        }
+    }
+    
 }
 
 .property-card-4 {
