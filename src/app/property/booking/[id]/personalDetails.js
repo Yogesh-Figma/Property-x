@@ -16,13 +16,13 @@ export default ({ formData, handleChange, changeStep }) => {
 
     return (<div className="personal-details">
         <div className="row">
-            <div className="col-5">
+            <div className="col-xl-5 col-12">
                 <PaymentSummary variant="vertical" />
             </div>
-            <div className="col-7">
+            <div className="col-xl-7 col-12">
                 <Heading label={"Add Your Details"} />
                 <div className="row form-row">
-                    <div className="col-6">
+                    <div className="col-md-6 col-12">
                         <Input
                             rounded={true}
                             width={"100%"}
@@ -34,7 +34,7 @@ export default ({ formData, handleChange, changeStep }) => {
                             height={50}
                         />
                     </div>
-                    <div className="col-6">
+                    <div className="col-md-6 col-12 mt-md-0 mt-4">
                         <Input
                             rounded={true}
                             width={"100%"}
@@ -48,7 +48,7 @@ export default ({ formData, handleChange, changeStep }) => {
                     </div>
                 </div>
                 <div className="row form-row">
-                    <div className="col-6">
+                    <div className="col-md-6 col-12">
                         <Input
                             rounded={true}
                             width={"100%"}
@@ -60,7 +60,7 @@ export default ({ formData, handleChange, changeStep }) => {
                             height={50}
                         />
                     </div>
-                    <div className="col-6"> <Input
+                    <div className="col-md-6 col-12 mt-md-0 mt-4"> <Input
                         rounded={true}
                         width={"100%"}
                         className='post-form-input'
@@ -83,7 +83,7 @@ export default ({ formData, handleChange, changeStep }) => {
                         height={50}
                     />
                 </div>
-                <div className="col-6 form-row">
+                <div className="col-md-6 col-12 form-row">
                     <Input
                         rounded={true}
                         width={"100%"}
@@ -96,7 +96,7 @@ export default ({ formData, handleChange, changeStep }) => {
                     />
                 </div>
                 <DragDropFile uploadText="Upload Aadhaar Card" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                <div className="col-6 form-row">
+                <div className="col-md-6 col-12 form-row">
                     <Input
                         rounded={true}
                         width={"100%"}
@@ -114,7 +114,7 @@ export default ({ formData, handleChange, changeStep }) => {
                 <DragDropFile uploadText="Add Signature" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
                 <Heading label={"Nominee and Owner details"} />
                 <div className="row  form-row">
-                    <div className="col-6">
+                    <div className="col-md-6 col-12">
                         <Input
                             rounded={true}
                             width={"100%"}
@@ -125,7 +125,7 @@ export default ({ formData, handleChange, changeStep }) => {
                             onChange={handleChange}
                             height={50}
                         /></div>
-                    <div className="col-6"> <Input
+                    <div className="col-md-6 col-12 mt-md-0 mt-4"> <Input
                         rounded={true}
                         width={"100%"}
                         className='post-form-input'
@@ -137,17 +137,17 @@ export default ({ formData, handleChange, changeStep }) => {
                     /></div>
                 </div>
                 <div className='row form-row'>
-                    <div className='col-5'>
+                    <div className='col-md-5 col-12'>
                         <CheckBox className='owner-checkbox' /><span>I am the Owner</span>
                     </div>
-                    <div className='col-2'>-OR-</div>
+                    <div className='col-12 ms-md-0 ms-5'>-OR-</div>
                     <div className='col-5'>+ Add Owner Details (Multiple)</div>
                 </div>
             </div>
 
         </div>
         <Heading label={"Declaration"} />
-        <div className='declaration d-flex align-items-start'>
+        <div className='declaration-cnt d-flex align-items-start'>
             <CheckBox className='declaration' />
             <div className='declaration-txt'>"I, solemnly declare my understanding and agreement to the terms set forth in this Purchase Agreement for the property located at [Property Address]. I acknowledge that I have been provided with all necessary disclosures and information related to this transaction, and I am committed to fulfilling my obligations and responsibilities as outlined herein. This declaration represents my genuine intent to purchase the property, and I affirm that the information provided is accurate and complete to the best of my knowledge."</div>
         </div>

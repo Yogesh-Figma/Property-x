@@ -23,18 +23,23 @@
         .site-plan-cnt {
             margin-top: 50px;
 
-            .property-card {
+            .property-card-cnt {
                 width: 25%;
+                .img-container {
+                    border-radius: 10px 10px 0px 0px;
+                    width: 100%;
+                    height: 170px;
+                    overflow: hidden;
+                }                        
             }
 
             .site-plan {
-                flex: 1;
+                flex: 1;   
             }
 
             .site-plan-image {
                 border-radius: 10px;
-                overflow: hidden;
-                margin-left: 36px;
+                overflow: hidden;               
             }
         }
 
@@ -47,7 +52,7 @@
         }
 
         .take-tour {
-            font-size: 24px;
+            font-size: clamp(14px, 2vw,24px);
             font-style: normal;
             line-height: 150%;
             /* 36px */
@@ -90,8 +95,12 @@
         }
 
         .apartment {
+            .tab {
+                margin-bottom: 20px;
+            }
             .sub-heading-2 {
                 margin-right: 15px;
+                margin-bottom: 20px;
             }
         }
 
@@ -113,6 +122,29 @@
                 .floor-plan-img-cnt {
                     width: 100%;
                     height: 330px;
+                }
+            }
+        }
+        @media (max-width:  $grid-breakpoints-xl) { 
+            .site-plan-cnt {
+
+                .property-card-cnt {
+                    width: 100%;
+                }
+    
+                .site-plan {
+                    height: 318px;
+                    margin-left: 0px;
+                    margin-top: 30px;
+                }
+    
+            }
+            .floor-cnt {
+                .floor-plan {
+                    margin-left: unset;
+                    padding: 20px;
+                    width: unset;
+                    height: 410px;
                 }
             }
         }
@@ -161,16 +193,39 @@
                 margin-right: 30px;
             }
         }
+        .declaration-cnt {
+            margin-top: 30px;
+            .declaration-txt {
+                margin-left: 20px;
+            }
+        }
 
-        .declaration-txt {
-            margin-left: 20px;
+        @media (max-width:  $grid-breakpoints-xl) and (min-width: $grid-breakpoints-md) { 
+            .payment-summary {
+                .property-payable-container {
+                    padding-top: 20px;
+                    .property-payable {
+                        padding-right: 30px;
+                        padding-left: 20px;
+                        border-top: 0;
+                        border-left: 1px solid #EAEAEA;
+                    }
+                }
+            }
         }
     }
 
     .payment-and-book {
         .user-info {
+
             margin-top: 30px;
             padding: 10px 30px 30px;
+
+            .sub-heading.project-heading {
+                + svg {
+                    margin-bottom: 15px;
+                }
+            }
 
             .details {
                 width: 60%;
@@ -199,17 +254,36 @@
             margin-top: 40px;
             
             .tab {
-                width: 270px;
-                height: 80px;
+                font-size: clamp(12px, 2vw, 24px);
+                width: 22vw;
+                max-width: 270px;
+                max-height: 80px;
+                height: 12vw;
                 border-radius: 40px;
-                margin-right: 49px;
+                margin-right: 4vw;
                 background: #FFF;
                 border: 0px;
                 box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
+                &:last-child {
+                    margin-right: 0;
+                }
                 &.selected {
                     border: none;
                     background: #DC143C;
                     color: #fff;
+                }
+            }
+        }
+        @media (max-width:  $grid-breakpoints-xl) and (min-width:  $grid-breakpoints-md) { 
+            .payment-summary {
+                .property-payable-container {
+                    padding: 20px;
+                    .property-payable {
+                        border-top: 0px;
+                        border-left: 1px solid #EAEAEA;
+                        padding-left: 20px;
+                        padding-top: 0;
+                    }
                 }
             }
         }

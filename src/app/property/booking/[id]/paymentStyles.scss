@@ -21,8 +21,7 @@
     }
 
     .property-details,
-    .property-payable {
-       
+    .property-payable {       
         color: #202124;
     }
 
@@ -59,7 +58,7 @@
     }
 
     .amenities-container {
-        padding-left: 30px;
+        padding-left: 20px;
         margin-top: 20px;
 
         .sub-info {
@@ -88,6 +87,21 @@
             padding-top: 20px;
             padding-left: 0px;
             padding-right: 0px;
+        }
+    }
+}
+
+@media (max-width:  $grid-breakpoints-md) { 
+    .payment-summary {
+        .property-payable-container {
+            padding: 20px;
+            .property-payable {
+                border-left: 0px;
+                border-top: 1px solid #EAEAEA;
+                padding-top: 20px;
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
     }
 }

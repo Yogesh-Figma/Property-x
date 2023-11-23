@@ -24,10 +24,10 @@ export default ({ formData, handleChange, changeStep }) => {
 
 
     return (<div className="inventory-selection">
-        <div className="d-flex site-plan-cnt g-0">
-            <div className="property-card">
+        <div className="d-xl-flex d-block site-plan-cnt g-0">
+            <div className="property-card-cnt">
             <PropertyCard4 title={"Gaur Krishn Villas"}
-            verticalView={true}
+                verticalView={true}
                 bhk={"2, 3, 4 BHK"}
                 address={"Sector 10, Greater Noida West, Greater Noida"}
                 priceRange={"₹40L-85L"}
@@ -41,7 +41,7 @@ export default ({ formData, handleChange, changeStep }) => {
             />
             </div>
             <div className="site-plan position-relative">              
-                <Image className="site-plan-image" src={"/sampleSitePlan.png"} fill={true}/>
+                <Image className="site-plan-image ms-xl-5" src={"/sampleSitePlan.png"} fill={true}/>
             </div>
         </div>
         <Heading label={"Select the Inventory"} />
@@ -67,7 +67,7 @@ export default ({ formData, handleChange, changeStep }) => {
                 </div>
             </Card>
         </div>
-        <div className="apartment d-flex section align-items-center">
+        <div className="apartment d-flex section align-items-xl-center">
             <span className="sub-heading-2">Apartment</span>
             <FormTabs variant={"contained"} width={124} height={50} name="apartment" items={apartments} selectedTab={formData.apartment} onClick={handleChange} />
         </div>

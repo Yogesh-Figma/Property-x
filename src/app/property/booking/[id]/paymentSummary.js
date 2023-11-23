@@ -2,12 +2,13 @@ import Card from "@/app/components/card";
 import Image from "next/image";
 import { AMENITIES } from "../../[id]/amenities";
 import './paymentStyles.scss'
+import { Divider } from '@mui/material';
 
 export default ({ variant = "horizontal" }) => {
     return (
         <Card className={`payment-summary ${variant}`}>
             <div className="row g-0">
-                <div className={variant == "vertical" ? 'col-12':`col-6`}>
+                <div className={variant == "vertical" ? 'col-xl-12 col-md-6 col-12':`col-md-6 col-12`}>
                     <div className="row g-0">
                         <div className="col-6 position-relative">
                             <Image src={"/mahunDeveloperImg.png"} fill={true} />
@@ -32,7 +33,10 @@ export default ({ variant = "horizontal" }) => {
                         </div>
                     </div>
                 </div>
-                <div className={(variant == "vertical" ? 'col-12': "col-6") + " property-payable-container"}>
+                {/* <div className="divider-cnt col-12 col-xl-1">
+                    <Divider className="divider" />
+                </div> */}
+                <div className={(variant == "vertical" ? 'col-xl-12 col-md-6 col-12': "col-md-6 col-12") + " property-payable-container"}>
                     <div className="property-payable">
                         <div className="title row amount-payable heading"><div className="col-6">Total Payable Amount</div><div className="col-6">₹1,14,39,855</div></div>
                         <div className="title row cost-breakup heading"><div className="col-6">Cost Breakup (In ₹)</div></div>

@@ -42,19 +42,21 @@ export default ({ formData, handleChange, changeStep }) => {
     return (<div className="payment-and-book">
         <Heading label={"Details Overview"} />
         <div className="row">
-            <div className="col-6">
+            <div className="col-xl-6 col-12">
                 <PaymentSummary variant="vertical" />
             </div>
-            <div className="col-6">
+            <div className="col-xl-6 col-12">
                 <Card className="user-info">
                     <div className="">
                         <div className="user-details-summary">
                             <Heading label={"User Details"} />
-                            <div className="d-flex justify-content-between">
+                            <div className="d-md-flex justify-content-between">
                                 {getUserDetails({name:"Rahul Verma", mobileNo:"+91 98765 43210", email:"rahulverma@email.com", address:"456 Green Avenue, Mumbai, MH - 400001", aadhaarNo:"1234-5678-9876", panNo:"ABCDE1234F"})}
-                                <div className="photo-signature">
-                                    <Image className="user-photo" src={"/devSampleLogo.png"} width={116} height={106}/>
-                                    <div className="signature-container position-relative">
+                                <div className="photo-signature g-0 d-md-block d-flex align-items-center">
+                                    <div className="col-md-12">
+                                        <Image className="user-photo" src={"/devSampleLogo.png"} width={116} height={106}/>
+                                    </div>
+                                    <div className="signature-container position-relative col-md-12 ms-4 ms-md-0 mt-0 mt-md-3">
                                         <Image className="signature" src={"/devSampleLogo.png"} fill={true}/>
                                     </div>
                                 </div>
@@ -62,11 +64,13 @@ export default ({ formData, handleChange, changeStep }) => {
                         </div>
                         <div className="owner-details-summary">
                             <Heading label={"Owner 1"} />
-                            <div className="d-flex justify-content-between">
+                            <div className="d-md-flex justify-content-between">
                                 {getUserDetails({name:"Rahul Verma", mobileNo:"+91 98765 43210", email:"rahulverma@email.com", address:"456 Green Avenue, Mumbai, MH - 400001", aadhaarNo:"1234-5678-9876", panNo:"ABCDE1234F"})}
-                                <div className="photo-signature">
-                                    <Image className="user-photo" src={"/devSampleLogo.png"} width={116} height={106}/>
-                                    <div className="signature-container position-relative">
+                                <div className="photo-signature d-md-block d-flex g-0 align-items-center">
+                                    <div className="col-md-12">
+                                        <Image className="user-photo" src={"/devSampleLogo.png"} width={116} height={106}/>
+                                    </div>
+                                    <div className="signature-container position-relative col-md-12 ms-4 ms-md-0 mt-0 mt-md-3">
                                         <Image className="signature" src={"/devSampleLogo.png"} fill={true}/>
                                     </div>
                                 </div>

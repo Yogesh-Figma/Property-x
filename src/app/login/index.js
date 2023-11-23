@@ -23,7 +23,8 @@ const styles = {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 1055,
+        width:"90vw",
+        maxWidth: 1055,
         bgcolor: '#fff',
         boxShadow: 24,
         borderRadius: "15px",
@@ -78,9 +79,9 @@ const Login = ({ open }) => {
         >
             <Box sx={{ ...styles.modal }} className=" position-relative">
                 <Image src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose}/>
-                <div className='login-container d-flex'>
-                    <Image src={"/undrawBuilding.svg"} width={438} height={334} />
-                    <div className='login-info'>
+                <div className='login-container row g-0'>
+                    <Image className="d-lg-inline-block d-none col-6" src={"/undrawBuilding.svg"} width={438} height={334} />
+                    <div className='login-info col-lg-6 col-12'>
                         <div className='heading'>Log in</div>
                         <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>Property X</span> account.</div>
                         <div className='sub-heading-3 verify-mobile'>Please Verify your Mobile Number</div>
@@ -92,7 +93,7 @@ const Login = ({ open }) => {
                             label={"Enter your mobile number"}
                             value={formData.mobileno}
                             onChange={handleInputChange}
-                            width={471}
+                            width={"100%"}
                             height={50}
                             minLength={10}
                             maxLength={10}
