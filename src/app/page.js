@@ -65,7 +65,9 @@ export default function Home() {
         <div className='developer-container'>
           <div className='sub-heading text-center title'>Testimonials</div>
           <div className='sub-heading-3 text-center sub-title'>Words from Our Delighted Customers</div>
-          <Testimonials />
+          <Suspense fallback={<Skeleton variant="rectangular" width={210} height={118}/>}>
+            <Testimonials />
+          </Suspense>
         </div>
         <div className='download-app position-relative d-none d-lg-block'>
           <div className='download-app-txt-cnt'>

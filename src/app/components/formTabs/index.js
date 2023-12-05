@@ -1,6 +1,6 @@
 import './styles.scss'
 
-const FormTabs = ({ items = [], name, variant = "outlined", selectedTab, width, height, onClick, className = "", register, errors, errorMessage }) => {
+const FormTabs = ({ items = [], name, variant = "outlined", selectedTab=null, width, height, onClick, className = "", register, errors, errorMessage }) => {
     return (
         <>
             <div className={`form-tab-container flex-wrap d-flex align-items-center ${className} ${variant}`}>

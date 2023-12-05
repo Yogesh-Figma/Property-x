@@ -50,24 +50,24 @@ export const CompareProjectPopup = () => {
                 <CloseIcon width={30} height={30} className='close-icon' />
             </span>
         <div className='d-flex position-relative'>
-            <div class="comparison-item d-flex flex-column align-items-center position-relative">
-                <span class="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon className="cross-icon" /></span>
+            <div className="comparison-item d-flex flex-column align-items-center position-relative">
+                <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon className="cross-icon" /></span>
                 <div className='prop-image'>
                     <Image src={"/mahunDeveloperImg.png"} width={157} height={94} />
                 </div>
                 <div className='proj-title'>Nirala Estate</div>
-                <div class="proj-location sub-info">Techzone 4, Greater Noida West</div>
+                <div className="proj-location sub-info">Techzone 4, Greater Noida West</div>
             </div>
-            <div class="comparison-item d-flex flex-column align-items-center position-relative">
-                <span class="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon /></span>
+            <div className="comparison-item d-flex flex-column align-items-center position-relative">
+                <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon /></span>
                 <div className='prop-image'>
                     <Image src={"/mahunDeveloperImg.png"} width={157} height={94} />
                 </div>
                 <div className='proj-title'>Nirala Estate</div>
-                <div class="proj-location sub-info">Techzone 4, Greater Noida West</div>
+                <div className="proj-location sub-info">Techzone 4, Greater Noida West</div>
             </div>
 
-            <div class="comparison-item d-flex flex-column align-items-center justify-content-center">
+            <div className="comparison-item d-flex flex-column align-items-center justify-content-center">
                 <div className='add-proj'>+ Add a Project</div>
                 <AutoCompleteSearch
                     autoCompleteOptions={topProjects}
@@ -81,7 +81,7 @@ export const CompareProjectPopup = () => {
                     height={30}
                 />
             </div>
-            <div class="comparisons-btn d-flex flex-column align-items-center justify-content-center">
+            <div className="comparisons-btn d-flex flex-column align-items-center justify-content-center">
                 <NextLinkButton className="compare-btn" rounded={true} height={30} text={"Compare"} href={"/projectcomparison"}/>
                 <Button variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={30} rounded={true} href="/" />
             </div>

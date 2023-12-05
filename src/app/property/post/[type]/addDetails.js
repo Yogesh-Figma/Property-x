@@ -12,7 +12,7 @@ const BHK_TYPE = [{ label: "1 RK", value: "1rk" }, { label: "1 BHK", value: "1bh
 const CONSTRUCTION_STATUS = [{ label: "Ready Move", value: "ready" }, { label: "Under Construction", value: "under_construction" }];
 const FURNISH_TYPE = [{ label: "Fully Furnished", value: "fully_furnished" }, { label: "Semi Furnished", value: "semi_furnished" }, { label: "Unfurnished", value: "unfurnished" }];
 
-export default ({ formData, handleChange, changeStep }) => {
+export default ({ formData, handleChange, changeStep, propertyListingTypes, lookingTo, propertyConfigurations, constructionStatus, propertyFurnishingStatuses }) => {
     const handleNext = () => {
         changeStep(1);
     }
@@ -32,7 +32,7 @@ export default ({ formData, handleChange, changeStep }) => {
         <form onSubmit={handleSubmit(handleNext, onError)}>
         <Heading label={"Add Details"} />
         <div className="form-element-heading">Property Type</div>
-        <FormTabs items={PROPERTY_TYPE} name="propertyType" selectedTab={formData.propertyType} onClick={handleChangeWrapper} errorMessage={"Required"} errors={errors} register={register}/>
+        <FormTabs items={propertyListingTypes} name="propertyListingTypeId" selectedTab={formData.propertyListingTypeId} onClick={handleChangeWrapper} errorMessage={"Required"} errors={errors} register={register}/>
         <div className="image-relative-container position-relative">
             <div className="form-element-heading">Building/Project/Society (Optional)</div>
             <Input               
@@ -88,7 +88,7 @@ export default ({ formData, handleChange, changeStep }) => {
             <Image src={"/location_review.png"} width={342} height={329} className="review-location position-absolute d-none d-lg-block" />
         </div>
         <div className="form-element-heading">BHK Type</div>
-        <FormTabs errorMessage={"Required"} name="bhkType" items={BHK_TYPE} selectedTab={formData.bhkType} onClick={handleChangeWrapper} errors={errors} register={register}/>
+        <FormTabs errorMessage={"Required"} name="propertyConfigurationId" items={propertyConfigurations} selectedTab={formData.propertyConfigurationId} onClick={handleChangeWrapper} errors={errors} register={register}/>
         <div className="form-element-heading">Built Up Area</div>
         <Input
             control={control}
@@ -106,9 +106,9 @@ export default ({ formData, handleChange, changeStep }) => {
             endAdornment={<span className="sq-ft">Sq. ft.</span>}
         />
         <div className="form-element-heading">Construction Status</div>
-        <FormTabs errorMessage={"Required"} name="constructionStatus" items={CONSTRUCTION_STATUS} selectedTab={formData.constructionStatus} onClick={handleChangeWrapper} errors={errors} register={register}/>
+        <FormTabs errorMessage={"Required"} name="constructionStatus" items={constructionStatus} selectedTab={formData.constructionStatus} onClick={handleChangeWrapper} errors={errors} register={register}/>
         <div className="form-element-heading">Furnish Type</div>
-        <FormTabs errorMessage={"Required"} name="furnishType" items={FURNISH_TYPE} selectedTab={formData.furnishType} onClick={handleChangeWrapper} errors={errors} register={register}/>
+        <FormTabs errorMessage={"Required"} name="propertyFurnishingStatusId" items={propertyFurnishingStatuses} selectedTab={formData.propertyFurnishingStatusId} onClick={handleChangeWrapper} errors={errors} register={register}/>
         <Button type="submit" className="next-button d-block ml-auto" rounded={true} height={48} text={"Next"} />
         </form>
     </div>)

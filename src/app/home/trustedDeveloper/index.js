@@ -6,44 +6,55 @@ import verified_icon from '../../icons/ic_round-verified-user.svg?url'
 import './styles.scss'
 import Chip from '../../components/chip';
 import verticalGradientLine from '@/app/icons/vertical_gradient_line.svg?url'
+import { getFeaturedDevelopers,getAllDevelopers } from '@/clients/developerClient'
+import Rating from '@/app/components/rating'
+import dayjs from 'dayjs';
+let customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat)
 
-const TrustedDevelopers = () => {
-    return (<div className='trusted-developers'>
+const TrustedDevelopers = async () => {
+    //const data = getFeaturedDevelopers();
+    const developers  = await getAllDevelopers();
+    return (<div className='trusted-developers'>    
         <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll:1,  variableWidth: true, responsive:[]}}>
-            {[1, 2, 3, 4, 5, 6, 7, 9, 10].map(i =>
-                <div style={{minWidth:"334px",width:"334px"}}>
+            {developers.map(data => {
+                const dateObj = dayjs(data.foundedOn, "DD/MM/YYYY");
+                const date2 = dayjs();
+                let years = date2.diff(dateObj, 'years');
+            
+                return(<div style={{minWidth:"334px",width:"334px"}}>
                     <Card className='trusted-dev-card position-relative d-flex'>
                         <div className='vertical-line position-relative'>
                             <Image className="" src={verticalGradientLine} fill={true} />
                         </div>
                         <div className='d-flex flex-column justify-content-between h-100 trusted-dev-card-info'>
                             <div className='sub-container'>
-                                <div className='image-container d-flex '>
-                                    <Image src="/strutiDeveloper.png" width={60} height={60} />
-                                    <Image className="verified-image" src={verified_icon} width={24} height={24} />
+                                <div className='d-flex align-items-center'>
+                                    <div className='image-container d-flex pe-2'>
+                                        <Image src="/strutiDeveloper.png" width={50} height={50} />
+                                    </div>
+                                    <div>
+                                        <div className='sub-heading-2'>{data.developerName}</div>
+                                        <div className='rating d-flex align-items-center sub-info'>
+                                            <span className='rating-value'>4.6</span>
+                                            <Rating value={4.6} />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='sub-heading-2'>Struti Developers & Builders</div>
                                 <div className='property-info d-flex justify-content-between'>
-                                    <span>1990<span className='body-txt'> Year Estd</span></span>
-                                    <span>34<span className='body-txt'> Years Experience</span></span>
-                                    <span>144 <span className='body-txt'>Projects</span></span>
+                                    <span>{dateObj.format('YYYY')}<span className='body-txt'> Year Estd</span></span>
+                                    <span>{years}<span className='body-txt'> Years Experience</span></span>
+                                    <span>{data.totalProjects} <span className='body-txt'>Projects</span></span>
                                 </div>
                             </div>
                             <div className='horizontal-line'></div>
                             <div className='chip-container'>
-                                <Chip label="Mumbai" variant="randomColor" />
-                                <Chip label="Thane" variant="randomColor" />
-                                <Chip label="Gurgaon" variant="randomColor" />
-                                <Chip label="Faridabad" variant="randomColor" />
-                                <Chip label="Pune" variant="randomColor" />
-                                <Chip label="Kurukshetra" variant="randomColor" />
-                                <Chip label="Nagpur" variant="randomColor" />
-                                <Chip label="Navi Mumbai" variant="randomColor" />
-                                <Chip label="Bengaluru" variant="randomColor" />
+                                {(data.operatingCities||"").split(",").map(city => <Chip label={city} variant="randomColor" />)}
                             </div>
                         </div>
                     </Card>
-                </div>)}
+                </div>)
+                })}
         </CardSlider>
     </div>)
 }

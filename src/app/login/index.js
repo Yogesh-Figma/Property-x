@@ -12,6 +12,7 @@ import { useSearchParams } from 'next/navigation'
 import Input from '@/app/components/input';
 import { useForm } from "react-hook-form";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { sendOtp } from '@/clients/authenticationAndLoginClient';
 
 
 const styles = {
@@ -39,12 +40,13 @@ const styles = {
 };
 
 const Login = ({ open }) => {
-    const [formData, setFormData] = React.useState({"mobileno":"", "otp":""});
+    let formInputFields = {"mobileno":"", "otp":""};
+    const [formData, setFormData] = React.useState(formInputFields);
     const [otpSent, setOtpSent] = React.useState(false);
     const router = useRouter();
     const searchParams = useSearchParams()
     const loginModalEnabled = !!searchParams.get('login') || false
-    const { control, handleSubmit, setValue } = useForm({
+    const { control, handleSubmit, setValue, setError } = useForm({
         reValidateMode: "onBlur"
     });
 
@@ -55,18 +57,26 @@ const Login = ({ open }) => {
     };
 
     const handleClose=()=>{
+        setOtpSent(false);
+        setFormData(formInputFields);
         router.back();
     }
 
-    const sendOtp = () => {
+    const sendOtpToClient = async () => {
+        await sendOtp(formData.mobileno);
         setOtpSent(true);
     }
 
     const verifyCredentialAndLogin = () => {
-        signIn("credentials", {redirect: false, mobileno:formData.mobileno, password:"amit1234" })
-        .then(() => {
-            handleClose();
-        })
+        signIn("credentials", {redirect: false, mobileno:formData.mobileno, password:"amit1234", otp:formData.otp })
+        .then((res) => {
+            if (res?.error === null) {
+                handleClose();
+            }
+            else {
+                setError('otp', { type: 'custom', message: 'Invalid otp' });
+            }
+        });
     }
 
     return (
@@ -109,7 +119,7 @@ const Login = ({ open }) => {
                                     <div className='vertical-line'></div>
                                 </div>
                             }
-                            endAdornment={<Button text={"Get OTP"} className={"login-bar-btn"} rounded={true} height={48} onClick={sendOtp}/>}                        
+                            endAdornment={<Button text={"Get OTP"} className={"login-bar-btn"} rounded={true} height={48} onClick={sendOtpToClient}/>}                        
                         />
                         {otpSent ? <div className='otp-container'>
                             <div className='otp'>Enter OTP</div>
@@ -125,8 +135,8 @@ const Login = ({ open }) => {
                                 inputPropClassName={"login-input"}
                                 value={formData.otp}
                                 errorMessage={"Please enter valid OTP"}
-                                maxLength={4}
-                                minLength={4}
+                                maxLength={6}
+                                minLength={6}
                             />
                             <div className='terms-of-service d-flex align-items-center'> <Checkbox />I agree to Terms of Services, and Privacy Policy.</div>
                             <Button text={"Verify OTP"} className={"otp-verify-btn"} rounded={true} height={50} onClick={handleSubmit(()=>{ verifyCredentialAndLogin() })}/>

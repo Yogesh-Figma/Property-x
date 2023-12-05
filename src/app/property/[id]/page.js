@@ -20,6 +20,10 @@ import Tabs from './tabs';
 import Map from '@/app/components/ui/map'
 import GalleryModal from '@/app/components/galleryModal'
 import { Divider } from '@mui/material';
+import { getPropertyById } from '@/clients/propertyClient';
+import { cookies } from 'next/headers'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/lib/auth"
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const samplePropertyData = {
@@ -109,7 +113,13 @@ const samplePropertyData = {
 }
 
 const BREADCRUMB = [{ name: "Home", url: "#" }, { name: "Ghaziabad", url: "#" }, { name: "Siddharth Vihar", url: "#" }, { name: "Siddharth Vihar", url: "#" },]
-export default function Page({params: { id}}) {
+export default async function Page({params: { id}}) {
+    const session = await getServerSession(authOptions)
+    console.log("session")
+    console.log(session)
+    console.log("id")
+    console.log(id)
+    const data = await getPropertyById(session?.token, id);
     return (<div className='property-page container-fluid'>
         <GalleryModal data={[]} />
         <CompareProjectPopup />

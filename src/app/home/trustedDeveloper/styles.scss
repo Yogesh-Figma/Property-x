@@ -8,6 +8,10 @@
     .slick-slide {
         min-width: 334px;
     }
+    .rating-value {
+        margin-top: 5px;
+        font-size: 12px;
+    }
 
     .trusted-dev-card {
         position: relative;
@@ -40,7 +44,6 @@
             align-items: flex-start;
             justify-content: center;
             position: relative;
-            margin-bottom: 9px;
 
             .verified-image {
                 position: absolute;

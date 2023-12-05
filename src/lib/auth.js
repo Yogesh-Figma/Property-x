@@ -1,5 +1,5 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { generateToken, getCurrentUser } from '@/clients/authenticationClient' 
+import { generateToken, getCurrentUser } from '@/clients/authenticationAndLoginClient' 
 
 export const authOptions = {
   session: {
@@ -21,18 +21,14 @@ export const authOptions = {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials, req) {
-        const payload = {
-          mobileno: credentials.mobileno,
-          password: credentials.password,
-        };
         try {          
-          const user = await generateToken(credentials.mobileno, credentials.password);
+          const user = await generateToken(credentials.mobileno, credentials.otp, credentials.password);
           if (user) {
             const userInfo = await getCurrentUser(user.token);
             return { token: user.token, username: user.username, ...userInfo };
           }
           else {
-            return null;
+            return new Error("Invalid username or password");
           }
         }
         catch (e) {          

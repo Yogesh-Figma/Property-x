@@ -12,6 +12,7 @@ import './styles.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import propertyGraph from '@/app/icons/property_graph.svg?url'
 import Rating from '@/app/components/rating'
+import OverflowTip from '@/app/components/OverflowTip';
 
 const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
     return (
@@ -23,7 +24,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                 </div>
                 <div className='info-container'>
                     <div className='row g-0'>
-                        <div className='title sub-heading-2 col-8'>{title}</div>
+                        <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1}/></div>
                         {!!rating && <div className='col-4'>
                             <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
                                 <Image src={starIcon} width={10} height={10} /></span>
@@ -62,7 +63,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                 </div>
                 <div className='info-container'>
                     <div className='row g-0'>
-                        <div className='title sub-heading-2 col-8'>{title}</div>
+                        <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1}/></div>
                         {!!rating && <div className='col-4'>
                             <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
                                 <Image src={starIcon} width={10} height={10} /></span>
@@ -96,7 +97,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
             </div>
             <div className='row info-container justify-content-between'>
                 <div className='col-7'>
-                    <div className='title sub-heading-2'>{title}</div>
+                    <div className='title sub-heading-2'><OverflowTip text={title} lines={1}/></div>
                     <div className='info'>
                         {!!by && <div className='by'>{by}</div>}
                         {!!address && <div className='address body-txt'>{address}</div>}
@@ -136,7 +137,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                     </div>
                     <div className='address-cnt d-flex justify-content-between align-items-start'>
                         <div className='info'>
-                            <div className='title sub-heading-2'>{title}</div>
+                            <div className='title sub-heading-2'><OverflowTip text={title} lines={1}/></div>
                             {!!address && <div className='address'>{address}</div>}
                         </div>
                         <div className='btn-cnt d-flex'>
@@ -160,7 +161,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                 </div>
                 <div className={`info-container d-flex flex-column ${verticalView ? 'col-12' : 'col-8'}`}>
                     <div className='d-flex align-items-center justify-content-between'>
-                        <div className='title heading'>{title}</div>
+                        <div className='title heading'><OverflowTip text={title} lines={1}/></div>
                         <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>
                         {showRating ? <div className='rating-cnt'>
                             <div className='rate'>Rate now</div>

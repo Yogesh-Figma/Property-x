@@ -1,11 +1,11 @@
 import React, {Suspense } from 'react';
 import CardSlider from '../../components/slider';
 import { PropertyCard3 } from '../../components/ui/propertyCard'
-import { getPropertyById } from '@/clients/propertyClient';
+import {PROJECT_STATUS, getProjectsByStatus} from '@/clients/projectClient'
 import './styles.scss';
 
 const TrendingProjects = async () => {
-    const data = await getPropertyById();
+    const projects = await getProjectsByStatus(PROJECT_STATUS.TRENDING);
     return (
         <div className='trending-projects'>
             <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll: 1, variableWidth: true, infinite: true, responsive: [{
@@ -16,19 +16,25 @@ const TrendingProjects = async () => {
                  }
                 }
             ], autoplay: true, nextArrow: null, prevArrow: null, autoplaySpeed: 2000 }}>
-                {[1, 2, 3, 4, 5, 6].map(item => <PropertyCard3
-                    title={"Gaur Krishn Villas"}
-                    bhk={"2, 3, 4 BHK"}
-                    address={"Sector 10, Greater Noida West, Greater Noida"}
-                    price={"₹40L-85L"} imgsrc={"/samplePropertyImage.jpeg"}
+                {projects.map(item => { 
+                    let address = "";
+                    if (!!item.projectAddress) {
+                        let { locality = {}, city = {} } = item.projectAddress;
+                        address = locality.localityName + ", " + city.cityName
+                    }
+                    return(<PropertyCard3
+                    title={item.projectName}
+                    bhk={item.projectConfiguration}
+                    address={address?? "Dummy Address"}
+                    price={item.projectOtherChargesPerAreaUnit}
+                    imgsrc={"/samplePropertyImage.jpeg"}
                     maxWidth={760}
                     width={760}
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"}
-                    by={"XYZ Builders"} 
-                    id={item}
-                    data={data}
-                    />)}
+                    by={item.projectListedBy} 
+                    id={item.projectId}
+                    />)})}
                     
             </CardSlider>
         </div>)
