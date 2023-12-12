@@ -14,8 +14,11 @@ import Testimonials from './home/testimonials'
 import FeaturedProperties from './home/featuredProperties'
 import UpComingProjects from './home/upComingProjects/upComingProjects'
 import Skeleton from '@mui/material/Skeleton';
+import { getAllCities } from '@/clients/cityClient'
 
-export default function Home() {
+export default async function Home() {
+  const cities = await getAllCities();
+  const LOCATIONS = cities.map(item => { return ({label:item.cityName,value:item.cityId}) });
   return (
     <div className='home'>
       <div className='banner no-gutter container-fluid'>
@@ -26,7 +29,7 @@ export default function Home() {
         </div>
       </div>
       <div className='search-bar-container d-flex align-items-center justify-content-center position-relative'>
-        <SearchBar />
+        <SearchBar locations={LOCATIONS}/>
       </div>
       <div className='dev-card-listing container-fluid'>
         <div className='developer-container'>

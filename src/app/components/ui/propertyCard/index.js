@@ -90,7 +90,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
 
 
 const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id }) => {
-    return (<div key={id}>
+    return (<div style={{ width: width }} key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
                 <Image src={imgsrc} fill={true} />
@@ -148,7 +148,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                 </div>
             </div>
         </Card>
-    </div>)
+        </div>)
 }
 
 // Search page property card

@@ -1,8 +1,17 @@
 import "./styles.scss"
 import React from 'react'
 import { PropertyCard4 } from '@/app/components/ui/propertyCard'
+import { useQuery } from 'react-query';
+import { getUserWishlist } from '@/clients/wishlistClient'
 
 export default ({ wishlist }) => {
+
+    const { data = {}, isLoading, isError, error } = useQuery({
+        queryKey: ['getUserWishlist'],
+        queryFn: () => getUserWishlist(user.id, token),
+    });
+
+
     return (
         <div className='wishlist'>
             <div className='property-cards'>

@@ -9,6 +9,7 @@ import Image from 'next/image';
 import NextLinkButton from '@/app/components/nextLinkButton';
 import searchIcon from '@/app/icons/iconamoon_search_white.svg?url'
 import DropDown from '@/app/components/dropDown'
+import { useAppContext } from '@/lib/appContext';
 
 const TAB_LABELS = ["Buy", "Rent", "Lease", "Commercial", "Residential", "Projects"];
 
@@ -22,12 +23,11 @@ const muiTab = {
 
 
 
-const SearchBar = () => {
+const SearchBar = ({locations}) => {
     const [activeTab, setActiveTab] = React.useState(0);
-    const [location, setLocation] = React.useState("");
+    const { userLocationId, setUserLocation } = useAppContext();
     const [searchTerm, setSearchTerm] = React.useState("");
     const shrink = searchTerm.length > 0;
-    const LOCATIONS = [{ label: "Delhi", value: "Delhi" }, { label: "Gurgaon", value: "Gurgaon" }, { label: "Noida", value: "Noida" }]
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
@@ -38,7 +38,7 @@ const SearchBar = () => {
     };
 
     const handleLocation = (event) => {
-        setLocation(event.target.value);
+        setUserLocation(event.target.value);
     };
 
 
@@ -53,7 +53,7 @@ const SearchBar = () => {
         <div className='search-box-row d-flex'>
             <div className='search-box d-flex'>
                 <div className='location-container align-items-center d-lg-flex d-none'>
-                    <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={location} values={LOCATIONS} />
+                    <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={userLocationId} values={locations} />
                     <div className='vertical-line'></div>
                 </div>
                 <TextField

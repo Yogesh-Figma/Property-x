@@ -34,13 +34,18 @@ const SampleNextArrow = (props) => {
 const settings = {
   infinite: false,
   speed: 500,
+  centerMode:false,
   slidesToShow: 5,
   slidesToScroll: 2,
   initialSlide: 0,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
-  responsive: [
-  ]
+  responsive: [{
+    breakpoint: 600,
+    settings: {
+        nextArrow: null, prevArrow: null
+    }
+}]
 };
 
 

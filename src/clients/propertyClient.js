@@ -4,7 +4,7 @@ import { get } from './fetchWrapper';
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
 
 
-async function getPropertyById(accessToken,id) {
+async function getPropertyById(id, accessToken) {
     console.log(accessToken);
     console.log(id);
     return get(`${API_CLIENT_URL}/get/property/by/property/id/${id}`, {

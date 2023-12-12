@@ -6,11 +6,12 @@ import CompactSearchBar from './components/ui/compactSearchBar';
 import HeaderMobileDrawer from './headerMobileDrawer';
 import UserAuthHeader from '@/app/userAuthHeader';
 import SearchIcon from '@/app/icons/iconamoon_search.svg'
+import { getAllCities } from '@/clients/cityClient'
 
 
-const locations = []
-const Header = ({ }) => {
-
+const Header = async ({ }) => {
+    const cities = await getAllCities();
+    const LOCATIONS = cities.map(item => { return ({label:item.cityName,value:item.cityId}) });
     return <div className='header d-flex justify-content-between container-fluid sub-heading align-items-center'>
         <div className="property-x d-flex align-items-center"> 
         <HeaderMobileDrawer />
@@ -18,7 +19,7 @@ const Header = ({ }) => {
             </Link>
         </div>
         <div className='header-search-container'>
-            <CompactSearchBar height='30px' className={"d-none d-md-inline-flex"} showLocationMenu={true} maxWidth={383} width='100%' />
+            <CompactSearchBar height='30px' className={"d-none d-md-inline-flex"} showLocationMenu={true} maxWidth={383} width='100%' locations = {LOCATIONS}/>
         </div>
         <div className='links'>
             <span className='heading-normal d-none d-xl-inline-block'>Download the App</span>

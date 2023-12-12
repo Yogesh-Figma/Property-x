@@ -6,7 +6,7 @@ import verified_icon from '../../icons/ic_round-verified-user.svg?url'
 import './styles.scss'
 import Chip from '../../components/chip';
 import verticalGradientLine from '@/app/icons/vertical_gradient_line.svg?url'
-import { getFeaturedDevelopers,getAllDevelopers } from '@/clients/developerClient'
+import { getFeaturedDevelopers, getAllDevelopers } from '@/clients/developerClient'
 import Rating from '@/app/components/rating'
 import dayjs from 'dayjs';
 let customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -14,15 +14,17 @@ dayjs.extend(customParseFormat)
 
 const TrustedDevelopers = async () => {
     //const data = getFeaturedDevelopers();
-    const developers  = await getAllDevelopers();
-    return (<div className='trusted-developers'>    
-        <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll:1,  variableWidth: true, responsive:[]}}>
+    const developers = await getAllDevelopers();
+    return (<div className='trusted-developers'>
+        <CardSlider carouselSettings={{
+            slidesToShow: null, slidesToScroll: 1, variableWidth: true
+        }}>
             {developers.map(data => {
                 const dateObj = dayjs(data.foundedOn, "DD/MM/YYYY");
                 const date2 = dayjs();
                 let years = date2.diff(dateObj, 'years');
-            
-                return(<div style={{minWidth:"334px",width:"334px"}}>
+
+                return (<div style={{ minWidth: "334px", width: "334px" }}>
                     <Card className='trusted-dev-card position-relative d-flex'>
                         <div className='vertical-line position-relative'>
                             <Image className="" src={verticalGradientLine} fill={true} />
@@ -49,12 +51,12 @@ const TrustedDevelopers = async () => {
                             </div>
                             <div className='horizontal-line'></div>
                             <div className='chip-container'>
-                                {(data.operatingCities||"").split(",").map(city => <Chip label={city} variant="randomColor" />)}
+                                {(data.operatingCities || "").split(",").map(city => <Chip label={city} variant="randomColor" />)}
                             </div>
                         </div>
                     </Card>
                 </div>)
-                })}
+            })}
         </CardSlider>
     </div>)
 }

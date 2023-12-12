@@ -87,3 +87,18 @@
         }
     }
 }
+
+.featured-properties, .featured-projects {
+    .slick-list {
+        margin-right: -100px !important;
+        padding-left: 100px !important;
+    }
+}
+@media (max-width:  $grid-breakpoints-md) {
+    .featured-properties, .featured-projects {
+        .slick-list {
+            margin-right: -100px !important;
+            padding-left: 20px !important;
+        }
+    }
+}

@@ -6,6 +6,8 @@ import EditPencil from "@/app/icons/edit_pencil.svg"
 import './styles.scss'
 
 export default ({ userProfileData }) => {
+    console.log("userProfileData 2")
+    console.log(userProfileData)
     const [formData, setFormData] = React.useState({
         fullName: userProfileData.fullName,
         emailAddress: userProfileData.emailAddress,

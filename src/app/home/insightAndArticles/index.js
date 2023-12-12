@@ -6,7 +6,7 @@ import './styles.scss'
 
 const InsightAndArticles = ({ }) => {
     return (<div className='insight-and-articles'>
-        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll:1,  variableWidth: true, responsive:[] }}>
+        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll:1,  variableWidth: true}}>
             {[1, 2, 3, 4, 5, 6].map(item =>
                 <div style={{width:"370px"}}>
                     <div className='insight-card'>

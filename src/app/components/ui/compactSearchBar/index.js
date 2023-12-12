@@ -7,26 +7,28 @@ import Image from 'next/image';
 import searchIcon from '@/app/icons/iconamoon_search.svg?url'
 import DropDown from '@/app/components/dropDown';
 import Link from 'next/link'
+import { useQuery } from 'react-query';
+import { useAppContext } from '@/lib/appContext';
 
 
-const LOCATIONS = [{label:"Noida",value:"Noida"},{label:"Gurugram",value:"Gurugram"},{label:"New Delhi",value:"New Delhi"}]
-const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showSearchIcon, showLocationMenu, className }) => {
+
+const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth="", showSearchIcon, showLocationMenu, className, locations }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
-    const [location, changeLocation] = React.useState("");
+    const { userLocationId, setUserLocation } = useAppContext() || {};
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
     };
 
     const handleLocationChange = (event) => {
-        changeLocation(event.target.value);
+        setUserLocation(event.target.value);
     }
 
 
     return (
         <div className={`compact-search-bar-container d-flex ${className}`}>
             {!!showLocationMenu && <div className='location-container'>
-                <DropDown label={"Location"} handleChange={handleLocationChange} value={location} values={LOCATIONS} /></div>}
+                <DropDown label={"Location"} handleChange={handleLocationChange} value={userLocationId} values={locations} /></div>}
             <div className='compact-search-bar body-txt'>
                 <TextField
                     className='search-input-container justify-content-center'

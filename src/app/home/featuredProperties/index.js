@@ -7,8 +7,8 @@ import './styles.scss'
 const FeaturedProperties = async () => {
     const properties = await getAllProperties();
     return (<div className='featured-properties'>
-        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
-            {properties.map(item => {
+        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true}}>
+            {[1,2,3,4,5,6,7,8,9,10].map(i=>properties.map(item => {
                 let address = "";
                 if(!!item.propertyAddress){
                     let {propertyLocality ={}, propertyCity ={}} = item.propertyAddress;
@@ -26,7 +26,7 @@ const FeaturedProperties = async () => {
                     width={250}
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"} />)
-            })}
+            }))}
         </CardSlider>
     </div>)
 }

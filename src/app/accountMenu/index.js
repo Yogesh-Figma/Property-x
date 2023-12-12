@@ -5,7 +5,7 @@ import Account from '@/app/icons/account.svg';
 import Menu from '@mui/material/Menu';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import { TABS } from '@/app/profile/page';
+import { TABS } from '@/app/profile/profile';
 import Heading from '@/app/components/heading';
 import Image from 'next/image'
 import Link from 'next/link'

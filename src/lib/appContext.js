@@ -1,11 +1,17 @@
 "use client"
 import React, { createContext, useState, useContext } from 'react';
 import { SessionProvider } from "next-auth/react"
+import {
+    QueryClient,
+    QueryClientProvider,
+} from 'react-query'
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children, session }) => {
+    const [userLocationId, setUserLocation] = useState("");
     const [comparisonProjects, setProjectsForComparison] = useState([]);
+    const queryClient = new QueryClient()
 
     const addProjectForComparison = (projectData) => {
         if (comparisonProjects.some(data == projectData.id)) {
@@ -29,10 +35,14 @@ export const AppProvider = ({ children, session }) => {
     const value = {
         comparisonProjects,
         addProjectForComparison,
-        removeProjectFromComparison
+        removeProjectFromComparison,
+        userLocationId,
+        setUserLocation
     };
     return <SessionProvider session={session}>
-        <AppContext.Provider value={value}>{children}</AppContext.Provider>
+        <QueryClientProvider client={queryClient}>
+            <AppContext.Provider value={value}>{children}</AppContext.Provider>
+        </QueryClientProvider>
     </SessionProvider>;
 };
 

@@ -4,7 +4,7 @@ import postedProperties from './app/profile/postedProperties';
 
 
 const SECRET = process.env.NEXTAUTH_SECRET;
-const protectedRoutes = ['/property/post'];
+const protectedRoutes = ['/property/post','/profile'];
 
 export async function middleware(req) {
     if (protectedRoutes.includes(req.nextUrl.pathname)) {
@@ -21,4 +21,4 @@ export async function middleware(req) {
     //   }
 }
 
-export const config = { matcher: ['/property/post'] }
+export const config = { matcher: protectedRoutes }

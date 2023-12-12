@@ -115,11 +115,7 @@ const samplePropertyData = {
 const BREADCRUMB = [{ name: "Home", url: "#" }, { name: "Ghaziabad", url: "#" }, { name: "Siddharth Vihar", url: "#" }, { name: "Siddharth Vihar", url: "#" },]
 export default async function Page({params: { id}}) {
     const session = await getServerSession(authOptions)
-    console.log("session")
-    console.log(session)
-    console.log("id")
-    console.log(id)
-    const data = await getPropertyById(session?.token, id);
+    const data = await getPropertyById(id, session?.token);
     return (<div className='property-page container-fluid'>
         <GalleryModal data={[]} />
         <CompareProjectPopup />

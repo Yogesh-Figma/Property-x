@@ -8,8 +8,7 @@ const FeaturedProjects = async () => {
     const projects = await getProjectsByStatus(PROJECT_STATUS.FEATURED);
     return (<div className='featured-projects'>
         <CardSlider carouselSettings={{
-            slidesToShow: null, slidesToScroll: 1, variableWidth: true, responsive: [
-            ]
+            slidesToShow: null, slidesToScroll: 1, variableWidth: true
         }}>
             {projects.map(item => {
                 let address = "";

@@ -30,10 +30,10 @@ export default function DropDown({label, handleChange, value, values, multiple, 
           onChange={handleChange}
           input={<Input disableUnderline={true}/>}
           renderValue={(selected) => {
-            if (!hideLabel && selected.length === 0) {
+            if (!hideLabel && !selected?.length) {
               return label;
             }
-            return selected;
+            return values.find(item => item.value == selected).label;
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label',MenuProps: {disableScrollLock: true} }}
