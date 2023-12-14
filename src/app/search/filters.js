@@ -68,7 +68,7 @@ const Filter = () => {
 
     return (<div className='filter-container overflow-container-fluid'>
         <div className='filters row g-0 d-flex align-items-center'>
-        <div className='col-11'>
+        <div className='col-10'>
         <ChipDropDown className={"search-filter"} width={150} label="Price Range" handleChange={handleChange} value={formData.priceRange} name="priceRange" min={1} max={1000} showSlider={true} valueLabelFormat={valueLabelFormat}/>
         <ChipDropDown className={"search-filter"} width={150} label="Amenities" handleChange={handleChange} values={AMENITIES} value={formData.amenities} name="amenities"/>
         <ChipDropDown className={"search-filter"} width={150} label="Property Type" handleChange={handleChange} values={PROPERTY_TYPES} value={formData.propertyTypes} name="propertyTypes"/>
@@ -76,7 +76,7 @@ const Filter = () => {
         <ChipDropDown className={"search-filter"} width={150} label="Configuration" handleChange={handleChange} values={CONFIGURATION} value={formData.configuration} name="configuration"/>
         <ChipDropDown className={"search-filter"} width={186} label="Construction Status" handleChange={handleChange} values={CONSTRUCTION_STATUS} value={formData.constructionStatus} name="constructionStatus"/>
         </div>
-        <span className='additional-filter col-1 d-flex align-items-center'>
+        <span className='additional-filter col-2 d-flex align-items-center'>
             <Image src={moreFilter} width={30} height={24}/>
             <span>More</span>
         </span>

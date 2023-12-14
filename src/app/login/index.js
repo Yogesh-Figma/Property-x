@@ -30,9 +30,10 @@ const styles = {
         boxShadow: 24,
         borderRadius: "15px",
         paddingTop: "45px",
-        paddingLeft: "13px",
+        paddingLeft: "0",
         paddingBottom: "75px",
         border: "none",
+        fontSize: "clamp(12px, 1.5vw, 16px)",
         "&:focus": {
             outline: 'none'
         }
@@ -95,32 +96,32 @@ const Login = ({ open }) => {
                         <div className='heading'>Log in</div>
                         <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>Property X</span> account.</div>
                         <div className='sub-heading-3 verify-mobile'>Please Verify your Mobile Number</div>
-                        <Input
-                            name={"mobileno"}
-                            control={control}
-                            rounded={true}
-                            className='login-input-container'
-                            label={"Enter your mobile number"}
-                            value={formData.mobileno}
-                            onChange={handleInputChange}
-                            width={"100%"}
-                            height={50}
-                            minLength={10}
-                            maxLength={10}
-                            isNumber={true}
-                            required={true}
-                            inputLabelClassName={"body-txt input-label-no-shrink"}
-                            inputLabelShrinkClassName={"body-txt"}
-                            inputPropClassName={"login-input"}
-                            errorMessage={"Please enter valid phone number"}
-                            startAdornment={
-                                <div className='d-flex align-items-center'>
-                                    <div className='country-code'> +91 </div>
-                                    <div className='vertical-line'></div>
-                                </div>
-                            }
-                            endAdornment={<Button text={"Get OTP"} className={"login-bar-btn"} rounded={true} height={48} onClick={sendOtpToClient}/>}                        
-                        />
+                        <div className='input-container d-flex'>
+                            <div className='d-flex align-items-center'>
+                                <div className='country-code'> +91 </div>
+                                <div className='vertical-line'></div>
+                            </div>
+                            <Input
+                                name={"mobileno"}
+                                control={control}
+                                rounded={true}
+                                className='login-input-container'
+                                label={"Enter your mobile number"}
+                                value={formData.mobileno}
+                                onChange={handleInputChange}
+                                width={"100%"}
+                                height={50}
+                                minLength={10}
+                                maxLength={10}
+                                isNumber={true}
+                                required={true}
+                                inputLabelClassName={"body-txt input-label-no-shrink"}
+                                inputLabelShrinkClassName={"body-txt"}
+                                inputPropClassName={"login-input"}
+                                errorMessage={"Please enter valid phone number"}
+                                endAdornment={<Button text={"Get OTP"} className={"login-bar-btn"} rounded={true} height={48} onClick={sendOtpToClient} />}
+                            />
+                        </div>
                         {otpSent ? <div className='otp-container'>
                             <div className='otp'>Enter OTP</div>
                             <Input
@@ -129,7 +130,7 @@ const Login = ({ open }) => {
                                 required={true}
                                 control={control}
                                 rounded={true}
-                                width ={471}
+                                width={"100%"}
                                 height={50}
                                 onChange={handleInputChange}
                                 inputPropClassName={"login-input"}

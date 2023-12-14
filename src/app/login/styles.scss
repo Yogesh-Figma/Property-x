@@ -1,4 +1,6 @@
 .login-modal {
+    width: 100vw;
+
     .close-icon {
         right: 25px;
         top: 25px;
@@ -6,14 +8,44 @@
 
     .login-container {
         .login-info {
-            padding-left:30px;
-            padding-right:30px;
+            padding-left: 30px;
+            padding-right: 30px;
+
             .heading {
                 font-size: 36px;
                 font-style: normal;
                 line-height: normal;
                 letter-spacing: 1.8px;
                 margin-bottom: 18px;
+            }
+
+            .input-container {
+                border: 1px solid #D3D3D3;
+                border-radius: 25px;
+                padding-left: 2vw;
+
+                .MuiInputBase-root {
+                    border: none;
+                    box-shadow: none;
+
+                    .MuiOutlinedInput-notchedOutline {
+                        border: none;
+                        // border: 1px solid #D3D3D3;
+                    }
+
+                    &:hover {
+                        .MuiOutlinedInput-notchedOutline {
+                            // border-color: #D3D3D3;
+                        }
+                    }
+                }
+
+                .vertical-line {
+                    border-left: 1px solid #D3D3D3;
+                    height: 24px;
+                    margin-right: 2vw;
+                    margin-left: 2vw;
+                }
             }
 
             .property-x {
@@ -32,13 +64,27 @@
                 margin-bottom: 10px;
             }
 
+            .MuiTextField-root {
+
+                label,
+                div {
+                    font-size: clamp(14px, 1.5vw, 16px);
+                }
+
+                .MuiInputBase-root {
+                    box-shadow: none;
+                }
+            }
+
+
             .login-input-container {
+
                 fieldset {
                     border: none;
                 }
 
                 .input-label-no-shrink {
-                    transform: translate(109px, 14px) scale(1);
+                    transform: translate(0%, 13px) scale(1);
                 }
 
                 .login-bar-btn {
@@ -59,12 +105,6 @@
                     }
                 }
 
-                .vertical-line {
-                    border-left: 1px solid #D3D3D3;
-                    height: 24px;
-                    margin-right: 28px;
-                }
-
                 .country-code {
                     color: #000;
                     font-family: var(--microsoft-sans-font);
@@ -75,39 +115,63 @@
                     margin-right: 25px;
                 }
             }
+
             .or-con {
                 margin-top: 42px;
                 margin-bottom: 41px;
                 font-size: 14px;
             }
-            .login-with-google, .login-with-facebook {
+
+            .login-with-google,
+            .login-with-facebook {
                 border-radius: 25px;
                 border: 1px solid #D3D3D3;
                 padding: 13px 0 16px;
                 font-size: 14px;
                 margin-bottom: 9px;
+
                 img {
-                    margin-right:7px;
+                    margin-right: 7px;
                 }
             }
+
             .otp-container {
                 margin-top: 39px;
+
                 .otp {
                     margin-bottom: 11px;
                 }
+
                 .otp-input-container {
                     margin-bottom: 25px;
+
                     fieldset {
                         border: none;
                     }
                 }
+
                 .otp-verify-btn {
                     width: 100%;
                 }
             }
+
             .terms-of-service {
                 font-size: 14px;
+                margin-top: 20px;
                 margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: $grid-breakpoints-sm) {
+            .login-info {
+                .login-input-container {
+                    .login-bar-btn {
+                        width: 74px;
+                        min-width: 74px;
+                        padding: 1px;
+                        font-size: 12px;
+                    }
+                }
             }
         }
     }
