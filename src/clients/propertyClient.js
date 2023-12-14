@@ -3,7 +3,6 @@
 import { get } from './fetchWrapper';
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
 
-
 async function getPropertyById(id, accessToken) {
     console.log(accessToken);
     console.log(id);
@@ -44,6 +43,11 @@ function getAllProperties() {
     return get(`${API_CLIENT_URL}/get/all/properties`, { next: { revalidate: 3600 } });
 }
 
+function getPropertyByStatus(status) {
+    return get(`${API_CLIENT_URL}/get/property/by/property/status/${status}`, { next: { revalidate: 3600 } });
+}
+
+
 async function getPropertyPostData(sessionToken) {
     return Promise.allKeys({
         propertyConfigurations: getPropertyConfigurations(),
@@ -58,5 +62,6 @@ async function getPropertyPostData(sessionToken) {
 export {
     getPropertyById,
     getPropertyPostData,
-    getAllProperties
+    getAllProperties,
+    getPropertyByStatus
 }

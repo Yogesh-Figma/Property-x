@@ -11,18 +11,13 @@ const FeaturedProjects = async () => {
             slidesToShow: null, slidesToScroll: 1, variableWidth: true
         }}>
             {projects.map(item => {
-                let address = "";
-                if (!!item.projectAddress) {
-                    let { locality = {}, city = {} } = item.projectAddress;
-                    address = locality.localityName + ", " + city.cityName
-                }
                 return (
                     <ProjectCard
                         id={item.projectId}
                         title={item.projectName}
-                        bhk={item.projectConfiguration}
-                        address={address}
-                        price={item.projectOtherChargesPerAreaUnit}
+                        bhk={item.projectSpecification}
+                        address={item.projectAddress}
+                        price={item.projectRatePerAreaUnit}
                         imgsrc={"/samplePropertyImage.jpeg"}
                         width={400}
                         height={"275px"} />)

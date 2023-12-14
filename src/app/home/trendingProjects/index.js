@@ -38,17 +38,17 @@ const TrendingProjects = async () => {
                         address = locality.localityName + ", " + city.cityName
                     }
                     return (<PropertyCard3
+                        id={item.projectId}
                         title={item.projectName}
-                        bhk={item.projectConfiguration}
-                        address={address ?? "Dummy Address"}
-                        price={item.projectOtherChargesPerAreaUnit}
+                        bhk={item.projectSpecification}
+                        address={item.projectAddress}
+                        price={item.projectRatePerAreaUnit}
                         imgsrc={"/samplePropertyImage.jpeg"}
                         maxWidth={null}
                         width={null}
                         height={"275px"}
                         devImage={"/devSampleImage.jpeg"}
-                        by={item.projectListedBy}
-                        id={item.projectId}
+                        by={item.projectDeveloperId?.developerLegalName}
                     />)
                 }))}
 

@@ -18,26 +18,24 @@
         font-weight: 400;
         font-family: var(--microsoft-sans-font);
         margin-right: 35px;
+        min-height: 248px;
 
+        .dev-description {
+            margin-top: 10px;
+            font-size: 10px;
+        }
         .trusted-dev-card-info {
             padding: 15px 20px;
+            width: 100%;
         }
 
         .vertical-line {
             width: 14px;
-
-            svg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-            }
         }
 
         .sub-heading-2 {
             line-height: normal;
             letter-spacing: 0.8px;
-            text-align: center;
         }
 
         .image-container {

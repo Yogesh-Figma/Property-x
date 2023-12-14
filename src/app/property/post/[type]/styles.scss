@@ -64,6 +64,9 @@
             margin-left: 30px;
             margin-top: 57px;
         }
+        .file-upload-form .form-file-upload {
+            width: 50vw;
+        }
     }
 
     .pricing-and-post {
@@ -90,7 +93,7 @@
             .form-tab-container {
                 .tab {
                     width: 100px;
-                    height: 50px;
+                    min-height: 50px;
                     margin-right: 10px;
                 }
             }

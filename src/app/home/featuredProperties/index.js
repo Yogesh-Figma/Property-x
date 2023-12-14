@@ -1,11 +1,12 @@
 import React from 'react';
 import CardSlider from '../../components/slider';
 import { PropertyCard } from '../../components/ui/propertyCard'
-import { getAllProperties } from '@/clients/propertyClient';
+import { getPropertyByStatus } from '@/clients/propertyClient';
 import './styles.scss'
+import { PROJECT_STATUS } from '@/clients/projectClient';
 
 const FeaturedProperties = async () => {
-    const properties = await getAllProperties();
+    const properties = await getPropertyByStatus(PROJECT_STATUS.FEATURED);
     return (<div className='featured-properties'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true}}>
             {[1,2,3,4,5,6,7,8,9,10].map(i=>properties.map(item => {
@@ -16,14 +17,14 @@ const FeaturedProperties = async () => {
                 }
                 return (<PropertyCard 
                     id={item.propertyId}
-                    postedBy={item.listingBy}
+                    postedBy={item.propertyDeveloper?.developerLegalName}
                     isProperty={true}
                     title={item.propertyName}
-                    bhk={(item.propertyConfiguration || {}).propertyConfigurationName}
-                    address={address}
-                    price={item.propertyRatePerAreaUnit}
+                    bhk={item.propertyConfiguration?.propertyConfigurationName}
+                    address={item.propertyAddress}
+                    price={item.propertyRatePerUnitInsqft}
                     imgsrc={"/samplePropertyImage.jpeg"}
-                    width={250}
+                    width={300}
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"} />)
             }))}

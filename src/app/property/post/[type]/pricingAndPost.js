@@ -37,7 +37,7 @@ export default ({ formData, handleChange, postProperty }) => {
                 <Image src={"/undrawSale.svg"} width={480} height={239} />
             </div>
         </div>
-        <div className='d-flex justify-content-center post-property-cnt'>
+        <div className='d-flex justify-lg-content-center justify-content-end post-property-cnt'>
                 <Button className="post-property-btn" rounded={true} height={48} text={"Post Property"} onClick={postProperty} />
             </div>
     </div>

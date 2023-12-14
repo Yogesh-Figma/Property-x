@@ -34,7 +34,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                     <div className='row g-0'>
                         <div className='col-8'>
                             {!!address && <div className='address body-txt'>{address}</div>}
-                            {!!bhk && <div className='bhk sub-heading-3'>{bhk}</div>}
+                            {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
                             <div className='price-container d-flex align-items-center'>
                                 <span className='price sub-heading-2'>{price}</span>
                                 <Image src={propertyGraph} width={20} height={20} />
@@ -71,7 +71,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                         </div>}
                     </div>
                     <div className='row g-0'>
-                        {!!bhk && <div className='bhk sub-heading-3'>{bhk}</div>}
+                        {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
                         {!!address && <div className='address body-txt'>{address}</div>}
 
                         <div className='price-container d-flex justify-content-between align-items-start'>
@@ -104,7 +104,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                     </div>
                 </div>
                 <div className='price-container col-5 text-end'>
-                    {!!bhk && <div className='bhk sub-heading-3'>{bhk}</div>}
+                    {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
                     {!!price && <div className='price sub-heading-2'>{price}</div>}
                 </div>
             </div>
@@ -132,7 +132,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                         </div>
                         <div className='price-container text-end'>
                             {!!price && <div className='price sub-heading-2'>{price}</div>}
-                            {!!bhk && <div className='bhk'>{bhk}</div>}
+                            {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1}/></div>}
                         </div>
                     </div>
                     <div className='address-cnt d-flex justify-content-between align-items-start'>
@@ -173,7 +173,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                             </div>}
                     </div>
                     {!!by && <div className='by'>By {by}</div>}
-                    {!!bhk && <div className='bhk'>{bhk}</div>}
+                    {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1}/></div>}
                     {!!address && <div className='address'>{address}</div>}
                     <div className='row g-0'>
                         <div className={`sub-container ${!!visitDate ? 'col-8' : ''}`}>
