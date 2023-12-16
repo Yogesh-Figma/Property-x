@@ -8,7 +8,7 @@ const Map = ({lat, long, apiKey, className}) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey,
   });
-  const center = useMemo(() => ({ lat: lat, lng: long }), []);
+  const center = useMemo(() => ({ lat: Number(lat), lng: Number(long) }), []);
 
   return (
     <div className={`google-map-container d-flex align-items-center justify-content-center ${className}`}>
@@ -19,7 +19,9 @@ const Map = ({lat, long, apiKey, className}) => {
           mapContainerClassName="map-container"
           center={center}
           zoom={10}
-        />
+        >
+          <Marker position={center} draggable={false} />
+        </GoogleMap>
       )}
     </div>
   );

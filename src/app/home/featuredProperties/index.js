@@ -9,13 +9,14 @@ const FeaturedProperties = async () => {
     const properties = await getPropertyByStatus(PROJECT_STATUS.FEATURED);
     return (<div className='featured-properties'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true}}>
-            {[1,2,3,4,5,6,7,8,9,10].map(i=>properties.map(item => {
+            {properties.map((item, index) => {
                 let address = "";
                 if(!!item.propertyAddress){
                     let {propertyLocality ={}, propertyCity ={}} = item.propertyAddress;
                     address = propertyLocality.localityName + ", " + propertyCity.cityName
                 }
                 return (<PropertyCard 
+                    key={index}
                     id={item.propertyId}
                     postedBy={item.propertyDeveloper?.developerLegalName}
                     isProperty={true}
@@ -27,7 +28,7 @@ const FeaturedProperties = async () => {
                     width={300}
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"} />)
-            }))}
+            })}
         </CardSlider>
     </div>)
 }

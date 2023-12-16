@@ -2,7 +2,7 @@
 'use client'
 import './styles.scss'
 import React from 'react';
-import { AMENITIES } from "@/app/property/[id]/amenities";
+import { AMENITIES } from "@/app/buy/[type]/[id]/amenities";
 import Image from 'next/image';
 import NextLinkButton from '@/app/components/nextLinkButton';
 import Rating from '@/app/components/rating';

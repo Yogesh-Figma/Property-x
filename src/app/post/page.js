@@ -21,9 +21,9 @@ export default ({ }) => {
                 <div className=''>
                     <Heading label={"I want to Post..."} />
                     <div className="property-btn d-sm-flex justify-content-between">
-                        <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/property/post/Residential"} />
+                        <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/post/Residential"} />
                         <br />
-                        <NextLinkButton className="mt-4 mt-sm-0" rounded={true} text={"Commercial Property"} height={50} href={"/property/post/Commercial"} />
+                        <NextLinkButton className="mt-4 mt-sm-0" rounded={true} text={"Commercial Property"} height={50} href={"/post/Commercial"} />
                     </div>
                 </div>
                 <div className='sticky-note-container position-relative d-none d-xl-inline-block'>

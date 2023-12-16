@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
 import Button from '@/app/components/button';
@@ -6,12 +7,10 @@ import EditPencil from "@/app/icons/edit_pencil.svg"
 import './styles.scss'
 
 export default ({ userProfileData }) => {
-    console.log("userProfileData 2")
-    console.log(userProfileData)
     const [formData, setFormData] = React.useState({
         fullName: userProfileData.fullName,
-        emailAddress: userProfileData.emailAddress,
-        mobileNumber: userProfileData.mobileNumber,
+        email: userProfileData.email,
+        mobileNo: userProfileData.mobileNo,
         aadharNo: userProfileData.aadharNo,
         panNo: userProfileData.panNo
     });
@@ -47,8 +46,8 @@ export default ({ userProfileData }) => {
                     width={"100%"}
                     className='form-input'
                     label={""}
-                    name="emailAddress"
-                    value={formData.emailAddress}
+                    name="email"
+                    value={formData.email}
                     onChange={handleChange}
                     height={40}
                 /></div>
@@ -60,8 +59,8 @@ export default ({ userProfileData }) => {
                     width={"100%"}
                     className='form-input'
                     label={""}
-                    name="mobileNumber"
-                    value={formData.mobileNumber}
+                    name="mobileNo"
+                    value={formData.mobileNo}
                     onChange={handleChange}
                     height={40}
                 /></div>

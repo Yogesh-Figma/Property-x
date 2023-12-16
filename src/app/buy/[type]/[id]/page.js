@@ -24,6 +24,8 @@ import { getPropertyById } from '@/clients/propertyClient';
 import { cookies } from 'next/headers'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
+import { notFound } from 'next/navigation'
+import { getProjectById, getProjectsByStatus } from '@/clients/projectClient';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 const samplePropertyData = {
@@ -94,8 +96,7 @@ const samplePropertyData = {
     "projectListedBy": "Invest Mango",
     "projectListedOn": "2023-10-04",
     "projectInventoryBookingType": "Pre-launch",
-    "projectConfiguration": "2 BHK, 3 BHK",
-    "projectVideo": "video_url",
+    "projectConfiguration": "2 BHK, 3 BHK",    "projectVideo": "video_url",
     "projectNearbyLandmarks": "Pari Chowk",
     "projectConstructedOn": "2022-01-01",
     "projectPossessionDue": "2023-12-31",
@@ -113,26 +114,25 @@ const samplePropertyData = {
 }
 
 const BREADCRUMB = [{ name: "Home", url: "#" }, { name: "Ghaziabad", url: "#" }, { name: "Siddharth Vihar", url: "#" }, { name: "Siddharth Vihar", url: "#" },]
-export default async function Page({params: { id}}) {
-    try {
+export default async function Page({params: { id, type}, }) {
+    if(type != "property" && type != "project") {
+        return notFound();
+    }
     const session = await getServerSession(authOptions)
-    const data = await getPropertyById(id, session?.token);
-    }
-    catch(ex){
-        
-    }
+    const data = type == "property" ? await getPropertyById(id, session?.token) : await getProjectById(id);
+
     return (<div className='property-page container-fluid'>
         <GalleryModal data={[]} />
         <CompareProjectPopup />
         <div className='additional-page-padding'>
-            <div className='message sub-heading'>Explore T&T Digitown’s virtual tour starting from Noida City Center Metro Station.*</div>
+            <div className='message sub-heading'>{data[type+"Specification"]}</div>
             <div className='dev-project-image-cnt position-relative'>
                 <Image className='dev-project-image' src={"/mahunDeveloperImg.png"} fill={true} />
             </div>
             {/* <div className='property-subtext sub-info d-flex justify-content-between'><span>*Please note: The starting location may change in the future.</span>
             <span className='vr-message ml-auto'>Use VR Headset for better experience.</span>
             </div> */}
-            <PropertyHeader id={id}/>
+            <PropertyHeader type={type} data={data}/>
         </div>
         <div className='additional-page-padding'>
             <div className='row g-0 property-additional-info'>
@@ -152,7 +152,7 @@ export default async function Page({params: { id}}) {
                             <div className='property-growth d-flex d-lg-block justify-content-between'>
                                 <div className='d-lg-block d-flex'>
                                     <div className='helv-txt'>Current property value</div>
-                                    <div className='prop-grw-price-range ms-3 ms-lg-0 mb-lg-3 mt-lg-3'>83.17L-1.22Cr</div>
+                                    <div className='prop-grw-price-range ms-3 ms-lg-0 mb-lg-3 mt-lg-3'>{data[type + "RatePerUnitInsqft"]}</div>
                                 </div>
                                 <div className='growth-rate d-flex align-items-center'>Growth rate <Image src={propertyGraph} width={20} height={20} />
                                     <span className='property-appreciation'>04.30%</span>
@@ -169,7 +169,7 @@ export default async function Page({params: { id}}) {
                 </div>
                 <div className='d-flex d-lg-block col-lg-4 property-info-right-menu ps-lg-4 mt-4 mt-lg-0'>
                     <div className='property-map-container mb-lg-4'>
-                        <Map lat={28.5355} long={77.391029} apiKey={API_KEY} className={"mb-0"}/>
+                        <Map lat={data[type + "Latitude"]} long={data[type + "Longitude"]} apiKey={API_KEY} className={"mb-0"}/>
                     </div>
                     <Divider className='divider-line d-none d-lg-block' /> 
                     <div className='similar-nearby ps-4 ps-lg-0 pt-lg-3 d-none d-md-block'>
@@ -186,13 +186,13 @@ export default async function Page({params: { id}}) {
                 </div>
             </div>
             <Tabs />
-            <Overview showBtn={true}/>
-            <Description />
-            <Amenities />
-            <div id="floor-plan">
+            <Overview showBtn={true} data={data} type={type}/>
+            <Description data={data} type={type}/>
+            <Amenities data={data} type={type}/>
+            {!!data[type + "FloorPlan"] &&  <div id="floor-plan">
                 <Heading label={"Floor Plan"}/>
-                <FloorPlan />
-            </div>
+               <FloorPlan floorPlan={data[type + "FloorPlan"]} />
+            </div>}
             <div className='similar' id="properties-in-project">
                 <Heading label={"Properties in this project"}/>
                 <SimilarProperties />

@@ -15,8 +15,6 @@ const GalleryModal = ({ modelEnabled, title, propImageUrl }) => {
     const galleryEnabled = searchParams.get('gallery') || false
 
     const disableBodyScroll = () => {
-        console.log("document.body.style.overflow")
-        console.log(document.body.style.overflow);
         if (galleryEnabled && document.body.style.overflow !== "hidden") {
           document.body.style.overflow = "hidden";
           document.body.style.position = "fixed";
@@ -34,7 +32,7 @@ const GalleryModal = ({ modelEnabled, title, propImageUrl }) => {
 
 
     return (
-        <Backdrop open={galleryEnabled} sx={{zIndex:3, background:"#fff", marginTop:"60px", display:"block"}}>
+        <Backdrop open={galleryEnabled} sx={{zIndex:3, background:"#fff", marginTop:"76px", display:"block"}}>
         <div className='gallery-image-modal'>
             <div className='property-header d-flex align-items-center justify-content-between'>
                 <div className='prop-name d-flex align-items-center'>

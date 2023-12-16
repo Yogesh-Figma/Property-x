@@ -1,3 +1,4 @@
+"use client"
 import "./styles.scss"
 import React from 'react'
 import { PropertyCard4 } from '@/app/components/ui/propertyCard'
@@ -10,11 +11,13 @@ import SlantedTabs from "@/app/components/slantedTabs"
 export default ({ }) => {
     const sampleDate = new Date();
     const { data: { user, token } } = useSession();
-    console.log(token)
     const { data = {}, isLoading, isError, error } = useQuery({
         queryKey: ['getUserVisits'],
         queryFn: () => getUserVisits(user.id, token),
     });
+
+    console.log("getUserVisits")
+    console.log(data)
 
     return (
         <div>

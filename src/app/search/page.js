@@ -2,8 +2,6 @@ import React from 'react';
 import './styles.scss'
 import Filter from './filters';
 import { PropertyCard4 } from '@/app/components/ui/propertyCard'
-import Card from '@/app/components/card';
-import ContactUsForm from '@/app/components/ui/contactUsForm';
 import SimilarProjects from './similarProjects';
 import SimilarProperties from './similarProperties';
 import Map from '../components/ui/map';
@@ -12,33 +10,35 @@ import PropertyDetails from './propertyDetails';
 import Link from 'next/link'
 import RightLink from '@/app/icons/right_arrow.svg?url';
 import Image from 'next/image';
+import { getAllProjects } from '@/clients/projectClient'
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export default function Page({ params,
+export default async function Page({ params,
     searchParams }) {
+        const data = await getAllProjects() || [];
     return (<div className='search-page container-fluid'>
         <Filter />
         <div className='row search-section-cnt'>
             <div className='col-xl-6 col-12 property-cards  overflow-lg-scroll'>
-                {[1, 2, 3, 4, 5, 6].map(item => <div className='property-card-cont'>
-                    <PropertyCard4 title={"Gaur Krishn Villas"}
+                {data.map(item => <div className='property-card-cont'>
+                    <PropertyCard4 title={item.projectName}
                         bhk={"2, 3, 4 BHK"}
-                        address={"Sector 10, Greater Noida West, Greater Noida"}
-                        priceRange={"₹40L-85L"}
+                        address={item.projectAddress}
+                        priceRange={item.projectRatePerAreaUnit}
                         imgsrc={"/samplePropertyImage.jpeg"}
                         devImage={"/devSampleImage.jpeg"}
-                        by={"XYZ Builders"}
-                        possessionInfo={"Dec, 2023"}
-                        avgPrice={"14.00/sq.ft"}
-                        id={item}                  
-                        subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
+                        by={item.projectDeveloperId?.developerLegalName}
+                        possessionInfo={item.projectPossessionDue}
+                        avgPrice={item.projectRatePerAreaUnit}
+                        id={item.projectId}                  
+                        subInfo={item.projectDescription}
                     />
                 </div>)}
             </div>
             <div className='col-6 d-xl-block d-none'>
                 <div className='property-detail'>
-                    <PropertyDetails id={searchParams?.id} />
+                    <PropertyDetails id={searchParams?.id || data[0]?.projectId} />
                 </div>
                 {/* <div className='map-container'>
                     <Map lat={28.5355} long={77.391029} apiKey={API_KEY}/>
@@ -49,7 +49,7 @@ export default function Page({ params,
                 </Card> */}
             </div>
         </div >
-        <Link className='d-xl-flex d-none justify-content-end align-items-center property-detail-link sub-heading' href={"/property/" + (searchParams?.id||0)}>View Full Details <Image src={RightLink} width={28} height={28} /></Link>
+        <Link className='d-xl-flex d-none justify-content-end align-items-center property-detail-link sub-heading' href={"/buy/project/" + (searchParams?.id||0)}>View Full Details <Image src={RightLink} width={28} height={28} /></Link>
         <div className='additional-page-padding'>
             <div className='similar'>
                 <Heading label={"Similar Projects"} />

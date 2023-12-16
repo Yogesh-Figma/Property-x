@@ -12,7 +12,7 @@ const Testimonials = async ({ }) => {
 
     return (<div className='testimonials'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll:1,  variableWidth: true }}>
-            {testimonials.map(testimonial => <div style={{width:"287px"}}>
+            {testimonials.map((testimonial, index) => <div style={{width:"287px"}} key={index}>
                 <Card className='test-card'>
                     <div className='test-txt'><OverflowTip text={testimonial.description} lines={5}/></div>
                     <div className="line" />

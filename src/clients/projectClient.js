@@ -12,7 +12,19 @@ function getProjectsByStatus(status) {
 }
 
 
+function getProjectById(id) {
+    return get(`${API_CLIENT_URL}/get/Project/by/project/id/${id}`, { cache: 'no-store'});
+}
+
+
+function getAllProjects() {
+    return get(`${API_CLIENT_URL}/get/all/projects`, { cache: 'no-store'});
+}
+
+
 export {
     PROJECT_STATUS,
-    getProjectsByStatus
+    getProjectsByStatus,
+    getProjectById,
+    getAllProjects
 }

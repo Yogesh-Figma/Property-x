@@ -1,11 +1,24 @@
+"use client"
 import SlantedTabs from "@/app/components/slantedTabs"
 import Image from 'next/image'
+import { useQuery } from 'react-query';
 import "./styles.scss"
 import SolrShareIcon from '@/app/icons/share.svg';
 import DeleteIcon from '@/app/icons/delete.svg';
 import EditIcon from '@/app/icons/edit.svg';
+import { useSession } from "next-auth/react"
+import { getPostedProperties } from '@/clients/propertyOwnerClient';
 
 export default ({ }) => {
+    const { data: { user, token } } = useSession();
+    const { data = {}, isLoading, isError, error } = useQuery({
+        queryKey: ['getPostedProperties'],
+        queryFn: () => getPostedProperties(user.id, token),
+    });
+
+    console.log("getPostedProperties")
+    console.log(data);
+
     return (
         <div className='posted-properties'>
             <SlantedTabs className="tab-content">

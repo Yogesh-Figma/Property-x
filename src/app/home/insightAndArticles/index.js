@@ -7,8 +7,8 @@ import './styles.scss'
 const InsightAndArticles = ({ }) => {
     return (<div className='insight-and-articles'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll:1,  variableWidth: true}}>
-            {[1, 2, 3, 4, 5, 6].map(item =>
-                <div style={{width:"370px"}}>
+            {[1, 2, 3, 4, 5, 6].map((item, index) =>
+                <div style={{width:"370px"}} key={index}>
                     <div className='insight-card'>
                         <div className='position-relative ing-img-container overflow-hidden'>
                             <Image src="/insightImage.jpeg" fill={true} className="insight-image" />

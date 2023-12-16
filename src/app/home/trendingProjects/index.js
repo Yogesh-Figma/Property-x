@@ -31,13 +31,14 @@ const TrendingProjects = async () => {
                 ]
                 , autoplay: false, nextArrow: null, prevArrow: null, autoplaySpeed: 2000
             }}>
-                {[1,2,3,4,5,6].map(i=>projects.map(item => {
+                {projects.map((item, index) => {
                     let address = "";
                     if (!!item.projectAddress) {
                         let { locality = {}, city = {} } = item.projectAddress;
                         address = locality.localityName + ", " + city.cityName
                     }
                     return (<PropertyCard3
+                        key={index}
                         id={item.projectId}
                         title={item.projectName}
                         bhk={item.projectSpecification}
@@ -50,7 +51,7 @@ const TrendingProjects = async () => {
                         devImage={"/devSampleImage.jpeg"}
                         by={item.projectDeveloperId?.developerLegalName}
                     />)
-                }))}
+                })}
 
             </CardSlider>
         </div>)

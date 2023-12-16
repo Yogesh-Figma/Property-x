@@ -40,8 +40,8 @@ export default ({ }) => {
                 }
             }]
         }}>
-            {tabsData.map(item => <div style={{ width: item.width }} className='property-tab'>
-                <Link activeClass="active" className="property-tab-link text-decoration-none text-nowrap" to={item.to} spy={true} smooth={false} offset={-90} >
+            {tabsData.map((item, index) => <div style={{ width: item.width }} className='property-tab'>
+                <Link key={index} activeClass="active" className="property-tab-link text-decoration-none text-nowrap" to={item.to} spy={true} smooth={false} offset={-90} >
                     {item.txt}
                 </Link>
             </div>)}

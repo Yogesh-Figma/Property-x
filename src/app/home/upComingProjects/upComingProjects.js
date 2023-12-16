@@ -8,8 +8,9 @@ const UpComingProjects = async () => {
     const projects = await getProjectsByStatus(PROJECT_STATUS.UPCOMING);
     return (<div className='upcoming-projects overflow-container-fluid'>
         <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll:1, variableWidth:true, autoplay: true, nextArrow: null, prevArrow: null, autoplaySpeed: 2000, infinite: true }}>
-            {[1,2,3,4,5,6].map(i=>projects.map(item => {
+            {projects.map((item, index) => {
                 return (<PropertyCard2
+                    key={index}
                     id={item.projectId}
                     title={item.projectName}
                     bhk={item.projectSpecification}
@@ -20,7 +21,7 @@ const UpComingProjects = async () => {
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"} />)
             }
-            ))}
+            )}
         </CardSlider>
     </div>)
 }

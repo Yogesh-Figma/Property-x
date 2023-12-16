@@ -10,9 +10,10 @@ const FeaturedProjects = async () => {
         <CardSlider carouselSettings={{
             slidesToShow: null, slidesToScroll: 1, variableWidth: true
         }}>
-            {projects.map(item => {
+            {projects.map((item, index) => {
                 return (
                     <ProjectCard
+                        key={index}
                         id={item.projectId}
                         title={item.projectName}
                         bhk={item.projectSpecification}

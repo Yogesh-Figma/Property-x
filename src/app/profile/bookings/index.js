@@ -1,3 +1,4 @@
+"use client"
 import './styles.scss'
 import React from 'react'
 import Button from '../../components/button'

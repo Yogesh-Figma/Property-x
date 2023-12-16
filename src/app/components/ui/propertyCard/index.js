@@ -43,7 +43,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
                             <Button className="e-visit" text='e-Visit' height={20} rounded={true} variant='outlined' />
-                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/property/${id}`} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                         <div className='price-container d-flex justify-content-between align-items-start'>
                             <div className='posted-by'>Posted by {postedBy}</div>
                             <div className='btn-cnt'>
-                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/property/${id}`} />
+                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
     </div>)
 }
 
-const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id,maxWidth }) => {
+const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id,maxWidth, isProperty }) => {
     return (<div style={{ width: width, maxWidth:maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
@@ -142,7 +142,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                         </div>
                         <div className='btn-cnt d-flex'>
                             <Button className="e-visit" text='e-Visit' height={40} rounded={true} variant='outlined' />
-                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/property/${id}`} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
                         </div>
                     </div>
                 </div>
@@ -152,7 +152,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 // Search page property card
-const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, id, verticalView, visitDate, visitTime, isVisitCard, showRating, href = "/" }) => {
+const PropertyCard4 = ({ title, isProperty, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, id, verticalView, visitDate, visitTime, isVisitCard, showRating, href = "/" }) => {
     return (<div style={{ height }} key={id}>
         <Card className='property-card-4 overflow-hidden row position-relative g-0'>
             <div className='row g-0 property-info'>
@@ -208,7 +208,7 @@ const PropertyCard4 = ({ title, bhk, address, priceRange, imgsrc, subInfo, avgPr
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         {!verticalView && <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/property/${id}`} />
+                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
                             {isVisitCard && <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={25} rounded={true} href="/" />}
                         </div>}
                     </div>

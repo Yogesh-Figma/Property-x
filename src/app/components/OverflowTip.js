@@ -25,7 +25,7 @@ const OverflowTip = ({ tooltip, text, lines }) => {
     return (
         <Tooltip
             title={tooltip || text}
-            interactive
+            interactive="true"
             style={{ fontSize: '2em' }}
         >
             <span
