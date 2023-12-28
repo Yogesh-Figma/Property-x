@@ -20,8 +20,8 @@ const ProjectComparision = ({ }) => {
 
     }
 
-    const handleSearchTermChange = (value) => {
-        setSearchTerm(value);
+    const handleSearchTermChange = (event) => {
+        setSearchTerm(event.target.value);
     };
 
     const topProjects = [

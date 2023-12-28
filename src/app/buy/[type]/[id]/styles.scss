@@ -2,13 +2,14 @@
     padding-top: 40px;
 
     .project-heading {
-        + svg {
+        +svg {
             margin-bottom: 20px;
         }
     }
 
     .property-subtext {
         margin: 10px 0 20px 0;
+
         .vr-message {
             color: #DC143C;
         }
@@ -44,7 +45,8 @@
                 font-size: 24px;
                 font-family: var(--helvetica-regular-font);
                 color: #202124;
-                & + .sub-info {
+
+                &+.sub-info {
                     margin-bottom: 14px;
                 }
             }
@@ -75,22 +77,18 @@
 
         .google-map-container {
             height: 212px;
+
             .map-container {
                 width: 100%;
                 height: 100%;
             }
+
             border-radius: 12px;
             overflow: hidden;
         }
 
-        @media (max-width: 992px) {
-            .google-map-container {
-                height: 100%;
-            }
-        }
-
         .property-images {
-            height: 314px;
+            height: 100%;
             width: 100%;
             overflow: hidden;
             border-radius: 12px;
@@ -139,16 +137,25 @@
             }
         }
 
+        @media (max-width: $grid-breakpoints-lg) {
+            .property-images {
+                height: 292px;
+            }
+
+            .google-map-container {
+                height: 100%;
+            }
+        }
+
         .property-value {
             // height: 170px;
             width: 100%;
             margin-right: 20px;
             margin-top: 27px;
 
-            .prop-grw-price-range {                
-            }
+            .prop-grw-price-range {}
 
-            .property-growth-cnt {              
+            .property-growth-cnt {
 
                 .property-growth {
                     height: 100%;
@@ -161,13 +168,15 @@
                 }
             }
 
-            .property-graph {                
+            .property-graph {
                 padding-left: 20px;
-                > div {
+
+                >div {
                     padding: 10px 24px 8px 24px;
                     height: 100%;
                     border-radius: 10px;
                     background: #F8F8F8;
+
                     .line-graph {
                         background: #F8F8F8;
                     }
@@ -227,6 +236,7 @@
             margin-left: 20px;
         }
     }
+
     .comparison-popup {
         bottom: 0;
         width: 100vw;
@@ -241,13 +251,16 @@
         transition: transform 1s linear;
         display: flex;
         justify-content: center;
+
         &.visible {
             transform: translate(-50%, 0px);
         }
+
         .close-icon {
             right: 26px;
             top: 26px;
         }
+
         .comparison-item {
             position: relative;
             margin-left: 20px;
@@ -258,23 +271,88 @@
             text-align: center;
             min-height: 152px;
             width: 250px;
+
             .add-proj {
                 margin-bottom: 20px;
             }
+
             .remove-item {
                 right: 10px;
                 top: 10px;
                 font-size: 0;
             }
         }
+
         .comparisons-btn {
             width: 250px;
+
             button {
                 padding: 0px;
                 width: 140px;
                 font-size: 12px;
+
                 &:first-child {
                     margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    .interested-box {
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
+
+        .title {
+            font-size: 24px;
+            color: #4D5156;
+        }
+
+        .touch-icon {
+            padding: 40px 0px;
+        }
+
+        .btn-cnt {
+            .overview-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    }
+    .dev-card {
+        padding: 30px;
+        height: 100%;
+        .horizontal-line {   
+            margin-top: 10px;
+            margin-bottom: 20px;        
+            border-bottom: 1px solid rgba(112, 117, 122, 0.60);
+        }
+        .body-txt {
+            font-size: 12px;    
+        }
+        .property-info {
+            margin-top: 20px;
+            > span {
+                margin-right: 20px;
+                :last-child {
+                    margin-right: 0px;
+                }
+            }     
+        }
+    }
+    .highlights {
+        margin-top: 50px;
+        padding: 40px;
+        .title {
+            color: #4D5156;
+            font-size: clamp(28px, 1.5vw,32px);
+            margin-bottom: 40px;
+        }
+        .bullet-points {
+            .points {
+                margin-bottom: 20px;
+                .point {
+                    margin-left: 10px;
                 }
             }
         }

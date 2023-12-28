@@ -70,20 +70,21 @@ const sampleRequest = {
   }
 export default ({ params: { type } }) => {
     const [activeStep, changeStep] = React.useState(0);
-    const [formData, setFormData] = React.useState({ propertyListingTypeId: "", society: "", locality: "", rentOrSale: "", city: "", propertyConfigurationId: "", builtUpArea: "", constructionStatus: "", propertyFurnishingStatusId: "", images: [], price: "" });
-    const [formInputFields, setFormInputFields] = React.useState({ propertyListingTypes: [], lookingTo: [], propertyConfigurations: [], constructionStatus: [], propertyFurnishingStatuses: [] });
+    const [formData, setFormData] = React.useState({ propertyListingTypeId: "", society: "", localityId: "", rentOrSale: "", city: "", propertyConfigurationId: "", builtUpArea: "", constructionStatus: "", propertyFurnishingStatusId: "", images: [], price: "" });
+    const [formInputFields, setFormInputFields] = React.useState({ propertyListingTypes: [], lookingTo: [], propertyConfigurations: [], constructionStatus: [], propertyFurnishingStatuses: [], localities:[] });
     const { data: session } = useSession();
 
     // await mapFormInputKeys();
 
     React.useEffect(() => {
         async function mapFormInputKeys() {
-            const { propertyConfigurations, furnishingStatus, possessionStatus, propertyType, propertyListingType } = await getPropertyPostData(session?.token);
+            const { propertyConfigurations, furnishingStatus, possessionStatus, propertyType, propertyListingType, localities } = await getPropertyPostData(session?.token);
             let formInputData = { propertyListingTypes: [], lookingTo: [], propertyConfigurations: [], constructionStatus: [], propertyFurnishingStatuses: [] };
-            formInputData.propertyListingTypes = propertyListingType.map(item => { return { label: item.propertyListingTypeName, value: item.propertyListingTypeId } });
-            formInputData.propertyConfigurations = propertyConfigurations.map(item => { return { label: item.propertyConfigurationName, value: item.propertyConfigurationId } });
-            formInputData.constructionStatus = possessionStatus.map(item => { return { label: item.possessionStatusName, value: item.possessionStatusId } });
-            formInputData.propertyFurnishingStatuses = furnishingStatus.map(item => { return { label: item.propertyFinishingName, value: item.propertyFurnishingId } });
+            formInputData.propertyListingTypes = propertyListingType.map(item => { return { label: item.name, value: item.id } });
+            formInputData.propertyConfigurations = propertyConfigurations.map(item => { return { label: item.name, value: item.id } });
+            formInputData.constructionStatus = possessionStatus.map(item => { return { label: item.name, value: item.id } });
+            formInputData.propertyFurnishingStatuses = furnishingStatus.map(item => { return { label: item.name, value: item.id } });
+            formInputData.localities = localities.map(item => { return { label: item.name, value: item.id } });
             setFormInputFields(formInputData);
         }
         mapFormInputKeys();
@@ -107,7 +108,8 @@ export default ({ params: { type } }) => {
                 propertyListingTypes={formInputFields.propertyListingTypes}
                 propertyConfigurations={formInputFields.propertyConfigurations}
                 constructionStatus={formInputFields.constructionStatus}
-                propertyFurnishingStatuses={formInputFields.propertyFurnishingStatuses} />
+                propertyFurnishingStatuses={formInputFields.propertyFurnishingStatuses} 
+                localities={formInputFields.localities}/>
             case 1: return <PhotosAndVideos formData={formData} handleChange={handleChange} changeStep={changeStep} />;
             case 2: return <PricingAndPost formData={formData} handleChange={handleChange} postProperty={postProperty} />
         }

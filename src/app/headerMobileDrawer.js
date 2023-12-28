@@ -6,7 +6,7 @@ import Hamburger from '@/app/icons/hamburger.svg'
 import { Divider } from '@mui/material';
 import Link from 'next/link'
 
-const MENU_ITEMS = [{name:"Download the App", link:"/"},{name:"Post a Property", link:"/post"}];
+const MENU_ITEMS = [{name:"List a Property", link:"/post"}];
 const HeaderMobileDrawer = ({ }) => {
     const [drawerEnabled, setDrawerEnabled] = React.useState(false);
 
@@ -27,12 +27,12 @@ const HeaderMobileDrawer = ({ }) => {
         >
             <div>
                 {MENU_ITEMS.map((item, index) => (
-                    <>
+                    <div key={index}>
                         <Link href={item.link} key={index} className='ham-item cursor-pointer d-inline-block'>
                             {item.name}
                         </Link>
                         <Divider />
-                    </>
+                    </div>
                 ))}
             </div>
         </Box>

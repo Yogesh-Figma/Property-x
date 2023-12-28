@@ -16,9 +16,6 @@ export default ({ }) => {
         queryFn: () => getUserVisits(user.id, token),
     });
 
-    console.log("getUserVisits")
-    console.log(data)
-
     return (
         <div>
             <SlantedTabs className="tab-content">
@@ -36,8 +33,8 @@ export default ({ }) => {
                                     possessionInfo={"Dec, 2023"}
                                     avgPrice={"14.00/sq.ft"}
                                     id={item}
-                                    showRating={true}
-                                    isVisitCard={true}
+                                    showRateNow={true}
+                                    showTalkToConsultant={true}
                                     visitDate={sampleDate.toLocaleDateString()}
                                     visitTime={sampleDate.toLocaleTimeString()}
                                     subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
@@ -60,8 +57,8 @@ export default ({ }) => {
                                     possessionInfo={"Dec, 2023"}
                                     avgPrice={"14.00/sq.ft"}
                                     id={item}
-                                    showRating={true}
-                                    isVisitCard={true}
+                                    showRateNow={true}
+                                    showTalkToConsultant={true}
                                     visitDate={sampleDate.toLocaleDateString()}
                                     visitTime={sampleDate.toLocaleTimeString()}
                                     subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}

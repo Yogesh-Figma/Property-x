@@ -4,7 +4,7 @@ import "./filter.scss"
 import ChipDropDown from '@/app/components/chipDropDown';
 import Chip from '@/app/components/chip';
 import Image from 'next/image';
-import moreFilter from '@/app/icons/more_filter_icon.svg?url'
+import MapIcon from '@/app/icons/map_icon.svg'
 
 
 const AMENITIES = [{value:"Parking", label:"Parking"},{value:"park", label:"park"},{value:"Power Backup", label:"Power Backup"},{value:"Lift", label:"Lift"},{value:"Gymnasium", label:"Gymnasium"},{value:"Swimming Pool", label:"Swimming Pool"},{value:"Gas Pipeline", label:"Gas Pipeline"},{value:"Security Personnel", label:"Security Personnel"}]
@@ -76,9 +76,9 @@ const Filter = () => {
         <ChipDropDown className={"search-filter"} width={150} label="Configuration" handleChange={handleChange} values={CONFIGURATION} value={formData.configuration} name="configuration"/>
         <ChipDropDown className={"search-filter"} width={186} label="Construction Status" handleChange={handleChange} values={CONSTRUCTION_STATUS} value={formData.constructionStatus} name="constructionStatus"/>
         </div>
-        <span className='additional-filter col-2 d-flex align-items-center'>
-            <Image src={moreFilter} width={30} height={24}/>
-            <span>More</span>
+        <span className='additional-filter col-2 d-flex align-items-center justify-content-end'>
+            <MapIcon />
+            <span>Map</span>
         </span>
          </div>
          <div className='applied-filters'>

@@ -2,9 +2,9 @@ import React from 'react';
 import CardSlider from '@/app/components/slider';
 import { PropertyCard } from '@/app/components/ui/propertyCard'
 
-const SimilarProperties = () => {
+const PropertiesInProject = () => {
     return (<div className='similar-properties'>
-        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
+        <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
             {[1, 2, 3, 4, 5, 6].map((item, index) => <PropertyCard
                 key={index}
                 isProperty={true}
@@ -14,7 +14,7 @@ const SimilarProperties = () => {
                 address={"Sector 10, Greater Noida West, Greater Noida"}
                 price={"₹40L-85L"}
                 imgsrc={"/samplePropertyImage.jpeg"}
-                width={250}
+                width={270}
                 height={"275px"}
                 devImage={"/devSampleImage.jpeg"}
                 id={item} />)}
@@ -22,4 +22,4 @@ const SimilarProperties = () => {
     </div>)
 }
 
-export default SimilarProperties;
+export default PropertiesInProject;

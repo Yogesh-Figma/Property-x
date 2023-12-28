@@ -14,11 +14,11 @@ const FeaturedProjects = async () => {
                 return (
                     <ProjectCard
                         key={index}
-                        id={item.projectId}
-                        title={item.projectName}
-                        bhk={item.projectSpecification}
-                        address={item.projectAddress}
-                        price={item.projectRatePerAreaUnit}
+                        id={item.id}
+                        title={item.name}
+                        bhk={item.specification}
+                        address={item.address}
+                        price={item.ratePerAreaUnit}
                         imgsrc={"/samplePropertyImage.jpeg"}
                         width={400}
                         height={"275px"} />)

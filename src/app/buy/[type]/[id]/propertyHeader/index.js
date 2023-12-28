@@ -19,8 +19,8 @@ export default ({ data, type }) => {
                         <Image src={"/devSampleLogo.png"} width={90} height={50}></Image>
                     </div>
                     <div>
-                        <div className='project-title heading'>{data[type+"Name"]}</div>
-                        <div className='project-address'>{data[type + "Address"]}</div>
+                        <div className='project-title heading'>{data["name"]}</div>
+                        <div className='project-address'>{data["address"]}</div>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ export default ({ data, type }) => {
         </div>
         <div className='row g-0'>
             <div className='property-sub-info col-md-8 col-12'>
-                <div className='dev-by'>Developed By {data.propertyDeveloper?.developerLegalName}</div>
+                <div className='dev-by'>Developed By {data.developer?.legalName}</div>
                 <div className='d-flex align-items-center justify-content-between'>
                     <div className='rating d-flex align-items-center'>
                         <span className='rating-value'>{data.average}</span>
@@ -49,7 +49,7 @@ export default ({ data, type }) => {
                 </div>
                 <div className="near-by-details d-flex align-items-center">
                     <Image src={nearByIcon} width={20} height={20}></Image>
-                    <span className="near-by-text">{data[type + "NearbyLandmarks"]}</span>
+                    <span className="near-by-text">{data["nearbyLandmarks"]}</span>
                 </div>
                 <div className='btn-cnt'>
                     <NextLinkButton variant="outlined-noborder" className="talk-to-consultation" text='Talk to Consultant' height={30} rounded={true} href="/" />
@@ -59,7 +59,7 @@ export default ({ data, type }) => {
             <div className='property-price-info col-md-4 text-md-end mt-4 mt-md-0'>
                 <div className=''><span className='best-buy-txt'>Best Buy at</span></div>
                 <div className="price-range-cnt">
-                    <div className="price sub-heading-2">{data[type + "RatePerUnitInsqft"]}</div>
+                    <div className="price sub-heading-2">{data["ratePerUnitInsqft"]}</div>
                     <div className="taxes-applicable">+ Taxes applicable</div>
                 </div>
                 <div className='btn-cnt'>

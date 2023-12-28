@@ -11,19 +11,25 @@ import Input from '@/app/components/input';
 export default function AutoCompleteSearch({ width = 300, value, onChange, height, rounded,
     className,
     label,
+    required,
+    errorMessage,
+    control,
+    clearOnEscape,
     name, autoCompleteOptions }) {
-    const [autoCompleteValue, setAutoCompleteValue] = React.useState();
+    const [autoCompleteValue, setAutoCompleteValue] = React.useState("");
     return (
         <Autocomplete
+            clearOnEscape={clearOnEscape}
             options={autoCompleteOptions}
             onChange={(event, newValue) => {
-                setAutoCompleteValue(newValue);
+                onChange({target:{ value:newValue?.value, name }})
             }}
             onInputChange={(event, newInputValue) => {
-                onChange(newInputValue);
+                setAutoCompleteValue(newInputValue);
             }}
-            value={autoCompleteValue}
-            inputValue={value}
+            name={name}
+            value={autoCompleteOptions.find(item => (item?.value == value || item == value))}
+            inputValue={autoCompleteValue}
             sx={{ width: width,
                 '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
                     padding: "0px",
@@ -40,6 +46,9 @@ export default function AutoCompleteSearch({ width = 300, value, onChange, heigh
               } }}
             popupIcon={<Image src={searchIcon} width={18} height={18} />}
             renderInput={(params) => <Input
+                control={control}
+                required={required}
+                errorMessage={errorMessage}
                 value={value}
                 inputLabelShrinkClassName={"input-label"}
                 additionalParams = { params }
@@ -47,7 +56,7 @@ export default function AutoCompleteSearch({ width = 300, value, onChange, heigh
                 width={"100%"}
                 className={className}
                 label={label}
-                name={name}                           
+                name={name}             
                 height={height}
             />}
         />

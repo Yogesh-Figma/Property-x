@@ -28,7 +28,7 @@ export default ({ }) => {
                                 <div className='property-sub-info'>
                                     <div className="sub-info row g-0"><span className="info col-6">Booking Date</span><span className="detail col-6">DD-MM-YYYY</span></div>
                                     <div className="sub-info row g-0"><span className="info col-6">Total Amount</span><span className="detail col-6">1,25,00,000</span></div>
-                                    <div className="sub-info row g-0"><span className="info col-6">Growth Rate</span><span className="detail col-6">04.12%</span></div>
+                                    {/* <div className="sub-info row g-0"><span className="info col-6">Growth Rate</span><span className="detail col-6">04.12%</span></div> */}
                                     <div className="sub-info row g-0"><span className="info col-6">Current Value</span><span className="detail col-6">1,50,00,000</span></div>
                                     <div className="sub-info row g-0 booking-status"><span className="info col-6">Booking Status:</span><span className="detail col-6 confirm">CONFIRMED</span></div>
                                 </div>

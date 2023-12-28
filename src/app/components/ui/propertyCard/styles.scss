@@ -64,14 +64,6 @@
     }
 }
 
-.property-card-2 {
-    .price-container {
-        .price {
-            margin-top: 7px;
-        }
-    }
-}
-
 .property-card-3 {
     min-height: 488px;
     .address, .bhk {
@@ -150,8 +142,12 @@
             color: #4D5156;
             margin-right: 30px;
         }
-        .share-container svg:first-child {
-            margin-right: 6px;
+        .share-container {
+            z-index: 2;
+            position: relative;
+            svg:first-child {
+                margin-right: 6px;
+            }
         }
         .price div:first-child {
             font-size: 14px;
@@ -174,9 +170,11 @@
             }
            
         }
-        .sub-container {
-            flex: 0.7;
+        .sub-container {           
             margin-top: 10px;
+            &.visitdate {
+                flex: 0.7;
+            }
         }
         .overview-btn {
             margin-left: 10px;
@@ -214,7 +212,7 @@
             letter-spacing: 0.2px;
         }
         .bhk {
-            margin-top: 12px;
+            margin-top: 10px;
             margin-bottom: 5px;
             letter-spacing: 0.5px;
             color: #202124;
@@ -247,6 +245,9 @@
 
         .brochure-btn {
             margin-right: 7px;
+        }
+        .rating {
+            margin-top: 5px;
         }
     }
     .booking-btn-container {

@@ -75,7 +75,7 @@ export default function AccountMenu() {
           </div>
           <Divider className="divider" />
           <div className='tabs'>
-            {TABS.map((item, index) => <Link href={"/profile?t=" + item.value}> {index == 0 ? <Heading className='tab-items-heading' label={item.label} /> : <div className="tab-items cursor-pointer">{item.label}</div>}</Link>)}
+            {TABS.map((item, index) => <Link href={"/profile?t=" + item.value} key={index}> {index == 0 ? <Heading className='tab-items-heading' label={item.label} /> : <div className="tab-items cursor-pointer">{item.label}</div>}</Link>)}
             <div className="tab-items cursor-pointer" onClick={()=> signOut()}>Logout</div>
           </div>
           <Divider className="divider" />

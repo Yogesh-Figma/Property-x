@@ -9,7 +9,7 @@ const TrendingProjects = async () => {
     return (
         <div className='trending-projects'>
             <CardSlider carouselSettings={{
-                slidesToShow: null, slidesToShow:3.1, centerMode:false, slidesToScroll: 1, variableWidth: false, infinite: true, responsive: [
+                slidesToShow: null, slidesToShow:3.1, centerMode:false, slidesToScroll: 1, variableWidth: false, infinite: (projects.length > 2? true: false), responsive: [
                 {
                     breakpoint: 1700,
                     settings: {
@@ -32,24 +32,19 @@ const TrendingProjects = async () => {
                 , autoplay: false, nextArrow: null, prevArrow: null, autoplaySpeed: 2000
             }}>
                 {projects.map((item, index) => {
-                    let address = "";
-                    if (!!item.projectAddress) {
-                        let { locality = {}, city = {} } = item.projectAddress;
-                        address = locality.localityName + ", " + city.cityName
-                    }
                     return (<PropertyCard3
                         key={index}
-                        id={item.projectId}
-                        title={item.projectName}
-                        bhk={item.projectSpecification}
-                        address={item.projectAddress}
-                        price={item.projectRatePerAreaUnit}
+                        id={item.id}
+                        title={item.name}
+                        bhk={item.specification}
+                        address={item.address}
+                        price={item.ratePerAreaUnit}
                         imgsrc={"/samplePropertyImage.jpeg"}
                         maxWidth={null}
                         width={null}
                         height={"275px"}
                         devImage={"/devSampleImage.jpeg"}
-                        by={item.projectDeveloperId?.developerLegalName}
+                        by={item.developer?.legalName}
                     />)
                 })}
 

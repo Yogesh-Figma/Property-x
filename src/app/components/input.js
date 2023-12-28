@@ -33,9 +33,10 @@ const InputBase = ({ width, className, height,
         if (isNumber) {
             wrappedEvent.target.value = allowOnlyNumber(wrappedEvent.target.value);
         }
-        onChange(wrappedEvent)
+        if(onChange != null) {
+            onChange(wrappedEvent)
+        }
     }
-
     return (
         <TextField
             {...field}
@@ -47,8 +48,6 @@ const InputBase = ({ width, className, height,
             label={shrink ? "" : label}
             minRows={minRows}
             type={type}
-            error={error !== undefined}
-            helperText={error ? errorMessage : ""}
             sx={[{
                 width: { width },
                 maxWidth: { maxWidth },
@@ -73,6 +72,8 @@ const InputBase = ({ width, className, height,
                 endAdornment: endAdornment
             }}
             {...additionalParams}
+            error={error !== undefined}
+            helperText={error ? errorMessage : ""}
             InputLabelProps={{
                 shrink: shrink,
                 className: shrink ? inputLabelShrinkClassName : inputLabelClassName

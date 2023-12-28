@@ -1,4 +1,7 @@
 .post-property-form {
+    .form-input,.MuiOutlinedInput-root .MuiAutocomplete-input {
+        font-size: clamp(12px, 1.5vw, 16px);
+    }
     .search-icon {
         line-height: 20px;
 
@@ -83,11 +86,12 @@
         .post-property-cnt {
             margin-top: 50px;
         }
+
     }
 
 
     @media (max-width: $grid-breakpoints-lg) {
-        .form-input {
+        .form-input,.MuiAutocomplete-root {
             width: 100% !important;
         }
         .add-details {           

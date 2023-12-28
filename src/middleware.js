@@ -11,7 +11,6 @@ export async function middleware(req) {
         const token = await getToken({ req, SECRET })
         if (token == null) {
             const absoluteURL = new URL("?login=true", req.nextUrl.origin);
-            console.log("absoluteURL", absoluteURL)
             return NextResponse.redirect(absoluteURL.toString(), 302);
         }
     }

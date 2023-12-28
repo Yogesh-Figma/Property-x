@@ -72,7 +72,7 @@ export default async function Home() {
             <Testimonials />
           </Suspense>
         </div>
-        <div className='download-app position-relative d-none d-lg-block'>
+        {/* <div className='download-app position-relative d-none d-lg-block'>
           <div className='download-app-txt-cnt'>
             <div className='download-app-txt heading'>Open door with a Tap</div>
             <div className='download-app-txt heading'>Download the App</div>
@@ -85,7 +85,7 @@ export default async function Home() {
             <Image src={"/qrCode.svg"} height={100} width={100} className='qr-code-img' />
           </div>
           <Image src={"/appImage.png"} height={400} width={464} className='download-logo position-absolute d-none d-xl-block' />
-        </div>
+        </div> */}
       </div>
     </div>
   )

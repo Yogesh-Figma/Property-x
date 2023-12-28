@@ -1,0 +1,12 @@
+.accordion {
+    border-color: #EAEAEA;
+    color: #202124;
+    border-top:1px solid #EAEAEA;
+    font-size: clamp(12px, 1.5vw, 16px);
+    &::before {
+        content: none;
+    }
+    &:last-child {
+            border-bottom:1px solid #EAEAEA;    
+    }
+}

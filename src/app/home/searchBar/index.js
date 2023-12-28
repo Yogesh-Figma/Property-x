@@ -11,7 +11,7 @@ import searchIcon from '@/app/icons/iconamoon_search_white.svg?url'
 import DropDown from '@/app/components/dropDown'
 import { useAppContext } from '@/lib/appContext';
 
-const TAB_LABELS = ["Buy", "Rent", "Lease", "Commercial", "Residential", "Projects"];
+const TAB_LABELS = ["Buy", "Commercial", "Residential", "Projects"];
 
 const muiTab = {
     tab: {

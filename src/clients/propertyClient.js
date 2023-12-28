@@ -1,6 +1,7 @@
 
 'use server'
 import { get } from './fetchWrapper';
+import { getAllLocalities } from '@/clients/localityClient'
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
 
 async function getPropertyById(id, accessToken) {
@@ -52,7 +53,8 @@ async function getPropertyPostData(sessionToken) {
         furnishingStatus: getPropertyFurnishingStatus(),
         possessionStatus: getPossessionStatus(),
         propertyType: getPropertyType(),
-        propertyListingType: getPropertyListingType()
+        propertyListingType: getPropertyListingType(),
+        localities:getAllLocalities()
     })
 }
 

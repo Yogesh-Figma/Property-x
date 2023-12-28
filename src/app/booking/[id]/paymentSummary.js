@@ -1,6 +1,6 @@
 import Card from "@/app/components/card";
 import Image from "next/image";
-import { AMENITIES } from "../../[id]/amenities";
+import { AMENITIES } from "@/app/buy/[type]/[id]/amenities";
 import './paymentStyles.scss'
 import { Divider } from '@mui/material';
 

@@ -82,7 +82,7 @@ const Footer = () => {
                                 <div className='connect-info'>Customer Care <div className='connect-info-sub'>customercare@example.com</div></div>
                                 <div className='connect-info'>Call us on <div className='connect-info-sub'>9876 543 2198</div></div>
                             </div>
-                            <div className='col-4 download-app-container d-none d-lg-block'>
+                            {/* <div className='col-4 download-app-container d-none d-lg-block'>
                                 <div className='head text-start'>Download the App</div>
                                 <div className='d-flex appLogo justify-content-end'>
                                     <Image width={144.6} height={51.64} style={{ maxWidth: "144.6px" }} src="/playStoreLogo.svg" className='col' />
@@ -92,7 +92,7 @@ const Footer = () => {
                                     <div className='qr-code'><Image width={100} height={100} src="/qrCode.png" /></div>
                                     <div className='qr-code-msg text-center'>Scan the QR and download the App</div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='social-media-links additional-page-padding'>
                             <div className='head text-start keep-touch'>Keep in Touch

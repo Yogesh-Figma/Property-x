@@ -10,20 +10,15 @@ const FeaturedProperties = async () => {
     return (<div className='featured-properties'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true}}>
             {properties.map((item, index) => {
-                let address = "";
-                if(!!item.propertyAddress){
-                    let {propertyLocality ={}, propertyCity ={}} = item.propertyAddress;
-                    address = propertyLocality.localityName + ", " + propertyCity.cityName
-                }
                 return (<PropertyCard 
                     key={index}
                     id={item.propertyId}
-                    postedBy={item.propertyDeveloper?.developerLegalName}
+                    postedBy={item.developer?.legalName}
                     isProperty={true}
-                    title={item.propertyName}
-                    bhk={item.propertyConfiguration?.propertyConfigurationName}
-                    address={item.propertyAddress}
-                    price={item.propertyRatePerUnitInsqft}
+                    title={item.name}
+                    bhk={item.configuration?.propertyConfigurationName}
+                    address={item.address}
+                    price={item.ratePerUnitInsqft}
                     imgsrc={"/samplePropertyImage.jpeg"}
                     width={300}
                     height={"275px"}

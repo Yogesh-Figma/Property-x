@@ -27,6 +27,7 @@ export default ({ formData, handleChange, changeStep }) => {
         <div className="d-xl-flex d-block site-plan-cnt g-0">
             <div className="property-card-cnt">
             <PropertyCard4 title={"Gaur Krishn Villas"}
+                hideLikeBtn={true}
                 verticalView={true}
                 bhk={"2, 3, 4 BHK"}
                 address={"Sector 10, Greater Noida West, Greater Noida"}

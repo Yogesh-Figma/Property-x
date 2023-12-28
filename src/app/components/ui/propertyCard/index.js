@@ -37,8 +37,8 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                             {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
                             <div className='price-container d-flex align-items-center'>
                                 <span className='price sub-heading-2'>{price}</span>
-                                <Image src={propertyGraph} width={20} height={20} />
-                                <span className='property-appreciation'>04.30%</span>
+                                {/* <Image src={propertyGraph} width={20} height={20} /> */}
+                                {/* <span className='property-appreciation'>04.30%</span> */}
                             </div>
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
@@ -89,7 +89,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
 }
 
 
-const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id }) => {
+const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id, isProperty }) => {
     return (<div style={{ width: width }} key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
@@ -101,11 +101,14 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                     <div className='info'>
                         {!!by && <div className='by'>{by}</div>}
                         {!!address && <div className='address body-txt'>{address}</div>}
+                        {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
                     </div>
                 </div>
-                <div className='price-container col-5 text-end'>
-                    {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
+                <div className='price-container col-5 text-end d-flex flex-column justify-content-between'>                   
                     {!!price && <div className='price sub-heading-2'>{price}</div>}
+                     <div className='btn-cnt'>
+                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
+                            </div>
                 </div>
             </div>
         </Card>
@@ -126,7 +129,10 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                                 <Image src={devImage} width={40} height={40} />
                             </div>
                             <div>
-                                <div className='d-flex align-items-center'><span className='by sub-heading-2'>{by}</span><Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  <span className='property-appreciation'>04.30%</span></div>
+                                <div className='d-flex align-items-center'><span className='by sub-heading-2'>{by}</span>
+                                {/* <Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  
+                                <span className='property-appreciation'>04.30%</span> */}
+                            </div>
                                 <Link href="/project" className='sub-heading-2 view-project'>View Project</Link>
                             </div>
                         </div>
@@ -152,7 +158,13 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
 }
 
 // Search page property card
-const PropertyCard4 = ({ title, isProperty, bhk, address, priceRange, imgsrc, subInfo, avgPrice, possessionInfo, by, devImage, height, id, verticalView, visitDate, visitTime, isVisitCard, showRating, href = "/" }) => {
+const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
+    bhk, address, priceRange, imgsrc, subInfo,
+    avgPrice, possessionInfo, by,
+    devImage, height, id, verticalView,
+    visitDate, visitTime, useStretchedLink,
+    showTalkToConsultant,
+    showRateNow, rera, hideLikeBtn }) => {
     return (<div style={{ height }} key={id}>
         <Card className='property-card-4 overflow-hidden row position-relative g-0'>
             <div className='row g-0 property-info'>
@@ -162,21 +174,26 @@ const PropertyCard4 = ({ title, isProperty, bhk, address, priceRange, imgsrc, su
                 <div className={`info-container d-flex flex-column ${verticalView ? 'col-12' : 'col-8'}`}>
                     <div className='d-flex align-items-center justify-content-between'>
                         <div className='title heading'><OverflowTip text={title} lines={1}/></div>
-                        <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>
-                        {showRating ? <div className='rating-cnt'>
+                        {!!rera && <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>}
+                        {showRateNow ? <div className='rating-cnt'>
                             <div className='rate'>Rate now</div>
                             <Rating />
                         </div> :
                             <div className='share-container'>
-                                {!verticalView && <HeartIcon width={22} height={20} />}
+                                {!hideLikeBtn && <HeartIcon width={22} height={20} />}
                                 <ShareIcon width={24} height={24} />
                             </div>}
                     </div>
                     {!!by && <div className='by'>By {by}</div>}
+                    {!!showRating && ratingCnt > 0 && <div className='rating d-flex align-items-center '>
+                        <span className='rating-value'>{ratingValue}</span>
+                        <Rating value={ratingValue} />
+                        <span className='rating-count'>({ratingCnt} Ratings)</span>
+                    </div>}
                     {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1}/></div>}
                     {!!address && <div className='address'>{address}</div>}
                     <div className='row g-0'>
-                        <div className={`sub-container ${!!visitDate ? 'col-8' : ''}`}>
+                        <div className={`sub-container ${!!visitDate ? 'visitdate col-8' : ''}`}>
                             <div className='d-flex align-items-center price-details'>
                                 <div className='possession-info'>
                                     <div>{possessionInfo}</div>
@@ -207,14 +224,14 @@ const PropertyCard4 = ({ title, isProperty, bhk, address, priceRange, imgsrc, su
                             <div className='sub-heading-2'>{by}</div>
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
-                        {!verticalView && <div className='booking-btn-container ml-auto'>
+                        <div className='booking-btn-container ml-auto'>
                             <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
-                            {isVisitCard && <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={25} rounded={true} href="/" />}
-                        </div>}
+                            {showTalkToConsultant && <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={25} rounded={true} href="/" />}
+                        </div>
                     </div>
                 </div>
             </div>
-            {!isVisitCard && <Link text='' href={"?id=" + id} className='stretched-link' />}
+            {useStretchedLink && <Link text='' href={"?id=" + id} className='stretched-link' />}
         </Card>
     </div>)
 }
