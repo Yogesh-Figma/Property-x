@@ -70,7 +70,7 @@ export default ({ showBtn, data, type }) => {
                         <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />                   
                         <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                     </span>
-                    <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={40} href={`/booking/${data.id}`} />
+                    <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={40} href={`/booking/${type}/${data.id}`} />
                     <HeartIcon width={22} height={20} className='heart-icon d-none d-md-inline' />
                     <ShareIcon width={24} height={24} className='share-icon d-none d-md-inline' />
                 </div>}

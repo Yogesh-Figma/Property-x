@@ -6,6 +6,9 @@ import { useQuery } from 'react-query';
 import { getUserVisits } from '@/clients/visitClient'
 import { useSession } from "next-auth/react"
 import SlantedTabs from "@/app/components/slantedTabs"
+import dayjs from 'dayjs';
+let customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat)
 
 
 export default ({ }) => {
@@ -16,58 +19,70 @@ export default ({ }) => {
         queryFn: () => getUserVisits(user.id, token),
     });
 
+
     return (
         <div>
             <SlantedTabs className="tab-content">
                 <div label="Upcoming Visits">
                     <div className='scheduled-visits'>
                         <div className='property-cards'>
-                            {[1, 2, 3, 4, 5, 6].map(item => <div className='property-card-cont'>
-                                <PropertyCard4 title={"Gaur Krishn Villas"}
-                                    bhk={"2, 3, 4 BHK"}
-                                    address={"Sector 10, Greater Noida West, Greater Noida"}
-                                    priceRange={"₹40L-85L"}
-                                    imgsrc={"/samplePropertyImage.jpeg"}
-                                    devImage={"/devSampleImage.jpeg"}
-                                    by={"XYZ Builders"}
-                                    possessionInfo={"Dec, 2023"}
-                                    avgPrice={"14.00/sq.ft"}
-                                    id={item}
-                                    showRateNow={true}
-                                    showTalkToConsultant={true}
-                                    visitDate={sampleDate.toLocaleDateString()}
-                                    visitTime={sampleDate.toLocaleTimeString()}
-                                    subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
-                                />
-                            </div>)}
+                            {(data.upcoming || []).map(visits => {
+                                const data = visits.property || visits.project || {};
+                                const visitDate = dayjs(visits.scheduledDateTime);                           
+                                return (<div className='property-card-cont'>
+                                    <PropertyCard4 title={"Gaur Krishn Villas"}
+                                        bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
+                                        address={data.address}
+                                        furnishingInfo={data.furnishingStatus?.furnishingName}
+                                        priceRange={"₹40L-85L"}
+                                        imgsrc={"/samplePropertyImage.jpeg"}
+                                        devImage={"/devSampleImage.jpeg"}
+                                        isProperty={!!visits.property}
+                                        by={(data.developer||data.developerId)?.name}
+                                        possessionInfo={data.possessionDue}
+                                        avgPrice={data.ratePerUnitInsqft||"TO BE ANNOUNCED"}
+                                        id={data.id}
+                                        showRateNow={true}
+                                        showTalkToConsultant={true}
+                                        visitDate={visitDate.format("MMM, YYYY")}
+                                        visitTime={visitDate.format("hh:mm A")}
+                                        subInfo={data.propertySpecification || data.specification}
+                                    />
+                                </div>)
+                            })}
                         </div>
                     </div>
                 </div>
-                <div label="Visited Projects/ Properties">
+                <div label="Visited Projects/Properties">
                     <div className='scheduled-visits'>
                         <div className='property-cards'>
-                            {[1, 2, 3, 4, 5, 6].map(item => <div className='property-card-cont'>
-                                <PropertyCard4 title={"Gaur Krishn Villas"}
-                                    bhk={"2, 3, 4 BHK"}
-                                    address={"Sector 10, Greater Noida West, Greater Noida"}
-                                    priceRange={"₹40L-85L"}
-                                    imgsrc={"/samplePropertyImage.jpeg"}
-                                    devImage={"/devSampleImage.jpeg"}
-                                    by={"XYZ Builders"}
-                                    possessionInfo={"Dec, 2023"}
-                                    avgPrice={"14.00/sq.ft"}
-                                    id={item}
-                                    showRateNow={true}
-                                    showTalkToConsultant={true}
-                                    visitDate={sampleDate.toLocaleDateString()}
-                                    visitTime={sampleDate.toLocaleTimeString()}
-                                    subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
-                                />
-                            </div>)}
+                        {(data.visited || []).map(visits => {
+                                const data = visits.property || visits.project || {};
+                                const visitDate = dayjs(visits.scheduledDateTime);
+                                return (<div className='property-card-cont'>
+                                    <PropertyCard4 title={"Gaur Krishn Villas"}
+                                        bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
+                                        address={data.address}
+                                        furnishingInfo={data.furnishingStatus?.furnishingName}
+                                        priceRange={"₹40L-85L"}
+                                        imgsrc={"/samplePropertyImage.jpeg"}
+                                        devImage={"/devSampleImage.jpeg"}
+                                        isProperty={!!visits.property}
+                                        by={(data.developer||data.developerId)?.name}
+                                        possessionInfo={data.possessionDue}
+                                        avgPrice={data.ratePerUnitInsqft||"TO BE ANNOUNCED"}
+                                        id={data.id}
+                                        showRateNow={true}
+                                        showTalkToConsultant={true}
+                                        visitDate={visitDate.format("MMM, YYYY")}
+                                        visitTime={visitDate.format("hh:mm A")}
+                                        subInfo={data.propertySpecification || data.specification}
+                                    />
+                                </div>)
+                            })}
                         </div>
                     </div>
                 </div>
             </SlantedTabs>
-
         </div>)
 }

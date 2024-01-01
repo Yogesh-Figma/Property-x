@@ -17,7 +17,7 @@ const Testimonials = async ({ }) => {
                     <div className='test-txt'><OverflowTip text={testimonial.description} lines={5}/></div>
                     <div className="line" />
                     <div className='cust-cont d-flex justify-content-between'>
-                        <div className='cust-img-container position-relative'>
+                        <div className='cust-img-container me-1 position-relative'>
                             <Image src="/sampleCustImg.jpeg" fill={true}/>                            
                         </div>
                         <div className='cust-info text-end'>

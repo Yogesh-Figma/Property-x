@@ -50,7 +50,7 @@ export default ({ userProfileData }) => {
 
     return (<div className='profile-page container-fluid'>
         <div className="d-flex additional-page-padding">
-            <div className="profile-tabs">
+            <div className="profile-tabs d-none d-lg-block">
                 <div className="profile-short-info d-flex flex-column align-items-center">
                     <div className="profile-image">
                         <Image src={"/propertyStatsImg.jpeg"} width={120} height={120} />

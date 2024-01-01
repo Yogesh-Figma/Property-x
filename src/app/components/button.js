@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Button as MIUIButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export default function Button({ variant = "contained", text, icon, className, rounded, height, onClick, endIcon, type }) {
+export default function Button({ variant = "contained", text, icon, className, rounded, height, onClick, endIcon, type, form }) {
     const BootstrapButton = styled(MIUIButton)({
         display:"inline-flex",
         alignItems:"center",
@@ -26,6 +26,6 @@ export default function Button({ variant = "contained", text, icon, className, r
         }
     })
     return (
-        <BootstrapButton type={type} variant={variant} className={className} startIcon={icon} onClick={onClick} endIcon={endIcon}>{text}</BootstrapButton>
+        <BootstrapButton form={form} type={type} variant={variant} className={className} startIcon={icon} onClick={onClick} endIcon={endIcon}>{text}</BootstrapButton>
     )
 }

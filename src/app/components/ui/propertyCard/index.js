@@ -24,7 +24,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                 </div>
                 <div className='info-container'>
                     <div className='row g-0'>
-                        <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1}/></div>
+                        <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1} /></div>
                         {!!rating && <div className='col-4'>
                             <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
                                 <Image src={starIcon} width={10} height={10} /></span>
@@ -34,7 +34,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                     <div className='row g-0'>
                         <div className='col-8'>
                             {!!address && <div className='address body-txt'>{address}</div>}
-                            {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
+                            {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1} /></div>}
                             <div className='price-container d-flex align-items-center'>
                                 <span className='price sub-heading-2'>{price}</span>
                                 {/* <Image src={propertyGraph} width={20} height={20} /> */}
@@ -43,7 +43,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
                             <Button className="e-visit" text='e-Visit' height={20} rounded={true} variant='outlined' />
-                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                 </div>
                 <div className='info-container'>
                     <div className='row g-0'>
-                        <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1}/></div>
+                        <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1} /></div>
                         {!!rating && <div className='col-4'>
                             <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
                                 <Image src={starIcon} width={10} height={10} /></span>
@@ -71,13 +71,13 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                         </div>}
                     </div>
                     <div className='row g-0'>
-                        {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
+                        {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1} /></div>}
                         {!!address && <div className='address body-txt'>{address}</div>}
 
                         <div className='price-container d-flex justify-content-between align-items-start'>
                             <div className='posted-by'>Posted by {postedBy}</div>
                             <div className='btn-cnt'>
-                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
+                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
                             </div>
                         </div>
                     </div>
@@ -97,26 +97,26 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
             </div>
             <div className='row info-container justify-content-between'>
                 <div className='col-7'>
-                    <div className='title sub-heading-2'><OverflowTip text={title} lines={1}/></div>
+                    <div className='title sub-heading-2'><OverflowTip text={title} lines={1} /></div>
                     <div className='info'>
                         {!!by && <div className='by'>{by}</div>}
                         {!!address && <div className='address body-txt'>{address}</div>}
-                        {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1}/></div>}
+                        {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1} /></div>}
                     </div>
                 </div>
-                <div className='price-container col-5 text-end d-flex flex-column justify-content-between'>                   
+                <div className='price-container col-5 text-end d-flex flex-column justify-content-between'>
                     {!!price && <div className='price sub-heading-2'>{price}</div>}
-                     <div className='btn-cnt'>
-                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
-                            </div>
+                    <div className='btn-cnt'>
+                        <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
+                    </div>
                 </div>
             </div>
         </Card>
     </div>)
 }
 
-const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id,maxWidth, isProperty }) => {
-    return (<div style={{ width: width, maxWidth:maxWidth }} key={id}>
+const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id, maxWidth, isProperty }) => {
+    return (<div style={{ width: width, maxWidth: maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
                 <Image src={imgsrc} fill={true} />
@@ -130,31 +130,31 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                             </div>
                             <div>
                                 <div className='d-flex align-items-center'><span className='by sub-heading-2'>{by}</span>
-                                {/* <Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  
+                                    {/* <Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  
                                 <span className='property-appreciation'>04.30%</span> */}
-                            </div>
+                                </div>
                                 <Link href="/project" className='sub-heading-2 view-project'>View Project</Link>
                             </div>
                         </div>
                         <div className='price-container text-end'>
                             {!!price && <div className='price sub-heading-2'>{price}</div>}
-                            {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1}/></div>}
+                            {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1} /></div>}
                         </div>
                     </div>
                     <div className='address-cnt d-flex justify-content-between align-items-start'>
                         <div className='info'>
-                            <div className='title sub-heading-2'><OverflowTip text={title} lines={1}/></div>
+                            <div className='title sub-heading-2'><OverflowTip text={title} lines={1} /></div>
                             {!!address && <div className='address'>{address}</div>}
                         </div>
                         <div className='btn-cnt d-flex'>
                             <Button className="e-visit" text='e-Visit' height={40} rounded={true} variant='outlined' />
-                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
                         </div>
                     </div>
                 </div>
             </div>
         </Card>
-        </div>)
+    </div>)
 }
 
 // Search page property card
@@ -163,19 +163,29 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
     avgPrice, possessionInfo, by,
     devImage, height, id, verticalView,
     visitDate, visitTime, useStretchedLink,
-    showTalkToConsultant,
+    showTalkToConsultant, furnishingInfo,
     showRateNow, rera, hideLikeBtn }) => {
     return (<div style={{ height }} key={id}>
-        <Card className='property-card-4 overflow-hidden row position-relative g-0'>
+        <Card className={`property-card-4 overflow-hidden row position-relative g-0`}>
+            {!!showRateNow && !!visitDate && !!visitTime && <div className='visit-rate-now-section p-2 d-flex justify-content-between align-items-center d-md-none'>
+                <div className='schedule-date-cnt col-4 d-flex'>
+                    <div className='date-cnt d-flex align-items-center justify-content-center'>{visitDate}</div>
+                    <div className='time-cnt d-flex align-items-center justify-content-center'>{visitTime}</div>
+                </div>
+                <div className='rating-cnt'>
+                    <div className='rate'>Rate now</div>
+                    <Rating />
+                </div>
+            </div>}
             <div className='row g-0 property-info'>
                 <div className='img-container position-relative col-4'>
                     <Image src={imgsrc} fill={true} />
                 </div>
-                <div className={`info-container d-flex flex-column ${verticalView ? 'col-12' : 'col-8'}`}>
+                <div className={`info-container d-flex flex-column ${verticalView ? 'col-12' : 'col-12 col-md-8'}`}>
                     <div className='d-flex align-items-center justify-content-between'>
-                        <div className='title heading'><OverflowTip text={title} lines={1}/></div>
+                        <div className='title heading'><OverflowTip text={title} lines={1} /></div>
                         {!!rera && <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>}
-                        {showRateNow ? <div className='rating-cnt'>
+                        {showRateNow ? <div className='rating-cnt d-none d-md-block'>
                             <div className='rate'>Rate now</div>
                             <Rating />
                         </div> :
@@ -190,18 +200,21 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                         <Rating value={ratingValue} />
                         <span className='rating-count'>({ratingCnt} Ratings)</span>
                     </div>}
-                    {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1}/></div>}
+                    {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1} /></div>}
                     {!!address && <div className='address'>{address}</div>}
                     <div className='row g-0'>
-                        <div className={`sub-container ${!!visitDate ? 'visitdate col-8' : ''}`}>
+                        <div className={`sub-container ${!!visitDate ? 'visitdate col-12 col-md-8' : ''}`}>
                             <div className='d-flex align-items-center price-details'>
-                                <div className='possession-info'>
+                                {isProperty ? <div className='possession-info'>
+                                    <div>{furnishingInfo}</div>
+                                    <div>Furnishing Type</div>
+                                </div> : <div className='possession-info'>
                                     <div>{possessionInfo}</div>
                                     <div>Possession Starts</div>
-                                </div>
+                                </div>}
                                 <div className='vertical-border'></div>
                                 <div className='avg-price'>
-                                    <div>₹{avgPrice}</div>
+                                    <div>{avgPrice}</div>
                                     <div>Avg Price</div>
                                 </div>
                                 <div className='vertical-border'></div>
@@ -212,7 +225,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             </div>
                             <div className='sub-info'>{subInfo}</div>
                         </div>
-                        {!!visitDate && !!visitTime && <div className='schedule-date-cnt col-4 d-flex flex-column'>
+                        {!!visitDate && !!visitTime && <div className='schedule-date-cnt col-4 d-none d-md-flex flex-column align-items-end'>
                             <div className='date-cnt d-flex align-items-center justify-content-center'>{visitDate}</div>
                             <div className='time-cnt d-flex align-items-center justify-content-center'>{visitTime}</div>
                         </div>}
@@ -225,13 +238,12 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty? "property/":"project/") + id}`} />
+                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
                             {showTalkToConsultant && <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={25} rounded={true} href="/" />}
                         </div>
                     </div>
                 </div>
             </div>
-            {useStretchedLink && <Link text='' href={"?id=" + id} className='stretched-link' />}
         </Card>
     </div>)
 }

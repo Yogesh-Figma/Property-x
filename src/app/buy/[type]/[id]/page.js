@@ -8,7 +8,7 @@ import NextLinkButton from '@/app/components/nextLinkButton';
 import FloorPlan from './floorPlan';
 import Link from 'next/link'
 import Overview from './overview';
-import Description from './description';
+import Description from './about';
 import Amenities from './amenities';
 import PropertyHeader from './propertyHeader';
 import LineGraph from '@/app/components/lineGraph';
@@ -33,6 +33,7 @@ import DeveloperCard from './developerCard';
 import HighLights from './highlights';
 import PropertiesInProject from './propertiesInProject';
 import UpcomingLaunches from './upcomingLaunches';
+import About from './about';
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export default async function Page({ params: { id, type }, }) {
@@ -107,7 +108,7 @@ export default async function Page({ params: { id, type }, }) {
             </div>
             <Tabs />
             <Overview showBtn={true} data={data} type={type} />
-            <Description data={data} type={type} />
+            <About data={data} type={type} />
             <HighLights data={["Rank #1 in top 9 in Greater Noida", "Delhi’s one and only International Developer", "Low density living limited to 160 Families", "100% Structured Completed"]} />
             <Amenities data={data} type={type} />
             {!!data["floorPlan"] && <div id="floor-plan">
@@ -118,27 +119,29 @@ export default async function Page({ params: { id, type }, }) {
                 <Heading label={"Properties in this project"} />
                 <PropertiesInProject />
             </div>
-            <Heading label={"About Developer"} />
-            <div className='row'>
-                <div className='col-md-8 col-12'>
-                    <DeveloperCard data={data.developer} />
+            {!!data.developer && <div id="about-developer">
+                <Heading label={"About Developer"} />
+                <div className='row'>
+                    <div className='col-md-8 col-12'>
+                        <DeveloperCard data={data.developer} />
+                    </div>
+                    <div className='col-md-4 col-12 mt-4 mt-md-0'>
+                        <Card className='interested-box'>
+                            <div className='title heading'>Are you Interested?</div>
+                            <div className='sub-info'>Seize the Opportunity – Express Your Interest Today!</div>
+                            <div className='touch-icon'>
+                                <TouchIcon className="mx-auto d-block" />
+                            </div>
+                            <div className='btn-cnt'>
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={34} rounded={true} href="/" />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href="?schedule=123" />
+                                <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/booking/${type}/${data.id}`} />
+                            </div>
+                        </Card>
+                    </div>
                 </div>
-                <div className='col-md-4 col-12 mt-4 mt-md-0'>
-                    <Card className='interested-box'>
-                        <div className='title heading'>Are you Interested?</div>
-                        <div className='sub-info'>Seize the Opportunity – Express Your Interest Today!</div>
-                        <div className='touch-icon'>
-                            <TouchIcon className="mx-auto d-block" />
-                        </div>
-                        <div className='btn-cnt'>
-                            <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={34} rounded={true} href="/" />
-                            <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href="?schedule=123" />
-                            <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/booking/${data.id}`} />
-                        </div>
-                    </Card>
-                </div>
-            </div>
-            {!!data["faq"] && <div className='faqs'>
+            </div>}
+            {!!data["faq"] && <div className='faqs' id="faq">
                 <Heading label={"FAQs"} />
                 {data["faq"].map((item, index) => <Accordion key={index} className={"faq-detail"} title={"Q." + item.questions + "?"} summary={item.answers} />)}
             </div>}
@@ -148,7 +151,7 @@ export default async function Page({ params: { id, type }, }) {
                 <SimilarProperties />
             </div>
         </div>
-        <div className='upcomings'>
+        <div className='upcomings' id="upcomings">
             <UpcomingLaunches />
         </div>
     </div>)

@@ -8,6 +8,7 @@ function getUserProfile(id) {
     // const session = await getServerSession(authOptions);
     // const accessToken = session?.token;
     //console.log(session)
+
     return get(`${API_CLIENT_URL}/get/user-profile/by/user/id/${id}`, {
         next: { cache: false },
         // headers: {

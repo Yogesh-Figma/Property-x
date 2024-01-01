@@ -21,13 +21,13 @@ export const AMENITIES = [{ name: "Gated Community", img: "/amenities/gate.svg?u
 { name: "Children’s Play Area", img: "/amenities/playground.svg?url" }];
 
 
-export default ({ imageWidth=45, imageHeight=45}) => {
+export default ({ imageWidth=45, imageHeight=45, data={}}) => {
     return (<div id="amenities">
         <Heading label={"Amenities"} />
         <Card className='property-amenities'>
-            {AMENITIES.map((item, index) => <div className='amenity text-center' key={index}>
-                <Image src={item.img} width={imageWidth} height={imageHeight} />
-                <div className='sub-info'>{item.name}</div>
+            {(data.amenities||[]).map((item, index) => <div className='amenity text-center' key={index}>
+                <Image src={item.amenityImage} width={imageWidth} height={imageHeight} />
+                <div className='sub-info'>{item.amenityName}</div>
             </div>)}
         </Card>
     </div>)

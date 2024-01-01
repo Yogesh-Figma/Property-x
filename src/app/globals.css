@@ -298,7 +298,7 @@ input[type=number] {
 }
 
 .default-loading-screen {
-  height: (80vw - 60px);
+  height: calc(100vh - 60px);
   background-color: #fff;
 }
 

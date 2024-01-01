@@ -13,10 +13,10 @@ const FeaturedProperties = async () => {
                 return (<PropertyCard 
                     key={index}
                     id={item.propertyId}
-                    postedBy={item.developer?.legalName}
+                    postedBy={item.developerName}
                     isProperty={true}
                     title={item.name}
-                    bhk={item.configuration?.propertyConfigurationName}
+                    bhk={item.configuration?.name}
                     address={item.address}
                     price={item.ratePerUnitInsqft}
                     imgsrc={"/samplePropertyImage.jpeg"}

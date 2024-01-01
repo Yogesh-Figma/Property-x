@@ -10,12 +10,14 @@ import { Link } from 'react-scroll'
 //data is with width because variable width content requires width to function correctly
 const tabsData = [
     { txt: "Overview", width: 116, to: "overview" },
-    { txt: "Description", width: 136, to: "description" },
+    { txt: "About", width: 80, to: "about" },
+    { txt: "Highlights", width: 136, to: "highlights" },
     { txt: "Amenities", width: 122, to: "amenities" },
     { txt: "Floor Plan", width: 126, to: "floor-plan" },
     { txt: "Properties in this Project", width: 267, to: "properties-in-project" },
-    { txt: "Recommendation", width: 206, to: "recommendation" },
-    { txt: "FAQs", width: 80, to: "faq" }]
+    { txt: "About Developer", width: 200, to: "about-developer" },
+    { txt: "FAQs", width: 80, to: "faq" },
+    { txt: "Upcoming Launches", width: 206, to: "upcomings" }]
 
 const scrollEffect = (targetRef) => {
     targetRef.current.scrollIntoView({

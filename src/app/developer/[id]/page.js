@@ -24,7 +24,6 @@ export default async function Page({ params: { id }, }) {
 
 
     let operatingCities = (data.operatingCities || "").split(",") || [];
-    data.average = 4;
 
     return (
         <div className='developer-page container-fluid'>
@@ -36,8 +35,8 @@ export default async function Page({ params: { id }, }) {
                     <div className='dev-info'>
                         <div className='heading'>{data.legalName}</div>
                         <div className='rating d-flex align-items-center sub-info'>
-                            {data.average > 0 && <><span className='rating-value'>{data.average}</span>
-                                <Rating value={Number(data.average)} /></>}
+                            {data.ratingAverage > 0 && <><span className='rating-value'>{data.ratingAverage}</span>
+                                <Rating value={Number(data.ratingAverage)} /></>}
                         </div>
                         <div className='property-info-cnt  d-none d-md-block'>
                             <DevInfo data={data} />
@@ -60,14 +59,14 @@ export default async function Page({ params: { id }, }) {
                             priceRange={item.ratePerAreaUnit}
                             imgsrc={"/samplePropertyImage.jpeg"}
                             devImage={"/devSampleImage.jpeg"}
-                            by={item.developer?.legalName}
+                            by={item.developerName}
                             possessionInfo={item.possessionDue}
                             avgPrice={item.ratePerAreaUnit}
                             id={item.id}
                             subInfo={item.description}
                             showRating={true}
                             ratingCnt={item.ratingCount}
-                            ratingValue={item.average}
+                            ratingValue={item.ratingAverage}
                             rera={item.rera}
                         />
                     </div>)}

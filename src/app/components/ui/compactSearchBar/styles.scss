@@ -1,9 +1,19 @@
 .compact-search-bar-container {
     .compact-search-bar {
+        .input-label-no-shrink {
+            transform: translate(14px, 7px) scale(1);
+            font-size: 12px;
+        }
+
         .search-input-container {
-            fieldset {
-                border:none;
+            input {
+                font-size: 12px;
             }
+
+            fieldset {
+                border: none;
+            }
+
             button {
                 width: 80px;
                 font-size: 12px;
@@ -14,17 +24,21 @@
                 padding-top: 3px;
                 padding-bottom: 3px;
             }
+
             .search-input {
                 padding-right: 5px;
             }
+
             .search-input-icon {
                 padding-right: 25px;
             }
         }
+
         .search-link {
             line-height: 0;
-        }    
+        }
     }
+
     .location-container {
         min-width: 120px;
         padding-right: 10px;

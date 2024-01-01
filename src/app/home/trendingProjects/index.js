@@ -44,7 +44,7 @@ const TrendingProjects = async () => {
                         width={null}
                         height={"275px"}
                         devImage={"/devSampleImage.jpeg"}
-                        by={item.developer?.legalName}
+                        by={item.developerName}
                     />)
                 })}
 

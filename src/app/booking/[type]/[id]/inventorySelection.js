@@ -8,7 +8,7 @@ import PaymentSummary from './paymentSummary';
 import { PropertyCard4 } from "@/app/components/ui/propertyCard";
 import Button from "@/app/components/button";
 
-export default ({ formData, handleChange, changeStep }) => {
+export default ({ data, formData, handleChange, changeStep }) => {
     const floors = Array.from({ length: 28 }, (v, i) => { return { label: i + 1, value: i + 1 } });
     const apartments = [{ label: "101", value: "101" }, { label: "102", value: "102" }, { label: "103", value: "103" }, { label: "104", value: "104" }]
     const towers = [{ label: "01", value: "01" }, { label: "02", value: "02" }, { label: "03", value: "03" }]
@@ -26,19 +26,19 @@ export default ({ formData, handleChange, changeStep }) => {
     return (<div className="inventory-selection">
         <div className="d-xl-flex d-block site-plan-cnt g-0">
             <div className="property-card-cnt">
-            <PropertyCard4 title={"Gaur Krishn Villas"}
+            <PropertyCard4 title={data.name}
                 hideLikeBtn={true}
                 verticalView={true}
-                bhk={"2, 3, 4 BHK"}
-                address={"Sector 10, Greater Noida West, Greater Noida"}
+                bhk={data.configurations}
+                address={data.address}
                 priceRange={"₹40L-85L"}
                 imgsrc={"/samplePropertyImage.jpeg"}
                 devImage={"/devSampleImage.jpeg"}
-                by={"XYZ Builders"}
-                possessionInfo={"Dec, 2023"}
-                avgPrice={"14.00/sq.ft"}
-                id={"123"}
-                subInfo={"Manorialle is a sound investment on all counts. You experience premium luxury when you live in it, and you yield premium returns when you don&rsquo;t. 40 levels of unique architecture create an imposing structure that blends seamlessly into the illustrious neighborhood. The stunning views from your Condominium on your independent floor will set your pulse racing, while the extraordinary service will soothe your senses, and two elevators, only at your service. This breathtaking community will be home to some of the most unseen marvels inspired by nature, with the utmost optimum utilization"}
+                by={data.developerName}
+                possessionInfo={data.possessionDue}
+                avgPrice={data.ratePerAreaUnit}
+                id={data.id}
+                subInfo={data.specification}
             />
             </div>
             <div className="site-plan position-relative">              

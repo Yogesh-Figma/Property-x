@@ -26,8 +26,8 @@ const DeveloperCard = ({ data }) => {
                     <div className='my-auto'>
                         <div className='sub-heading-2'>{data.name}</div>
                         <div className='rating d-flex align-items-center sub-info'>
-                            {data.average > 0 && <><span className='rating-value'>{data.average}</span>
-                                <Rating value={Number(data.average || 0)} /></>}
+                            {data.ratingAverage > 0 && <><span className='rating-value'>{data.ratingAverage}</span>
+                                <Rating value={Number(data.ratingAverage || 0)} /></>}
                         </div>
                     </div>
                     <Link href={`developer/${data.Id}`} className='expand-icon ms-auto'><ExpandIcon /></Link>

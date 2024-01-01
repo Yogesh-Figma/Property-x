@@ -151,8 +151,24 @@
     }
 
     .personal-details {
+        .project-heading-cnt {
+            margin-bottom: 20px;
+            .project-heading {
+                font-size: 16px;
+            }
+        }
         .form-row {
-            padding-top: 30px;
+            padding-bottom: 20px;
+        }
+        .form-element-head {
+            margin-bottom: 10px;
+        }
+        .form-section {
+            margin-bottom: 30px;
+            .form-row {
+                padding-top: 0px;
+                padding-bottom: 10px;
+            }
         }
 
         .post-form-input {
@@ -183,7 +199,7 @@
                 padding-left: 46px;
             }
 
-            margin-top: 20px;
+            margin-bottom: 20px;
 
             .upload-button {
                 background: rgba(211, 211, 211, 0.50);
@@ -197,6 +213,14 @@
             margin-top: 30px;
             .declaration-txt {
                 margin-left: 20px;
+            }
+        }
+        .owner-checkbox-cnt {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            .owner-checkbox {
+                padding:0;
+                margin-right: 10px;
             }
         }
 

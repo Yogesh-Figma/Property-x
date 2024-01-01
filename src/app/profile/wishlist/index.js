@@ -3,14 +3,14 @@ import React from 'react'
 import { PropertyCard4 } from '@/app/components/ui/propertyCard'
 import { useQuery } from 'react-query';
 import { getUserWishlist } from '@/clients/wishlistClient'
+import { useSession } from "next-auth/react"
 
 export default ({ wishlist }) => {
-
+    const { data: { user, token } } = useSession();
     const { data = {}, isLoading, isError, error } = useQuery({
         queryKey: ['getUserWishlist'],
         queryFn: () => getUserWishlist(user.id, token),
     });
-
 
     return (
         <div className='wishlist'>

@@ -6,8 +6,8 @@ import { getUserProfile } from '@/clients/profileClient'
 
 export default async ({ }) => {
     const { user } = await getServerSession(authOptions)
-   
-    const userInfo = (await getUserProfile(user.id))[0]
+
+    const userInfo = (await getUserProfile(user.id))[0] || {}
 
 
     const userProfileData = {

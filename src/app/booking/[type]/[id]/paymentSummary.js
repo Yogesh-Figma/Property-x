@@ -4,7 +4,7 @@ import { AMENITIES } from "@/app/buy/[type]/[id]/amenities";
 import './paymentStyles.scss'
 import { Divider } from '@mui/material';
 
-export default ({ variant = "horizontal" }) => {
+export default ({ variant = "horizontal", data ={} }) => {
     return (
         <Card className={`payment-summary ${variant}`}>
             <div className="row g-0">
@@ -14,12 +14,12 @@ export default ({ variant = "horizontal" }) => {
                             <Image src={"/mahunDeveloperImg.png"} fill={true} />
                         </div>
                         <div className="col-6 property-details">
-                            <div className="title heading">Mahagun Manorialle</div>
-                            <div className="sub-info">Wishtown, Sector - 128</div>
+                            <div className="title heading">{data.name}</div>
+                            <div className="sub-info">{data.address}</div>
                             <div className="sub-info row"><span className="info col-6">Unit Area</span><span className="detail col-6">1000 sq ft</span></div>
-                            <div className="sub-info row"><span className="info col-6">Tower No.</span><span className="detail col-6">06</span></div>
-                            <div className="sub-info row"><span className="info col-6">Floor No.</span><span className="detail col-6">07</span></div>
-                            <div className="sub-info row"><span className="info col-6">Configuration</span><span className="detail col-6">3 BHK</span></div>
+                            <div className="sub-info row"><span className="info col-6">Tower No.</span><span className="detail col-6">{data.totalTowers}</span></div>
+                            <div className="sub-info row"><span className="info col-6">Floor No.</span><span className="detail col-6">{data.totalUnits}</span></div>
+                            <div className="sub-info row"><span className="info col-6">Configuration</span><span className="detail col-6">{data.configurations}</span></div>
                             <div className="sub-info row"><span className="info col-6">Apartment No.</span><span className="detail col-6">102</span></div>
                         </div>
                     </div>

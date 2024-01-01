@@ -4,7 +4,7 @@ import "./styles.scss"
 
 export default ({data, type}) => {
     return (
-        <div id="description">
+        <div id="about">
             <Heading label={"About"}/>
             <Card className='property-description'>
                 <p className="project-title sub-heading">{data["name"]}</p>

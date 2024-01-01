@@ -1,17 +1,15 @@
 import React from 'react';
 import Overview from '@/app/buy/[type]/[id]/overview';
-import Description from '@/app/buy/[type]/[id]/description';
+import Description from '@/app/buy/[type]/[id]/about';
 import Amenities from '@/app/buy/[type]/[id]/amenities';
 import Image from 'next/image'
 import PropertyHeader from '@/app/buy/[type]/[id]/propertyHeader';
 import { getProjectById } from '@/clients/projectClient'
 
-const PropertyDetails = async ({ id }) => {
-    const type = "project"
-    const data = await getProjectById(id);
+const PropertyDetails = async ({ data, type }) => {
     return (<>
         <div className='dev-project-image-cnt position-relative'>
-            <Image className='dev-project-image' src={"/mahunDeveloperImg.png"} fill={true} />
+            <Image className='dev-project-image' src={data.logo||""} fill={true} />
         </div>
         <PropertyHeader type={type} data={data}/>
         <Overview  data={data} type={type}/>

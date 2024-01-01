@@ -19,7 +19,7 @@ const Header = async ({ }) => {
             </Link>
         </div>
         <div className='header-search-container'>
-            <CompactSearchBar height='30px' className={"d-none d-md-inline-flex"} showLocationMenu={true} maxWidth={383} width='100%' locations = {LOCATIONS}/>
+            <CompactSearchBar height='30px' className={"d-none d-md-inline-flex"} showLocationMenu={true} maxWidth={516} width='100%' locations = {LOCATIONS}/>
         </div>
         <div className='links'>
             {/* <span className='heading-normal d-none d-xl-inline-block'>Download the App</span> */}

@@ -2,9 +2,12 @@
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
-    domains: [
-      "localhost",
-    ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ]
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports

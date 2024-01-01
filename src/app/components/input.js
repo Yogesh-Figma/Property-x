@@ -85,7 +85,7 @@ const Input = (props) => {
     return (!!props.control ?
         <Controller
             control={props.control}
-            name={props.name}
+            name={(props.controllerPrefix||"") + props.name}
             defaultValue=""
             rules={{
                 min: props.min,

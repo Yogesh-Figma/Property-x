@@ -34,11 +34,11 @@ export default ({ data, type }) => {
         </div>
         <div className='row g-0'>
             <div className='property-sub-info col-md-8 col-12'>
-                <div className='dev-by'>Developed By {data.developer?.legalName}</div>
+                <div className='dev-by'>Developed By {data.developerName}</div>
                 <div className='d-flex align-items-center justify-content-between'>
                     <div className='rating d-flex align-items-center'>
-                        <span className='rating-value'>{data.average}</span>
-                        <Rating value={Number(data.average||0)} />
+                        <span className='rating-value'>{data.ratingAverage}</span>
+                        <Rating value={Number(data.ratingAverage||0)} />
                         <span className='rating-count'>({data.ratingCount} Ratings)</span>
                     </div>
                     <div className='property-share-icons d-flex d-md-none align-items-center justify-content-end'>
@@ -64,7 +64,7 @@ export default ({ data, type }) => {
                 </div>
                 <div className='btn-cnt'>
                     <NextLinkButton variant="outlined" className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />
-                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/booking/${data[type+"Id"]}`} />
+                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/booking/${type}/${data.id}`} />
                 </div>
             </div>
         </div>       

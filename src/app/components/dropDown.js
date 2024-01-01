@@ -38,10 +38,10 @@ export default function DropDown({label, handleChange, value, values, multiple, 
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label',MenuProps: {disableScrollLock: true} }}
         >
-          {values.map((item) => (
+          {values.map((item, index) => (
             <MenuItem
-              key={item.label}
-              value={item.value}            
+              key={index}
+              value={item.value}
             >
               {item.label}
             </MenuItem>

@@ -10,6 +10,7 @@ import NextLinkButton from '@/app/components/nextLinkButton';
 import searchIcon from '@/app/icons/iconamoon_search_white.svg?url'
 import DropDown from '@/app/components/dropDown'
 import { useAppContext } from '@/lib/appContext';
+import Button from '@/app/components/button';
 
 const TAB_LABELS = ["Buy", "Commercial", "Residential", "Projects"];
 
@@ -23,7 +24,7 @@ const muiTab = {
 
 
 
-const SearchBar = ({locations}) => {
+const SearchBar = ({ locations }) => {
     const [activeTab, setActiveTab] = React.useState(0);
     const { userLocationId, setUserLocation } = useAppContext();
     const [searchTerm, setSearchTerm] = React.useState("");
@@ -56,48 +57,52 @@ const SearchBar = ({locations}) => {
                     <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={userLocationId} values={locations} />
                     <div className='vertical-line'></div>
                 </div>
-                <TextField
-                    className='search-input-container'
-                    type="search"
-                    label={shrink ? "" : "Search by Locality, Project, City, Builder"}
-                    value={searchTerm}
-                    onChange={handleSearchTermChange}
-                    sx={{
-                        width:"60vw",
-                        maxWidth: "790px",
-                         minWidth: "323px", 
-                         flex: 1, 
-                        '& .MuiFormLabel-root': {
-                            fontSize: 'clamp(12px, 1.5vw, 1rem)',
-                            top: "50%",
-                            transform: "translateY(-50%)",
-                            paddingLeft:"22px"                          
-                        },
-                        '& .MuiInputBase-root':{
-                            paddingRight:"0px"
-                        }                        
-                    }}
-                    InputLabelProps={{
-                        shrink: shrink,
-                        className: shrink ? "body-txt" : "body-txt input-label-no-shrink"
-                    }}
-                    InputProps={{
-                        className: "search-input",
-                        endAdornment: (
-                            <InputAdornment position="end" className=''>
-                                <div className='d-lg-flex search-bar-icons d-none'>
-                                    <Image src={fluentLocation} width={24} height={24} />
-                                    <Image src={solidVoice} width={24} height={24} />
-                                </div>
-                                <div className='d-lg-none d-flex'>
-                                    <NextLinkButton text={""} rounded={true} href="/search" height={72} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-compact-btn"} />
-                                </div>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+                <form action={`/search?t=${searchTerm}`} id="search-form">
+                    <TextField
+                        name="t"
+                        className='search-input-container'
+                        type="search"
+                        label={shrink ? "" : "Search by Locality, Project, City, Builder"}
+                        value={searchTerm}
+                        onChange={handleSearchTermChange}
+                        sx={{
+                            width: "60vw",
+                            maxWidth: "790px",
+                            minWidth: "323px",
+                            flex: 1,
+                            '& .MuiFormLabel-root': {
+                                fontSize: 'clamp(12px, 1.5vw, 1rem)',
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                paddingLeft: "22px"
+                            },
+                            '& .MuiInputBase-root': {
+                                paddingRight: "0px"
+                            }
+                        }}
+                        InputLabelProps={{
+                            shrink: shrink,
+                            className: shrink ? "body-txt" : "body-txt input-label-no-shrink"
+                        }}
+                        InputProps={{
+                            className: "search-input",
+                            endAdornment: (
+                                <InputAdornment position="end" className=''>
+                                    <div className='d-lg-flex search-bar-icons d-none'>
+                                        <Image src={fluentLocation} width={24} height={24} />
+                                        <Image src={solidVoice} width={24} height={24} />
+                                    </div>
+                                    <div className='d-lg-none d-flex'>
+                                        <Button type="submit" form="search-form" text={""} onClick={(event) => !searchTerm ? event.preventDefault() : null} rounded={true} height={72} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-compact-btn"} />
+                                    </div>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </form>
             </div>
-            <NextLinkButton text={"Search"} rounded={true} href="/search" height={68} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-btn d-none d-lg-inline-flex"} />
+
+            <Button text={"Search"} type="submit" form="search-form" rounded={true} height={68} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-btn d-none d-lg-inline-flex"} />
         </div>
     </div>)
 }

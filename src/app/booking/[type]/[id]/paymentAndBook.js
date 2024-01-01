@@ -6,7 +6,7 @@ import FormTabs from "@/app/components/formTabs";
 
 
 const MODE_OF_PAYMENTS = [{value:"credit", label:"Credit Card"},{value:"cheque", label:"Cheque"},{value:"rtgs", label:"RTGS/NEFT"}]
-function getUserDetails({ name, mobileNo, email, address, aadhaarNo, panNo }) {
+function getUserDetails({ data, name, mobileNo, email, address, aadhaarNo, panNo }) {
     return (<div className="details">
         <div className="sub-info row">
             <span className="info col-6">Name</span>
@@ -43,7 +43,7 @@ export default ({ formData, handleChange, changeStep }) => {
         <Heading label={"Details Overview"} />
         <div className="row">
             <div className="col-xl-6 col-12">
-                <PaymentSummary variant="vertical" />
+                <PaymentSummary variant="vertical" data={data}/>
             </div>
             <div className="col-xl-6 col-12">
                 <Card className="user-info">
