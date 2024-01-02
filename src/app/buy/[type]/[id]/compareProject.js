@@ -15,7 +15,7 @@ export const CompareProjects = ({ projectdata }) => {
     const { addProjectForComparison, removeProjectFromComparison } = useAppContext();
 
     const compareProject = () => {
-       // addProjectForComparison(projectdata)
+       //addProjectForComparison(projectdata)
        router.push("?compare=1", {scroll: false});
     }
 

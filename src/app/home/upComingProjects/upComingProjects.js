@@ -16,7 +16,7 @@ const UpComingProjects = async () => {
                     bhk={item.specification}
                     address={item.address}
                     price={item.ratePerAreaUnit}
-                    imgsrc={"/samplePropertyImage.jpeg"}
+                    imgsrc={item.logo || ""}
                     width={350}
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"} />)

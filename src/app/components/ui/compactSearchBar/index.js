@@ -16,8 +16,8 @@ import { useSearchParams } from 'next/navigation'
 const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", showSearchIcon, showLocationMenu, className, locations }) => {
     const searchParams = useSearchParams()
     const searchQueryParam = searchParams.get('t');
-    const [searchTerm, setSearchTerm] = React.useState(searchQueryParam||"");
-    
+    const [searchTerm, setSearchTerm] = React.useState(searchQueryParam || "");
+
     const { userLocationId, setUserLocation } = useAppContext() || {};
     const shrink = searchTerm.length > 0;
 
@@ -37,6 +37,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
             <div className='compact-search-bar body-txt'>
                 <form action={`/search?t=${searchTerm}`} id="search-form-2">
                     <TextField
+                        required={true}
                         name="t"
                         className='search-input-container justify-content-center'
                         id="search"
@@ -53,7 +54,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
                             className: `search-input${showSearchIcon ? "-icon" : ""}`,
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    {showSearchIcon ? <Image src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} form="search-form-2" type="submit"/>}
+                                    {showSearchIcon ? <Image src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} form="search-form-2" type="submit" />}
                                 </InputAdornment>
                             ),
                         }}

@@ -16,6 +16,7 @@ import { useQuery } from 'react-query';
 import { getPropertyById } from '@/clients/propertyClient';
 import Skeleton from '@mui/material/Skeleton';
 import Loading from '../loading';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -74,7 +75,8 @@ export default function Page({ params,
                     })}
                 </div>
                 <div className='col-6 d-xl-block d-none'>
-                    <Suspense fallback={<Skeleton variant="rectangular" width={"100%"} height={"100vh"} />}>
+                    <Suspense fallback={<Loading />}>
+  
                         {!!selectedCardData && <div className='property-detail'>
                             <PropertyDetails data={selectedCardData} type={selectedProp.type} />
                         </div>}

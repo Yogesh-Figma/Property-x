@@ -21,7 +21,7 @@ export default ({ showBtn, data, type }) => {
             <ScheduleCalendar />
             <Heading label={"Overview"} />
             <Card className='property-overview'>
-                <div className='property-short-info-cnt d-flex flex-wrap justify-content-between'>
+                <div className='property-short-info-cnt'>
                     {<div className='overview-sub-info d-inline-flex'>
                         <ApartmentIcon />
                         <div>

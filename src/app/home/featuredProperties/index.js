@@ -19,7 +19,7 @@ const FeaturedProperties = async () => {
                     bhk={item.configuration?.name}
                     address={item.address}
                     price={item.ratePerUnitInsqft}
-                    imgsrc={"/samplePropertyImage.jpeg"}
+                    imgsrc={item.logo || ""}
                     width={300}
                     height={"275px"}
                     devImage={"/devSampleImage.jpeg"} />)

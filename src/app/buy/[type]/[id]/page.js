@@ -42,8 +42,12 @@ export default async function Page({ params: { id, type }, }) {
     }
     const session = await getServerSession(authOptions)
     const data = type == "property" ? await getPropertyById(id, session?.token) : await getProjectById(id);
+    const galleryData = {
+        photos: (data.images || []).map((item) => { return { original: item, thumbnail: item } }),
+        videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail:"https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail:"https://picsum.photos/id/1019/250/150/" }]
+    }
     return (<div className='property-page container-fluid'>
-        <GalleryModal data={[]} />
+        <GalleryModal data={galleryData} />
         <CompareProjectPopup />
         <div className='additional-page-padding'>
             {/* <div className='message sub-heading'>{data["specification"]}</div>
@@ -59,12 +63,12 @@ export default async function Page({ params: { id, type }, }) {
             <div className='row g-0 property-additional-info'>
                 <div className='col-lg-8'>
                     <div className='property-images position-relative'>
-                        <Image src={"/samplePropertyImage.jpeg"} fill={true} />
+                        <Image src={(data.images || [])[0] || ""} fill={true} />
                         <CompareProjects />
                         <Link href={"?gallery=true"}>
                             <div className='images-video-count position-absolute d-flex'>
-                                <div className='image-cnt d-flex align-items-center justify-content-center'><ImagesIcon />18</div>
-                                <div className='video-cnt d-flex align-items-center justify-content-center'><VideoIcon />2</div>
+                                <div className='image-cnt d-flex align-items-center justify-content-center'><ImagesIcon />{(data.images || []).length}</div>
+                                <div className='video-cnt d-flex align-items-center justify-content-center'><VideoIcon />{(data.videos || []).length}</div>
                             </div>
                         </Link>
                     </div>
@@ -109,9 +113,9 @@ export default async function Page({ params: { id, type }, }) {
             <Tabs />
             <Overview showBtn={true} data={data} type={type} />
             <About data={data} type={type} />
-            <HighLights data={["Rank #1 in top 9 in Greater Noida", "Delhi’s one and only International Developer", "Low density living limited to 160 Families", "100% Structured Completed"]} />
+            <HighLights data={data.highlights || []} />
             <Amenities data={data} type={type} />
-            {!!data["floorPlan"] && <div id="floor-plan">
+            {!!data["floorPlan"] || true && <div id="floor-plan">
                 <Heading label={"Floor Plan"} />
                 <FloorPlan floorPlan={data["floorPlan"]} />
             </div>}

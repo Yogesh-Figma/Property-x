@@ -59,6 +59,7 @@ const SearchBar = ({ locations }) => {
                 </div>
                 <form action={`/search?t=${searchTerm}`} id="search-form">
                     <TextField
+                        required={true}
                         name="t"
                         className='search-input-container'
                         type="search"

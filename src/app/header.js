@@ -11,7 +11,7 @@ import { getAllCities } from '@/clients/cityClient'
 
 const Header = async ({ }) => {
     const cities = await getAllCities();
-    const LOCATIONS = cities.map(item => { return ({label:item.cityName,value:item.cityId}) });
+    const LOCATIONS = cities.map(item => { return ({label:item.name,value:item.id}) });
     return <div className='header d-flex justify-content-between container-fluid sub-heading align-items-center'>
         <div className="property-x d-flex align-items-center"> 
         <HeaderMobileDrawer />

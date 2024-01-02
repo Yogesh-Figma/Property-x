@@ -163,13 +163,13 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
   }
 
   .image-gallery-slide .image-gallery-image {
-    max-height: calc(100vh - 80px); // 80 px for the thumbnail space
+    max-height: calc(100vh - 300px); // 80 px for the thumbnail space
   }
 
   &.image-gallery-thumbnails-left,
   &.image-gallery-thumbnails-right {
-    .image-gallery-slide .image-gallery-image {
-      max-height: 100vh;
+    .image-gallery-slide {
+      max-height: calc(100vh - 300px);
     }
   }
 }
@@ -197,6 +197,19 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
   white-space: nowrap;
   text-align: center;
   height: 100vh;
+}
+
+.video-container {
+  height: calc(100vh - 300px);
+  .video-frame {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 200px);
+    height: 100%;
+  }
 }
 
 .image-gallery-slide {

@@ -39,7 +39,7 @@ const TrendingProjects = async () => {
                         bhk={item.specification}
                         address={item.address}
                         price={item.ratePerAreaUnit}
-                        imgsrc={"/samplePropertyImage.jpeg"}
+                        imgsrc={item.logo || ""}
                         maxWidth={null}
                         width={null}
                         height={"275px"}

@@ -9,7 +9,9 @@ import Image from 'next/image'
 import "./styles.scss"
 import Backdrop from '@mui/material/Backdrop';
 
-const GalleryModal = ({ modelEnabled, title, propImageUrl }) => {
+const GALLERY_TABS = [{value:"virtualTour", label:"Virtual Tour"},{value:"photos", label:"Photos"},{value:"videos", label:"Videos"},{value:"floorPlan", label:"Floor Plan"} ];
+
+const GalleryModal = ({ data }) => {
     const router = useRouter();
     const searchParams = useSearchParams()
     const galleryEnabled = searchParams.get('gallery') || false
@@ -43,7 +45,7 @@ const GalleryModal = ({ modelEnabled, title, propImageUrl }) => {
                     <Image src={CloseIcon} width={30} height={30} className='close-icon' role="button" onClick={handleClose} />
                 </div>
             </div>
-            <Gallery />
+            <Gallery galleryTabs={GALLERY_TABS} data={data}/>
         </div>
         </Backdrop>)
 

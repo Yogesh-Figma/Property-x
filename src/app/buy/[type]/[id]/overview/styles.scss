@@ -1,6 +1,15 @@
 .property-overview {
     padding: 25px 30px 13px 30px;
 
+    .property-short-info-cnt {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 215px);
+        justify-content: space-evenly;
+        .sub-info {
+            font-size: 12px;
+        } 
+    }
+
     .overview-sub-info {
         margin-bottom: 33px;
 
