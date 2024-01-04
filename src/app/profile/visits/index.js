@@ -19,7 +19,7 @@ export default ({ }) => {
         queryFn: () => getUserVisits(user.id, token),
     });
 
-
+    console.log("data", data.upcoming)
     return (
         <div>
             <SlantedTabs className="tab-content">

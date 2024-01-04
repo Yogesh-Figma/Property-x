@@ -1,6 +1,6 @@
 
 'use server'
-import { get } from './fetchWrapper';
+import { get, post } from './fetchWrapper';
 import { authOptions } from "@/lib/auth"
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
 
@@ -20,7 +20,26 @@ async function getUserVisits(id, accessToken) {
     })
 }
 
+// Sample data : {
+//   "projectId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//   "propertyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+//   "scheduledDateTime": 0,
+//   "exclusive": true,
+//   "status": "PLANNED",
+//   "type": "E_VISIT"
+// }
+
+function scheduleVisit({ userId, data, accessToken }) {
+    return post(`${API_CLIENT_URL}/save/visit/by/user/id/${userId}`, data, {
+        headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': accessToken
+        }
+    });
+}
+
 
 export {
-    getUserVisits
+    getUserVisits,
+    scheduleVisit
 }

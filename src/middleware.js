@@ -4,10 +4,13 @@ import postedProperties from './app/profile/postedProperties';
 
 
 const SECRET = process.env.NEXTAUTH_SECRET;
-const protectedRoutes = ['/post','/profile'];
+const protectedRoutes = ['/post','/profile','/booking'];
+const matchers = [...protectedRoutes, '/buy']
+const protectedQueryParams = ["?schedule="]
 
 export async function middleware(req) {
-    if (protectedRoutes.includes(req.nextUrl.pathname)) {
+    const searchParams = req.nextUrl.search || ""
+    if (protectedRoutes.includes(req.nextUrl.pathname) || protectedQueryParams.some(x=> searchParams.indexOf(x) > -1)) {
         const token = await getToken({ req, SECRET })
         if (token == null) {
             const absoluteURL = new URL("?login=true", req.nextUrl.origin);
@@ -20,4 +23,4 @@ export async function middleware(req) {
     //   }
 }
 
-export const config = { matcher: protectedRoutes }
+export const config = { matcher: matchers }

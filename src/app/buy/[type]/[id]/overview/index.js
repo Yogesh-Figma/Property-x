@@ -18,7 +18,7 @@ import "./styles.scss"
 export default ({ showBtn, data, type }) => {
     return (
         <div id="overview">
-            <ScheduleCalendar />
+            <ScheduleCalendar id={data.id} type={type}/>
             <Heading label={"Overview"} />
             <Card className='property-overview'>
                 <div className='property-short-info-cnt'>

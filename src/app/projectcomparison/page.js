@@ -13,6 +13,7 @@ import PaginatedFloorPlan from './paginatedFloorPlan';
 import { useAppContext } from '@/lib/appContext';
 import ScheduleCalendar from '@/app/scheduleCalender';
 
+
 const ProjectComparision = ({ }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [selectedProjects, selectProject] = React.useState([{ projectName: "Nirala Estate", priceRange: "", rating: "", id: "", location: "", status: "", configuration: "", size: "", area: "", possesionDate: "", reraNumber: "", floorPlanImg: "", amenities: [], convasImg: "" }]);

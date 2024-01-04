@@ -33,7 +33,7 @@ export default function DropDown({label, handleChange, value, values, multiple, 
             if (!hideLabel && !selected?.length) {
               return label;
             }
-            return values.find(item => item.value == selected).label;
+            return (values.find(item => item.value == selected) || {}).label;
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label',MenuProps: {disableScrollLock: true} }}
