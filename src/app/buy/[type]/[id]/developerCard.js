@@ -6,12 +6,15 @@ import ExpandIcon from '@/app/icons/expand_icon.svg';
 import Card from '@/app/components/card'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getDeveloperById } from '@/clients/developerClient';
 
 let customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
-const DeveloperCard = ({ data }) => {
+const DeveloperCard = async ({ developerId }) => {
 
+    
+    const data = await getDeveloperById(developerId);
     const dateObj = dayjs(data.foundedOn, "DD/MM/YYYY");
     const date2 = dayjs();
     let years = date2.diff(dateObj, 'years');
@@ -30,7 +33,7 @@ const DeveloperCard = ({ data }) => {
                                 <Rating value={Number(data.ratingAverage || 0)} /></>}
                         </div>
                     </div>
-                    <Link href={`developer/${data.Id}`} className='expand-icon ms-auto'><ExpandIcon /></Link>
+                    <Link href={`developer/${data.id}`} className='expand-icon ms-auto'><ExpandIcon /></Link>
                 </div>
                 <div className='property-info'>
                     <span>{dateObj.format('YYYY')}<span className='body-txt'> Year Estd</span></span>

@@ -7,7 +7,7 @@
     .search-tabs {
         margin-bottom: 22px;
 
-    button {
+        button {
             font-family: var(--helvetica-regular-font);
             font-size: clamp(12px, 2vw, 20px);
             font-style: normal;
@@ -19,6 +19,7 @@
             padding-right: 0px;
             min-width: 24px;
             margin-right: 1vw;
+
             &:first-child {
                 margin-left: 1vw;
             }
@@ -38,9 +39,11 @@
         border-radius: 32px;
         flex: 1;
         border: 1px solid #D3D3D3;
+
         .location-container {
             padding-left: 35px;
         }
+
         .search-input-container {
             .Mui-focused {
                 color: #70757A;
@@ -96,12 +99,14 @@
             margin-right: 20px;
         }
     }
+
     .search-bar-compact-btn {
         width: 88px;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-right: -3px;
+
         .MuiButton-startIcon {
             margin-left: 0;
             margin-right: 0;
@@ -116,5 +121,27 @@
         letter-spacing: 1.2px;
         margin-left: 25px;
         width: 185px;
+    }
+
+
+    @media (max-width: $grid-breakpoints-sm) {
+        .search-box {
+            .search-input-container {
+                .MuiFormLabel-root.MuiInputLabel-root  {
+                    padding-left: 10px;
+                }
+                .search-input {
+                    height: 40px;
+                    input {
+                        padding-left: 10px;
+                    }
+
+                }
+            }
+        }
+        .search-bar-compact-btn {
+            width: 50px;
+            height: 42px;
+        }
     }
 }

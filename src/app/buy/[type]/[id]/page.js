@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './styles.scss'
 import SimilarProjects from './similarProperties';
 import SimilarProperties from './propertiesInProject';
@@ -34,6 +34,7 @@ import HighLights from './highlights';
 import PropertiesInProject from './propertiesInProject';
 import UpcomingLaunches from './upcomingLaunches';
 import About from './about';
+import Loading from '@/app/loading';
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export default async function Page({ params: { id, type }, }) {
@@ -44,7 +45,7 @@ export default async function Page({ params: { id, type }, }) {
     const data = type == "property" ? await getPropertyById(id, session?.token) : await getProjectById(id);
     const galleryData = {
         photos: (data.images || []).map((item) => { return { original: item, thumbnail: item } }),
-        videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail:"https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail:"https://picsum.photos/id/1019/250/150/" }]
+        videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail: "https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail: "https://picsum.photos/id/1019/250/150/" }]
     }
     return (<div className='property-page container-fluid'>
         <GalleryModal data={galleryData} />
@@ -123,12 +124,14 @@ export default async function Page({ params: { id, type }, }) {
                 <Heading label={"Properties in this project"} />
                 <PropertiesInProject />
             </div>
-            {!!data.developer && <div id="about-developer">
+            <div id="about-developer">
                 <Heading label={"About Developer"} />
                 <div className='row'>
-                    <div className='col-md-8 col-12'>
-                        <DeveloperCard data={data.developer} />
-                    </div>
+                    {!!data.developerId && <div className='col-md-8 col-12'>
+                        <Suspense>
+                            <DeveloperCard developerId={data.developerId} />
+                        </Suspense>
+                    </div>}
                     <div className='col-md-4 col-12 mt-4 mt-md-0'>
                         <Card className='interested-box'>
                             <div className='title heading'>Are you Interested?</div>
@@ -144,7 +147,7 @@ export default async function Page({ params: { id, type }, }) {
                         </Card>
                     </div>
                 </div>
-            </div>}
+            </div>
             {!!data["faq"] && <div className='faqs' id="faq">
                 <Heading label={"FAQs"} />
                 {data["faq"].map((item, index) => <Accordion key={index} className={"faq-detail"} title={"Q." + item.questions + "?"} summary={item.answers} />)}

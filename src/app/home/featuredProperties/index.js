@@ -12,7 +12,7 @@ const FeaturedProperties = async () => {
             {properties.map((item, index) => {
                 return (<PropertyCard 
                     key={index}
-                    id={item.propertyId}
+                    id={item.id}
                     postedBy={item.developerName}
                     isProperty={true}
                     title={item.name}
