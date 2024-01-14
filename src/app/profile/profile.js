@@ -29,13 +29,6 @@ export default ({ userProfileData }) => {
     
     let selectedTabIndex;
     selectedTabIndex = (selectedTabIndex = TABS.findIndex(x => x.value == selectedTabFromParam)) == -1 ?  0 : selectedTabIndex;
-    
-    // const { data = [], isLoading, isError, error } = useQuery({
-    //     queryKey: ['getUserProfile'],
-    //     queryFn: () => getUserProfile(user.id),
-    // });
-
-
 
     const getActiveTab = () => {
         switch (selectedTabIndex) {

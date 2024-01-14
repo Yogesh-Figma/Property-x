@@ -23,6 +23,7 @@ const HOURS = [...Array(12).keys()].map(i => {
     let value = ('0' + (i + 1)).slice(-2);
     return { label: value, value };
 });
+
 const MINUTES = [...Array(60).keys()].map((i, index) => {
     let value = ('0' + (i)).slice(-2);
     return { label: value, value };

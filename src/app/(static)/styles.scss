@@ -1,0 +1,29 @@
+.static-page {
+    .info-container {
+
+        background: #FFEAE9;
+        z-index: 10;
+        padding: 20px 0;
+
+        .info {
+            height: 300px;
+            background-color: white;
+          
+            .heading {
+                margin-top: 60px;
+                font-size: 40px;
+            }
+
+            .sub-heading {
+                margin-top: 20px;
+                font-size: 20px;
+            }
+        }
+    }
+    .content {
+        padding: 50px 0;
+        .welcome-text{
+            margin: 20px 0;
+        }
+    }
+}

@@ -2,10 +2,14 @@
     .slick-slide {
         min-width: 287px;
     }
+    .slick-track {
+        > div {
+            margin-left: 45px;
+        }
+    }
 
     .test-card {
         padding: 24px 17px;
-        margin-left: 45px;
 
         .test-txt {
             text-align: justify;

@@ -57,10 +57,10 @@ const SearchBar = ({ locations }) => {
                     <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={userLocationId} values={locations} />
                     <div className='vertical-line'></div>
                 </div>
-                <form action={`/search?t=${searchTerm}`} id="search-form">
+                <form action={`/search?trm=${searchTerm}`} id="search-form">
                     <TextField
                         required={true}
-                        name="t"
+                        name="trm"
                         className='search-input-container'
                         type="search"
                         label={shrink ? "" : "Search by Locality, Project, City, Builder"}

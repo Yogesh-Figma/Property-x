@@ -15,7 +15,7 @@ import { useSearchParams } from 'next/navigation'
 
 const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", showSearchIcon, showLocationMenu, className, locations }) => {
     const searchParams = useSearchParams()
-    const searchQueryParam = searchParams.get('t');
+    const searchQueryParam = searchParams.get('trm');
     const [searchTerm, setSearchTerm] = React.useState(searchQueryParam || "");
 
     const { userLocationId, setUserLocation } = useAppContext() || {};
@@ -35,10 +35,10 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
             {!!showLocationMenu && <div className='location-container'>
                 <DropDown label={"Location"} handleChange={handleLocationChange} value={userLocationId} values={locations} /></div>}
             <div className='compact-search-bar body-txt'>
-                <form action={`/search?t=${searchTerm}`} id="search-form-2">
+                <form action={`/search?trm=${searchTerm}`} id="search-form-2">
                     <TextField
                         required={true}
-                        name="t"
+                        name="trm"
                         className='search-input-container justify-content-center'
                         id="search"
                         label={(shrink || showSearchIcon) ? "" : "Search by Locality, Project, City, Builder"}

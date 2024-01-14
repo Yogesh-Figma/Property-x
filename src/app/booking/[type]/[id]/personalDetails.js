@@ -5,8 +5,8 @@ import PaymentSummary from './paymentSummary';
 import DragDropFile, { SUPPORTED_FILE_TYPE } from '@/app/components/ui/dragDropFile';
 import CheckBox from '@/app/components/checkbox';
 import Button from "@/app/components/button";
-import AddressForm from './addressForm';
 import { useForm } from "react-hook-form";
+import UserProfileForm from '@/app/profile/userProfileForm';
 export default ({ data, personalData, changeStep, handlePersonalDetails, addOwner, declaration, handleFormChange }) => {
 
     const [files, setFiles] = React.useState({});
@@ -24,7 +24,7 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
     return (<div className="personal-details">
         <div className="row">
             <div className="col-xl-5 col-12">
-                <PaymentSummary variant="vertical" data={data}/>
+                <PaymentSummary variant="vertical" data={data} />
             </div>
             <div className="col-xl-7 col-12">
                 <Heading label={"Add Your Details"} />
@@ -32,172 +32,22 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
 
                     const handleChangeWrapper = (event) => {
                         const { name, value } = event.target;
-                        setValue((index||"") + name, value);
+                        setValue((index || "") + name, value);
                         handlePersonalDetails(index, event)
                     }
 
-                    return (<div>
-                        <div className='owner-checkbox-cnt d-flex'>
-                            <CheckBox onChange={handleChangeWrapper} name="owner" checked={formData.owner} className='owner-checkbox' /><span>I am the Owner</span>
-                        </div>
-                        <div className='form-section'>
-                            <div className='form-element-head'>Personal Details</div>
-                            <div className="row form-row">
-                                <div className="col-md-6 col-12">
-                                    <Input
-                                        controllerPrefix={index}
-                                        errorMessage={"Required"}
-                                        control={control}
-                                        required={true}
-                                        rounded={true}
-                                        width={"100%"}
-                                        className='post-form-input'
-                                        label={"First Name"}
-                                        name="firstName"
-                                        value={formData.firstName}
-                                        onChange={handleChangeWrapper}
-                                        height={50}
-                                    />
-                                </div>
-                                <div className="col-md-6 col-12 mt-md-0 mt-4">
-                                    <Input
-                                        controllerPrefix={index}
-                                        errorMessage={"Required"}
-                                        control={control}
-                                        required={true}
-                                        rounded={true}
-                                        width={"100%"}
-                                        className='post-form-input'
-                                        label={"Last Name"}
-                                        name="lastName"
-                                        value={formData.lastName}
-                                        onChange={handleChangeWrapper}
-                                        height={50}
-                                    />
-                                </div>
-                            </div>
-                            <div className="row form-row">
-                                <div className="col-md-6 col-12">
-                                    <Input
-                                        controllerPrefix={index}
-                                        errorMessage={"Required"}
-                                        control={control}
-                                        required={true}
-                                        rounded={true}
-                                        width={"100%"}
-                                        minLength={10}
-                                        maxLength={10}
-                                        isNumber={true}
-                                        className='post-form-input'
-                                        label={"Mobile No."}
-                                        name="mobileNo"
-                                        value={formData.mobileNo}
-                                        onChange={handleChangeWrapper}
-                                        height={50}
-                                    />
-                                </div>
-                                <div className="col-md-6 col-12 mt-md-0 mt-4"> <Input
-                                    controllerPrefix={index}
-                                    errorMessage={"Required"}
-                                    control={control}
-                                    required={true}
-                                    rounded={true}
-                                    width={"100%"}
-                                    className='post-form-input'
-                                    label={"Email"}
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChangeWrapper}
-                                    height={50}
-                                /></div>
-                            </div>
-                        </div>
-
-                        <div className='form-section'>
-                            <div className='form-element-head'>Correspondence Address</div>
-                            <AddressForm control={control} controllerPrefix={index} type="cor" formData={formData} handleChange={handleChangeWrapper} />
-                        </div>
-
-                        <div className='form-section'>
-                            <div className='form-element-head'>Permanent Address</div>
+                    return (
+                        <div>
                             <div className='owner-checkbox-cnt d-flex'>
-                                <CheckBox controllerPrefix={index} className='owner-checkbox' onChange={handleChangeWrapper} name="permanentAddressSame" checked={formData.permanentAddressSame} /><span>Same as correspondence address</span>
+                                <CheckBox onChange={handleChangeWrapper} name="owner" checked={formData.owner} className='owner-checkbox' /><span>I am the Owner</span>
                             </div>
-                            {!formData.permanentAddressSame && <AddressForm
-                                controllerPrefix={index}
-                                control={control}
-                                type="per"
-                                formData={formData}
-                                handleChange={handleChangeWrapper} />}
-                        </div>
+                            <UserProfileForm files={files} setFiles={setFiles} control={control} handleChange={handleChangeWrapper} formData={formData} index={index} />
+                            <Heading label={"Photos and Signature"} />
+                            <DragDropFile uploadText="Upload Photo" updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
+                            <DragDropFile uploadText="Add Signature" updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
 
-                        <div className='form-element-head'>KYC Details</div>
-                        <div className="col-12 form-row">
-                            <Input
-                                controllerPrefix={index}
-                                errorMessage={"Required"}
-                                control={control}
-                                required={true}
-                                rounded={true}
-                                width={"100%"}
-                                minLength={12}
-                                maxLength={12}
-                                className='post-form-input'
-                                label={"Aadhar No."}
-                                name="aadhaarNo"
-                                value={formData.aadhaarNo}
-                                onChange={handleChangeWrapper}
-                                height={50}
-                            />
                         </div>
-                        <DragDropFile uploadText="Upload Aadhaar Card" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                        <div className="col-12 form-row">
-                            <Input
-                                controllerPrefix={index}
-                                errorMessage={"Required"}
-                                control={control}
-                                required={true}
-                                rounded={true}
-                                width={"100%"}
-                                minLength={10}
-                                maxLength={10}
-                                className='post-form-input'
-                                label={"PAN No."}
-                                name="panNo"
-                                value={formData.panNo}
-                                onChange={handleChangeWrapper}
-                                height={50}
-                            />
-                        </div>
-                        <DragDropFile uploadText="Upload PAN Card" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                        <Heading label={"Photos and Signature"} />
-                        <DragDropFile uploadText="Upload Photo" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                        <DragDropFile uploadText="Add Signature" files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                        {/* <Heading label={"Nominee and Owner details"} />
-                        <div className="row  form-row">
-                            <div className="col-md-6 col-12">
-                                <Input
-                                    rounded={true}
-                                    width={"100%"}
-                                    className='post-form-input'
-                                    label={"Nominee"}
-                                    name="nomineeName"
-                                    value={formData.nomineeName}
-                                    onChange={handleChange}
-                                    height={50}
-                                /></div>
-                            <div className="col-md-6 col-12 mt-md-0 mt-4"> <Input
-                                rounded={true}
-                                width={"100%"}
-                                className='post-form-input'
-                                label={"Relation"}
-                                name="nomineeRelation"
-                                value={formData.nomineeRelation}
-                                onChange={handleChange}
-                                height={50}
-                            /></div>
-                        </div> */}
-                    </div>)
+                    )
                 })}
             </div>
             <div className='form-row d-flex'>

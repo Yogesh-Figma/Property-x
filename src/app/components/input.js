@@ -10,6 +10,7 @@ const InputBase = ({ width, className, height,
     max,
     minLength,
     maxLength,
+    disabled,
     validate,
     isNumber,
     errorMessage,
@@ -41,6 +42,7 @@ const InputBase = ({ width, className, height,
         <TextField
             {...field}
             name={name}
+            disabled={disabled}
             className={`${className} rounded-input`}
             value={value}
             onChange={onChangeWrapper}

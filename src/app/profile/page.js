@@ -9,14 +9,16 @@ export default async ({ }) => {
 
     const userInfo = (await getUserProfile(user.id))[0] || {}
 
-
     const userProfileData = {
+        ...userInfo,
+        firstName: userInfo.user?.firstName,
+        lastName:userInfo.user?.lastName,
         fullName: userInfo.user?.firstName + " "+ userInfo.user?.lastName,
         email: userInfo.user?.email,
         mobileNo: userInfo.user?.phone,
         aadharNo: userInfo.aadhar,
         panNo: userInfo.pan,
-        photo:userInfo.user?.photo
+        photo:userInfo.user?.photo,
     }
     
     return (<Profile userProfileData={userProfileData}/>)

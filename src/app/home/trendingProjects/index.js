@@ -9,7 +9,7 @@ const TrendingProjects = async () => {
     return (
         <div className='trending-projects'>
             <CardSlider carouselSettings={{
-                slidesToShow: null, slidesToShow:3.1, centerMode:false, slidesToScroll: 1, variableWidth: false, infinite: (projects.length > 2? true: false), responsive: [
+                slidesToShow: null, slidesToShow:2.5, centerMode:false, slidesToScroll: 1, variableWidth: false, infinite: (projects.length > 2? true: false), responsive: [
                 {
                     breakpoint: 1700,
                     settings: {

@@ -13,10 +13,10 @@ import Link from 'next/link'
 const LINKS1 = [
     { name: "About Us", url: "#" },
     { name: "Contact Us", url: "/contactus" },
-    { name: "Post your property", url: "#" },
-    { name: "FAQs", url: "#" },
-    { name: "Terms of Services", url: "#" },
-    { name: "Refund Policy", url: "#" },
+    { name: "Post your property", url: "/post" },
+    { name: "FAQs", url: "/faqs" },
+    { name: "Terms of Services", url: "/termsOfService" },
+    { name: "Refund Policy", url: "/refundPolicy" },
     { name: "Feedback", url: "#" },
     { name: "Testimonials", url: "#" }
 ]

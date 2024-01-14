@@ -157,58 +157,6 @@
                 font-size: 16px;
             }
         }
-        .form-row {
-            padding-bottom: 20px;
-        }
-        .form-element-head {
-            margin-bottom: 10px;
-        }
-        .form-section {
-            margin-bottom: 30px;
-            .form-row {
-                padding-top: 0px;
-                padding-bottom: 10px;
-            }
-        }
-
-        .post-form-input {
-            label {
-                color: #70757A;
-                transform: translate(23px, 15px) scale(1);
-            }
-
-            input {
-                padding-left: 22px;
-            }
-        }
-
-        .file-upload-form {
-            color: #70757A;
-
-            .file-list .preview-container {
-                width: 45px;
-                height: 45px;
-            }
-
-            .form-file-upload {
-                height: 116px;
-            }
-
-            .label-file-upload {
-                justify-content: flex-start;
-                padding-left: 46px;
-            }
-
-            margin-bottom: 20px;
-
-            .upload-button {
-                background: rgba(211, 211, 211, 0.50);
-                color: #202124;
-                box-shadow: unset;
-                margin-top: 0px;
-                margin-right: 30px;
-            }
-        }
         .declaration-cnt {
             margin-top: 30px;
             .declaration-txt {

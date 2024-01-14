@@ -20,7 +20,7 @@ const getFileType = (file) => {
     return SUPPORTED_FILE_TYPE.file;
 }
 
-function DragDropFile({ uploadText, updateFilesCb, multiple, supportedFileTypes = [Object.values(SUPPORTED_FILE_TYPE)], maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES, ...otherProps }) {
+function DragDropFile({ uploadText, name, updateFilesCb, multiple, supportedFileTypes = [Object.values(SUPPORTED_FILE_TYPE)], maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES, ...otherProps }) {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
     const [files, setFiles] = React.useState({});

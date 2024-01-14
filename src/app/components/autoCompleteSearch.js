@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { InputAdornment, autocompleteClasses } from "@mui/material";
 import Image from 'next/image';
-import searchIcon from '@/app/icons/iconamoon_search.svg?url'
 import Input from '@/app/components/input';
+import SearchIcon from '@/app/icons/iconamoon_search.svg';
 
 export default function AutoCompleteSearch({ width = 300, value, onChange, height, rounded,
     className,
@@ -41,10 +41,15 @@ export default function AutoCompleteSearch({ width = 300, value, onChange, heigh
                     padding:"8px",
                     fontSize:"12px"
                 },
+                '& .MuiAutocomplete-endAdornment': {
+                    right:"12px !important"
+                },
                  [`& .${autocompleteClasses.popupIndicator}`]: {
                 transform: "none"
               } }}
-            popupIcon={<Image src={searchIcon} width={18} height={18} />}
+            popupIcon={<span className="search-icon">
+            <SearchIcon />
+        </span>}
             renderInput={(params) => <Input
                 control={control}
                 required={required}

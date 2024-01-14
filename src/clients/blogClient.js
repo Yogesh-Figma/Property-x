@@ -5,6 +5,10 @@ function getAllBlogs() {
     return get(`${API_CLIENT_URL}/get/all/blogs`, { next: { revalidate: 3600 }});
 }
 
+function getBlogById(blog_id) {
+    return get(`${API_CLIENT_URL}/get/blogs/by/id/${blog_id}`, { next: { revalidate: 3600 }});
+}
+
 export {
-    getAllTestimonials
+    getAllBlogs
 }

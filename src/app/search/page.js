@@ -26,8 +26,8 @@ export default function Page({ params,
     const [selectedProp, selectProp] = React.useState({});
 
     const { data: searchData = [], isLoading, isError, error } = useQuery({
-        queryKey: ['getSearchData', searchParams.t],
-        queryFn: () => getSearchData(searchParams.t),
+        queryKey: ['getSearchData', searchParams.trm],
+        queryFn: () => getSearchData(searchParams.trm),
     });
 
     const firstCardData = searchData[0]?.data

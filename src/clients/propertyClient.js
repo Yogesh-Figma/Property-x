@@ -1,7 +1,7 @@
 
 'use server'
+import { getAllCities } from './cityClient';
 import { get } from './fetchWrapper';
-import { getAllLocalities } from '@/clients/localityClient'
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
 
 async function getPropertyById(id, accessToken) {
@@ -46,6 +46,13 @@ function getPropertyByStatus(status) {
     return get(`${API_CLIENT_URL}/get/property/by/property/status/${status}`, { next: { revalidate: 3600 } });
 }
 
+function getPropertySpecifications() {
+    return get(`${API_CLIENT_URL}/get/all/specifications`, { next: { revalidate: 3600 } });
+}
+
+function getAllAmenities() {
+    return get(`${API_CLIENT_URL}/get/all/amenities`, { next: { revalidate: 3600 } });
+}
 
 async function getPropertyPostData(sessionToken) {
     return Promise.allKeys({
@@ -53,8 +60,10 @@ async function getPropertyPostData(sessionToken) {
         furnishingStatus: getPropertyFurnishingStatus(),
         possessionStatus: getPossessionStatus(),
         propertyType: getPropertyType(),
-        propertyListingType: getPropertyListingType(),
-        localities:getAllLocalities()
+        propertyListingType: getPropertyListingType(),   
+        specifications:getPropertySpecifications(),
+        amenities: getAllAmenities(),
+        cities:getAllCities()
     })
 }
 

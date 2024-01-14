@@ -30,14 +30,14 @@ export default async function Page({ params: { id }, }) {
             <div className='additional-page-padding'>
                 <div className='d-flex align-items-start'>
                     <div className='image-container d-flex pe-3'>
-                        <Image src="/strutiDeveloper.png" width={100} height={100} />
+                        <Image src={data.logo || ""} width={100} height={100} />
                     </div>
                     <div className='dev-info'>
                         <div className='heading'>{data.legalName}</div>
-                        <div className='rating d-flex align-items-center sub-info'>
-                            {data.ratingAverage > 0 && <><span className='rating-value'>{data.ratingAverage}</span>
-                                <Rating value={Number(data.ratingAverage)} /></>}
-                        </div>
+                        {data.ratingAverage > 0 && <div className='rating d-flex align-items-center sub-info'>
+                            <><span className='rating-value'>{data.ratingAverage}</span>
+                                <Rating value={Number(data.ratingAverage)} /></>
+                        </div>}
                         <div className='property-info-cnt  d-none d-md-block'>
                             <DevInfo data={data} />
                         </div>

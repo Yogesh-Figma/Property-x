@@ -24,15 +24,26 @@ export async function GET() {
 
 // endpoint to upload a file to the bucket
 export async function POST(request) {
+  const uploadedFileUrls = [];
+  const fileUrlFormat = `https://${Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/`  
   const formData = await request.formData();
-  const files = formData.getAll("file");
-  const response = await Promise.all(
+  const userId = formData.get("userId");
+  if(!userId) {
+    return NextResponse.error("Missing credentials");
+  }
+  const files = formData.getAll("files");
+  const basePath = "userUpload/" + (userId + "").split("").reverse().join("") + "/";
+  await Promise.all(
     files.map(async (file) => {
-      // not sure why I have to override the types here
       const Body = (await file.arrayBuffer());
-      s3.send(new PutObjectCommand({ Bucket, Key: file.name, Body }));
+      let filePath = basePath + file.name;
+      s3.send(new PutObjectCommand({ Bucket, Key: basePath + file.name, Body }));
+      uploadedFileUrls.push(fileUrlFormat + filePath);
     })
   );
+  const response = {
+    ...uploadedFileUrls
+  }
 
   return NextResponse.json(response);
 }

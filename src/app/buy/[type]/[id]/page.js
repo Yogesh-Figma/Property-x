@@ -37,6 +37,16 @@ import About from './about';
 import Loading from '@/app/loading';
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
+export async function generateMetadata({ params: { id, type }}, parent) {
+    // fetch data
+    const data = type == "property" ? await getPropertyById(id) : await getProjectById(id);
+   
+    return {
+      title: data.name
+    }
+  }
+ 
+  
 export default async function Page({ params: { id, type }, }) {
     if (type != "property" && type != "project") {
         return notFound();

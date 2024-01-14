@@ -5,13 +5,21 @@ import {
     QueryClient,
     QueryClientProvider,
 } from 'react-query'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children, session }) => {
     const [userLocationId, setUserLocation] = useState("");
+    const [loaderEnabled, enableLoader] = useState(false);
     const [comparisonProjects, setProjectsForComparison] = useState([]);
-    const queryClient = new QueryClient()
+    const queryClient = new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 10000,
+          },
+        },
+      })
 
     const addProjectForComparison = (projectData) => {
         if (comparisonProjects.some(data == projectData.id)) {
@@ -37,11 +45,18 @@ export const AppProvider = ({ children, session }) => {
         addProjectForComparison,
         removeProjectFromComparison,
         userLocationId,
-        setUserLocation
+        setUserLocation,
+        enableLoader
     };
     return <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
-            <AppContext.Provider value={value}>{children}</AppContext.Provider>
+            <AppContext.Provider value={value}>
+                {loaderEnabled && <div className='global-loader position-fixed'>
+                    <CircularProgress size="4rem"/>
+                </div>}
+                {children}
+                
+            </AppContext.Provider>
         </QueryClientProvider>
     </SessionProvider>;
 };

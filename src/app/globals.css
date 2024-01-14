@@ -316,12 +316,13 @@ input[type=number] {
 
 svg.heart_svg__heart-icon:hover path,
 svg.delete_svg__delete-icon:hover path,
-svg.edit_svg__edit-icon:hover path{
-    fill: #DC143C;
+svg.edit_svg__edit-icon:hover path {
+  fill: #DC143C;
 }
 
-svg.share_svg__share-icon:hover g, svg.google_map_svg__google-map:hover g{
-    stroke: #DC143C;
+svg.share_svg__share-icon:hover g,
+svg.google_map_svg__google-map:hover g {
+  stroke: #DC143C;
 }
 
 &::-webkit-scrollbar {
@@ -342,5 +343,33 @@ svg.share_svg__share-icon:hover g, svg.google_map_svg__google-map:hover g{
 
 /* Handle on hover */
 &::-webkit-scrollbar-thumb:hover {
-  background: #70757A;;
+  background: #70757A;
+  ;
+}
+
+.global-loader {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.global-loader .MuiCircularProgress-colorPrimary {
+  color: #980e29 !important;
+}
+
+.fill-dropdown .MuiInput-root .MuiSelect-select {
+  padding-right: 0px;
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  background: #FFF;
+  padding: 10px 25px;
+  box-sizing: border-box;
+  /* Drop shadow */
+  box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
 }
