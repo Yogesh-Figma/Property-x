@@ -1,4 +1,4 @@
-import { get, post } from './fetchWrapper';
+import { get, post, put } from './fetchWrapper';
 import { authOptions } from "@/lib/auth"
 import { getServerSession } from "next-auth/next"
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
@@ -17,8 +17,8 @@ function getUserProfile(id) {
     });
 }
 
-function postUserProfile(id, data, accessToken) {
-    return post(`${API_CLIENT_URL}/save/user/profile/by/user/by/id/${id}`, data, {
+function updateUserProfile(id, data, accessToken) {
+    return put(`${API_CLIENT_URL}/update/user/profile/by/user/id/${id}`, data, {
         next: { cache: false },
         headers: {
             'x-auth-token': accessToken
@@ -28,5 +28,5 @@ function postUserProfile(id, data, accessToken) {
 
 export {
     getUserProfile,
-    postUserProfile
+    updateUserProfile
 }

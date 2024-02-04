@@ -24,11 +24,11 @@ function get(url, options = {}) {
 function post(url, body, options = {}) {
     const requestOptions = {
         method: 'POST',
-        origin:null,
-        headers: { 'Content-Type': 'application/json' },
+        origin:null,       
         body: JSON.stringify(body),
         cache:  'no-store',
-        ...options
+        ...options,
+        headers: { 'Content-Type': 'application/json', ...options.headers }
     };
     return fetch(url, requestOptions).then(handleResponse);
 }
@@ -36,10 +36,10 @@ function post(url, body, options = {}) {
 function put(url, body, options = {}) {
     const requestOptions = {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
         cache:  'no-store',
-        ...options
+        ...options,
+        headers: { 'Content-Type': 'application/json', ...options.headers }
     };
     return fetch(url, requestOptions).then(handleResponse);
 }

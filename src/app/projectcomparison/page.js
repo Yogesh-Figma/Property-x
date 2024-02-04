@@ -2,7 +2,7 @@
 'use client'
 import './styles.scss'
 import React from 'react';
-import { AMENITIES } from "@/app/buy/[type]/[id]/amenities";
+import { AMENITIES } from "@/app/buy/[type]/[urltext]/amenities";
 import Image from 'next/image';
 import NextLinkButton from '@/app/components/nextLinkButton';
 import Rating from '@/app/components/rating';
@@ -12,6 +12,7 @@ import AutoCompleteSearch from '@/app/components/autoCompleteSearch';
 import PaginatedFloorPlan from './paginatedFloorPlan';
 import { useAppContext } from '@/lib/appContext';
 import ScheduleCalendar from '@/app/scheduleCalender';
+import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 
 
 const ProjectComparision = ({ }) => {
@@ -188,14 +189,14 @@ const ProjectComparision = ({ }) => {
                         <td className='d-flex align-items-center flex-column'>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
+                                <TalkToConsulantBtn height={40} />
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                             </div>
                         </td>
                         <td className=''>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />
+                                <TalkToConsulantBtn height={40} rounded={true} href="/" />
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                             </div>
                         </td>

@@ -9,6 +9,7 @@ import AutoCompleteSearch from '@/app/components/autoCompleteSearch';
 import CloseIcon from '@/app/icons/icon_close-small.svg'
 import { useSearchParams, useRouter } from 'next/navigation'
 import NextLinkButton from '@/app/components/nextLinkButton';
+import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 
 export const CompareProjects = ({ projectdata }) => {
     const router = useRouter();
@@ -83,7 +84,7 @@ export const CompareProjectPopup = () => {
             </div>
             <div className="comparisons-btn d-flex flex-column align-items-center justify-content-center">
                 <NextLinkButton className="compare-btn" rounded={true} height={30} text={"Compare"} href={"/projectcomparison"}/>
-                <Button variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={30} rounded={true} href="/" />
+                <TalkToConsulantBtn height={30} />
             </div>
         </div>
     </div>)

@@ -18,7 +18,7 @@ import { getAllCities } from '@/clients/cityClient'
 
 export default async function Home() {
   const cities = await getAllCities();
-  const LOCATIONS = cities.map(item => { return ({label:item.cityName,value:item.cityId}) });
+  const LOCATIONS = cities.map(item => { return ({label:item.name,value:item.name}) });
   return (
     <div className='home'>
       <div className='banner no-gutter container-fluid'>

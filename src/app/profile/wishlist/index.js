@@ -19,6 +19,7 @@ export default ({ wishlist }) => {
                     return (
                         <div className='property-card-cont'>
                             <PropertyCard4
+                                isWished={true}
                                 title={data.name}
                                 bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
                                 address={data.address}
@@ -31,6 +32,7 @@ export default ({ wishlist }) => {
                                 possessionInfo={data.possessionDue}
                                 avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
                                 id={data.id}
+                                urlText={data.url}
                                 subInfo={data.propertySpecification || data.specification}
                             />
                         </div>)

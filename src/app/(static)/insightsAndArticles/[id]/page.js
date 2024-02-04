@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import '@/app/(static)/styles.scss'
 import dayjs from 'dayjs';
-import { getTermsAndConditions } from '@/clients/staticContentClient'
+import { getBlogById } from '@/clients/blogClient'
 
 const InsightsAndArticles = async ({ params: { id, type }}) => {
-    let serviceData = (await getTermsAndConditions(id));
-    serviceData = serviceData[0] || serviceData  // WHY THIS IS ANY ARRAY ???
+    let serviceData = (await getBlogById(id));
+
     const updateDate = dayjs(serviceData.updatedOn || serviceData.createdOn);
     return (<div className='terms-of-service static-page'>
         <div className='info-container position-relative'>
@@ -18,9 +18,8 @@ const InsightsAndArticles = async ({ params: { id, type }}) => {
             </div>
         </div>
         <div className='content-cnt container-fluid'>
-            <div className='content'>
-             
-            </div>
+            <div className='heading'>{serviceData.headings}</div>
+            <div className='content' dangerouslySetInnerHTML={{ __html: serviceData.content }} />
         </div>
     </div>)
 }

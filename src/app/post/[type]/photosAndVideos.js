@@ -4,8 +4,8 @@ import DragDropFile, {SUPPORTED_FILE_TYPE} from '@/app/components/ui/dragDropFil
 import Button from "@/app/components/button";
 import Image from 'next/image';
 
-export default ({ formData, handleChange, changeStep }) => {
-    const [files, setFiles] = React.useState({});
+export default ({ formData, handleChange, changeStep, setImages, images }) => {
+
     const handleNext = () => {
         changeStep(2);
     }
@@ -14,7 +14,7 @@ export default ({ formData, handleChange, changeStep }) => {
         <Heading label={"Upload Photos and Videos"}/>
         <div className='d-flex mt-4'>
             <div className='upload-container'>
-                <DragDropFile files={files} updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image, SUPPORTED_FILE_TYPE.video]} multiple={true}/>
+                <DragDropFile files={images} updateFilesCb={setImages} supportedFileTypes={[SUPPORTED_FILE_TYPE.image, SUPPORTED_FILE_TYPE.video]} multiple={true}/>
             </div>
             <Image className='undraw-building d-none d-lg-inline-block' src={"/undrawUpload.svg"} width={304} height={258} />
         </div>

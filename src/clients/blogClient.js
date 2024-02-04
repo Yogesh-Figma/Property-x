@@ -10,5 +10,6 @@ function getBlogById(blog_id) {
 }
 
 export {
-    getAllBlogs
+    getAllBlogs,
+    getBlogById
 }

@@ -3,14 +3,16 @@ import React from 'react';
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import ShareIcon from '@/app/icons/share.svg'
-import HeartIcon from '@/app/icons/heart.svg'
 import GoogleMapIcon from '@/app/icons/google_map.svg'
 import Rating from '@/app/components/rating';
 import nearByIcon from '@/app/icons/near_by.svg?url';
 import ScheduleCalendar from '@/app/scheduleCalender';
 import './styles.scss'
+import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
+import WishListBtn from '@/app/actionBtns/wishListBtn';
 
 export default ({ data, type }) => {
+    const isProperty = type == "property";
     return (<div className='property-header'>
         <div className='row g-0'>
             <div className='property-sub-info col-8'>
@@ -27,7 +29,7 @@ export default ({ data, type }) => {
             <div className='property-price-info col-4 text-end'>
                 <div className='property-share-icons d-none d-md-flex align-items-center justify-content-end'>
                     <GoogleMapIcon width={24} height={24}/>
-                    <HeartIcon width={22} height={20}/>
+                    <WishListBtn width={22} height={20} id={data.id} isProperty={isProperty}/>
                     <ShareIcon width={24} height={24} />
                 </div>
             </div>
@@ -43,7 +45,7 @@ export default ({ data, type }) => {
                     </div>
                     <div className='property-share-icons d-flex d-md-none align-items-center justify-content-end'>
                         <GoogleMapIcon width={24} height={24}/>
-                        <HeartIcon width={22} height={20}/>
+                        <WishListBtn width={22} height={20} id={data.id} isProperty={isProperty}/>
                         <ShareIcon width={24} height={24} />
                     </div>
                 </div>
@@ -52,7 +54,7 @@ export default ({ data, type }) => {
                     <span className="near-by-text">{data["nearbyLandmarks"]}</span>
                 </div>
                 <div className='btn-cnt'>
-                    <NextLinkButton variant="outlined-noborder" className="talk-to-consultation" text='Talk to Consultant' height={30} rounded={true} href="/" />
+                    <TalkToConsulantBtn className="talk-to-consultation" height={30} id={data.id} isProperty={isProperty}/>
                     <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="?schedule=123" />
                 </div>
             </div>

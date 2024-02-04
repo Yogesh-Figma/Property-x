@@ -5,8 +5,10 @@ import NextLinkButton from '@/app/components/nextLinkButton';
 import Heading from '@/app/components/heading';
 import Card from '@/app/components/card';
 import YoutubePlayer from '@/app/components/youtubePlayer';
+import { getAllPropertyCategory } from '@/clients/propertyClient';
 
-export default ({ }) => {
+export default async ({ }) => {
+    const propertyTypes = await getAllPropertyCategory();
     return (<div className='post-property container-fluid'>
         <div className='container additional-page-padding'>
             <div className="property-txt d-flex flex-column align-items-center text-center">
@@ -21,9 +23,8 @@ export default ({ }) => {
                 <div className=''>
                     <Heading label={"I want to Post..."} />
                     <div className="property-btn d-sm-flex justify-content-between">
-                        <NextLinkButton rounded={true} text={"Residential Property"} height={50} href={"/post/Residential"} />
-                        <br />
-                        <NextLinkButton className="mt-4 mt-sm-0" rounded={true} text={"Commercial Property"} height={50} href={"/post/Commercial"} />
+                        {propertyTypes.map(item => <><NextLinkButton className="mt-4 mt-sm-0" rounded={true} text={`${item.name} Property`} height={50} href={`/post/${item.name}`} />
+                        </>)}
                     </div>
                 </div>
                 <div className='sticky-note-container position-relative d-none d-xl-inline-block'>

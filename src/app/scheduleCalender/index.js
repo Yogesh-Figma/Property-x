@@ -31,11 +31,12 @@ const MINUTES = [...Array(60).keys()].map((i, index) => {
 
 
 export default function ScheduleCalendar({ id, type }) {
-    if(useSession().data == null){
+    const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false };
+    const sessionData  = useSession();
+    if( sessionData == null) {
         return;
     }
-    const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false };
-    const { data: { user, token } } = useSession();
+    const { user, token } = sessionData;
     const [date, setDate] = React.useState(dayjs().add(3, 'day'));
     const [formData, setFormData] = React.useState(initialScheduleState);
     const router = useRouter();

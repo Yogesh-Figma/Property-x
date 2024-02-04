@@ -10,7 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const AppContext = createContext();
 
 export const AppProvider = ({ children, session }) => {
-    const [userLocationId, setUserLocation] = useState("");
+    const [userLocation, setUserLocation] = useState("");
     const [loaderEnabled, enableLoader] = useState(false);
     const [comparisonProjects, setProjectsForComparison] = useState([]);
     const queryClient = new QueryClient({
@@ -44,7 +44,7 @@ export const AppProvider = ({ children, session }) => {
         comparisonProjects,
         addProjectForComparison,
         removeProjectFromComparison,
-        userLocationId,
+        userLocation,
         setUserLocation,
         enableLoader
     };

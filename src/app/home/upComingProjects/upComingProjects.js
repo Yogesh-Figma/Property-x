@@ -12,6 +12,7 @@ const UpComingProjects = async () => {
                 return (<PropertyCard2
                     key={index}
                     id={item.id}
+                    urlText={item.url}
                     title={item.name}
                     bhk={item.specification}
                     address={item.address}

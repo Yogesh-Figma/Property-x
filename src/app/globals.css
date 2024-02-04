@@ -314,7 +314,9 @@ input[type=number] {
   margin-top: 3px;
 }
 
-svg.heart_svg__heart-icon:hover path,
+.heart-icon.filled path
+.heart-icon:hover path,
+.heart-icon.filled path,
 svg.delete_svg__delete-icon:hover path,
 svg.edit_svg__edit-icon:hover path {
   fill: #DC143C;

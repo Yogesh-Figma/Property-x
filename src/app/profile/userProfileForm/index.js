@@ -91,7 +91,7 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
             <AddressForm
                 control={control}
                 controllerPrefix={index}
-                type="permanent"
+                type="present"
                 formData={formData}
                 handleChange={handleChange}
                 countries={countries}
@@ -107,7 +107,7 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
             {!formData.permanentAddressSame && <AddressForm
                 controllerPrefix={index}
                 control={control}
-                type="present"
+                type="permanent"
                 formData={formData}
                 handleChange={handleChange}
                 countries={countries}

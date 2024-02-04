@@ -1,9 +1,9 @@
 import React from 'react';
-import Overview from '@/app/buy/[type]/[id]/overview';
-import Description from '@/app/buy/[type]/[id]/about';
-import Amenities from '@/app/buy/[type]/[id]/amenities';
+import Overview from '@/app/buy/[type]/[urltext]/overview';
+import Description from '@/app/buy/[type]/[urltext]/about';
+import Amenities from '@/app/buy/[type]/[urltext]/amenities';
 import Image from 'next/image'
-import PropertyHeader from '@/app/buy/[type]/[id]/propertyHeader';
+import PropertyHeader from '@/app/buy/[type]/[urltext]/propertyHeader';
 import { getProjectById } from '@/clients/projectClient'
 
 const PropertyDetails = async ({ data, type }) => {

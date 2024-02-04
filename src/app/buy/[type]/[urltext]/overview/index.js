@@ -8,14 +8,16 @@ import HouseIcon from '@/app/icons/house.svg'
 import SkyscrapperIcon from '@/app/icons/skyscrapper.svg'
 import CallIcon from '@/app/icons/call.svg'
 import ShareIcon from '@/app/icons/share.svg'
-import HeartIcon from '@/app/icons/heart.svg'
 import ScheduleIcon from '@/app/icons/schedule.svg'
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import ScheduleCalendar from '@/app/scheduleCalender';
+import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
+import WishListBtn from '@/app/actionBtns/wishListBtn';
 import "./styles.scss"
 
 export default ({ showBtn, data, type }) => {
+    const isProperty = type == "property";
     return (
         <div id="overview">
             <ScheduleCalendar id={data.id} type={type}/>
@@ -67,11 +69,11 @@ export default ({ showBtn, data, type }) => {
                 </div>
                 {showBtn && <div className='btn-container d-sm-flex justify-content-end align-items-center'>
                     <span className='overview-btn-cnt'>
-                        <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={40} rounded={true} href="/" />                   
+                        <TalkToConsulantBtn  height={40} id={data.id} isProperty={isProperty}/>                   
                         <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
                     </span>
                     <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={40} href={`/booking/${type}/${data.id}`} />
-                    <HeartIcon width={22} height={20} className='heart-icon d-none d-md-inline' />
+                    <WishListBtn width={22} height={20} className='heart-icon d-none d-md-inline' id={data.id} isProperty={isProperty}/>
                     <ShareIcon width={24} height={24} className='share-icon d-none d-md-inline' />
                 </div>}
             </Card>

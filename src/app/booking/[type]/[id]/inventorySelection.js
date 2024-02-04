@@ -38,6 +38,7 @@ export default ({ data, formData, handleChange, changeStep }) => {
                 possessionInfo={data.possessionDue}
                 avgPrice={data.ratePerAreaUnit}
                 id={data.id}
+                urlText={data.url}
                 subInfo={data.specification}
             />
             </div>

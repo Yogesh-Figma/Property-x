@@ -20,12 +20,12 @@ import Tabs from './tabs';
 import Map from '@/app/components/ui/map'
 import GalleryModal from '@/app/components/galleryModal'
 import { Divider } from '@mui/material';
-import { getPropertyById } from '@/clients/propertyClient';
+import { getPropertyByUrlText } from '@/clients/propertyClient';
 import { cookies } from 'next/headers'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
 import { notFound } from 'next/navigation'
-import { getProjectById, getProjectsByStatus } from '@/clients/projectClient';
+import { getProjectByUrlText, getProjectsByStatus } from '@/clients/projectClient';
 import Accordion from '@/app/components/accordion';
 import TouchIcon from '@/app/icons/touch.svg';
 import Card from '@/app/components/card'
@@ -35,11 +35,13 @@ import PropertiesInProject from './propertiesInProject';
 import UpcomingLaunches from './upcomingLaunches';
 import About from './about';
 import Loading from '@/app/loading';
+import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
+
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export async function generateMetadata({ params: { id, type }}, parent) {
+export async function generateMetadata({ params: { urltext, type }}, parent) {
     // fetch data
-    const data = type == "property" ? await getPropertyById(id) : await getProjectById(id);
+    const data = type == "property" ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
    
     return {
       title: data.name
@@ -47,12 +49,12 @@ export async function generateMetadata({ params: { id, type }}, parent) {
   }
  
   
-export default async function Page({ params: { id, type }, }) {
+export default async function Page({ params: { urltext, type }, }) {  
     if (type != "property" && type != "project") {
         return notFound();
     }
-    const session = await getServerSession(authOptions)
-    const data = type == "property" ? await getPropertyById(id, session?.token) : await getProjectById(id);
+    const isProperty = type == "property";
+    const data = isProperty ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
     const galleryData = {
         photos: (data.images || []).map((item) => { return { original: item, thumbnail: item } }),
         videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail: "https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail: "https://picsum.photos/id/1019/250/150/" }]
@@ -150,7 +152,7 @@ export default async function Page({ params: { id, type }, }) {
                                 <TouchIcon className="mx-auto d-block" />
                             </div>
                             <div className='btn-cnt'>
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={34} rounded={true} href="/" />
+                                <TalkToConsulantBtn height={34} id={data.id} isProperty={isProperty}/>
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href="?schedule=123" />
                                 <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/booking/${type}/${data.id}`} />
                             </div>

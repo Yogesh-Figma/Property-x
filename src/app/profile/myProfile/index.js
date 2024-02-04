@@ -9,7 +9,7 @@ import UserProfileForm from '../userProfileForm';
 import { useForm } from "react-hook-form";
 import { useQuery } from 'react-query';
 import { useSession } from "next-auth/react"
-import { postUserProfile } from '@/clients/profileClient'
+import { updateUserProfile } from '@/clients/profileClient'
 import { useAppContext } from '@/lib/appContext';
 import { getAllCountries, getCityByStateId, getLocalityByCityId, getStateByCountry } from '@/clients/addressClient';
 const ADDRESS_TYPES = ["permanent", "present"];
@@ -29,8 +29,10 @@ export default ({ userProfileData }) => {
         kycVerified: !!userProfileData.kycVerified,
         permanentZipcode: userProfileData.permanentZipcode || "",
         presentZipcode: userProfileData.presentZipcode || "",
-        permanentAddressLine1: userProfileData.addressLine1 || "",
-        permanentAddressLine2: userProfileData.addressLine2 || "",
+        presentAddressLine1: userProfileData.presentAddressLine1 || "",
+        presentAddressLine2: userProfileData.presentAddressLine2 || "",
+        permanentAddressLine1: userProfileData.permanentAddressLine1 || "",
+        permanentAddressLine2: userProfileData.permanentAddressLine1 || "",
         permanentCityId: userProfileData?.permanentAddress?.city?.id,
         permanentLocalityId: userProfileData?.permanentAddress?.id,
         permanentStateId: userProfileData?.permanentAddress?.city?.states?.id,
@@ -120,13 +122,15 @@ export default ({ userProfileData }) => {
                 "aadharPhoto": aadharPhoto,
                 "kycVerified": userProfileData.kycVerified,
                 "presentZipcode": formData.presentZipcode,
-                "permanentZipcode": formData.permanentZipcode,
-                "addressLine1": formData.permanentAddressLine1,
-                "addressLine2": formData.permanentAddressLine2,
+                "permanentZipcode": formData.permanentAddressSame? formData.presentZipcode: formData.permanentZipcode,
+                "addressLine1": formData.presentAddressLine1,
+                "addressLine2": formData.presentAddressLine2,
+                "permanentAddressLine1": formData.permanentAddressSame? formData.presentAddressLine1:formData.permanentAddressLine1,
+                "permanentAddressLine2": formData.permanentAddressSame? formData.presentAddressLine2:formData.permanentAddressLine2,
                 "permanentLocalityId": formData.permanentAddressSame ? formData.presentLocalityId : formData.permanentLocalityId,
                 "presentLocalityId": formData.presentLocalityId
             }
-            await postUserProfile(userProfileData.id, requestJson, token);
+            await updateUserProfile(user.id, requestJson, token);
         }
         catch (e) { }
         finally {

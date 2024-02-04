@@ -13,6 +13,7 @@ const FeaturedProperties = async () => {
                 return (<PropertyCard 
                     key={index}
                     id={item.id}
+                    urlText={item.url}
                     postedBy={item.developerName}
                     isProperty={true}
                     title={item.name}

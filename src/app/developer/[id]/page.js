@@ -63,6 +63,7 @@ export default async function Page({ params: { id }, }) {
                             possessionInfo={item.possessionDue}
                             avgPrice={item.ratePerAreaUnit}
                             id={item.id}
+                            urlText={item.url}
                             subInfo={item.description}
                             showRating={true}
                             ratingCnt={item.ratingCount}

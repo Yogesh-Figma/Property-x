@@ -9,16 +9,18 @@ import DropDown from '@/app/components/dropDown';
 import Link from 'next/link'
 import { useQuery } from 'react-query';
 import { useAppContext } from '@/lib/appContext';
-import { useSearchParams } from 'next/navigation'
-
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 
 
 const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", showSearchIcon, showLocationMenu, className, locations }) => {
-    const searchParams = useSearchParams()
-    const searchQueryParam = searchParams.get('trm');
-    const [searchTerm, setSearchTerm] = React.useState(searchQueryParam || "");
+    const SEARCH_REGEX = /\/search\/(.*)/
+    const pathName = usePathname()
+    const matches = SEARCH_REGEX.exec(pathName);
+    const searchTermFromParam = (matches != null && matches.length > 0) ? matches[1]: "";
+    const [searchTerm, setSearchTerm] = React.useState(searchTermFromParam);
 
-    const { userLocationId, setUserLocation } = useAppContext() || {};
+    const { userLocation, setUserLocation } = useAppContext() || {};
+    const router = useRouter();
     const shrink = searchTerm.length > 0;
 
     const handleSearchTermChange = (event) => {
@@ -29,13 +31,21 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
         setUserLocation(event.target.value);
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let redirectUrl = `/search/${searchTerm.replace(" ", "-")}`
+        if((userLocation||"").length > 0) {
+            redirectUrl = redirectUrl + `?city=${userLocation}`
+        }
+        router.push(redirectUrl);
+    }
 
     return (
         <div className={`compact-search-bar-container d-flex ${className}`}>
             {!!showLocationMenu && <div className='location-container'>
-                <DropDown label={"Location"} handleChange={handleLocationChange} value={userLocationId} values={locations} /></div>}
+                <DropDown label={"Location"} handleChange={handleLocationChange} value={userLocation} values={locations} /></div>}
             <div className='compact-search-bar body-txt'>
-                <form action={`/search?trm=${searchTerm}`} id="search-form-2">
+                <form onSubmit={handleSubmit} id="search-form-2">
                     <TextField
                         required={true}
                         name="trm"

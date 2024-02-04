@@ -41,9 +41,6 @@ export async function POST(request) {
       uploadedFileUrls.push(fileUrlFormat + filePath);
     })
   );
-  const response = {
-    ...uploadedFileUrls
-  }
 
-  return NextResponse.json(response);
+  return NextResponse.json(uploadedFileUrls);
 }

@@ -11,6 +11,7 @@ import searchIcon from '@/app/icons/iconamoon_search_white.svg?url'
 import DropDown from '@/app/components/dropDown'
 import { useAppContext } from '@/lib/appContext';
 import Button from '@/app/components/button';
+import { useSearchParams, useRouter } from 'next/navigation'
 
 const TAB_LABELS = ["Buy", "Commercial", "Residential", "Projects"];
 
@@ -26,8 +27,9 @@ const muiTab = {
 
 const SearchBar = ({ locations }) => {
     const [activeTab, setActiveTab] = React.useState(0);
-    const { userLocationId, setUserLocation } = useAppContext();
+    const { userLocation, setUserLocation } = useAppContext();
     const [searchTerm, setSearchTerm] = React.useState("");
+    const router = useRouter();
     const shrink = searchTerm.length > 0;
 
     const handleSearchTermChange = (event) => {
@@ -42,6 +44,14 @@ const SearchBar = ({ locations }) => {
         setUserLocation(event.target.value);
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let redirectUrl = `/search/${searchTerm.replace(" ", "-")}`;
+        if((userLocation||"").length > 0) {
+            redirectUrl = redirectUrl + `?city=${userLocation}`
+        }
+        router.push(redirectUrl);
+    }
 
     return (<div className='search-bar body-txt'>
         <Tabs value={activeTab} onChange={handleChange} className="search-tabs" sx={muiTab.tab} TabIndicatorProps={{
@@ -54,10 +64,10 @@ const SearchBar = ({ locations }) => {
         <div className='search-box-row d-flex'>
             <div className='search-box d-flex'>
                 <div className='location-container align-items-center d-lg-flex d-none'>
-                    <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={userLocationId} values={locations} />
+                    <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={userLocation} values={locations} />
                     <div className='vertical-line'></div>
                 </div>
-                <form action={`/search?trm=${searchTerm}`} id="search-form">
+                <form onSubmit={handleSubmit} id="search-form">
                     <TextField
                         required={true}
                         name="trm"

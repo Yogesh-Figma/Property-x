@@ -14,6 +14,7 @@ const FeaturedProjects = async () => {
                 return (
                     <ProjectCard
                         key={index}
+                        urlText={item.url}
                         id={item.id}
                         title={item.name}
                         bhk={item.specification}

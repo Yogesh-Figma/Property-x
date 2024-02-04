@@ -6,15 +6,16 @@ import Button from '@/app/components/button';
 import starIcon from '@/app/icons/ic_baseline-star.svg?url'
 import downloadIcon from '@/app/icons/download_file.svg?url'
 import tickIcon from '@/app/icons/tick.svg?url'
-import HeartIcon from '@/app/icons/heart.svg'
+import WishListBtn from '@/app/actionBtns/wishListBtn';
 import ShareIcon from '@/app/icons/share.svg'
 import './styles.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import propertyGraph from '@/app/icons/property_graph.svg?url'
 import Rating from '@/app/components/rating'
 import OverflowTip from '@/app/components/OverflowTip';
+import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 
-const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
+const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
     return (
         <div style={{ width: width }} key={id}>
             <Card className='project-card'>
@@ -43,7 +44,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
                             <Button className="e-visit" text='e-Visit' height={20} rounded={true} variant='outlined' />
-                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                         </div>
                     </div>
 
@@ -53,7 +54,7 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
 
 }
 
-const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id }) => {
+const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
     return (
         <div style={{ width: width }}>
             <Card className='property-card'>
@@ -77,7 +78,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
                         <div className='price-container d-flex justify-content-between align-items-start'>
                             <div className='posted-by'>Posted by {postedBy}</div>
                             <div className='btn-cnt'>
-                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
+                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
 }
 
 
-const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id, isProperty }) => {
+const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id, isProperty, urlText }) => {
     return (<div style={{ width: width }} key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
@@ -107,7 +108,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                 <div className='price-container col-5 text-end d-flex flex-column justify-content-between'>
                     {!!price && <div className='price sub-heading-2'>{price}</div>}
                     <div className='btn-cnt'>
-                        <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
+                        <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                     </div>
                 </div>
             </div>
@@ -115,7 +116,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
     </div>)
 }
 
-const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id, maxWidth, isProperty }) => {
+const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id, maxWidth, isProperty, urlText }) => {
     return (<div style={{ width: width, maxWidth: maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
@@ -148,7 +149,7 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                         </div>
                         <div className='btn-cnt d-flex'>
                             <Button className="e-visit" text='e-Visit' height={40} rounded={true} variant='outlined' />
-                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
+                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                         </div>
                     </div>
                 </div>
@@ -164,7 +165,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
     devImage, height, id, verticalView,
     visitDate, visitTime, useStretchedLink,
     showTalkToConsultant, furnishingInfo,
-    showRateNow, rera, hideLikeBtn }) => {
+    showRateNow, rera, hideLikeBtn, urlText }) => {
     return (<div style={{ height }} key={id}>
         <Card className={`property-card-4 overflow-hidden row position-relative g-0`}>
             {!!showRateNow && !!visitDate && !!visitTime && <div className='visit-rate-now-section p-2 d-flex justify-content-between align-items-center d-md-none'>
@@ -190,7 +191,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             <Rating />
                         </div> :
                             <div className='share-container'>
-                                {!hideLikeBtn && <HeartIcon width={22} height={20} />}
+                                {!hideLikeBtn && <WishListBtn id={id} isProperty={isProperty} width={22} height={20} isWished={true} />}
                                 <ShareIcon width={24} height={24} />
                             </div>}
                     </div>
@@ -238,8 +239,8 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + id}`} />
-                            {showTalkToConsultant && <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Talk to Consultant' height={25} rounded={true} href="/" />}
+                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
+                            {showTalkToConsultant && <TalkToConsulantBtn height={25} rounded={true} isProperty={isProperty} id={id} />}
                         </div>
                     </div>
                 </div>
