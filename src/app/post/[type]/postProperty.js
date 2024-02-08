@@ -25,36 +25,38 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
     const [activeStep, changeStep] = React.useState(0);
     const [images, setImages] = React.useState([]);
     const [formData, setFormData] = React.useState({
-        propertyConfigType:"",
+        propertyConfigType: "",
         propertyListingTypeId: "",
         society: "", localityId: "", rentOrSale: "", city: "",
         propertyConfigurationId: "", builtUpArea: "",
         constructionStatus: "", propertyFurnishingStatusId: "",
         images: [], price: "", amenities: [], specifications: [],
         specificationCount: 0, specificationId: "",
-        amenityId: "", amenitiesCount: 0, facing:""
+        amenityId: "", amenitiesCount: 0, facing: ""
     });
     const { data: session } = useSession();
 
     const getProjectsDataByCityId = async () => {
         const data = await getProjectsByCityId(formData.cityId, session?.token);
-        return data.map(item => { return {label: item.name, value:item.id}});
+        return data.map(item => { return { label: item.name, value: item.id } });
     }
 
     let { data: localities = [] } = useQuery({ enabled: !!formData.cityId, queryKey: ['getLocalityByCityId', formData.cityId], queryFn: () => getLocalityByCityId(formData.cityId) });
     const { data: projects = [] } = useQuery({ enabled: !!formData.cityId, queryKey: ['getProjectsByCityId', formData.cityId], queryFn: () => getProjectsDataByCityId() });
-    const { data: projectConfigurations = [] } = useQuery({ enabled: !!formData.propertyConfigType, queryKey: ['getPropertyConfigurationByType', formData.propertyConfigType], queryFn: () => getPropertyConfigurationByType(formData.propertyConfigType, session?.token) });
+    const { data: projectConfigurations = [] } = useQuery({
+        enabled: !!formData.propertyConfigType && !!formData.propertyProjectId, queryKey: ['getPropertyConfigurationByType', formData.propertyConfigType, formData.propertyProjectId],
+        queryFn: () => getPropertyConfigurationByType(formData.propertyConfigType, formData.propertyProjectId, session?.token)
+    });
     const localityData = React.useMemo(() => localities.map(item => { return { label: item.name, value: item.id } }), [localities.length, formData.cityId])
-    const projectConfigurationsData = React.useMemo(() => projectConfigurations.map(item => { return { label: item.sizeInSqft, value: item.id, specifications:item.specifications } }), 
-    [projectConfigurations.length, formData.propertyProjectId])
-    console.log("projectConfigurationsData", projectConfigurationsData);
+    const projectConfigurationsData = React.useMemo(() => projectConfigurations.map(item => { return { label: item.sizeInSqft, value: item.id, specifications: item.specifications } }),
+        [projectConfigurations.length, formData.propertyProjectId])
 
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        if(name == "propertyConfigurationId") {
+        if (name == "propertyConfigurationId") {
             let selectedSpecifications = projectConfigurationsData.find(item => item.value == value).specifications || [];
-            selectedSpecifications = selectedSpecifications.map(item => { return {...item, specification:item.specificationsId}})        
+            selectedSpecifications = selectedSpecifications.map(item => { return { ...item, specification: item.specificationsId } })
             setFormData((prevFormData) => ({ ...prevFormData, specifications: selectedSpecifications }));
         }
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -83,10 +85,10 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
 
         const requestObj = {
             "localityId": formData.localityId,
-            "propertyConfigurationId": formData.propertyConfigurationId,           
+            "propertyConfigurationId": formData.propertyConfigurationId,
             "propertyFurnishingStatusId": formData.propertyFurnishingStatusId,
             "propertyListingTypeId": formData.propertyListingTypeId,
-            "propertyConfigType":formData.propertyConfigType,
+            "propertyConfigType": formData.propertyConfigType,
             "constructionStatusId": formData.constructionStatus,
             "facing": formData.facing,
             "amenities": formData.amenities,
@@ -94,11 +96,11 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
             "sizeInSqft": formData.builtUpArea,
             "age": formData.age,
             "specifications": formData.specifications,
-            "ownership":formData.ownership,
+            "ownership": formData.ownership,
             "zoneTypeId": formData.zoneTypeId,
-            "propertyProjectId":formData.propertyProjectId,
+            "propertyProjectId": formData.propertyProjectId,
             "images": imagesUrl,
-            "propertyTypeId":formData.propertyTypeId
+            "propertyTypeId": formData.propertyTypeId
 
             // "propertyStatusId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
             // "propertyPossessionStatusId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -144,18 +146,17 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
 
             // "featuredStatus": "FEATURED",
             // "logo": "string"
-          }
-          console.log("request", requestObj);
-          await postProperty(session.user.id, requestObj, session.token);
-          changeStep(3);
-          
+        }
+        await postProperty(session.user.id, requestObj, session.token);
+        changeStep(3);
+
     }
 
     const addSpecification = () => {
         const selectedSpecification = formInputData.specifications.find(e => e.id == formData.specificationId) || {};
         let filteredSpecifications = formData.specifications.filter(item => item.specification != formData.specificationId);
         filteredSpecifications.push({ specification: formData.specificationId, count: Number(formData.specificationCount), name: selectedSpecification.name });
-        setFormData((prevFormData) => ({ ...prevFormData, specifications: filteredSpecifications}));
+        setFormData((prevFormData) => ({ ...prevFormData, specifications: filteredSpecifications }));
     }
 
     const removeSpecification = (id) => {
@@ -167,7 +168,7 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
         const selectedAmenity = formInputData.amenities.find(e => e.id == formData.amenityId) || {};
         let filteredAmenities = formData.amenities.filter(item => item.amenity != formData.amenityId);
         filteredAmenities.push({ amenity: formData.amenityId, count: Number(formData.amenitiesCount), name: selectedAmenity.name });
-        setFormData((prevFormData) => ({ ...prevFormData, amenities: filteredAmenities} ));
+        setFormData((prevFormData) => ({ ...prevFormData, amenities: filteredAmenities }));
     }
 
     const removeAmenity = (id) => {
@@ -194,14 +195,14 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
                 specifications={formInputData.specifications}
                 amenities={formInputData.amenities}
                 localities={localityData}
-                projects={projects} 
-                propertyFacings = {formInputData.facings}
+                projects={projects}
+                propertyFacings={formInputData.facings}
                 zones={formInputData.zones}
                 ownerships={formInputData.ownerships}
                 isResidential={isResidential}
                 projectConfigurationsData={projectConfigurationsData}
-                />
-            case 1: return <PhotosAndVideos setImages={setImages} formData={formData} handleChange={handleChange} changeStep={changeStep} images={images}/>;
+            />
+            case 1: return <PhotosAndVideos setImages={setImages} formData={formData} handleChange={handleChange} changeStep={changeStep} images={images} />;
             case 2: return <PricingAndPost formData={formData} handleChange={handleChange} postProperty={post} />
             case 3: return <SuccessPage />
         }

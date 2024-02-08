@@ -10,6 +10,12 @@ function getSearchData(searchTerm, cityName) {
     return get(searchUrl, { next: { cache: false }});
 }
 
+function getProjectComparisionData(ids=[]) {
+    let url = `${API_CLIENT_URL}/filter/compare-projects?projectIds=${ids.join("&projectIds=")}`;
+    return get(url, { next: { cache: false }});
+}
+
 export {
-    getSearchData
+    getSearchData,
+    getProjectComparisionData
 }

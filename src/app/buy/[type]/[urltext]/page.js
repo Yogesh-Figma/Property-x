@@ -59,6 +59,7 @@ export default async function Page({ params: { urltext, type }, }) {
         photos: (data.images || []).map((item) => { return { original: item, thumbnail: item } }),
         videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail: "https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail: "https://picsum.photos/id/1019/250/150/" }]
     }
+
     return (<div className='property-page container-fluid'>
         <GalleryModal data={galleryData} />
         <CompareProjectPopup />
@@ -77,7 +78,7 @@ export default async function Page({ params: { urltext, type }, }) {
                 <div className='col-lg-8'>
                     <div className='property-images position-relative'>
                         <Image src={(data.images || [])[0] || ""} fill={true} />
-                        <CompareProjects />
+                        <CompareProjects data={data}/>
                         <Link href={"?gallery=true"}>
                             <div className='images-video-count position-absolute d-flex'>
                                 <div className='image-cnt d-flex align-items-center justify-content-center'><ImagesIcon />{(data.images || []).length}</div>
@@ -128,10 +129,12 @@ export default async function Page({ params: { urltext, type }, }) {
             <About data={data} type={type} />
             <HighLights data={data.highlights || []} />
             <Amenities data={data} type={type} />
-            {!!data["floorPlan"] || true && <div id="floor-plan">
+            {<Suspense>
+                <div id="floor-plan">
                 <Heading label={"Floor Plan"} />
-                <FloorPlan floorPlan={data["floorPlan"]} />
-            </div>}
+                <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]}/>
+            </div>
+            </Suspense>}
             <div className='similar' id="properties-in-project">
                 <Heading label={"Properties in this project"} />
                 <PropertiesInProject />

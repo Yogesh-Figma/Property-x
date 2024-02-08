@@ -61,7 +61,7 @@ export default ({ data, type }) => {
             <div className='property-price-info col-md-4 text-md-end mt-4 mt-md-0'>
                 <div className=''><span className='best-buy-txt'>Best Buy at</span></div>
                 <div className="price-range-cnt">
-                    <div className="price sub-heading-2">{data["ratePerUnitInsqft"]}</div>
+                    <div className="price sub-heading-2">{data["ratePerUnitInsqft"]||data["ratePerAreaUnit"]}</div>
                     <div className="taxes-applicable">+ Taxes applicable</div>
                 </div>
                 <div className='btn-cnt'>

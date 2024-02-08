@@ -109,8 +109,8 @@ async function getProjectConfigurationById(projectId, accessToken) {
     return data.map(item => item.propertyConfiguration);
 }
 
-async function getPropertyConfigurationByType(configTypeId, accessToken) {
-    const data = await get(`${API_CLIENT_URL}/get/all/property/configuration?propertyConfigTypeId=${configTypeId}`, {
+async function getPropertyConfigurationByType(configTypeId, projectId, accessToken) {
+    const data = await get(`${API_CLIENT_URL}/get/all/property/configuration?propertyConfigTypeId=${configTypeId}&projectId=${projectId}`, {
         headers: {
             'Content-Type': 'application/json',
             'x-auth-token': accessToken

@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { SessionProvider } from "next-auth/react"
 import {
     QueryClient,
@@ -9,10 +9,26 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const AppContext = createContext();
 
+function getInitialState() {
+    const appState = localStorage.getItem('appState')
+    return appState ? JSON.parse(appState) : {comparisonProjects:[]}
+}
+
 export const AppProvider = ({ children, session }) => {
+    const [appState, setAppState] = useState(getInitialState());
     const [userLocation, setUserLocation] = useState("");
     const [loaderEnabled, enableLoader] = useState(false);
-    const [comparisonProjects, setProjectsForComparison] = useState([]);
+    useEffect(() => {
+        const storedState = localStorage.getItem('appState');
+        if (storedState) {
+          setAppState(JSON.parse(storedState));
+        }
+      }, []);
+      
+      useEffect(() => {
+        localStorage.setItem('appState', JSON.stringify(appState));
+      }, [appState]);
+
     const queryClient = new QueryClient({
         defaultOptions: {
           queries: {
@@ -21,12 +37,17 @@ export const AppProvider = ({ children, session }) => {
         },
       })
 
+    const setProjectsForComparison = (newData) => {
+        setAppState(prev => ({...prev, comparisonProjects:newData}))
+    }
+
     const addProjectForComparison = (projectData) => {
-        if (comparisonProjects.some(data == projectData.id)) {
+        let { comparisonProjects } = appState;
+        if (comparisonProjects.some(data=> data.id == projectData.id)) {
             //project already present returning
-            return prevData;
+            return;
         }
-        let newData = new Array(comparisonProjects);
+        let newData = [...comparisonProjects];
         if (newData.length == 2) {
             newData[0] = projectData
         }
@@ -36,26 +57,28 @@ export const AppProvider = ({ children, session }) => {
         setProjectsForComparison(newData);
     }
 
-    const removeProjectFromComparison = (projectData) => {
-        setProjectsForComparison(newData.filter(data => data.id != projectData.id));
+    const removeProjectFromComparison = (id) => {
+        let { comparisonProjects } = appState;
+        setProjectsForComparison(comparisonProjects.filter(data => data.id != id));
     }
 
     const value = {
-        comparisonProjects,
+        comparisonProjects:appState.comparisonProjects,
         addProjectForComparison,
         removeProjectFromComparison,
         userLocation,
         setUserLocation,
         enableLoader
     };
+
+
     return <SessionProvider session={session}>
         <QueryClientProvider client={queryClient}>
             <AppContext.Provider value={value}>
                 {loaderEnabled && <div className='global-loader position-fixed'>
                     <CircularProgress size="4rem"/>
                 </div>}
-                {children}
-                
+                {children}                
             </AppContext.Provider>
         </QueryClientProvider>
     </SessionProvider>;

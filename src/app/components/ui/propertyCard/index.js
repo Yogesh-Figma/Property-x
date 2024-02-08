@@ -165,7 +165,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
     devImage, height, id, verticalView,
     visitDate, visitTime, useStretchedLink,
     showTalkToConsultant, furnishingInfo,
-    showRateNow, rera, hideLikeBtn, urlText }) => {
+    showRateNow, rera, hideLikeBtn, urlText, isWished }) => {
     return (<div style={{ height }} key={id}>
         <Card className={`property-card-4 overflow-hidden row position-relative g-0`}>
             {!!showRateNow && !!visitDate && !!visitTime && <div className='visit-rate-now-section p-2 d-flex justify-content-between align-items-center d-md-none'>
@@ -191,7 +191,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             <Rating />
                         </div> :
                             <div className='share-container'>
-                                {!hideLikeBtn && <WishListBtn id={id} isProperty={isProperty} width={22} height={20} isWished={true} />}
+                                {!hideLikeBtn && <WishListBtn id={id} isProperty={isProperty} width={22} height={20} isWished={isWished} />}
                                 <ShareIcon width={24} height={24} />
                             </div>}
                     </div>

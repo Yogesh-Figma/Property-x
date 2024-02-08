@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import AutoCompleteSearch from '@/app/components/autoCompleteSearch';
 import DropDown from "@/app/components/dropDown";
 import Chip from '@/app/components/chip';
+import CheckBox from "@/app/components/checkbox";
 
 export default ({ formData, handleChange, changeStep, specifications = [],
     specificationsCount = [], propertyListingTypes, lookingTo, propertyType,

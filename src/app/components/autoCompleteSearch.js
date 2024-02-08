@@ -15,20 +15,32 @@ export default function AutoCompleteSearch({ width = 300, value, onChange, heigh
     errorMessage,
     control,
     clearOnEscape,
+    onInputChange,
+    renderOption,
     name, autoCompleteOptions }) {
     const [autoCompleteValue, setAutoCompleteValue] = React.useState("");
+    const selectedValue = React.useMemo(
+        () => autoCompleteOptions.find(item => (item?.value == value || item == value || item?.label == value)) || "",
+        [autoCompleteOptions]
+      );
+
     return (
         <Autocomplete
             clearOnEscape={clearOnEscape}
             options={autoCompleteOptions}
+            renderOption={renderOption}
             onChange={(event, newValue) => {
                 onChange({target:{ value:newValue?.value, name }})
             }}
             onInputChange={(event, newInputValue) => {
                 setAutoCompleteValue(newInputValue);
+                if(!!onInputChange) {
+                    onInputChange(newInputValue)
+                }
             }}
             name={name}
-            value={autoCompleteOptions.find(item => (item?.value == value || item == value))}
+            isOptionEqualToValue={(option, value) => option?.value == value?.value || option?.label == value?.label || option == value}
+            value={selectedValue}
             inputValue={autoCompleteValue}
             sx={{ width: width,
                 '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
@@ -63,7 +75,7 @@ export default function AutoCompleteSearch({ width = 300, value, onChange, heigh
                 label={label}
                 name={name}             
                 height={height}
-            />}
+            />}           
         />
     );
 }

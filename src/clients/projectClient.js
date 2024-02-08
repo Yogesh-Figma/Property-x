@@ -35,11 +35,17 @@ function getProjectsByCityId(cityId, accessToken) {
     });
 }
 
+async function getProjectConfigurationById(projectId) {
+    const data = await get(`${API_CLIENT_URL}/get/project/configuration/by/project/id/${projectId}`)
+    return data;
+}
+
 export {
     PROJECT_STATUS,
     getProjectsByStatus,
     getProjectById,
     getAllProjects,
     getProjectsByCityId,
-    getProjectByUrlText
+    getProjectByUrlText,
+    getProjectConfigurationById
 }

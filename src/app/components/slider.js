@@ -49,8 +49,8 @@ const settings = {
 };
 
 
-const CardSlider = ({ carouselSettings , children }) =>
-  <Slider {...settings} {...carouselSettings}>
+const CardSlider = ({ hideArrow, carouselSettings , children }) =>
+  <Slider {...settings} {...carouselSettings} {...(hideArrow? {nextArrow:null, prevArrow:null}:{})}>
     {children}
   </Slider>
 

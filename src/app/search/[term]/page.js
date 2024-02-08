@@ -27,7 +27,7 @@ export default function Page({ params:{ term },
     const cityName = searchParams?.city;
 
     const { data: searchData = [], isLoading, isError, error } = useQuery({
-        queryKey: ['getSearchData', term],
+        queryKey: ['getSearchData', term, cityName],
         queryFn: () => getSearchData(term, cityName),
     });
 

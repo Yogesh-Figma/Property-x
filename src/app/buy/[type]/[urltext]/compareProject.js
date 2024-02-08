@@ -10,13 +10,16 @@ import CloseIcon from '@/app/icons/icon_close-small.svg'
 import { useSearchParams, useRouter } from 'next/navigation'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
+import { getSearchData } from '@/clients/searchClient';
+import { useQuery } from 'react-query';
+import CheckBox from '@/app/components/checkbox';
 
-export const CompareProjects = ({ projectdata }) => {
+export const CompareProjects = ({ data }) => {
     const router = useRouter();
     const { addProjectForComparison, removeProjectFromComparison } = useAppContext();
 
     const compareProject = () => {
-       //addProjectForComparison(projectdata)
+       addProjectForComparison(data)
        router.push("?compare=1", {scroll: false});
     }
 
@@ -28,58 +31,83 @@ export const CompareProjectPopup = () => {
     const router = useRouter();
     const comparePopupEnabled = searchParams.get('compare') || false
     const [searchTerm, setSearchTerm] = React.useState("");
-
+    const { comparisonProjects, removeProjectFromComparison, addProjectForComparison } = useAppContext();
+    
     const handleClose = () => {
         router.back();
     }
 
-    const handleSearchTermChange = (event) => {
-        setSearchTerm(event.target.value);
+
+
+    const handleSearchTermChange = (term) => {
+        setSearchTerm(term)
+    }
+
+    const { data: searchData = [], isLoading, isError, error } = useQuery({
+        enabled:!!searchTerm,
+        queryKey: ['getSearchData', searchTerm],
+        queryFn: () => populateSearchData(searchTerm),
+    });
+
+    const selectProject = (event) => {
+        const data = searchData.find(item => item.id == event.target.value);
+        if(!!data) {
+            addProjectForComparison(data);
+        }
     };
 
-    const topProjects = [
-        { label: 'Signature Global Signum 37D' },
-        { label: 'Signature Global City 81' },
-        { label: 'M3M Antalya Hills' },
-        { label: 'Smart World Orchard' },
-        { label: 'M3M Crown' },
-        { label: "DLF The Arbour" },
-    ];
+    const populateSearchData = async () => {
+        const result = await getSearchData(searchTerm);
+        let test = result.map(item => { return {id:item.data.id, label: item.data.name, value: item.data.id, name:item.data.name, images:item.data.images, address:item.data.address || "", type: item.type} });
+        return test;
+    }
 
     return (<div className={`comparison-popup position-fixed ${comparePopupEnabled ? 'visible':''}`}>
          <span className='close-icon position-absolute cursor-pointer' onClick={handleClose}>
                 <CloseIcon width={30} height={30} className='close-icon' />
             </span>
         <div className='d-flex position-relative'>
-            <div className="comparison-item d-flex flex-column align-items-center position-relative">
-                <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon className="cross-icon" /></span>
+            {comparisonProjects.map(item => <div className="comparison-item d-flex flex-column align-items-center position-relative">
+                <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
                 <div className='prop-image'>
-                    <Image src={"/mahunDeveloperImg.png"} width={157} height={94} />
+                    <Image src={(item.images || [])[0] || ""} width={157} height={94} />
                 </div>
-                <div className='proj-title'>Nirala Estate</div>
-                <div className="proj-location sub-info">Techzone 4, Greater Noida West</div>
-            </div>
-            <div className="comparison-item d-flex flex-column align-items-center position-relative">
+                <div className='proj-title'>{item.name}</div>
+                <div className="proj-location sub-info">{item.address}</div>
+            </div>)}
+            {/* <div className="comparison-item d-flex flex-column align-items-center position-relative">
                 <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon /></span>
                 <div className='prop-image'>
                     <Image src={"/mahunDeveloperImg.png"} width={157} height={94} />
                 </div>
                 <div className='proj-title'>Nirala Estate</div>
                 <div className="proj-location sub-info">Techzone 4, Greater Noida West</div>
-            </div>
+            </div> */}
 
             <div className="comparison-item d-flex flex-column align-items-center justify-content-center">
                 <div className='add-proj'>+ Add a Project</div>
                 <AutoCompleteSearch
-                    autoCompleteOptions={topProjects}
+                    autoCompleteOptions={searchData}
                     rounded={true}
                     width={"100%"}
                     className='project-form-input'
                     label={"Enter Project"}
                     name="searchTerm"
+                    clearOnEscape={true}
                     value={searchTerm}
-                    onChange={handleSearchTermChange}
-                    height={30}
+                    onChange={selectProject}
+                    onInputChange={handleSearchTermChange}
+                    height={32}
+                    renderOption={(props, option, { selected }) => (
+                        <li {...props}>
+                          <CheckBox
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                            onChange={()=>{}}
+                          />
+                          {option.label}
+                        </li>
+                      )}
                 />
             </div>
             <div className="comparisons-btn d-flex flex-column align-items-center justify-content-center">
