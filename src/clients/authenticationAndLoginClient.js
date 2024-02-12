@@ -11,6 +11,10 @@ function generateToken(username, otp, password) {
     return post(`${API_CLIENT_URL}/user/generate/login/token`, { username, otp });
 }
 
+function getRefreshToken(token) {   
+    return post(`${API_CLIENT_URL}/user/refresh-token`, { token });
+}
+
 function getCurrentUser(accessToken) {
     return get(`${API_CLIENT_URL}/current-user`, {
         headers: {
@@ -22,5 +26,6 @@ function getCurrentUser(accessToken) {
 export {
     generateToken,
     getCurrentUser,
-    sendOtp
+    sendOtp,
+    getRefreshToken
 }

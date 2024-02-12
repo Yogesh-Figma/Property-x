@@ -155,6 +155,10 @@ function postProperty(id, data, accessToken) {
     });
 }
 
+function getPropertiesByProjectId(id){
+    return get(`${API_CLIENT_URL}/get/property/by/project/id?project_id=${id}`);
+}
+
 
 export {
     getPropertyById,
@@ -166,5 +170,6 @@ export {
     getPropertyByUrlText,
     postProperty,
     getProjectConfigurationById,
-    getPropertyConfigurationByType
+    getPropertyConfigurationByType,
+    getPropertiesByProjectId
 }

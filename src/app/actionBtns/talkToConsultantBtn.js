@@ -6,17 +6,18 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Button from '../components/button';
-import { redirect } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 
 const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className="overview-btn", variant="outlined-noborder" }) => {
 
     const { data: session } = useSession();
     const [open, setOpen] = React.useState(false);
+    const router = useRouter();
 
     const registerTalkToConslt = async () => {
         if (!session) {
-            redirect('?login=true')
+            return router.push('?login=true');
         }
         else {
             const reqObj = {

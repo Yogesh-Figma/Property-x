@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import './styles.scss'
 import SimilarProjects from './similarProperties';
-import SimilarProperties from './propertiesInProject';
+import SimilarProperties from './similarProperties';
 import Heading from '@/app/components/heading';
 import Image from 'next/image'
 import NextLinkButton from '@/app/components/nextLinkButton';
@@ -124,7 +124,7 @@ export default async function Page({ params: { urltext, type }, }) {
                     </div>
                 </div>
             </div>
-            <Tabs />
+            <Tabs isProperty={isProperty}/>
             <Overview showBtn={true} data={data} type={type} />
             <About data={data} type={type} />
             <HighLights data={data.highlights || []} />
@@ -135,10 +135,12 @@ export default async function Page({ params: { urltext, type }, }) {
                 <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]}/>
             </div>
             </Suspense>}
-            <div className='similar' id="properties-in-project">
-                <Heading label={"Properties in this project"} />
-                <PropertiesInProject />
-            </div>
+            {!isProperty && <Suspense>
+                <div className='similar' id="properties-in-project">
+                    <Heading label={"Properties in this project"} />
+                    <PropertiesInProject id={data.id}/>
+                </div>
+            </Suspense>}
             <div id="about-developer">
                 <Heading label={"About Developer"} />
                 <div className='row'>
@@ -168,10 +170,10 @@ export default async function Page({ params: { urltext, type }, }) {
                 {data["faq"].map((item, index) => <Accordion key={index} className={"faq-detail"} title={"Q." + item.questions + "?"} summary={item.answers} />)}
             </div>}
 
-            <div className='similar' id="recommendation">
+            {isProperty && <Suspense><div className='similar' id="recommendation">
                 <Heading label={"Similar Properties nearby"} />
                 <SimilarProperties />
-            </div>
+            </div></Suspense>}
         </div>
         <div className='upcomings' id="upcomings">
             <UpcomingLaunches />

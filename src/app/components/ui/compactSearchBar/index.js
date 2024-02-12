@@ -13,10 +13,12 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 
 
 const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", showSearchIcon, showLocationMenu, className, locations }) => {
-    const SEARCH_REGEX = /\/search\/(.*)/
-    const pathName = usePathname()
+    const SEARCH_REGEX = /\/search\/(\w+)/
+    const pathName = usePathname();
+    const searchParams = useSearchParams();
     const matches = SEARCH_REGEX.exec(pathName);
     const searchTermFromParam = (matches != null && matches.length > 0) ? matches[1]: "";
+    const cityNameFromParam = !!searchTermFromParam ? searchParams.get("city") : "";
     const [searchTerm, setSearchTerm] = React.useState(searchTermFromParam);
 
     const { userLocation, setUserLocation } = useAppContext() || {};
@@ -43,7 +45,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
     return (
         <div className={`compact-search-bar-container d-flex ${className}`}>
             {!!showLocationMenu && <div className='location-container'>
-                <DropDown label={"Location"} handleChange={handleLocationChange} value={userLocation} values={locations} /></div>}
+                <DropDown label={"Location"} handleChange={handleLocationChange} value={userLocation||cityNameFromParam} values={locations} /></div>}
             <div className='compact-search-bar body-txt'>
                 <form onSubmit={handleSubmit} id="search-form-2">
                     <TextField

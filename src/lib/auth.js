@@ -1,5 +1,5 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { generateToken, getCurrentUser } from '@/clients/authenticationAndLoginClient' 
+import { generateToken, getCurrentUser, getRefreshToken } from '@/clients/authenticationAndLoginClient' 
 
 export const authOptions = {
   session: {
@@ -22,8 +22,8 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         try {          
-          const user = await generateToken(credentials.mobileno, credentials.otp, credentials.password);
-          if (user) {
+          const user = await generateToken(credentials.mobileno, credentials.otp, credentials.password);       
+          if (user) {   
             const userInfo = await getCurrentUser(user.token);
             return { token: user.token, username: user.username, ...userInfo };
           }
@@ -40,20 +40,35 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account }) {
+      let userObj = token;
+      let expiryTime = token?.exp;
       if (!!user) {
-        return {
+        userObj = {
           ...token,
           user,
           accessToken: user.token,
           refreshToken: user.refreshToken,
         };
+        const accessTokenData = JSON.parse(atob((user.token).split(".")?.at(1)));
+        expiryTime = accessTokenData.exp;
       }
-
-      return token;
+      const shouldRefreshTime = Math.round((expiryTime - 7200) - (Date.now()/1000));
+      if (shouldRefreshTime > 0) {
+          return userObj;
+      }
+      else {
+        const data = getRefreshToken(token);
+        userObj = {
+          ...token,
+          user,
+          accessToken: data.token
+        }
+        return userObj;
+      }
     },
 
     async session({ session, token }) {
-      if (Date.now() / 1000 > token?.accessTokenExpires && token?.refreshTokenExpires && Date.now() / 1000 > token?.refreshTokenExpires) {
+      if (Date.now() / 1000 > token?.accessTokenExpires) {
         throw new Error("Refresh token has expired. Please log in again to get a new refresh token.");
       }
 

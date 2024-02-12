@@ -1,23 +1,27 @@
 import React from 'react';
 import CardSlider from '@/app/components/slider';
-import { PropertyCard } from '@/app/components/ui/propertyCard'
+import { PropertyCard } from '@/app/components/ui/propertyCard';
+import { getPropertiesByProjectId } from '@/clients/propertyClient';
 
-const PropertiesInProject = () => {
+const PropertiesInProject = async ({ id }) => {
+    const data = await getPropertiesByProjectId(id);
     return (<div className='similar-properties'>
-        <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
-            {[1, 2, 3, 4, 5, 6].map((item, index) => <PropertyCard
+        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
+            {data.map((item, index) => (<PropertyCard
                 key={index}
+                id={item.id}
+                urlText={item.url}
+                postedBy={item.developerName}
                 isProperty={true}
-                title={"Gaur Krishn Villas"}
-                postedBy={"Owner"}
-                bhk={"2, 3, 4 BHK"}
-                address={"Sector 10, Greater Noida West, Greater Noida"}
-                price={"₹40L-85L"}
-                imgsrc={"/samplePropertyImage.jpeg"}
+                title={item.name}
+                bhk={item.configuration?.name}
+                address={item.address}
+                price={item.ratePerUnitInsqft}
+                imgsrc={item.logo || ""}
                 width={270}
                 height={"275px"}
                 devImage={"/devSampleImage.jpeg"}
-                id={item} />)}
+            />))}
         </CardSlider>
     </div>)
 }

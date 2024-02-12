@@ -8,16 +8,19 @@ import { Link } from 'react-scroll'
 
 
 //data is with width because variable width content requires width to function correctly
-const tabsData = [
-    { txt: "Overview", width: 116, to: "overview" },
-    { txt: "About", width: 80, to: "about" },
-    { txt: "Highlights", width: 136, to: "highlights" },
-    { txt: "Amenities", width: 122, to: "amenities" },
-    { txt: "Floor Plan", width: 126, to: "floor-plan" },
-    { txt: "Properties in this Project", width: 267, to: "properties-in-project" },
-    { txt: "About Developer", width: 200, to: "about-developer" },
-    { txt: "FAQs", width: 80, to: "faq" },
-    { txt: "Upcoming Launches", width: 206, to: "upcomings" }]
+function getTabsData(isProperty){
+    const tabsData = [
+        { txt: "Overview", width: 116, to: "overview" },
+        { txt: "About", width: 80, to: "about" },
+        { txt: "Highlights", width: 136, to: "highlights" },
+        { txt: "Amenities", width: 122, to: "amenities" },
+        { txt: "Floor Plan", width: 126, to: "floor-plan" },
+        { txt: "Properties in this Project", width: 267, to: "properties-in-project", disabled:isProperty },
+        { txt: "About Developer", width: 200, to: "about-developer" },
+        { txt: "FAQs", width: 80, to: "faq" },
+        { txt: "Upcoming Launches", width: 206, to: "upcomings" }];
+    return tabsData;
+}
 
 const scrollEffect = (targetRef) => {
     targetRef.current.scrollIntoView({
@@ -26,7 +29,8 @@ const scrollEffect = (targetRef) => {
     });
 }
 
-export default ({ }) => {
+export default ({ isProperty }) => {
+    const tabsData = React.useMemo(()=> getTabsData(isProperty), [isProperty]);
     return (<Card className='position-sticky property-tab-card'>
         <CardSlider carouselSettings={{
             variableWidth: true, slideToScroll:4, swipeToSlide: false, className: "property-tabs", responsive: [{
@@ -42,7 +46,7 @@ export default ({ }) => {
                 }
             }]
         }}>
-            {tabsData.map((item, index) => <div style={{ width: item.width }} className='property-tab'>
+            {tabsData.map((item, index) => item.disabled ? null: <div style={{ width: item.width }} className='property-tab'>
                 <Link key={index} activeClass="active" className="property-tab-link text-decoration-none text-nowrap" to={item.to} spy={true} smooth={false} offset={-90} >
                     {item.txt}
                 </Link>

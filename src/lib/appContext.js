@@ -10,7 +10,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 const AppContext = createContext();
 
 function getInitialState() {
-    const appState = localStorage.getItem('appState')
+    let appState;
+    if (typeof window !== 'undefined') {
+        appState = localStorage.getItem('appState')
+    }
     return appState ? JSON.parse(appState) : {comparisonProjects:[]}
 }
 
