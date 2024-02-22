@@ -15,10 +15,8 @@ function getTabsData(isProperty){
         { txt: "Highlights", width: 136, to: "highlights" },
         { txt: "Amenities", width: 122, to: "amenities" },
         { txt: "Floor Plan", width: 126, to: "floor-plan" },
-        { txt: "Properties in this Project", width: 267, to: "properties-in-project", disabled:isProperty },
         { txt: "About Developer", width: 200, to: "about-developer" },
-        { txt: "FAQs", width: 80, to: "faq" },
-        { txt: "Upcoming Launches", width: 206, to: "upcomings" }];
+        { txt: "FAQs", width: 80, to: "faq" }];
     return tabsData;
 }
 

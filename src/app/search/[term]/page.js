@@ -25,10 +25,12 @@ export default function Page({ params:{ term },
 
     const [selectedProp, selectProp] = React.useState({});
     const cityName = searchParams?.city;
+    const onlyProject = searchParams?.onlyProject;
+    const propertyCategory = searchParams?.category;
 
     const { data: searchData = [], isLoading, isError, error } = useQuery({
-        queryKey: ['getSearchData', term, cityName],
-        queryFn: () => getSearchData(term, cityName),
+        queryKey: ['getSearchData', term, cityName, onlyProject, propertyCategory],
+        queryFn: () => getSearchData(term, cityName, onlyProject, propertyCategory),
     });
 
     const firstCardData = searchData[0]?.data
@@ -46,6 +48,8 @@ export default function Page({ params:{ term },
         selectProp({ url, type });
     }
 
+    console.log("searchData", searchData);
+
     return (<div className='search-page container-fluid'>
         {isLoading ? <Loading /> : <>
             <Filter />
@@ -54,17 +58,19 @@ export default function Page({ params:{ term },
                     {(searchData || []).map(data => {
                         const isProperty = (data.type || "").toLowerCase() == "property";
                         const item = data.data;
+                        console.log("item", item);
+
                         return (<div onClick={selectCard(item.url, (data.type || "").toLowerCase())} className={`property-card-cont ${isProperty ? "prop-cnt" : "proj-cnt"}`}>
                             <PropertyCard4 title={item.name}
                                 isProperty={isProperty}
                                 bhk={data["configuration"]?.name || data.configurations}
                                 address={item.address}
-                                priceRange={item.ratePerAreaUnit}
                                 imgsrc={item.logo || ""}
-                                devImage={"/devSampleImage.jpeg"}
+                                devImage={item.developerLogo}
                                 by={item.developerName}
                                 possessionInfo={item.possessionDue}
-                                avgPrice={item.ratePerAreaUnit}
+                                avgPrice={item.ratePerUnitInsqft || item.ratePerAreaUnit || "TO BE ANNOUNCED"}
+                                price={item.totalPrice}
                                 id={item.id}
                                 urlText={item.url}
                                 subInfo={item.description}
@@ -73,6 +79,8 @@ export default function Page({ params:{ term },
                                 ratingValue={item.ratingAverage}
                                 rera={item.rera}
                                 furnishingInfo={item.furnishingStatus?.name}
+                                minPrice={item.minPrice}
+                                maxPrice={item.maxPrice}
                             />
                         </div>)
                     })}

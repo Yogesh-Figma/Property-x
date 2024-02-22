@@ -14,12 +14,12 @@ import { getSearchData } from '@/clients/searchClient';
 import { useQuery } from 'react-query';
 import CheckBox from '@/app/components/checkbox';
 
-export const CompareProjects = ({ data }) => {
+export const CompareProjects = ({ data, isProperty }) => {
     const router = useRouter();
     const { addProjectForComparison, removeProjectFromComparison } = useAppContext();
 
     const compareProject = () => {
-       addProjectForComparison(data)
+       addProjectForComparison(data, isProperty)
        router.push("?compare=1", {scroll: false});
     }
 

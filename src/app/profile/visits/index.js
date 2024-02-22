@@ -27,7 +27,7 @@ export default ({ }) => {
                         <div className='property-cards'>
                             {(data.upcoming || []).map(visits => {
                                 const data = visits.property || visits.project || {};
-                                const visitDate = dayjs(visits.scheduledDateTime);
+                                const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
                                     <PropertyCard4
                                         title={data.name}
@@ -35,12 +35,13 @@ export default ({ }) => {
                                         address={data.address}
                                         furnishingInfo={data.furnishingStatus?.name}
                                         priceRange={"₹40L-85L"}
-                                        imgsrc={"/samplePropertyImage.jpeg"}
-                                        devImage={"/devSampleImage.jpeg"}
+                                        imgsrc={data.logo}
+                                        devImage={item.developerLogo} 
                                         isProperty={!!visits.property}
                                         by={(data.developer || data.developerId)?.name}
                                         possessionInfo={data.possessionDue}
-                                        avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                        avgPrice={item.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                        price={item.totalPrice}
                                         id={data.id}
                                         urlText={data.url}
                                         showRateNow={true}
@@ -48,6 +49,8 @@ export default ({ }) => {
                                         visitDate={visitDate.format("MMM, YYYY")}
                                         visitTime={visitDate.format("hh:mm A")}
                                         subInfo={data.propertySpecification || data.specification}
+                                        minPrice={data.minPrice}
+                                        maxPrice={data.maxPrice}
                                     />
                                 </div>)
                             })}
@@ -59,7 +62,7 @@ export default ({ }) => {
                         <div className='property-cards'>
                             {(data.visited || []).map(visits => {
                                 const data = visits.property || visits.project || {};
-                                const visitDate = dayjs(visits.scheduledDateTime);
+                                const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
                                     <PropertyCard4 title={"Gaur Krishn Villas"}
                                         bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
@@ -67,11 +70,11 @@ export default ({ }) => {
                                         furnishingInfo={data.furnishingStatus?.name}
                                         priceRange={"₹40L-85L"}
                                         imgsrc={data.logo || ""}
-                                        devImage={"/devSampleImage.jpeg"}
+                                        devImage={item.developerLogo} 
                                         isProperty={!!visits.property}
                                         by={(data.developer || data.developerId)?.name}
                                         possessionInfo={data.possessionDue}
-                                        avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                        avgPrice={data.ratePerUnitInsqft || data.ratePerAreaUnit || "TO BE ANNOUNCED"}
                                         id={data.id}
                                         urlText={data.url}
                                         showRateNow={true}
@@ -79,6 +82,8 @@ export default ({ }) => {
                                         visitDate={visitDate.format("MMM, YYYY")}
                                         visitTime={visitDate.format("hh:mm A")}
                                         subInfo={data.propertySpecification || data.specification}
+                                        minPrice={data.minPrice}
+                                        maxPrice={data.maxPrice}
                                     />
                                 </div>)
                             })}

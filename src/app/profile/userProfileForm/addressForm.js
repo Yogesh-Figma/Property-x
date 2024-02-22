@@ -66,7 +66,7 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
                     label={"State"}
                     height={50}
                     handleChange={(event) => handleChange({ target: { name: `${type}StateId`, value: event.target.value } })}
-                    values={addressData[type].states || []}
+                    values={addressData[type]?.states || []}
                 />
             </div>
         </div>
@@ -81,7 +81,7 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
                     label={"City"}
                     height={50}
                     handleChange={(event) => handleChange({ target: { name: `${type}CityId`, value: event.target.value } })}
-                    values={addressData[type].cities || []}
+                    values={addressData[type]?.cities || []}
                 />
             </div>
             <div className="col-md-6 col-12 mt-md-0 mt-4">
@@ -94,7 +94,7 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
                     label={"Locality"}
                     height={50}
                     handleChange={(event) => handleChange({ target: { name: `${type}LocalityId`, value: event.target.value } })}
-                    values={addressData[type].localities || []}
+                    values={addressData[type]?.localities || []}
                 />
             </div>
         </div>

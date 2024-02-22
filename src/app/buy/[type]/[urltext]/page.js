@@ -56,9 +56,16 @@ export default async function Page({ params: { urltext, type }, }) {
     const isProperty = type == "property";
     const data = isProperty ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
     const galleryData = {
-        photos: (data.images || []).map((item) => { return { original: item, thumbnail: item } }),
         videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail: "https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail: "https://picsum.photos/id/1019/250/150/" }]
-    }
+    };
+
+   (data.images || []).forEach(element => {
+        if(!galleryData[element.category]) {
+            galleryData[element.category] = [];
+        }
+        galleryData[element.category].push({original: element.imageUrl, thumbnail: element.imageUrl });
+    });
+
 
     return (<div className='property-page container-fluid'>
         <GalleryModal data={galleryData} />
@@ -77,8 +84,8 @@ export default async function Page({ params: { urltext, type }, }) {
             <div className='row g-0 property-additional-info'>
                 <div className='col-lg-8'>
                     <div className='property-images position-relative'>
-                        <Image src={(data.images || [])[0] || ""} fill={true} />
-                        <CompareProjects data={data}/>
+                        <Image src={data.coverPhoto|| ""} fill={true} />
+                        <CompareProjects data={data} isProperty={isProperty}/>
                         <Link href={"?gallery=true"}>
                             <div className='images-video-count position-absolute d-flex'>
                                 <div className='image-cnt d-flex align-items-center justify-content-center'><ImagesIcon />{(data.images || []).length}</div>
@@ -132,7 +139,7 @@ export default async function Page({ params: { urltext, type }, }) {
             {<Suspense>
                 <div id="floor-plan">
                 <Heading label={"Floor Plan"} />
-                <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]}/>
+                <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]} propertyPrice={data.totalPrice}/>
             </div>
             </Suspense>}
             {!isProperty && <Suspense>
@@ -158,8 +165,8 @@ export default async function Page({ params: { urltext, type }, }) {
                             </div>
                             <div className='btn-cnt'>
                                 <TalkToConsulantBtn height={34} id={data.id} isProperty={isProperty}/>
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href="?schedule=123" />
-                                <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/booking/${type}/${data.id}`} />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href={`?schedule=${data.id}`} />
+                                <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/booking/${type}/${data.url}`} />
                             </div>
                         </Card>
                     </div>

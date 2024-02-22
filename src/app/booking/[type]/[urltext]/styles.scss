@@ -74,15 +74,15 @@
                     height: 50px;
                     border-radius: 25px;
                     background: #FFF;
-                    padding: 10px 25px;
-                    width: 124px;
+                    padding: 10px 35px;
+                    min-width: 124px;
                     box-sizing: border-box;
                     /* Drop shadow */
                     box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
                 }
 
                 svg {
-                    right: 30px;
+                    right: 10px;
                 }
             }
 

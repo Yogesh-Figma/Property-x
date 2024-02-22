@@ -1,6 +1,7 @@
 import Card from '@/app/components/card';
 import Heading from '@/app/components/heading';
 import "./styles.scss"
+import Helper from '@/common/helper';
 
 export default ({data, type}) => {
     return (
@@ -15,7 +16,7 @@ export default ({data, type}) => {
                         <div className='sub-info'>Build Up Area</div>
                     </div> */}
                     <div className='info-box d-inline-flex align-items-center justify-content-center flex-column'>
-                        <div className='sub-heading-2'>{data["ratePerUnitInsqft"]}</div>
+                        <div className='sub-heading-2'>{Helper.pricePerSqftFormatter(data.ratePerUnitInsqft || data.ratePerAreaUnit || 0)}</div>
                         <div className='sub-info'>Avg. Price</div>
                     </div>
                 </div>

@@ -30,18 +30,21 @@ const MINUTES = [...Array(60).keys()].map((i, index) => {
 });
 
 
-export default function ScheduleCalendar({ id, type }) {
-    const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false };
+export default function ScheduleCalendar({ id, isProperty }) {
+    const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false, isAlreadyScheduled:false };
+    const maxDateAllowed = dayjs().add(240, 'day');
     const sessionData  = useSession();
     if( sessionData == null) {
         return;
     }
-    const { user, token } = sessionData;
+    console.log("sessionData", sessionData)
+    const { data: { user, token } } = useSession();
     const [date, setDate] = React.useState(dayjs().add(3, 'day'));
     const [formData, setFormData] = React.useState(initialScheduleState);
     const router = useRouter();
     const searchParams = useSearchParams();
-    const scheduleModalEnabled = !!searchParams.get('schedule') || false
+    const idFromQueryParam = searchParams.get('schedule');
+    const scheduleModalEnabled = !!idFromQueryParam;
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -65,7 +68,7 @@ export default function ScheduleCalendar({ id, type }) {
             setFormData((prevFormData) => ({ ...prevFormData, "scheduled": true }));
         },
         onError: (error) => {
-            alert(error)
+            setFormData((prevFormData) => ({ ...prevFormData, "isAlreadyScheduled": true }));
         },
         onSettled: () => {
         }
@@ -73,17 +76,19 @@ export default function ScheduleCalendar({ id, type }) {
 
     const submitForm = () => {
         let time = date.hour(Number(formData.hours) + formData.ampm == "PM" ? 12 : 0).minute(formData.minutes).valueOf();
+        debugger;
+        const dataId = id || idFromQueryParam;
         const data = {
             "scheduledDateTime": time,
             "exclusive": true,
             "status": "PLANNED",
             "type": "E_VISIT"
         }
-        if (type == "property") {
-            data.propertyId = id;
+        if (isProperty) {
+            data.propertyId = dataId;
         }
         else {
-            data.projectId = id;
+            data.projectId = dataId;
         }
         mutate({ userId: user.id, data, accessToken:token });
     }
@@ -101,12 +106,13 @@ export default function ScheduleCalendar({ id, type }) {
                 <CloseIcon width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose} />
                 <div className="heading schedule-visit-txt">Schedule a Visit</div>
                 <div className="sub-headig schedule-visit-subtxt">Explore with Go Propify's Experienced Guides</div>
-                {isLoading ? <Loading /> :
+                {isLoading ? <Loading isFullScreen={false}/> :
                     formData.scheduled ? <div className="scheduled-message d-flex align-items-center justify-content-center">Scheduled sucessfully</div> :
+                    formData.isAlreadyScheduled ? <div className="scheduled-message d-flex align-items-center justify-content-center">Visit already scheduled</div> :
                         <div>
                             <div className="heading">Pick a date that suits your schedule</div>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DateCalendar value={date} onChange={(newValue) => setDate(newValue)} />
+                                <DateCalendar value={date} onChange={(newValue) => setDate(newValue)} minDate={dayjs()} maxDate={maxDateAllowed}/>
                             </LocalizationProvider>
                             <div className="heading">Pick a time that suits your schedule</div>
                             <div className='time-selector d-flex align-items-center'>

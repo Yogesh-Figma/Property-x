@@ -89,13 +89,13 @@ function getPropertyOwnershipDetails() {
     })
 }
 
-function getPropertyFacing(){
+function getPropertyFacing() {
     return new Promise((res, rej) => {
         res([{ label: "NORTH", value: "NORTH" }, { label: "SOUTH", value: "SOUTH" },
         { label: "EAST", value: "EAST" },
-        { label: "WEST", value: "WEST" }, {label: "NORTH-EAST", value: "NORTH-EAST"},
-        {label: "NORTH-WEST", value: "NORTH-WEST"},{label: "SOUTH-EAST", value: "SOUTH-EAST"},
-        {label: "SOUTH-WEST", value: "SOUTH-WEST"}])
+        { label: "WEST", value: "WEST" }, { label: "NORTH-EAST", value: "NORTH-EAST" },
+        { label: "NORTH-WEST", value: "NORTH-WEST" }, { label: "SOUTH-EAST", value: "SOUTH-EAST" },
+        { label: "SOUTH-WEST", value: "SOUTH-WEST" }])
     })
 }
 
@@ -129,16 +129,16 @@ async function getPropertyPostData(type, categoryId, sessionToken) {
         cities: getAllCities(),
         facings: getPropertyFacing(),
         propertyConfigurationType: [],
-        zones:[],
-        ownerships:[],
+        zones: [],
+        ownerships: [],
         furnishingStatus: getPropertyFurnishingStatus()
     }
 
-    if(type.toLowerCase() == "commercial") {
+    if (type.toLowerCase() == "commercial") {
         parallelRequests.zones = getPropertyZones(sessionToken);
         parallelRequests.ownerships = getPropertyOwnershipDetails();
     }
-    else {    
+    else {
         parallelRequests.specifications = getPropertySpecifications();
         parallelRequests.propertyConfigurationType = getPropertyConfigurationType()
     }
@@ -155,8 +155,34 @@ function postProperty(id, data, accessToken) {
     });
 }
 
-function getPropertiesByProjectId(id){
-    return get(`${API_CLIENT_URL}/get/property/by/project/id?project_id=${id}`);
+//Used on booking screen
+function getPropertiesByProjectId(id, accessToken, filters={}) {
+    let { towerId, configId, floorId } = filters
+    let url = new URL(`${API_CLIENT_URL}/get/property/by/project/${id}`)
+    if (!!towerId) {
+        url.searchParams.set("towerId", towerId)
+    }
+    if (!!configId) {
+        url.searchParams.set("configId", configId)
+    }
+    if (!!floorId) {
+        url.searchParams.set("floorId", floorId)
+    }
+    return get(url.toString(), {
+        next: { cache: false },
+        headers: {
+            'x-auth-token': accessToken
+        }
+    });
+}
+
+function getPostedPropertiesByUserId(id, accessToken) {
+    return get(`${API_CLIENT_URL}/get/posted/property/by/user/id?user_id=${id}`, {
+        next: { cache: false },
+        headers: {
+            'x-auth-token': accessToken
+        }
+    })
 }
 
 
@@ -171,5 +197,6 @@ export {
     postProperty,
     getProjectConfigurationById,
     getPropertyConfigurationByType,
-    getPropertiesByProjectId
+    getPropertiesByProjectId,
+    getPostedPropertiesByUserId
 }

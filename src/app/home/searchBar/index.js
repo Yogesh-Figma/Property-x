@@ -13,7 +13,8 @@ import { useAppContext } from '@/lib/appContext';
 import Button from '@/app/components/button';
 import { useSearchParams, useRouter } from 'next/navigation'
 
-const TAB_LABELS = ["Buy", "Commercial", "Residential", "Projects"];
+const TAB_LABELS = {"Buy":{"param":""}, "Commercial":{"param":"category=commercial"}, 
+"Residential":{"param":"category=residential"}, "Projects":{"param":"onlyProject=true"}};
 
 const muiTab = {
     tab: {
@@ -26,7 +27,7 @@ const muiTab = {
 
 
 const SearchBar = ({ locations }) => {
-    const [activeTab, setActiveTab] = React.useState(0);
+    const [activeTab, setActiveTab] = React.useState("Buy");
     const { userLocation, setUserLocation } = useAppContext();
     const [searchTerm, setSearchTerm] = React.useState("");
     const router = useRouter();
@@ -50,6 +51,9 @@ const SearchBar = ({ locations }) => {
         if((userLocation||"").length > 0) {
             redirectUrl = redirectUrl + `?city=${userLocation}`
         }
+        if(!!TAB_LABELS[activeTab].param){
+            redirectUrl = redirectUrl + (redirectUrl.indexOf("?") > -1 ? "&":"?") + TAB_LABELS[activeTab].param;
+        }
         router.push(redirectUrl);
     }
 
@@ -59,7 +63,7 @@ const SearchBar = ({ locations }) => {
                 backgroundColor: "#dc143c"
             }
         }}>
-            {TAB_LABELS.map((label, index) => <Tab key={index} label={label} />)}
+            {Object.keys(TAB_LABELS).map((label, index) => <Tab key={index} label={label} value={label}/>)}
         </Tabs>
         <div className='search-box-row d-flex'>
             <div className='search-box d-flex'>

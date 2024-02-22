@@ -10,6 +10,7 @@ import ScheduleCalendar from '@/app/scheduleCalender';
 import './styles.scss'
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 import WishListBtn from '@/app/actionBtns/wishListBtn';
+import Helper from '@/common/helper';
 
 export default ({ data, type }) => {
     const isProperty = type == "property";
@@ -55,18 +56,17 @@ export default ({ data, type }) => {
                 </div>
                 <div className='btn-cnt'>
                     <TalkToConsulantBtn className="talk-to-consultation" height={30} id={data.id} isProperty={isProperty}/>
-                    <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href="?schedule=123" />
+                    <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href={`?schedule=${data.id}`} />
                 </div>
             </div>
             <div className='property-price-info col-md-4 text-md-end mt-4 mt-md-0'>
                 <div className=''><span className='best-buy-txt'>Best Buy at</span></div>
                 <div className="price-range-cnt">
-                    <div className="price sub-heading-2">{data["ratePerUnitInsqft"]||data["ratePerAreaUnit"]}</div>
+                    <div className="price sub-heading-2">{isProperty ? (Helper.currencyFormatter(data.totalPrice)): (Helper.currencyFormatter(data.minPrice) + "-" + Helper.currencyFormatter(data.maxPrice))}</div>
                     <div className="taxes-applicable">+ Taxes applicable</div>
                 </div>
                 <div className='btn-cnt'>
-                    <NextLinkButton variant="outlined" className="e-visit" text='e-Visit' height={30} rounded={true} href="/" />
-                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/booking/${type}/${data.id}`} />
+                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/booking/${type}/${data.url}`} />
                 </div>
             </div>
         </div>       

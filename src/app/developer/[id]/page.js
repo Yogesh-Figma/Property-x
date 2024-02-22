@@ -56,12 +56,12 @@ export default async function Page({ params: { id }, }) {
                             verticalView={true}
                             bhk={"2, 3, 4 BHK"}
                             address={item.address}
-                            priceRange={item.ratePerAreaUnit}
                             imgsrc={"/samplePropertyImage.jpeg"}
-                            devImage={"/devSampleImage.jpeg"}
+                            devImage={item.developerLogo} 
                             by={item.developerName}
                             possessionInfo={item.possessionDue}
-                            avgPrice={item.ratePerAreaUnit}
+                            avgPrice={item.ratePerUnitInsqft || item.ratePerAreaUnit || "TO BE ANNOUNCED"}
+                            price={item.totalPrice}
                             id={item.id}
                             urlText={item.url}
                             subInfo={item.description}
@@ -69,6 +69,8 @@ export default async function Page({ params: { id }, }) {
                             ratingCnt={item.ratingCount}
                             ratingValue={item.ratingAverage}
                             rera={item.rera}
+                            minPrice={item.minPrice}
+                            maxPrice={item.maxPrice}
                         />
                     </div>)}
                 </div>

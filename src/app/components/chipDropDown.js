@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import Chip from '@/app/components/chip';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material';
 import { Box, Slider } from '@mui/material'
+import Helper from '@/common/helper';
 
 const ChipDropDown = ({ value, handleChange, values, label, name, className, showSlider, markers, min, max, valueLabelFormat }) => {
   const [dropDownEnabled, enableDropDown] = useState(false)
@@ -29,7 +30,7 @@ const ChipDropDown = ({ value, handleChange, values, label, name, className, sho
               min={min}
               max={max}
               value={value}
-              valueLabelFormat={valueLabelFormat}
+              valueLabelFormat={Helper.currencyFormatter}
               valueLabelDisplay="auto"
               onChange={(event, newValue) => handleChange(name, newValue)}
               disableSwap />

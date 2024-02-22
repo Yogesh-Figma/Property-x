@@ -5,6 +5,7 @@ import ChipDropDown from '@/app/components/chipDropDown';
 import Chip from '@/app/components/chip';
 import Image from 'next/image';
 import MapIcon from '@/app/icons/map_icon.svg'
+import Helper from '@/common/helper';
 
 
 const AMENITIES = [{value:"Parking", label:"Parking"},{value:"park", label:"park"},{value:"Power Backup", label:"Power Backup"},{value:"Lift", label:"Lift"},{value:"Gymnasium", label:"Gymnasium"},{value:"Swimming Pool", label:"Swimming Pool"},{value:"Gas Pipeline", label:"Gas Pipeline"},{value:"Security Personnel", label:"Security Personnel"}]
@@ -12,21 +13,6 @@ const PROPERTY_TYPES = [{value:"Apartment", label:"Apartment"},{value:"Independe
 const BUYING_TYPE = [{value:"Resale", label:"Resale"},{value:"New Booking", label:"New Booking"}]
 const CONFIGURATION = [{value:"1 RK/1 BHK", label:"1 RK/1 BHK"},{value:"2 BHK", label:"2 BHK"},{value:"3 BHK", label:"3 BHK"},{value:"4 BHK", label:"4 BHK"},{value:"5 BHK", label:"5 BHK"}]
 const CONSTRUCTION_STATUS = [{value:"New Launch", label:"New Launch"},{value:"Under Construction", label:"Under Construction"},{value:"ReadyToMove", label:"ReadyToMove"}]
-
-
-function valueLabelFormat(value) {
-    const units = ['L', 'CR'];
-  
-    let unitIndex = 0;
-    let scaledValue = value;
-  
-    while (scaledValue >= 100 && unitIndex < units.length - 1) {
-      unitIndex += 1;
-      scaledValue /= 100;
-    }
-  
-    return `${scaledValue} ${units[unitIndex]}`;
-  }
 
 const Filter = () => {
     const priceRangeDefaultValue = [100, 200];
@@ -55,8 +41,8 @@ const Filter = () => {
         let activeChips;
         if(name =='priceRange') {
             if(priceRangeChanged) {
-                let minvalue = valueLabelFormat(values[0]);
-                let maxValue = valueLabelFormat(values[1]);
+                let minvalue = Helper.currencyFormatter(values[0]);
+                let maxValue = Helper.currencyFormatter(values[1]);
                 activeChips = <Chip className="chip-drop-down-item selected" label={`${minvalue} - ${maxValue}`} handleCross={()=>{handleChange(name, priceRangeDefaultValue); setPriceRangeChanged(false);}} showCrossIcon={true}/>
             }
         }
@@ -69,7 +55,7 @@ const Filter = () => {
     return (<div className='filter-container overflow-container-fluid'>
         <div className='filters row g-0 d-flex align-items-center'>
         <div className='col-10'>
-        <ChipDropDown className={"search-filter"} width={150} label="Price Range" handleChange={handleChange} value={formData.priceRange} name="priceRange" min={1} max={1000} showSlider={true} valueLabelFormat={valueLabelFormat}/>
+        <ChipDropDown className={"search-filter"} width={150} label="Price Range" handleChange={handleChange} value={formData.priceRange} name="priceRange" min={1} max={1000} showSlider={true} valueLabelFormat={Helper.currencyFormatter}/>
         <ChipDropDown className={"search-filter"} width={150} label="Amenities" handleChange={handleChange} values={AMENITIES} value={formData.amenities} name="amenities"/>
         <ChipDropDown className={"search-filter"} width={150} label="Property Type" handleChange={handleChange} values={PROPERTY_TYPES} value={formData.propertyTypes} name="propertyTypes"/>
         <ChipDropDown className={"search-filter"} width={150} label="Buying Type" handleChange={handleChange} values={BUYING_TYPE} value={formData.buyingTypes} name="buyingTypes"/>

@@ -15,6 +15,7 @@ import { useQuery } from 'react-query';
 import ScheduleCalendar from '@/app/scheduleCalender';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 import { getProjectComparisionData } from '@/clients/searchClient';
+import Helper from '@/common/helper';
 
 
 function fetchFromObject(obj, prop) {
@@ -29,10 +30,16 @@ function fetchFromObject(obj, prop) {
     return obj[prop];
 }
 
-const TableRow = ({ data = [], field, heading, defaultLen = 3, headingClassName, rowClassName }) => {
+const TableRow = ({ data = [], field, heading, defaultLen = 3, headingClassName, rowClassName, multiValueSeparator="-", formatter = (data) => data }) => {
     let columns = [];
     for (let i = 0; i < defaultLen; i++) {
-        columns.push(<td>{!!data[i] ? fetchFromObject(data[i], field) : ""}</td>)
+        if(field.indexOf(",") > -1) {
+            let multivalueFields = field.split(",")
+            columns.push(<td>{!!data[i] ? formatter(fetchFromObject(data[i], multivalueFields[0])) + multiValueSeparator + formatter(fetchFromObject(data[i], multivalueFields[1])) : ""}</td>)
+        }
+        else {
+            columns.push(<td>{!!data[i] ? formatter(fetchFromObject(data[i], field)) : ""}</td>)
+        }
     }
     return (
         <tr class={rowClassName}>
@@ -42,8 +49,15 @@ const TableRow = ({ data = [], field, heading, defaultLen = 3, headingClassName,
     )
 }
 
+const AmenitiesColumn = ({ data }) => {
+    return data?.amenities.map((item, index) => <div className='amenity d-flex align-items-center' key={index}>
+        <Image src={item.amenityImage} width={20} height={20} />
+        <div className='sub-info'>{item.amenityName}</div>
+    </div>)
+}
+
 const ProjectComparision = ({ }) => {
-    const { comparisonProjects, removeProjectFromComparison, addProjectForComparison } = useAppContext();
+    const { comparisonProjects, removeProjectFromComparison, addProjectForComparison, isPropertyComparison } = useAppContext();
     const [searchTerm, setSearchTerm] = React.useState("");
     const [selectedProjects, selectProject] = React.useState([{ projectName: "Nirala Estate", priceRange: "", rating: "", id: "", location: "", status: "", configuration: "", size: "", area: "", possesionDate: "", reraNumber: "", floorPlanImg: "", amenities: [], convasImg: "" }]);
     const handleCross = () => {
@@ -76,14 +90,8 @@ const ProjectComparision = ({ }) => {
         { label: "DLF The Arbour" },
     ];
 
-    const floorPlans = [
-        { imgUrl: "/floorPlanSample.jpeg", bhk: "2 BHK Apartment - 955 sq ft", price: "₹40L-85L" },
-        { imgUrl: "/floorPlanSample.jpeg", bhk: "3 BHK Apartment - 955 sq ft", price: "₹85L-1Cr" },
-        { imgUrl: "/floorPlanSample.jpeg", bhk: "4 BHK Apartment - 955 sq ft", price: "₹1.2Cr-4Cr" }
-    ]
-
     return (<div class="container-fluid comparison-table-container mb-2">
-        <ScheduleCalendar />
+        <ScheduleCalendar isProperty={isPropertyComparison}/>
         <div class="comparison-table">
             <table class="table table-bordered">
                 <thead class="table-header">
@@ -111,8 +119,7 @@ const ProjectComparision = ({ }) => {
                                 <span className='rating-count'>({item.ratingCount} Ratings)</span>
                             </div>}
                         </div>
-                            <div className='d-flex justify-content-center'>
-                                <Button className="e-visit" text='e-Visit' height={34} rounded={true} variant='outlined' />
+                            <div className='d-flex justify-content-center'>                              
                             </div>  </td>)}
                         <td>
                             <div class="comparison-item d-flex flex-column align-items-center justify-content-center">
@@ -138,40 +145,41 @@ const ProjectComparision = ({ }) => {
                 <TableRow heading={"Status"} data={projects} field="constructionStatus.name"/>
                 <TableRow heading={"Price Range"} data={projects} field="ratePerAreaUnit"/>
                 <TableRow heading={"Unit Configuration"} data={projects} field="configurations"/>
-                <TableRow heading={"Unit Size"} data={projects} field="unit"/>
+                <TableRow heading={"Unit Size"} data={projects} field={isPropertyComparison ? "data.configuration.sizeInSqft" : ("minSize" + "," + "maxSize")} multiValueSeparator={"-"} formatter={Helper.sqftSizeFormatter}/>
                 <TableRow heading={"Project Area"} data={projects} field="area"/>
                 <TableRow heading={"Possession Date"} data={projects} field="possessionDue"/>
                 <TableRow heading={"RERA Number"} data={projects} field="rera"/>                 
                     <tr className='floor-plan'>
                         <th>Floor Plan</th>
-                        <td><PaginatedFloorPlan floorPlans={floorPlans} /></td>
-                        <td><PaginatedFloorPlan floorPlans={floorPlans} /></td>
+                        <td>{!!projects[0] && <PaginatedFloorPlan isProperty={isPropertyComparison} id={projects[0].id} configuration={projects[0].configuration} propertyPrice={projects[0].totalPrice} />}</td>
+                        <td>{!!projects[1] && <PaginatedFloorPlan isProperty={isPropertyComparison} id={projects[1].id} configuration={projects[1].configuration} propertyPrice={projects[1].totalPrice} />}</td>
                         <td></td>
                     </tr>
                     <tr className='amenities'>
                         <th>Amenities</th>
-                        <td> {AMENITIES.map((item, index) => <div className='amenity d-flex align-items-center' key={index}>
-                            <Image src={item.img} width={20} height={20} />
-                            <div className='sub-info'>{item.name}</div>
-                        </div>)}</td>
-                        <td></td>
+                        <td>{!!projects[0] && <AmenitiesColumn data={projects[0]} />}</td>
+                        <td>{!!projects[1] && <AmenitiesColumn data={projects[1]} />}</td>
                         <td></td>
                     </tr>
                     <tr className='proj-canvas'>
                         <th>Project Canvas</th>
                         <td className='d-flex align-items-center flex-column'>
+                            {!!projects[0] && <>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
-                                <TalkToConsulantBtn height={40} />
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
+                                <TalkToConsulantBtn height={40} id={projects[0].id} isProperty={isPropertyComparison} />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href={`?schedule=${projects[0].id}`} />
                             </div>
+                            </>}
                         </td>
-                        <td className=''>
+                        <td className='d-flex align-items-center flex-column'>
+                            {!!projects[1] && <>
                             <Image src={"/projectCanvas.png"} width={245} height={175} />
                             <div className='d-flex align-items-center flex-column'>
-                                <TalkToConsulantBtn height={40} rounded={true} href="/" />
-                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href="?schedule=123" />
+                                <TalkToConsulantBtn height={40} id={projects[1].id} isProperty={isPropertyComparison} />
+                                <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href={`?schedule=${projects[1].id}`} />
                             </div>
+                            </>}
                         </td>
 
                         <td></td>

@@ -7,6 +7,10 @@ import CheckBox from '@/app/components/checkbox';
 import Button from "@/app/components/button";
 import { useForm } from "react-hook-form";
 import UserProfileForm from '@/app/profile/userProfileForm';
+import { useQuery } from 'react-query';
+import UserDetails from './userDetails';
+import { getAllCountries } from '@/clients/addressClient';
+
 export default ({ data, personalData, changeStep, handlePersonalDetails, addOwner, declaration, handleFormChange }) => {
 
     const [files, setFiles] = React.useState({});
@@ -21,6 +25,10 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
 
     const onError = (errors, e) => console.log(errors, e)
 
+    let { data: countries = [], isLoading } = useQuery({ queryKey: ['getAllCountries'], queryFn: () => getAllCountries() });
+    
+    console.log("PaymentSummary", data);
+
     return (<div className="personal-details">
         <div className="row">
             <div className="col-xl-5 col-12">
@@ -29,26 +37,7 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
             <div className="col-xl-7 col-12">
                 <Heading label={"Add Your Details"} />
                 {(personalData || []).map((formData, index) => {
-
-                    const handleChangeWrapper = (event) => {
-                        const { name, value } = event.target;
-                        setValue((index || "") + name, value);
-                        handlePersonalDetails(index, event)
-                    }
-
-                    return (
-                        <div>
-                            <div className='owner-checkbox-cnt d-flex'>
-                                <CheckBox onChange={handleChangeWrapper} name="owner" checked={formData.owner} className='owner-checkbox' /><span>I am the Owner</span>
-                            </div>
-                            <UserProfileForm files={files} setFiles={setFiles} control={control} handleChange={handleChangeWrapper} formData={formData} index={index} />
-                            <Heading label={"Photos and Signature"} />
-                            <DragDropFile uploadText="Upload Photo" updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-                            <DragDropFile uploadText="Add Signature" updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-
-                        </div>
-                    )
-                })}
+                    return (<UserDetails handlePersonalDetails={handlePersonalDetails} formData={formData} index={index} setFiles={setFiles} control={control} countries={countries} setValue={setValue} />)})}
             </div>
             <div className='form-row d-flex'>
                 <span className='cursor-pointer ml-auto' onClick={addOwner}>+ Add Owner Details (maximum 3)</span>

@@ -19,10 +19,13 @@ const FeaturedProjects = async () => {
                         title={item.name}
                         bhk={item.specification}
                         address={item.address}
-                        price={item.ratePerAreaUnit}
+                        avgPrice={item.ratePerUnitInsqft}
+                        price={item.totalPrice}
                         imgsrc={item.logo || ""}
                         width={400}
-                        height={"275px"} />)
+                        height={"275px"} 
+                        minPrice={item.minPrice}
+                        maxPrice={item.maxPrice}/>)
             })}
         </CardSlider>
     </div>)

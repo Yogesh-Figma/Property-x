@@ -16,11 +16,14 @@ const UpComingProjects = async () => {
                     title={item.name}
                     bhk={item.specification}
                     address={item.address}
-                    price={item.ratePerAreaUnit}
+                    avgPrice={item.ratePerUnitInsqft}
+                    price={item.totalPrice}
                     imgsrc={item.logo || ""}
                     width={350}
                     height={"275px"}
-                    devImage={"/devSampleImage.jpeg"} />)
+                    devImage={item.developerLogo} 
+                    minPrice={item.minPrice}
+                    maxPrice={item.maxPrice}/>)
             }
             )}
         </CardSlider>

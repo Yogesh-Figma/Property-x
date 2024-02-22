@@ -145,8 +145,8 @@ export default ({ formData, handleChange, changeStep, specifications = [],
                             <Chip className="chip-drop-down-item selected" label={item.count + " " + item.name} handleCross={() => removeSpecification(item.specification)} showCrossIcon={true} />)
                         }
                     </div>
-                    <div className="apply d-flex col-md-7 col-12 d-flex">
-                        <div className="select col-7 pe-3">
+                    <div className="apply d-flex flex-wrap">
+                        <div className="select col-sm-5 col-12 pe-3">
                             <div className="">
                                 Select Specification
                             </div>
@@ -162,7 +162,7 @@ export default ({ formData, handleChange, changeStep, specifications = [],
                                 values={specifications}
                             />
                         </div>
-                        <div className="count col-5 pe-3">
+                        <div className="count col-sm-5 col-8 pe-3 mt-sm-0 mt-3">
                             <div className="">
                                 Select Specification Count
                             </div>
@@ -241,8 +241,8 @@ export default ({ formData, handleChange, changeStep, specifications = [],
                         <Chip className="chip-drop-down-item selected" label={item.count + " " + item.name} handleCross={() => removeAmenity(item.amenity)} showCrossIcon={true} />)
                     }
                 </div>
-                <div className="apply d-flex">
-                    <div className="select col-7 pe-3">
+                <div className="apply d-flex flex-wrap">
+                    <div className="select col-sm-5 col-12 pe-3">
                         <div className="">
                             Select Amenities
                         </div>
@@ -258,7 +258,7 @@ export default ({ formData, handleChange, changeStep, specifications = [],
                             values={amenities}
                         />
                     </div>
-                    <div className="count col-5 pe-3">
+                    <div className="count col-sm-5 col-8 pe-3 mt-sm-0 mt-3">
                         <div className="">
                             Select Amenities Count
                         </div>

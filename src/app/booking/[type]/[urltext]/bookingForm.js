@@ -8,20 +8,33 @@ import Button from '@/app/components/button';
 import Heading from '@/app/components/heading';
 import InventorySelection from './inventorySelection';
 import PaymentAndBook from './paymentAndBook';
-import PersonalDetails from './personalDetails';
+import PersonalDetails from './ownerDetails';
 
-const STEPS = ["Inventory Selection", "Personal Details", "Payment and Book"]
+const STEPS = ["Personal Details", "Payment and Book"]
 
-export default ({ data, type }) => {
-    const [activeStep, changeStep] = React.useState(0);
+export default ({ data, type, configurations, projectTowers }) => {
+    let isProperty = type.toLowerCase() == "property"
+    const BOOKING_STEPS = isProperty ? STEPS : ["Inventory Selection", ...STEPS];
+    const [activeStep, changeStep] = React.useState(isProperty ? 1 : 0);
     const getPersonalDataFields = () => {
         return {
             firstName: "", lastName: "", mobileNo: "", email: "", aadhaarNo: "", panNo: "",
-            nomineeName: "", nomineeRelation: "", coraddressline1: "",
-            coraddressline2: "", corcountry: "", corstate: "", corcity: "", corzipcode: "",
+            nomineeName: "", nomineeRelation: "",
             owner: false,
-            peraddressline1: "", peraddressline2: "", percountry: "", perstate: "",
-            percity: "", perzipcode: "",
+            permanentZipcode: "",
+            presentZipcode:  "",
+            presentAddressLine1: "",
+            presentAddressLine2: "",
+            permanentAddressLine1: "",
+            permanentAddressLine2: "",
+            permanentCityId: "",
+            permanentLocalityId: "",
+            permanentStateId: "",
+            permanentCountryId: "",
+            presentCityId: "",
+            presentLocalityId: "",
+            presentStateId: "",
+            presentCountryId: "",
             permanentAddressSame: false
         }
     }
@@ -51,7 +64,14 @@ export default ({ data, type }) => {
 
     const getStepForm = () => {
         switch (activeStep) {
-            case 0: return <InventorySelection data={data} formData={formData} handleChange={handleChange} changeStep={changeStep} />;
+            case 0: return <InventorySelection 
+            data={data}
+             formData={formData} 
+             handleChange={handleChange} 
+             changeStep={changeStep}
+             configurations={configurations} 
+             projectTowers={projectTowers}
+             />;
             case 1: return <PersonalDetails addOwner={addOwner}
                 data={data}
                 personalData={personalData}
@@ -67,7 +87,7 @@ export default ({ data, type }) => {
         <div className='heading text-center'>Booking Information</div>
         <div className='sub-info text-center'>Provide the required information to Book this property now</div>
         <div className='additional-page-padding steps'>
-            <Stepper steps={STEPS} activeStep={activeStep} />
+            <Stepper steps={BOOKING_STEPS} activeStep={activeStep} />
             {getStepForm()}
         </div>
     </div>)

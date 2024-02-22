@@ -17,18 +17,18 @@ export default ({ variant = "horizontal", data ={} }) => {
                             <div className="title heading">{data.name}</div>
                             <div className="sub-info">{data.address}</div>
                             <div className="sub-info row"><span className="info col-6">Unit Area</span><span className="detail col-6">1000 sq ft</span></div>
-                            <div className="sub-info row"><span className="info col-6">Tower No.</span><span className="detail col-6">{data.totalTowers}</span></div>
-                            <div className="sub-info row"><span className="info col-6">Floor No.</span><span className="detail col-6">{data.totalUnits}</span></div>
-                            <div className="sub-info row"><span className="info col-6">Configuration</span><span className="detail col-6">{data.configurations}</span></div>
+                            <div className="sub-info row"><span className="info col-6">Tower No.</span><span className="detail col-6">{data.floor?.tower?.name}</span></div>
+                            <div className="sub-info row"><span className="info col-6">Floor No.</span><span className="detail col-6">{data.floor?.floorNumber}</span></div>
+                            <div className="sub-info row"><span className="info col-6">Configuration</span><span className="detail col-6">{data.configuration?.name || data.configurations}</span></div>
                             <div className="sub-info row"><span className="info col-6">Apartment No.</span><span className="detail col-6">102</span></div>
                         </div>
                     </div>
                     <div className="amenities-container">
                         <div className="amenty-title">Amenities</div>
                         <div className="amenities d-flex flex-wrap">
-                            {AMENITIES.map((item, index) => <div className='amenity text-center' key={index}>
-                                <Image src={item.img} width={20} height={20} />
-                                <div className='sub-info'>{item.name}</div>
+                            {(data.amenities||[]).map((item, index) => <div className='amenity text-center' key={index}>
+                                <Image src={item.amenityImage} width={20} height={20} />
+                                <div className='sub-info'>{item.amenityName}</div>
                             </div>)}
                         </div>
                     </div>

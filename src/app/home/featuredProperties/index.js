@@ -19,11 +19,15 @@ const FeaturedProperties = async () => {
                     title={item.name}
                     bhk={item.configuration?.name}
                     address={item.address}
-                    price={item.ratePerUnitInsqft}
+                    avgPrice={item.ratePerUnitInsqft}
+                    price={item.totalPrice}
                     imgsrc={item.logo || ""}
                     width={300}
                     height={"275px"}
-                    devImage={"/devSampleImage.jpeg"} />)
+                    devImage={item.developerLogo} 
+                    minPrice={item.minPrice}
+                    maxPrice={item.maxPrice}
+                    />)
             })}
         </CardSlider>
     </div>)

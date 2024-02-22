@@ -3,13 +3,16 @@ import React from 'react'
 import { saveTalkToConslt } from '@/clients/talkConsultantClient';
 import { signIn, signOut, useSession } from "next-auth/react";
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Button from '../components/button';
 import { useSearchParams, useRouter } from 'next/navigation'
 
 
-const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className="overview-btn", variant="outlined-noborder" }) => {
+const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className = "overview-btn", variant = "outlined-noborder" }) => {
 
     const { data: session } = useSession();
     const [open, setOpen] = React.useState(false);
@@ -30,17 +33,18 @@ const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className
     }
 
     return (<>
-        <Button variant={variant} className={className} text='Talk to Consultant' height={height} rounded={true} onClick={registerTalkToConslt}/>
-        <Snackbar open={open} autoHideDuration={5000} onClose={() => setOpen(false)}>
-            <Alert
-                onClose={() => setOpen(false)}
-                severity="success"
-                variant="filled"
-                sx={{ width: '100%' }}>
-                <AlertTitle>Success</AlertTitle>
-                Your request was registered successfully. Our agent will get back to you soon.
-            </Alert>
-        </Snackbar>
+        <Button variant={variant} className={className} text='Talk to Consultant' height={height} rounded={true} onClick={registerTalkToConslt} />
+        <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+            severity="success"
+            variant="filled"
+            sx={{ width: '100%' }}>
+            <DialogTitle>Your request was registered successfully. Our agent will get back to you soon.</DialogTitle>
+            <DialogActions>
+                <Button className="next-button" rounded={true} height={48} text={"Explore More"} onClick={() => setOpen(false)} />
+            </DialogActions>
+        </Dialog>
     </>)
 }
 

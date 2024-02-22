@@ -60,7 +60,6 @@
 
 .project-card {
     width: 370px;
-
     .info-container {
         padding: 10px 15px;
     }
@@ -96,7 +95,9 @@
 
     .info-container {
         padding: 20px 30px;
-
+        .sub-heading-2 {
+            font-size: 20px;
+        }
         .price-container {
             .price {
                 line-height: normal;
@@ -129,10 +130,18 @@
 
     .view-project {
         font-size: clamp(8px, 1.5vw, 12px);
+        text-decoration: underline !important;
     }
 
     .dev-img-container {
-        margin-right: 10px;
+        img {
+            border: 1px solid #DC143C;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .sub-info {
+            font-size: 14px;
+        }
     }
 
     .by {
@@ -231,7 +240,7 @@
             }
 
             .price {
-                flex: 0.2;
+                flex: 0.4;
             }
 
         }
@@ -305,6 +314,7 @@
 
             img {
                 margin-right: 5px;
+                object-fit: contain;
             }
         }
 

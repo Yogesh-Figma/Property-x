@@ -20,7 +20,6 @@ function getProjectByUrlText(urlText) {
     return get(`${API_CLIENT_URL}/get/project/by/url/name/${urlText}`, { cache: 'no-store' });
 }
 
-
 function getAllProjects() {
     return get(`${API_CLIENT_URL}/get/all/projects`, { cache: 'no-store' });
 }
@@ -28,6 +27,15 @@ function getAllProjects() {
 
 function getProjectsByCityId(cityId, accessToken) {
     return get(`${API_CLIENT_URL}/get/projects/by/city/id/${cityId}`, {
+        cache: 'no-store',
+        headers: {
+            'x-auth-token': accessToken
+        }
+    });
+}
+
+function getProjectTowerByUrlText(urlText, accessToken) {
+    return get(`${API_CLIENT_URL}/get/all/project/tower/by/project/name?name=${urlText}`, {
         cache: 'no-store',
         headers: {
             'x-auth-token': accessToken
@@ -47,5 +55,6 @@ export {
     getAllProjects,
     getProjectsByCityId,
     getProjectByUrlText,
-    getProjectConfigurationById
+    getProjectConfigurationById,
+    getProjectTowerByUrlText
 }

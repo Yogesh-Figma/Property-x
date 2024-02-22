@@ -26,14 +26,17 @@ export default ({ wishlist }) => {
                                 furnishingInfo={data.furnishingStatus?.name}
                                 priceRange={"₹40L-85L"}
                                 imgsrc={data.logo || ""}
-                                devImage={"/devSampleImage.jpeg"}
+                                devImage={data.developerLogo} 
                                 isProperty={!!wishlist.property}
                                 by={(data.developer || data.developerId)?.name}
                                 possessionInfo={data.possessionDue}
-                                avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                avgPrice={item.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                price={item.totalPrice}
                                 id={data.id}
                                 urlText={data.url}
                                 subInfo={data.propertySpecification || data.specification}
+                                minPrice={data.minPrice}
+                                maxPrice={data.maxPrice}
                             />
                         </div>)
                 })}

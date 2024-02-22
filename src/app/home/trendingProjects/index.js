@@ -6,6 +6,7 @@ import './styles.scss';
 
 const TrendingProjects = async () => {
     const projects = await getProjectsByStatus(PROJECT_STATUS.TRENDING);
+    console.log("trending projects", projects);
     return (
         <div className='trending-projects'>
             <CardSlider carouselSettings={{
@@ -39,13 +40,16 @@ const TrendingProjects = async () => {
                         title={item.name}
                         bhk={item.specification}
                         address={item.address}
-                        price={item.ratePerAreaUnit}
+                        avgPrice={item.ratePerUnitInsqft}
+                        price={item.totalPrice}
                         imgsrc={item.logo || ""}
                         maxWidth={null}
                         width={null}
                         height={"275px"}
-                        devImage={"/devSampleImage.jpeg"}
+                        devImage={item.developerLogo} 
                         by={item.developerName}
+                        minPrice={item.minPrice}
+                        maxPrice={item.maxPrice}
                     />)
                 })}
 

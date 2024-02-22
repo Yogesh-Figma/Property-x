@@ -14,14 +14,15 @@ import propertyGraph from '@/app/icons/property_graph.svg?url'
 import Rating from '@/app/components/rating'
 import OverflowTip from '@/app/components/OverflowTip';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
+import Helper from '@/common/helper';
 
-const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
+const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
     return (
         <div style={{ width: width }} key={id}>
             <Card className='project-card'>
                 <div className='img-container position-relative'>
                     <Image src={imgsrc} fill={true} />
-                    {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{price}</div>}
+                    {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                 </div>
                 <div className='info-container'>
                     <div className='row g-0'>
@@ -37,13 +38,13 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
                             {!!address && <div className='address body-txt'>{address}</div>}
                             {!!bhk && <div className='bhk sub-heading-3'><OverflowTip text={bhk} lines={1} /></div>}
                             <div className='price-container d-flex align-items-center'>
-                                <span className='price sub-heading-2'>{price}</span>
+                                <span className='price sub-heading-2'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</span>
                                 {/* <Image src={propertyGraph} width={20} height={20} /> */}
                                 {/* <span className='property-appreciation'>04.30%</span> */}
                             </div>
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
-                            <Button className="e-visit" text='e-Visit' height={20} rounded={true} variant='outlined' />
+                            <TalkToConsulantBtn height={20} rounded={true} className='property-card-btn' isProperty={isProperty} id={id} />
                             <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                         </div>
                     </div>
@@ -54,13 +55,13 @@ const ProjectCard = ({ title, bhk, address, price, imgsrc, width, height, rating
 
 }
 
-const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
+const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
     return (
         <div style={{ width: width }}>
             <Card className='property-card'>
                 <div className='img-container position-relative'>
                     <Image src={imgsrc} fill={true} />
-                    {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{price}</div>}
+                    {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                 </div>
                 <div className='info-container'>
                     <div className='row g-0'>
@@ -90,7 +91,7 @@ const PropertyCard = ({ title, bhk, address, price, imgsrc, width, height, ratin
 }
 
 
-const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, id, isProperty, urlText }) => {
+const PropertyCard2 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, by, id, isProperty, urlText }) => {
     return (<div style={{ width: width }} key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
@@ -106,7 +107,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
                     </div>
                 </div>
                 <div className='price-container col-5 text-end d-flex flex-column justify-content-between'>
-                    {!!price && <div className='price sub-heading-2'>{price}</div>}
+                    {!!price && <div className='price sub-heading-2'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                     <div className='btn-cnt'>
                         <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                     </div>
@@ -116,7 +117,7 @@ const PropertyCard2 = ({ title, bhk, address, price, imgsrc, width, height, by, 
     </div>)
 }
 
-const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, devImage, id, maxWidth, isProperty, urlText }) => {
+const PropertyCard3 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, by, devImage, id, maxWidth, isProperty, urlText }) => {
     return (<div style={{ width: width, maxWidth: maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
@@ -125,34 +126,35 @@ const PropertyCard3 = ({ title, bhk, address, price, imgsrc, width, height, by, 
             <div className='row g-0 property-info'>
                 <div className='info-container'>
                     <div className='developer-info d-flex justify-content-between align-items-start'>
-                        <div className='d-flex'>
-                            <div className='dev-img-container position-relative'>
-                                <Image src={devImage} width={40} height={40} />
-                            </div>
-                            <div>
-                                <div className='d-flex align-items-center'><span className='by sub-heading-2'>{by}</span>
-                                    {/* <Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  
-                                <span className='property-appreciation'>04.30%</span> */}
-                                </div>
-                                <Link href="/project" className='sub-heading-2 view-project'>View Project</Link>
-                            </div>
-                        </div>
-                        <div className='price-container text-end'>
-                            {!!price && <div className='price sub-heading-2'>{price}</div>}
-                            {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1} /></div>}
-                        </div>
-                    </div>
-                    <div className='address-cnt d-flex justify-content-between align-items-start'>
                         <div className='info'>
                             <div className='title sub-heading-2'><OverflowTip text={title} lines={1} /></div>
                             {!!address && <div className='address'>{address}</div>}
                         </div>
+
+                        {/* <Image src={propertyGraph} width={20} height={20} className='appreciation-icon' />  
+                                <span className='property-appreciation'>04.30%</span> */}
+                        {/* <Link href="/project" className='sub-heading-2 view-project'>View Project</Link> */}
+                        <div className='price-container text-end'>
+                            <div className='price sub-heading-2'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>
+                            {!!bhk && <div className='bhk'><OverflowTip text={bhk} lines={1} /></div>}
+                        </div>
+                    </div>
+
+                    <div className='address-cnt d-flex justify-content-between align-items-start'>
+                        <div className='dev-img-container position-relative d-flex'>
+                            <Image src={devImage||""} width={40} height={40} />
+                            <div className='ms-2 '>
+                                <div className='by sub-info'>{by}</div>
+                                <Link href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} className='view-project'>View {isProperty ?"Property":"Project"}</Link>
+                            </div>
+                        </div>
                         <div className='btn-cnt d-flex'>
-                            <Button className="e-visit" text='e-Visit' height={40} rounded={true} variant='outlined' />
+                            <TalkToConsulantBtn height={40} rounded={true} className='me-2' isProperty={isProperty} id={id} />
                             <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
                         </div>
                     </div>
                 </div>
+
             </div>
         </Card>
     </div>)
@@ -165,7 +167,8 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
     devImage, height, id, verticalView,
     visitDate, visitTime, useStretchedLink,
     showTalkToConsultant, furnishingInfo,
-    showRateNow, rera, hideLikeBtn, urlText, isWished }) => {
+    showRateNow, rera, hideLikeBtn, urlText, isWished,
+    price, minPrice, maxPrice, }) => {
     return (<div style={{ height }} key={id}>
         <Card className={`property-card-4 overflow-hidden row position-relative g-0`}>
             {!!showRateNow && !!visitDate && !!visitTime && <div className='visit-rate-now-section p-2 d-flex justify-content-between align-items-center d-md-none'>
@@ -215,14 +218,14 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                                 </div>}
                                 <div className='vertical-border'></div>
                                 <div className='avg-price'>
-                                    <div>{avgPrice}</div>
+                                    <div>{Helper.pricePerSqftFormatter(avgPrice)}</div>
                                     <div>Avg Price</div>
                                 </div>
                                 <div className='vertical-border'></div>
-                                {!!priceRange && <div className='price text-end'>
-                                    <div className='heading'>{priceRange}</div>
-                                    <div>Price Range</div>
-                                </div>}
+                                <div className='price text-end'>
+                                    <div className='heading'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>
+                                    <div>Price{!isProperty && " Range"}</div>
+                                </div>
                             </div>
                             <div className='sub-info'>{subInfo}</div>
                         </div>

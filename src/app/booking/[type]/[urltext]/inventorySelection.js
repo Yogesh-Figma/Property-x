@@ -1,4 +1,5 @@
 
+"use client"
 import Card from "@/app/components/card";
 import FormTabs from "@/app/components/formTabs";
 import Image from "next/image";
@@ -7,12 +8,32 @@ import Heading from '@/app/components/heading';
 import PaymentSummary from './paymentSummary';
 import { PropertyCard4 } from "@/app/components/ui/propertyCard";
 import Button from "@/app/components/button";
+import { getPropertiesByProjectId } from '@/clients/propertyClient';
+import { getPropertyFloorByTowerId } from '@/clients/propertyFloorClient';
+import { useQuery } from 'react-query';
+import { useSession } from "next-auth/react"
 
-export default ({ data, formData, handleChange, changeStep }) => {
-    const floors = Array.from({ length: 28 }, (v, i) => { return { label: i + 1, value: i + 1 } });
+export default ({ data, formData, handleChange, changeStep, configurations, projectTowers }) => {
+    const { data: { user, token } } = useSession();
+   //const floors = Array.from({ length: 28 }, (v, i) => { return { label: i + 1, value: i + 1 } });
     const apartments = [{ label: "101", value: "101" }, { label: "102", value: "102" }, { label: "103", value: "103" }, { label: "104", value: "104" }]
     const towers = [{ label: "01", value: "01" }, { label: "02", value: "02" }, { label: "03", value: "03" }]
     const bhkTypes = [{ label: "1RK", value: "1RK" }, { label: "1BHK", value: "1BHK" }, { label: "2BHK", value: "2BHK" }, { label: "3BHK", value: "3BHK" }, { label: "4BHK", value: "4BHK" }]
+
+    let { towerId, floorId, configId } = formData;
+
+    let { data: properties = [], isLoading } = useQuery({ 
+        enabled:!!towerId && !!floorId,
+        queryKey: ['getPropertiesByProjectId', ], 
+        queryFn: () => getPropertiesByProjectId(data.id, token, { towerId,floorId, configId } = formData) 
+    });
+
+    let { data: floors = [], isLoading: isFloorLoading } = useQuery({ 
+        enabled:!!towerId,
+        queryKey: ['getPropertyFloorByTowerId', ], 
+        queryFn: () => getPropertyFloorByTowerId(towerId, token) 
+    });
+
 
     const handleNext = () => {
         changeStep(1);
@@ -33,13 +54,15 @@ export default ({ data, formData, handleChange, changeStep }) => {
                 address={data.address}
                 priceRange={"₹40L-85L"}
                 imgsrc={data.logo || ""}
-                devImage={"/devSampleImage.jpeg"}
+                devImage={data.developerLogo} 
                 by={data.developerName}
                 possessionInfo={data.possessionDue}
-                avgPrice={data.ratePerAreaUnit}
+                avgPrice={data.ratePerUnitInsqft || data.ratePerAreaUnit || "TO BE ANNOUNCED"}
                 id={data.id}
                 urlText={data.url}
                 subInfo={data.specification}
+                minPrice={data.minPrice}
+                maxPrice={data.maxPrice}
             />
             </div>
             <div className="site-plan position-relative">              
@@ -50,17 +73,31 @@ export default ({ data, formData, handleChange, changeStep }) => {
         <div className="tower-bhk-cnt d-flex section align-items-center">
             <div className="tower-cnt d-flex align-items-center">
                 <span className="sub-heading-space sub-heading-2">Tower</span>
-                <DropDown className={"selection-dropdown"} label={"Tower"} handleChange={(event) => handleChange({target:{name:"tower", value:event.target.value}})} value={formData.tower} values={towers} />
+                <DropDown className={"selection-dropdown"}
+                 label={""}
+                 handleChange={(event) => handleChange({target:{name:"towerId", value:event.target.value}})}
+                  value={formData.towerId} 
+                  values={projectTowers} />
             </div>
             <div className="bhk-cnt d-flex align-items-center">
                 <span className="sub-heading-space sub-heading-2">BHK Type</span>
-                <DropDown className={"selection-dropdown"} label={"BHK"} handleChange={(event) =>  handleChange({target:{name:"bhkType", value:event.target.value}})} value={formData.bhkType} values={bhkTypes} />
+                <DropDown className={"selection-dropdown"}
+                    label={""} handleChange={(event) =>  
+                    handleChange({target:{name:"configId", value:event.target.value}})} 
+                    value={formData.configId} 
+                    values={configurations} />
             </div>
         </div>
         <div className="floor-cnt section">
             <div className="d-flex floor-tabs">
                 <span className="sub-heading-space sub-heading-2">Floor</span>
-                <FormTabs variant={"contained"} name="floor" height={30} width={30} items={floors} selectedTab={formData.floor} onClick={handleChange} />
+                <FormTabs variant={"contained"} 
+                name="floorId"
+                 height={30} 
+                 width={30} 
+                 items={floors} 
+                 selectedTab={formData.floorId}
+                onClick={handleChange} />
             </div>
             <Card className="floor-plan">
                 <div>Floor Plan</div>

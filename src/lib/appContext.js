@@ -40,24 +40,25 @@ export const AppProvider = ({ children, session }) => {
         },
       })
 
-    const setProjectsForComparison = (newData) => {
-        setAppState(prev => ({...prev, comparisonProjects:newData}))
+    const setProjectsForComparison = (newData, isProperty) => {
+        setAppState(prev => ({...prev, comparisonProjects:newData, isPropertyComparison: isProperty}))
     }
 
-    const addProjectForComparison = (projectData) => {
+    const addProjectForComparison = (projectData, isProperty) => {
         let { comparisonProjects } = appState;
+        let { isPropertyComparison } = appState;
         if (comparisonProjects.some(data=> data.id == projectData.id)) {
             //project already present returning
             return;
         }
-        let newData = [...comparisonProjects];
+        let newData = isProperty != isPropertyComparison ? []: [...comparisonProjects];
         if (newData.length == 2) {
             newData[0] = projectData
         }
         else {
             newData.push(projectData);
         }
-        setProjectsForComparison(newData);
+        setProjectsForComparison(newData, isProperty);
     }
 
     const removeProjectFromComparison = (id) => {
@@ -67,11 +68,13 @@ export const AppProvider = ({ children, session }) => {
 
     const value = {
         comparisonProjects:appState.comparisonProjects,
+        isPropertyComparison:appState.isPropertyComparison,
         addProjectForComparison,
         removeProjectFromComparison,
         userLocation,
         setUserLocation,
         enableLoader
+        
     };
 
 
