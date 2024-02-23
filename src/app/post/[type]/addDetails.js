@@ -116,7 +116,7 @@ export default ({ formData, handleChange, changeStep, specifications = [],
 
 
             {!!propertyConfigTypes && propertyConfigTypes.length > 0 && <>
-                <div className="form-element-heading">BHK Type</div>
+                <div className="form-element-heading">Configuration</div>
                 <FormTabs errorMessage={"Required"}
                         name="propertyConfigType"
                         items={propertyConfigTypes}

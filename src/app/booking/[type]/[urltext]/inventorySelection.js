@@ -80,7 +80,7 @@ export default ({ data, formData, handleChange, changeStep, configurations, proj
                   values={projectTowers} />
             </div>
             <div className="bhk-cnt d-flex align-items-center">
-                <span className="sub-heading-space sub-heading-2">BHK Type</span>
+                <span className="sub-heading-space sub-heading-2">Configuration</span>
                 <DropDown className={"selection-dropdown"}
                     label={""} handleChange={(event) =>  
                     handleChange({target:{name:"configId", value:event.target.value}})} 
@@ -107,7 +107,7 @@ export default ({ data, formData, handleChange, changeStep, configurations, proj
             </Card>
         </div>
         <div className="apartment d-flex section align-items-xl-center">
-            <span className="sub-heading-2">Apartment</span>
+            <span className="sub-heading-2">Unit</span>
             <FormTabs variant={"contained"} width={124} height={50} name="apartment" items={apartments} selectedTab={formData.apartment} onClick={handleChange} />
         </div>
         <div className="take-tour d-flex align-items-center justify-content-center sub-heading-2">Take a Tour from the Selected Property</div>
