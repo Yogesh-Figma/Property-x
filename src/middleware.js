@@ -6,7 +6,7 @@ const SECRET = process.env.NEXTAUTH_SECRET;
 const protectedRoutes = ['/post','/profile','/booking'];
 const matchers = [...protectedRoutes, '/buy']
 const protectedQueryParams = ["?schedule="]
-const regexMatches = [/\/post\/.*/]
+const regexMatches = [/\/post\/.*/, /\/profile\/.*/, /\/booking\/.*/]
 
 export async function middleware(req) {
     const searchParams = req.nextUrl.search || ""
