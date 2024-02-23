@@ -55,9 +55,17 @@ export default async function Page({ params: { urltext, type }, }) {
     }
     const isProperty = type == "property";
     const data = isProperty ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
+    
+
     const galleryData = {
-        videos: [{ original: "https://www.youtube.com/embed/y9j-BL5ocW8?si=wB9knlJzEZFGgkEH", thumbnail: "https://picsum.photos/id/1019/250/150/" }, { original: "https://www.youtube.com/embed/7EHnQ0VM4KY?si=LGnmMBLW7xYZikGx", thumbnail: "https://picsum.photos/id/1019/250/150/" }]
     };
+
+    (data.videos || []).forEach(element => {
+        if(!galleryData["videos"]) {
+            galleryData["videos"] = [];
+        }
+        galleryData["videos"].push({original: element.videoUrl, thumbnail: element.thumbnailImage });
+    });
 
    (data.images || []).forEach(element => {
         if(!galleryData[element.category]) {

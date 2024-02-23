@@ -24,7 +24,7 @@ export default ({ data = {} }) => {
   const _renderVideo = (video) => {
     return (
       <div className='video-container position-relative'>
-        <iframe className='video-frame' src={video.original} frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <iframe className='video-frame' src={video.original||video.videoUrl} frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
       </div>
       // <video controls muted>
       //   <source src={video.original} />
