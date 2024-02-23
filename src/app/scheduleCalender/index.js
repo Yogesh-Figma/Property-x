@@ -34,11 +34,11 @@ export default function ScheduleCalendar({ id, isProperty }) {
     const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false, isAlreadyScheduled:false };
     const maxDateAllowed = dayjs().add(240, 'day');
     const sessionData  = useSession();
-    if( sessionData == null) {
+    if( sessionData == null || sessionData.data == null) {
         return;
     }
-    console.log("sessionData", sessionData)
-    const { data: { user, token } } = useSession();
+
+    const { data: { user, token } } = sessionData;
     const [date, setDate] = React.useState(dayjs().add(3, 'day'));
     const [formData, setFormData] = React.useState(initialScheduleState);
     const router = useRouter();
