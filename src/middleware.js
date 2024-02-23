@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
 import { getToken } from "next-auth/jwt"
-import postedProperties from './app/profile/postedProperties';
 
 
 const SECRET = process.env.NEXTAUTH_SECRET;
@@ -24,4 +23,4 @@ export async function middleware(req) {
     //   }
 }
 
-export const config = { matcher: matchers }
+export const config = { matcher: matchers}
