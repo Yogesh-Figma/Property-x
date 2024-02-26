@@ -35,7 +35,7 @@ function getUserDetails({ data, name, mobileNo, email, address, aadhaarNo, panNo
     </div>)
 }
 
-export default ({ formData, handleChange, changeStep }) => {
+export default ({ formData, handleChange, changeStep, selectedProperty }) => {
     const handleNext = () => {
         changeStep(1);
     }
@@ -43,7 +43,7 @@ export default ({ formData, handleChange, changeStep }) => {
         <Heading label={"Details Overview"} />
         <div className="row">
             <div className="col-xl-6 col-12">
-                <PaymentSummary variant="vertical" data={data}/>
+                <PaymentSummary variant="vertical" data={selectedProperty}/>
             </div>
             <div className="col-xl-6 col-12">
                 <Card className="user-info">

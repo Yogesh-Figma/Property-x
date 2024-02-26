@@ -32,6 +32,13 @@ class Helper {
       return `${Helper.currencyFormatter(value)}/sq. ft.`;
     };
 
+    static indianCurrencyFormatter = (value) => {
+      return Number(value).toLocaleString('en-IN', {
+        maximumFractionDigits:2,
+        style:'currency',
+        currency:'INR'
+      })
+    } 
 
 }
 

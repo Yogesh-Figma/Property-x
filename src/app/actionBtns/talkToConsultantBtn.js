@@ -10,6 +10,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '../components/button';
 import { useSearchParams, useRouter } from 'next/navigation'
+import TickMark from '@/app/icons/tickMark.svg';
+import CloseIcon from '@/app/icons/icon_close-small.svg'
 
 
 const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className = "overview-btn", variant = "outlined-noborder" }) => {
@@ -40,10 +42,15 @@ const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className
             severity="success"
             variant="filled"
             sx={{ width: '100%' }}>
-            <DialogTitle>Your request was registered successfully. Our agent will get back to you soon.</DialogTitle>
-            <DialogActions>
-                <Button className="next-button" rounded={true} height={48} text={"Explore More"} onClick={() => setOpen(false)} />
-            </DialogActions>
+                <div className='p-4 position-relative'>
+            <CloseIcon width={30} height={30} style={{right:15, top:15}} className='position-absolute close-icon' role="button" onClick={() => setOpen(false)} />
+            <div className='d-flex flex-column align-items-center'>
+                <TickMark />
+                <div style={{fontSize:24}} className='heading mt-2'>Thank You</div>
+                <div>For reaching us out to us</div>
+                <div>Our expert consultants will reach out to you shortly</div>
+            </div>
+            </div>
         </Dialog>
     </>)
 }

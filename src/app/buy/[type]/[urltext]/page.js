@@ -36,6 +36,7 @@ import UpcomingLaunches from './upcomingLaunches';
 import About from './about';
 import Loading from '@/app/loading';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
+import PaymentPlan from './paymentPlan';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -150,6 +151,7 @@ export default async function Page({ params: { urltext, type }, }) {
                 <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]} propertyPrice={data.totalPrice}/>
             </div>
             </Suspense>}
+            <PaymentPlan />
             {!isProperty && <Suspense>
                 <div className='similar' id="properties-in-project">
                     <Heading label={"Properties in this project"} />

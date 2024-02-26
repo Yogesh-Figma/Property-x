@@ -15,7 +15,7 @@ export default async ({ }) => {
         lastName:userInfo.user?.lastName,
         fullName: userInfo.user?.firstName + " "+ userInfo.user?.lastName,
         email: userInfo.user?.email,
-        mobileNo: userInfo.user?.phone,
+        phone: userInfo.user?.phone,
         aadharNo: userInfo.aadhar,
         panNo: userInfo.pan,
         photo:userInfo.user?.photo,

@@ -11,7 +11,7 @@ import { useQuery } from 'react-query';
 import UserDetails from './userDetails';
 import { getAllCountries } from '@/clients/addressClient';
 
-export default ({ data, personalData, changeStep, handlePersonalDetails, addOwner, declaration, handleFormChange }) => {
+export default ({ data, personalData, changeStep, handlePersonalDetails, addOwner, declaration, handleFormChange, selectedProperty }) => {
 
     const [files, setFiles] = React.useState({});
 
@@ -32,7 +32,7 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
     return (<div className="personal-details">
         <div className="row">
             <div className="col-xl-5 col-12">
-                <PaymentSummary variant="vertical" data={data} />
+                <PaymentSummary variant="vertical" data={selectedProperty||data} />
             </div>
             <div className="col-xl-7 col-12">
                 <Heading label={"Add Your Details"} />

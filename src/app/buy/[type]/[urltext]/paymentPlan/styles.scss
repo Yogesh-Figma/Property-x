@@ -1,0 +1,23 @@
+.payment-plan {
+    .payment-plan-card {
+        padding:20px;
+    }
+
+    table {
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    th, td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      th {
+        background-color: #DC143C;
+        color:white;
+      }
+      tr:nth-child(even) {
+        background-color: #EAEAEA;
+      }
+}

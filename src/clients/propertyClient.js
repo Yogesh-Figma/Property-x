@@ -158,7 +158,7 @@ function postProperty(id, data, accessToken) {
 //Used on booking screen
 function getPropertiesByProjectId(id, accessToken, filters={}) {
     let { towerId, configId, floorId } = filters
-    let url = new URL(`${API_CLIENT_URL}/get/property/by/project/${id}`)
+    let url = new URL(`${API_CLIENT_URL}/get/property/by/project/id/${id}`)
     if (!!towerId) {
         url.searchParams.set("towerId", towerId)
     }

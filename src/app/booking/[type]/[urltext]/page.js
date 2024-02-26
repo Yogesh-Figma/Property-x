@@ -1,18 +1,22 @@
 import BookingForm from './bookingForm';
 import { getServerSession } from "next-auth/next";
 import { getPropertyById, getPropertyByUrlText } from '@/clients/propertyClient';
-import { getProjectConfigurationById, getProjectByUrlText, getProjectTowerByUrlText } from '@/clients/projectClient';
+import { getProjectConfigurationById, getProjectByUrlText, getProjectTowerById, getProjectTowerByUrlText } from '@/clients/projectClient';
 import { authOptions } from "@/lib/auth"
 import { getServerSessionToken } from '@/lib/session';
 
 export default async ({ params: { type, urltext } }) => {
     const token = await getServerSessionToken();
     const isProperty = type == "property";
-    const { data = {}, projectTowers = [] } = await Promise.allKeys({
-        data: isProperty ? await getPropertyByUrlText(urltext, token) : await getProjectByUrlText(urltext),
-        projectTowers: isProperty ?[]: await getProjectTowerByUrlText(urltext, token)
+    const data =  isProperty ? await getPropertyByUrlText(urltext, token): await getProjectByUrlText(urltext, token);
+
+    console.log(" getPropertyByUrlText", data);
+
+    const { projectConfigurations = [], projectTowers = [] } = await Promise.allKeys({
+        projectConfigurations: !isProperty ? await getProjectConfigurationById(data?.id) : [],
+        projectTowers: !isProperty ? await getProjectTowerById(data?.id, token): []
     });
-    const projectConfigurations = !isProperty ? await getProjectConfigurationById(data?.id) : [];
+
     console.log("projectTowers", projectTowers);
     console.log("token", token);
 

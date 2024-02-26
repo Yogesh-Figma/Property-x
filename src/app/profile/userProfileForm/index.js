@@ -62,8 +62,8 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
                         isNumber={true}
                         className='post-form-input'
                         label={"Mobile No."}
-                        name="mobileNo"
-                        value={formData.mobileNo}
+                        name="phone"
+                        value={formData.phone}
                         onChange={handleChange}
                         height={50}
                     />
