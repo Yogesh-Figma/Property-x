@@ -10,6 +10,7 @@ import { getPostedPropertiesByUserId } from '@/clients/propertyClient';
 import dayjs from 'dayjs';
 import CheckLeads from "../checkLeads";
 import React from "react";
+import Helper from "@/common/helper";
 
 export default ({ }) => {
     const { data: { user, token } } = useSession();
@@ -53,8 +54,8 @@ export default ({ }) => {
                                     <div className='construction-status'>{item.constructionStatus?.name}</div>
                                     <div className='bhk'>{item.configuration?.name}</div>
                                     <div className="area d-flex">
-                                        <div className="sq-ft">{item.superArea} {item.areaUnits}</div>
-                                        <div className="sq-ft-price">₹{item.ratePerUnitInsqft}/sq.ft</div>
+                                        <div className="sq-ft">{Helper.sqftSizeFormatter(item.superArea)}</div>
+                                        <div className="sq-ft-price">{Helper.pricePerSqftFormatter(item.ratePerUnitInsqft)}</div>
                                     </div>
                                     <div className="posted-on">
                                         <div className="posted-txt">Posted on</div>
@@ -63,7 +64,7 @@ export default ({ }) => {
                                 </div>
                                 <div className='section-2'>
                                     <div className='avg-price'>
-                                        <div className="price heading "><span className="heading-normal">₹</span> 3.78Cr</div>
+                                        <div className="price heading "><span className="heading-normal">{Helper.currencyFormatter(data.totalPrice)}</span></div>
                                         <div className="price-title sub-heading">Price</div>
                                     </div>
                                     <div className='rent-sale heading'>
@@ -79,8 +80,7 @@ export default ({ }) => {
                         </div>
                     </div>)}
                 </div>
-                <div label="Expired">
-                    testing 2
+                <div label="Expired">                    
                 </div>
             </SlantedTabs>
 

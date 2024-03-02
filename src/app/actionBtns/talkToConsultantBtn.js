@@ -2,13 +2,8 @@
 import React from 'react'
 import { saveTalkToConslt } from '@/clients/talkConsultantClient';
 import { signIn, signOut, useSession } from "next-auth/react";
-import Snackbar from '@mui/material/Snackbar';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Button from '../components/button';
+import Dialog from '@/app/components/dialog';
 import { useSearchParams, useRouter } from 'next/navigation'
 import TickMark from '@/app/icons/tickMark.svg';
 import CloseIcon from '@/app/icons/icon_close-small.svg'
@@ -38,20 +33,13 @@ const TalkToConsulantBtn = ({ width = 22, height = 34, id, isProperty, className
         <Button variant={variant} className={className} text='Talk to Consultant' height={height} rounded={true} onClick={registerTalkToConslt} />
         <Dialog
             open={open}
-            onClose={() => setOpen(false)}
             severity="success"
             variant="filled"
-            sx={{ width: '100%' }}>
-                <div className='p-4 position-relative'>
-            <CloseIcon width={30} height={30} style={{right:15, top:15}} className='position-absolute close-icon' role="button" onClick={() => setOpen(false)} />
-            <div className='d-flex flex-column align-items-center'>
-                <TickMark />
-                <div style={{fontSize:24}} className='heading mt-2'>Thank You</div>
-                <div>For reaching us out to us</div>
-                <div>Our expert consultants will reach out to you shortly</div>
-            </div>
-            </div>
-        </Dialog>
+            onClose={setOpen}
+            title={"Thank You"}
+            message1={"For reaching us out to us"}
+            message2={"Our expert consultants will reach out to you shortly"}
+        />
     </>)
 }
 

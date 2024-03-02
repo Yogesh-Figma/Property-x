@@ -152,12 +152,12 @@ export default async function Page({ params: { urltext, type }, }) {
             </div>
             </Suspense>}
             <PaymentPlan />
-            {!isProperty && <Suspense>
+            {/* {!isProperty && <Suspense>
                 <div className='similar' id="properties-in-project">
                     <Heading label={"Properties in this project"} />
                     <PropertiesInProject id={data.id}/>
                 </div>
-            </Suspense>}
+            </Suspense>} */}
             <div id="about-developer">
                 <Heading label={"About Developer"} />
                 <div className='row'>

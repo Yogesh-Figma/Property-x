@@ -10,10 +10,11 @@ import UserProfileForm from '@/app/profile/userProfileForm';
 import { useQuery } from 'react-query';
 import UserDetails from './userDetails';
 import { getAllCountries } from '@/clients/addressClient';
+import SnackbarAlert from '@/app/components/snackbarAlert';
 
 export default ({ data, personalData, changeStep, handlePersonalDetails, addOwner, declaration, handleFormChange, selectedProperty }) => {
 
-    const [files, setFiles] = React.useState({});
+    const [error, hasError] = React.useState(false);
 
     const { control, handleSubmit, register, setValue, formState: { errors } } = useForm({
         reValidateMode: "onBlur"
@@ -23,11 +24,10 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
         changeStep(2);
     }
 
-    const onError = (errors, e) => console.log(errors, e)
+    const onError = (errors, e) => hasError(true);
 
     let { data: countries = [], isLoading } = useQuery({ queryKey: ['getAllCountries'], queryFn: () => getAllCountries() });
     
-    console.log("PaymentSummary", data);
 
     return (<div className="personal-details">
         <div className="row">
@@ -37,7 +37,7 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
             <div className="col-xl-7 col-12">
                 <Heading label={"Add Your Details"} />
                 {(personalData || []).map((formData, index) => {
-                    return (<UserDetails handlePersonalDetails={handlePersonalDetails} formData={formData} index={index} setFiles={setFiles} control={control} countries={countries} setValue={setValue} />)})}
+                    return (<UserDetails handlePersonalDetails={handlePersonalDetails} formData={formData} index={index} control={control} countries={countries} setValue={setValue} />)})}
             </div>
             <div className='form-row d-flex'>
                 <span className='cursor-pointer ml-auto' onClick={addOwner}>+ Add Owner Details (maximum 3)</span>
@@ -52,5 +52,10 @@ export default ({ data, personalData, changeStep, handlePersonalDetails, addOwne
         <div className='d-flex justify-content-end'>
             <Button className="next-button" rounded={true} height={48} text={"Next"} onClick={handleSubmit(handleNext, onError)} />
         </div>
+        <SnackbarAlert autohide={true}
+            handleClose={()=>hasError(false)}
+            title={"Error"}
+            message={"Fill all required info."}
+            open={error} />
     </div >)
 }

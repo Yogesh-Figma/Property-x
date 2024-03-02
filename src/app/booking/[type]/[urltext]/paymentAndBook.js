@@ -3,18 +3,30 @@ import Heading from "@/app/components/heading";
 import PaymentSummary from './paymentSummary';
 import Image from "next/image";
 import FormTabs from "@/app/components/formTabs";
+import Button from "@/app/components/button";
 
 
-const MODE_OF_PAYMENTS = [{value:"credit", label:"Credit Card"},{value:"cheque", label:"Cheque"},{value:"rtgs", label:"RTGS/NEFT"}]
-function getUserDetails({ data, name, mobileNo, email, address, aadhaarNo, panNo }) {
+const MODE_OF_PAYMENTS = [{ value: "credit", label: "Credit Card" }, { value: "cheque", label: "Cheque" }, { value: "rtgs", label: "RTGS/NEFT" }]
+function getUserDetails({ firstName, lastName, phone, email, aadharNo, panNo,
+    permanentZipcode,
+    presentZipcode,
+    presentAddressLine1,
+    presentAddressLine2,
+    permanentAddressLine1,
+    permanentAddressLine2,
+    permanentCityName,
+    permanentLocalityName,
+    presentCityName,
+    presentLocalityName,
+    permanentAddressSame }) {
     return (<div className="details">
         <div className="sub-info row">
             <span className="info col-6">Name</span>
-            <span className="detail col-6">{name}</span>
+            <span className="detail col-6">{firstName} {lastName}</span>
         </div>
         <div className="sub-info row">
             <span className="info col-6">Mobile No.</span>
-            <span className="detail col-6">{mobileNo}</span>
+            <span className="detail col-6">{phone}</span>
         </div>
         <div className="sub-info row">
             <span className="info col-6">Email</span>
@@ -22,11 +34,11 @@ function getUserDetails({ data, name, mobileNo, email, address, aadhaarNo, panNo
         </div>
         <div className="sub-info row">
             <span className="info col-6">Address</span>
-            <span className="detail col-6">{address}</span>
+            <span className="detail col-6">{presentAddressLine1 || permanentAddressLine1} {presentAddressLine2 || permanentAddressLine2} {presentZipcode || permanentZipcode}</span>
         </div>
         <div className="sub-info row">
             <span className="info col-6">Aadhaar No.</span>
-            <span className="detail col-6">{aadhaarNo}</span>
+            <span className="detail col-6">{aadharNo}</span>
         </div>
         <div className="sub-info row">
             <span className="info col-6">PAN No.</span>
@@ -35,7 +47,7 @@ function getUserDetails({ data, name, mobileNo, email, address, aadhaarNo, panNo
     </div>)
 }
 
-export default ({ formData, handleChange, changeStep, selectedProperty }) => {
+export default ({ formData, handleChange, changeStep, selectedProperty, bookProperty, personalData }) => {
     const handleNext = () => {
         changeStep(1);
     }
@@ -43,26 +55,27 @@ export default ({ formData, handleChange, changeStep, selectedProperty }) => {
         <Heading label={"Details Overview"} />
         <div className="row">
             <div className="col-xl-6 col-12">
-                <PaymentSummary variant="vertical" data={selectedProperty}/>
+                <PaymentSummary variant="vertical" data={selectedProperty} />
             </div>
             <div className="col-xl-6 col-12">
                 <Card className="user-info">
                     <div className="">
-                        <div className="user-details-summary">
-                            <Heading label={"User Details"} />
+
+                        {(personalData || []).map((item, index) => <div className="user-details-summary">
+                            <Heading label={`${item.isOwner ? "Owner" :"User"} Details ${personalData.length > 1 ? (index+1):""}`} />
                             <div className="d-md-flex justify-content-between">
-                                {getUserDetails({name:"Rahul Verma", mobileNo:"+91 98765 43210", email:"rahulverma@email.com", address:"456 Green Avenue, Mumbai, MH - 400001", aadhaarNo:"1234-5678-9876", panNo:"ABCDE1234F"})}
+                                {getUserDetails(item)}
                                 <div className="photo-signature g-0 d-md-block d-flex align-items-center">
                                     <div className="col-md-12">
-                                        <Image className="user-photo" src={"/devSampleLogo.png"} width={116} height={106}/>
+                                        {!!item.userPhoto && <Image className="user-photo" src={URL.createObjectURL(item.userPhoto)} width={116} height={106} />}
                                     </div>
                                     <div className="signature-container position-relative col-md-12 ms-4 ms-md-0 mt-0 mt-md-3">
-                                        <Image className="signature" src={"/devSampleLogo.png"} fill={true}/>
+                                        {!!item.signature && <Image className="signature" src={URL.createObjectURL(item.signature)} fill={true} />}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="owner-details-summary">
+                        </div>)}
+                        {/* <div className="owner-details-summary">
                             <Heading label={"Owner 1"} />
                             <div className="d-md-flex justify-content-between">
                                 {getUserDetails({name:"Rahul Verma", mobileNo:"+91 98765 43210", email:"rahulverma@email.com", address:"456 Green Avenue, Mumbai, MH - 400001", aadhaarNo:"1234-5678-9876", panNo:"ABCDE1234F"})}
@@ -75,8 +88,8 @@ export default ({ formData, handleChange, changeStep, selectedProperty }) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="nominee">
+                        </div> */}
+                        {/* <div className="nominee">
                             <Heading label={"Nominee"} />
                             <div className="d-flex ">
                                 <div className="details">
@@ -91,12 +104,13 @@ export default ({ formData, handleChange, changeStep, selectedProperty }) => {
                                 </div>
                                 <div className="photo-signature"></div>
                             </div>
-                        </div>
-                    </div>                       
+                        </div> */}
+                    </div>
                 </Card>
-            </div>          
+            </div>
         </div>
-        <Heading label={"Select Payment Method"} />
-        <FormTabs variant={"contained"} items={MODE_OF_PAYMENTS} name="selectedPaymentMethod" className="payment-methods" selectedTab={formData.selectedPaymentMethod} onClick={handleChange}/>
+        {/* <Heading label={"Select Payment Method"} /> */}
+        <Button className="next-button ms-auto d-block" rounded={true} height={48} text={"Book Property"} onClick={bookProperty} />
+        {/* <FormTabs variant={"contained"} items={MODE_OF_PAYMENTS} name="selectedPaymentMethod" className="payment-methods" selectedTab={formData.selectedPaymentMethod} onClick={handleChange}/> */}
     </div>)
 }

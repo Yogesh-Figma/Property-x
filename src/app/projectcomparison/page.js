@@ -14,7 +14,7 @@ import { useAppContext } from '@/lib/appContext';
 import { useQuery } from 'react-query';
 import ScheduleCalendar from '@/app/scheduleCalender';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
-import { getProjectComparisionData } from '@/clients/searchClient';
+import { getProjectComparisionData, getPropertyComparisionData } from '@/clients/searchClient';
 import Helper from '@/common/helper';
 
 
@@ -66,7 +66,7 @@ const ProjectComparision = ({ }) => {
 
     const populateComparisionData = async () => {
         if (!!comparisonProjects && comparisonProjects.length) {
-            let data = await getProjectComparisionData(comparisonProjects.map(item => item.id));
+            let data = isPropertyComparison ? await getProjectComparisionData(comparisonProjects.map(item => item.id)) : await getPropertyComparisionData(comparisonProjects.map(item => item.id));
             return data;
         }
     }

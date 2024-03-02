@@ -28,11 +28,16 @@ export async function POST(request) {
   const fileUrlFormat = `https://${Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/`  
   const formData = await request.formData();
   const userId = formData.get("userId");
+  const customPath = formData.get("customPath");
   if(!userId) {
     return NextResponse.error("Missing credentials");
   }
   const files = formData.getAll("files");
-  const basePath = "userUpload/" + (userId + "").split("").reverse().join("") + "/";
+  let basePath = "userUpload/" + (userId + "").split("").reverse().join("") + "/";
+  if(!!customPath) {
+    basePath = basePath + "/" +  customPath;
+  }
+  
   await Promise.all(
     files.map(async (file) => {
       const Body = (await file.arrayBuffer());

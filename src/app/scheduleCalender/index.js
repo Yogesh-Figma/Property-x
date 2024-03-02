@@ -76,7 +76,6 @@ export default function ScheduleCalendar({ id, isProperty }) {
 
     const submitForm = () => {
         let time = date.hour(Number(formData.hours) + formData.ampm == "PM" ? 12 : 0).minute(formData.minutes).valueOf();
-        debugger;
         const dataId = id || idFromQueryParam;
         const data = {
             "scheduledDateTime": time,

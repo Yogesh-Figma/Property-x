@@ -19,12 +19,14 @@ export default async ({ params: { type, urltext } }) => {
 
     console.log("projectTowers", projectTowers);
     console.log("token", token);
+    const configurations = projectConfigurations.map(item => item.propertyConfiguration);
+    configurations.push({id:null, name:"No Configuration"});
 
     return (<div className='booking-form'>
         <BookingForm
             data={data}
             type={type}
             projectTowers={projectTowers}
-            configurations={projectConfigurations.map(item => item.propertyConfiguration)} />
+            configurations={configurations} />
     </div>)
 }

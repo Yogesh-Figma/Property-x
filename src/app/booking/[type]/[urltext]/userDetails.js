@@ -24,7 +24,23 @@ export default ({  handlePersonalDetails, formData, index, setFiles, control, co
     const handleChangeWrapper = (event) => {
         const { name, value } = event.target;
         setValue((index || "") + name, value);
-        handlePersonalDetails(index, event)
+        handlePersonalDetails(index, event);
+        // if(name == "permanentCityId") {
+        //     let value = permanentCities.find(item => item.id == value);
+        //     handlePersonalDetails(index, {name:"permanentCityName", value});
+        // }
+        // else if(name == "permanentLocalityId") {
+        //     let value = permanentLocalities.find(item => item.id == value);
+        //     handlePersonalDetails(index, {name:"permanentLocalityName", value});
+        // }
+        // else if(name == "presentCityId") {
+        //     let value = presentCities.find(item => item.id == value);
+        //     handlePersonalDetails(index, {name:"presentCityName", value});
+        // }
+        // else if(name == "presentLocalityId") {
+        //     let value = presentLocalities.find(item => item.id == value);
+        //     handlePersonalDetails(index, {name:"presentLocalityName", value});
+        // }
     }
 
     return (
@@ -33,7 +49,7 @@ export default ({  handlePersonalDetails, formData, index, setFiles, control, co
                 <CheckBox onChange={handleChangeWrapper} name="owner" checked={formData.owner} className='owner-checkbox' /><span>I am the Owner</span>
             </div>
             <UserProfileForm
-                setFiles={setFiles}
+                setFiles={(name, value)=>handleChangeWrapper({target:{name, value:value[0]}})}
                 control={control}
                 handleChange={handleChangeWrapper}
                 formData={formData}
@@ -52,9 +68,8 @@ export default ({  handlePersonalDetails, formData, index, setFiles, control, co
                 }}
             />
             <Heading label={"Photos and Signature"} />
-            <DragDropFile uploadText="Upload Photo" updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-            <DragDropFile uploadText="Add Signature" updateFilesCb={setFiles} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
-
+            <DragDropFile uploadText="Upload Photo" updateFilesCb={(files) => handleChangeWrapper({target:{name:"userPhoto", value:files[0]}})} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
+            <DragDropFile uploadText="Add Signature" updateFilesCb={(files) => handleChangeWrapper({target:{name:"signature", value:files[0]}})} supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
         </div>
     )
 

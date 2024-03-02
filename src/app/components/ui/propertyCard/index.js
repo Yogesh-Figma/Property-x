@@ -21,7 +21,7 @@ const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, w
         <div style={{ width: width }} key={id}>
             <Card className='project-card'>
                 <div className='img-container position-relative'>
-                    <Image src={imgsrc} fill={true} />
+                    <Image src={imgsrc||""} fill={true} />
                     {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                 </div>
                 <div className='info-container'>
@@ -60,7 +60,7 @@ const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, 
         <div style={{ width: width }}>
             <Card className='property-card'>
                 <div className='img-container position-relative'>
-                    <Image src={imgsrc} fill={true} />
+                    <Image src={imgsrc||""} fill={true} />
                     {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                 </div>
                 <div className='info-container'>
@@ -95,7 +95,7 @@ const PropertyCard2 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
     return (<div style={{ width: width }} key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
-                <Image src={imgsrc} fill={true} />
+                <Image src={imgsrc||""} fill={true} />
             </div>
             <div className='row info-container justify-content-between'>
                 <div className='col-7'>
@@ -121,7 +121,7 @@ const PropertyCard3 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
     return (<div style={{ width: width, maxWidth: maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
-                <Image src={imgsrc} fill={true} />
+                <Image src={imgsrc||""} fill={true} />
             </div>
             <div className='row g-0 property-info'>
                 <div className='info-container'>
@@ -183,7 +183,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
             </div>}
             <div className='row g-0 property-info'>
                 <div className='img-container position-relative col-4'>
-                    <Image src={imgsrc} fill={true} />
+                    <Image src={imgsrc||""} fill={true} />
                 </div>
                 <div className={`info-container d-flex flex-column ${verticalView ? 'col-12' : 'col-12 col-md-8'}`}>
                     <div className='d-flex align-items-center justify-content-between'>
@@ -236,7 +236,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                     </div>
                     {/* <NextLinkButton aClassName="ml-auto" className="schedule-visit btn-gradient" text='Schedule a Visit' height={25} rounded={true} href="/" /> */}
                     <div className='d-flex dev-book-cnt align-items-center'>
-                        <Image src={devImage} width={66} height={33} className='dev-image' />
+                        <Image src={devImage||""} width={66} height={33} className='dev-image' />
                         <div className='by'>
                             <div className='sub-heading-2'>{by}</div>
                             <div className='dev-text sub-heading-3'>Developer</div>

@@ -5,6 +5,10 @@ class Helper {
 
   // Simple function
   static currencyFormatter = value => {
+    if(value == null) {
+      value = 0
+    }
+    
     const units = ['K', 'L', 'CR'];
 
     let unitIndex = 0;

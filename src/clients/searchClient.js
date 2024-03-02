@@ -22,11 +22,18 @@ function getProjectComparisionData(ids=[]) {
     return get(url, { next: { cache: false }});
 }
 
+function getPropertyComparisionData(ids=[]) {
+    let url = `${API_CLIENT_URL}/filter/compare-projects?propertiesIds=${ids.join("&propertiesIds=")}`;
+    return get(url, { next: { cache: false }});
+}
+
+
 function addSearchParam(url, param){
     return url + (url.indexOf("?") > -1 ? "&":"?") + param;
 }
 
 export {
     getSearchData,
-    getProjectComparisionData
+    getProjectComparisionData,
+    getPropertyComparisionData
 }

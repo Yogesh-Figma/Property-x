@@ -16,6 +16,7 @@ export default ({ wishlist }) => {
             <div className='property-cards'>
                 {(wishlists || []).map(wishlist => {
                     const data = wishlist.property || wishlist.project || {};
+                    console.log("data", data)
                     return (
                         <div className='property-card-cont'>
                             <PropertyCard4
@@ -26,12 +27,12 @@ export default ({ wishlist }) => {
                                 furnishingInfo={data.furnishingStatus?.name}
                                 priceRange={"₹40L-85L"}
                                 imgsrc={data.logo || ""}
-                                devImage={data.developerLogo} 
+                                devImage={data.developerLogo || ""} 
                                 isProperty={!!wishlist.property}
                                 by={(data.developer || data.developerId)?.name}
                                 possessionInfo={data.possessionDue}
-                                avgPrice={item.ratePerUnitInsqft || "TO BE ANNOUNCED"}
-                                price={item.totalPrice}
+                                avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                price={data.totalPrice}
                                 id={data.id}
                                 urlText={data.url}
                                 subInfo={data.propertySpecification || data.specification}
