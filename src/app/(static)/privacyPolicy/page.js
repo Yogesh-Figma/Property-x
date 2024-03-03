@@ -14,7 +14,7 @@ const PrivacyPolicy = async () => {
                     <div className='heading'>Privacy Policy</div>
                     <div className='sub-heading'>Your privacy is our priority. Learn how we protect your data in our Privacy Policy.</div>
                 </div>
-                <Image src={"./faqs.png"} className='d-none d-md-block' width={250} height={250} />
+                <Image src={"/faqs.png"} className='d-none d-md-block' width={250} height={250} />
             </div>
         </div>
         <div className='content-cnt container-fluid'>

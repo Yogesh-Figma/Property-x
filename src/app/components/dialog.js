@@ -15,7 +15,7 @@ const Dialog = ({ open, onClose, title, message1, message2 }) => {
             variant="filled"
             sx={{ width: '100%' }}>
             <div className='p-4 position-relative'>
-            <CloseIcon width={30} height={30} style={{right:15, top:15}} className='position-absolute close-icon' role="button" onClick={() => setOpen(false)} />
+            <CloseIcon width={30} height={30} style={{right:15, top:15}} className='position-absolute close-icon' role="button" onClick={() => onClose(false)} />
             <div className='d-flex flex-column align-items-center'>
                 <TickMark />
                 <div style={{fontSize:24}} className='heading mt-2'>{title}</div>

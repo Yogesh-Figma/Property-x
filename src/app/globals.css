@@ -114,6 +114,12 @@ a {
   font-weight: 700;
 }
 
+.heading-4d {
+  font-family: var(--helvetica-bold-font);
+  color: #4D5156;
+  font-weight: 700;
+}
+
 .heading-normal {
   font-family: var(--helvetica-regular-font);
   color: #202124;

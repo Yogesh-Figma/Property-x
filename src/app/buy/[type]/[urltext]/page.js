@@ -151,7 +151,9 @@ export default async function Page({ params: { urltext, type }, }) {
                 <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]} propertyPrice={data.totalPrice}/>
             </div>
             </Suspense>}
-            <PaymentPlan />
+            {!isProperty && <Suspense>
+                <PaymentPlan projectId={data.id} />
+            </Suspense>}
             {/* {!isProperty && <Suspense>
                 <div className='similar' id="properties-in-project">
                     <Heading label={"Properties in this project"} />

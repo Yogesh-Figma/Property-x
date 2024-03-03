@@ -7,6 +7,8 @@ import { getUserVisits } from '@/clients/visitClient'
 import { useSession } from "next-auth/react"
 import SlantedTabs from "@/app/components/slantedTabs"
 import dayjs from 'dayjs';
+import NextLinkButton from "@/app/components/nextLinkButton";
+import Image from 'next/image';
 let customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
@@ -25,7 +27,11 @@ export default ({ }) => {
                 <div label="Upcoming Visits">
                     <div className='scheduled-visits'>
                         <div className='property-cards'>
-                            {(data.upcoming || []).map(visits => {
+                            {!isLoading && data.upcoming.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
+                                <Image src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                                <div className="message mb-3 heading-4d">Looks like you didn't schedule any visit!</div>
+                                <NextLinkButton rounded={true} height={40} text={"Start Booking Now"} href={"/"} />
+                            </div> : (data.upcoming || []).map(visits => {
                                 const data = visits.property || visits.project || {};
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
@@ -36,12 +42,12 @@ export default ({ }) => {
                                         furnishingInfo={data.furnishingStatus?.name}
                                         priceRange={"₹40L-85L"}
                                         imgsrc={data.logo}
-                                        devImage={item.developerLogo} 
+                                        devImage={data.developerLogo}
                                         isProperty={!!visits.property}
                                         by={(data.developer || data.developerId)?.name}
                                         possessionInfo={data.possessionDue}
-                                        avgPrice={item.ratePerUnitInsqft || "TO BE ANNOUNCED"}
-                                        price={item.totalPrice}
+                                        avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
+                                        price={data.totalPrice}
                                         id={data.id}
                                         urlText={data.url}
                                         showRateNow={true}
@@ -60,7 +66,11 @@ export default ({ }) => {
                 <div label="Visited Projects/Properties">
                     <div className='scheduled-visits'>
                         <div className='property-cards'>
-                            {(data.visited || []).map(visits => {
+                            {!isLoading && data.visited.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
+                                <Image src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                                <div className="message mb-3 heading-4d">Looks like you didn't book any property!</div>
+                                <NextLinkButton rounded={true} height={40} text={"Start Booking Now"} href={"/"} />
+                            </div> : (data.visited || []).map(visits => {
                                 const data = visits.property || visits.project || {};
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
@@ -70,7 +80,7 @@ export default ({ }) => {
                                         furnishingInfo={data.furnishingStatus?.name}
                                         priceRange={"₹40L-85L"}
                                         imgsrc={data.logo || ""}
-                                        devImage={item.developerLogo} 
+                                        devImage={data.developerLogo}
                                         isProperty={!!visits.property}
                                         by={(data.developer || data.developerId)?.name}
                                         possessionInfo={data.possessionDue}

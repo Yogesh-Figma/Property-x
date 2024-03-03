@@ -23,10 +23,19 @@ function getProjectComparisionData(ids=[]) {
 }
 
 function getPropertyComparisionData(ids=[]) {
-    let url = `${API_CLIENT_URL}/filter/compare-projects?propertiesIds=${ids.join("&propertiesIds=")}`;
+    let url = `${API_CLIENT_URL}/compare-properties?propertiesIds=${ids.join("&propertiesIds=")}`;
     return get(url, { next: { cache: false }});
 }
 
+function searchProjects(keyword) {
+    let url = `${API_CLIENT_URL}/filter/search/projects?name=${keyword}`;
+    return get(url, { next: { cache: false }});
+}
+
+function searchProperties(keyword) {
+    let url = `${API_CLIENT_URL}/filter/search/properties?name=${keyword}`;
+    return get(url, { next: { cache: false }});
+}
 
 function addSearchParam(url, param){
     return url + (url.indexOf("?") > -1 ? "&":"?") + param;
@@ -35,5 +44,7 @@ function addSearchParam(url, param){
 export {
     getSearchData,
     getProjectComparisionData,
-    getPropertyComparisionData
+    getPropertyComparisionData,
+    searchProjects,
+    searchProperties
 }

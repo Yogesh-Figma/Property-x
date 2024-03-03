@@ -10,7 +10,7 @@ import CloseIcon from '@/app/icons/icon_close-small.svg'
 import { useSearchParams, useRouter } from 'next/navigation'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
-import { getSearchData } from '@/clients/searchClient';
+import { getSearchData, searchProjects , searchProperties  } from '@/clients/searchClient';
 import { useQuery } from 'react-query';
 import CheckBox from '@/app/components/checkbox';
 
@@ -31,7 +31,7 @@ export const CompareProjectPopup = () => {
     const router = useRouter();
     const comparePopupEnabled = searchParams.get('compare') || false
     const [searchTerm, setSearchTerm] = React.useState("");
-    const { comparisonProjects, removeProjectFromComparison, addProjectForComparison } = useAppContext();
+    const { comparisonProjects, removeProjectFromComparison, addProjectForComparison, isPropertyComparison } = useAppContext();
     
     const handleClose = () => {
         router.back();
@@ -43,6 +43,12 @@ export const CompareProjectPopup = () => {
         setSearchTerm(term)
     }
 
+    const populateSearchData = async () => {
+        const result = isPropertyComparison ? await searchProperties(searchTerm): await searchProjects(searchTerm);
+        let test = result.map(item => { return {id:item.id, label: item.name, value: item.id, name:item.name, logo:item.logo, address:item.address || ""} });
+        return test;
+    }
+
     const { data: searchData = [], isLoading, isError, error } = useQuery({
         enabled:!!searchTerm,
         queryKey: ['getSearchData', searchTerm],
@@ -52,15 +58,9 @@ export const CompareProjectPopup = () => {
     const selectProject = (event) => {
         const data = searchData.find(item => item.id == event.target.value);
         if(!!data) {
-            addProjectForComparison(data);
+            addProjectForComparison(data, isPropertyComparison);
         }
     };
-
-    const populateSearchData = async () => {
-        const result = await getSearchData(searchTerm);
-        let test = result.map(item => { return {id:item.data.id, label: item.data.name, value: item.data.id, name:item.data.name, images:item.data.images, address:item.data.address || "", type: item.type} });
-        return test;
-    }
 
     return (<div className={`comparison-popup position-fixed ${comparePopupEnabled ? 'visible':''}`}>
          <span className='close-icon position-absolute cursor-pointer' onClick={handleClose}>
@@ -70,7 +70,7 @@ export const CompareProjectPopup = () => {
             {comparisonProjects.map(item => <div className="comparison-item d-flex flex-column align-items-center position-relative">
                 <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
                 <div className='prop-image'>
-                    <Image src={(item.images || [])[0] || ""} width={157} height={94} />
+                    <Image src={item.logo} width={157} height={94} />
                 </div>
                 <div className='proj-title'>{item.name}</div>
                 <div className="proj-location sub-info">{item.address}</div>
@@ -85,13 +85,13 @@ export const CompareProjectPopup = () => {
             </div> */}
 
             <div className="comparison-item d-flex flex-column align-items-center justify-content-center">
-                <div className='add-proj'>+ Add a Project</div>
+                <div className='add-proj'>+ Add a {isPropertyComparison ? "Property":"Project"}</div>
                 <AutoCompleteSearch
                     autoCompleteOptions={searchData}
                     rounded={true}
                     width={"100%"}
                     className='project-form-input'
-                    label={"Enter Project"}
+                    label={`Enter ${isPropertyComparison ? "Property":"Project"}`}
                     name="searchTerm"
                     clearOnEscape={true}
                     value={searchTerm}
