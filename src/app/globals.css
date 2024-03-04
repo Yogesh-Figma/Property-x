@@ -380,3 +380,21 @@ svg.google_map_svg__google-map:hover g {
   /* Drop shadow */
   box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
 }
+
+.not-found .not-found-head {
+  font-size: 150px;
+  line-height: 172px;
+  letter-spacing: 0.05em;
+}
+
+.not-found .heading {
+  font-size: 30px;
+}
+
+.not-found .image-container {
+  max-width: 500px;
+  max-height: 500px;
+  height: 50vw;
+  width: 50vw;
+  overflow: hidden;
+}

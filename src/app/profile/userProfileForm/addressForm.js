@@ -84,7 +84,7 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
                     values={addressData[type]?.cities || []}
                 />
             </div>
-            <div className="col-md-6 col-12 mt-md-0 mt-4">
+            {addressData[type]?.localities && <div className="col-md-6 col-12 mt-md-0 mt-4">
                 <DropDown
                     name={`${type}LocalityId`}
                     value={formData[`${type}LocalityId`]}
@@ -96,10 +96,8 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
                     handleChange={(event) => handleChange({ target: { name: `${type}LocalityId`, value: event.target.value } })}
                     values={addressData[type]?.localities || []}
                 />
-            </div>
-        </div>
-        <div className='row form-row'>
-            <div className="col-md-6 col-12 mt-md-0 mt-4"> <Input
+            </div>}
+            <div className={`col-md-6 col-12 ${!!addressData[type]?.localities? "mt-4":""}`}> <Input
                 controllerPrefix={controllerPrefix}
                 minLength={6}
                 maxLength={6}

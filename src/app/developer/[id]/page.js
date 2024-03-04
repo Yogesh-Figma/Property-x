@@ -64,7 +64,7 @@ export default async function Page({ params: { id }, }) {
                             price={item.totalPrice}
                             id={item.id}
                             urlText={item.url}
-                            subInfo={item.description}
+                            subInfo={item.specification}
                             showRating={true}
                             ratingCnt={item.ratingCount}
                             ratingValue={item.ratingAverage}

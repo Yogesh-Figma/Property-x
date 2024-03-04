@@ -35,7 +35,7 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        let redirectUrl = `/search/${searchTerm.replace(" ", "-")}`
+        let redirectUrl = `/search/${searchTerm.replaceAll(" ", "-")}`
         if((userLocation||"").length > 0) {
             redirectUrl = redirectUrl + `?city=${userLocation}`
         }
