@@ -65,7 +65,7 @@ export default async function Page({ params: { urltext, type }, }) {
         if(!galleryData["videos"]) {
             galleryData["videos"] = [];
         }
-        galleryData["videos"].push({index:index, original: "https://youtu.be/zOjov-2OZ0E?feature=shared"||element.videoUrl, thumbnail: element.thumbnailImage });
+        galleryData["videos"].push({index:index, original: element.videoUrl, thumbnail: element.thumbnailImage });
     });
 
    (data.images || []).forEach(element => {
