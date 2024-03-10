@@ -8,7 +8,7 @@ import NextLinkButton from "@/app/components/nextLinkButton";
 import Image from 'next/image';
 
 export default ({ wishlist }) => {
-    const { data: { user, token } } = useSession();
+    const { data: { user, token } = {}  } = useSession();
     const { data: wishlists = [], isLoading, isError, error } = useQuery({
         queryKey: ['getUserWishlist'],
         queryFn: () => getUserWishlist(user.id, token),

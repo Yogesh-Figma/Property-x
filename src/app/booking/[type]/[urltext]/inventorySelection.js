@@ -15,7 +15,7 @@ import { useQuery } from 'react-query';
 import { useSession } from "next-auth/react"
 
 export default ({ data, formData, handleChange, changeStep, configurations, projectTowers, selectedProperty }) => {
-    const { data: { user, token } } = useSession();
+    const { data: { user, token } = {}  } = useSession();
     let { towerId, floorId, configId } = formData;
 
     const getFloors = async () => {

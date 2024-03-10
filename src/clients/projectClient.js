@@ -11,6 +11,15 @@ function getProjectsByStatus(status) {
     return get(`${API_CLIENT_URL}/get/project/by/project/status/${status}`, { next: { revalidate: 3600 } });
 }
 
+function getUpcomingProjectByCityId(cityId, token) {
+    return get(`${API_CLIENT_URL}/get/projects/by/upcoming/status/and/city/id/${cityId}`, {
+        next: { revalidate: 3600 },
+         headers: {
+            'x-auth-token': token
+        }
+    });
+}
+
 
 function getProjectById(id) {
     return get(`${API_CLIENT_URL}/get/Project/by/project/id/${id}`, { cache: 'no-store' });
@@ -66,5 +75,6 @@ export {
     getProjectByUrlText,
     getProjectConfigurationById,
     getProjectTowerByUrlText,
-    getProjectTowerById
+    getProjectTowerById,
+    getUpcomingProjectByCityId
 }

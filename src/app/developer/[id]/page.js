@@ -53,8 +53,9 @@ export default async function Page({ params: { id }, }) {
                 <div className='property-cards'>
                     {projects.map(item => <div className='property-card-cont'>
                         <PropertyCard4 title={item.name}
+                            rating={item.ratingAverage}
                             verticalView={true}
-                            bhk={"2, 3, 4 BHK"}
+                            bhk={item.configurations}
                             address={item.address}
                             imgsrc={"/samplePropertyImage.jpeg"}
                             devImage={item.developerLogo} 

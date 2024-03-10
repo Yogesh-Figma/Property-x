@@ -27,6 +27,7 @@ const FeaturedProperties = async () => {
                     devImage={item.developerLogo} 
                     minPrice={item.minPrice}
                     maxPrice={item.maxPrice}
+                    rating={item.ratingAverage}
                     />)
             })}
         </CardSlider>

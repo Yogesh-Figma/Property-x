@@ -189,13 +189,14 @@ export default async function Page({ params: { urltext, type }, }) {
                 {data["faq"].map((item, index) => <Accordion key={index} className={"faq-detail"} title={"Q." + item.questions + "?"} summary={item.answers} />)}
             </div>}
 
-            {isProperty && <Suspense><div className='similar' id="recommendation">
-                <Heading label={"Similar Properties nearby"} />
+            {isProperty && <Suspense>
                 <SimilarProperties />
-            </div></Suspense>}
+          </Suspense>}
         </div>
-        <div className='upcomings' id="upcomings">
-            <UpcomingLaunches />
-        </div>
+        <Suspense>
+            <div className='upcomings' id="upcomings">
+                <UpcomingLaunches />
+            </div>
+        </Suspense>
     </div>)
 }

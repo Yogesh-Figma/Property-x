@@ -18,7 +18,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const { data: { user } } = useSession();
+  const { data: { user } = {} } = useSession();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

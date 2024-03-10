@@ -132,7 +132,7 @@ a {
 }
 
 .crimson-txt {
-  color: #DC143C;
+  color: #DC143C !important;
   font-family: var(--helvetica-regular-font);
 }
 
@@ -379,6 +379,10 @@ svg.google_map_svg__google-map:hover g {
   box-sizing: border-box;
   /* Drop shadow */
   box-shadow: 8px 8px 40px 0px rgba(107, 107, 107, 0.20), 4px 4px 4px 0px rgba(107, 107, 107, 0.11);
+}
+
+.fill-dropdown .MuiSelect-select.Mui-error {
+  border: 1px solid #d32f2f;
 }
 
 .not-found .not-found-head {

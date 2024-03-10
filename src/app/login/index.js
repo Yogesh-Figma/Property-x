@@ -11,8 +11,9 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
 import Input from '@/app/components/input';
 import { useForm } from "react-hook-form";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import { sendOtp } from '@/clients/authenticationAndLoginClient';
+import { generateToken, getCurrentUser, getRefreshToken } from '@/clients/authenticationAndLoginClient' 
 
 
 const styles = {
@@ -57,9 +58,13 @@ const Login = ({ open }) => {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-    const handleClose=()=>{
+    const resetForm = () => {
         setOtpSent(false);
         setFormData(formInputFields);
+    }
+
+    const handleClose=()=>{
+        resetForm();
         router.back();
     }
 
@@ -70,9 +75,17 @@ const Login = ({ open }) => {
 
     const verifyCredentialAndLogin = () => {
         signIn("credentials", {redirect: false, mobileno:formData.mobileno, password:"amit1234", otp:formData.otp })
-        .then((res) => {
+        .then(async (res) => {
             if (res?.error === null) {
-                handleClose();
+                const session = await getSession();
+                const userInfo = await getCurrentUser(session.token);
+                if(userInfo.firstName == "" || !userInfo.isEmailVerified){
+                    router.replace("?buildProfile=true");
+                    resetForm();
+                }
+                else {        
+                    handleClose();
+                }
             }
             else {
                 setError('otp', { type: 'custom', message: 'Invalid otp' });

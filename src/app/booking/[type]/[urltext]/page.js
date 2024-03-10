@@ -10,15 +10,12 @@ export default async ({ params: { type, urltext } }) => {
     const isProperty = type == "property";
     const data =  isProperty ? await getPropertyByUrlText(urltext, token): await getProjectByUrlText(urltext, token);
 
-    console.log(" getPropertyByUrlText", data);
 
     const { projectConfigurations = [], projectTowers = [] } = await Promise.allKeys({
         projectConfigurations: !isProperty ? await getProjectConfigurationById(data?.id) : [],
         projectTowers: !isProperty ? await getProjectTowerById(data?.id, token): []
     });
-
-    console.log("projectTowers", projectTowers);
-    console.log("token", token);
+    
     const configurations = projectConfigurations.map(item => item.propertyConfiguration);
     configurations.push({id:null, name:"No Configuration"});
 

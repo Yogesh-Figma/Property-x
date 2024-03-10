@@ -17,12 +17,12 @@ const ADDRESS_TYPES = ["permanent", "present"];
 export default ({ userProfileData }) => {
     const [files, setFilesState] = React.useState({});
     const { enableLoader } = useAppContext() || {};
-    const { data: { user, token } } = useSession();
+    const { data: { user, token } = {}  } = useSession();
     const [formData, setFormData] = React.useState({
         firstName: userProfileData.firstName,
         lastName: userProfileData.lastName,
         email: userProfileData.email,
-        mobileNo: userProfileData.mobileNo,
+        phone: userProfileData.phone,
         aadharNo: userProfileData.aadharNo,
         panNo: userProfileData.panNo,
         photo: userProfileData.photo,

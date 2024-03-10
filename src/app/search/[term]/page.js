@@ -23,7 +23,7 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export default function Page({ params: { term },
     searchParams }) {
-    const searchTerm = term.replaceAll("-"," ");
+    const searchTerm = term.replaceAll("-", " ");
     const [selectedProp, selectProp] = React.useState({});
     const cityName = searchParams?.city;
     const onlyProject = searchParams?.onlyProject;
@@ -57,7 +57,6 @@ export default function Page({ params: { term },
                     {(searchData || []).map(data => {
                         const isProperty = (data.type || "").toLowerCase() == "property";
                         const item = data.data;
-                        console.log("item", item);
 
                         return (<div onClick={selectCard(item.url, (data.type || "").toLowerCase())} className={`property-card-cont ${isProperty ? "prop-cnt" : "proj-cnt"}`}>
                             <PropertyCard4 title={item.name}
@@ -103,7 +102,7 @@ export default function Page({ params: { term },
             {!!selectedCardData && <Link className='d-xl-flex d-none justify-content-end align-items-center property-detail-link sub-heading' href={"/buy/project/" + (selectedUrlText)}>View Full Details <Image src={RightLink} width={28} height={28} /></Link>}
         </> : <div className="not-found d-flex align-items-center justify-content-center container-fluid">
             <div>
-                <div className='heading sub-text mb-3'>No results for {searchTerm}</div>
+                <div className='heading sub-text mb-3'>No results for {searchTerm} {!!cityName ? `in ${cityName}`:""}</div>
                 <div className='sub-text mb-3'>Try checking the spelling and search</div>
                 <NextLinkButton rounded={true} height={47} text={"Go To Home"} href={"/"} />
             </div>
@@ -111,11 +110,8 @@ export default function Page({ params: { term },
                 <Image src="/notfound.png" fill={true} />
             </div>
         </div>}
-        <div className='additional-page-padding'>
-            <div className='similar'>
-                <Heading label={"Upcoming Projects"} />
-                <UpcomingProjects />
-            </div>
-        </div>
+        <Suspense>
+            <UpcomingProjects />
+        </Suspense>
     </div >)
 }

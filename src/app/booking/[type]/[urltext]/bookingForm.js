@@ -23,7 +23,7 @@ export default ({ data, type, configurations, projectTowers }) => {
     let isProperty = type.toLowerCase() == "property"
     const BOOKING_STEPS = isProperty ? STEPS : ["Inventory Selection", ...STEPS];
     const [activeStep, changeStep] = React.useState(isProperty ? 1 : 0);
-    const { data: { user, token } } = useSession();
+    const { data: { user, token } = {} } = useSession();
     const getPersonalDataFields = () => {
         return {
             firstName: "", lastName: "", phone: "", email: "", aadharNo: "", panNo: "",

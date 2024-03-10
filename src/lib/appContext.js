@@ -18,8 +18,7 @@ function getInitialState() {
 }
 
 export const AppProvider = ({ children, session }) => {
-    const [appState, setAppState] = useState(getInitialState());
-    const [userLocation, setUserLocation] = useState("");
+    const [appState, setAppState] = useState(getInitialState());  
     const [loaderEnabled, enableLoader] = useState(false);
     useEffect(() => {
         const storedState = localStorage.getItem('appState');
@@ -66,12 +65,16 @@ export const AppProvider = ({ children, session }) => {
         setProjectsForComparison(comparisonProjects.filter(data => data.id != id));
     }
 
+    const setUserLocation = (userLocation) => {
+        setAppState(prev => ({...prev, userLocation}))
+    }
+
     const value = {
         comparisonProjects:appState.comparisonProjects,
         isPropertyComparison:appState.isPropertyComparison,
         addProjectForComparison,
         removeProjectFromComparison,
-        userLocation,
+        userLocation:appState.userLocation,
         setUserLocation,
         enableLoader
         

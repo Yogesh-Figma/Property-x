@@ -47,7 +47,7 @@
     }
 
     .rating {
-        width: 25px;
+        max-width: 40px;
         height: 17px;
         background: #388E3C;
         color: #fff;
@@ -348,6 +348,74 @@
                     flex: 1;
                 }
             }
+        }
+    }
+}
+
+.posted-content {
+    border-radius: 10px;
+    border: 1px solid #EAEAEA;
+    background: #FFF;
+    overflow: hidden;
+    .per-month {
+        font-size: 10px;
+    }
+    .id-container {
+        padding: 10px;
+        border-bottom: 1px solid #EAEAEA;
+        .id {
+            font-size: 10px;
+        }
+        .check-leads {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+    .info-container {
+        padding: 20px 10px;
+        .section-1 {
+            flex: 1;
+            font-size: 10px;
+            .title {
+                font-size: 14px;
+            }
+            & > div {
+                margin-bottom: 10px;
+            }
+            .posted-on {
+                margin-top: 20px;
+            }
+            .sq-ft-price {
+                margin-left: 20px;
+            }
+        }
+        .section-2 {
+            text-align: right;
+            .avg-price {
+                .price {
+                    font-size: 14px;
+                }
+            }
+            .price-title, .rent-sale {
+                font-size: 10px;
+            }
+            .rent-sale {
+                margin-top: 20px;
+            }
+            .price {
+                span {
+                    font-weight: 400;
+                }
+            }
+        }
+        .section-3 {
+            margin-left: 10%;
+            width: 30px;
+            svg {
+                margin-bottom: 20px;
+                cursor: pointer;
+               
+            } 
         }
     }
 }

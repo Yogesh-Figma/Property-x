@@ -12,6 +12,7 @@ const PropertiesInProject = async ({ id }) => {
     return (<div className='similar-properties'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
             {data.map((item, index) => (<PropertyCard
+                rating={item.ratingAverage}
                 key={index}
                 id={item.id}
                 urlText={item.url}

@@ -6,7 +6,6 @@ import './styles.scss';
 
 const TrendingProjects = async () => {
     const projects = await getProjectsByStatus(PROJECT_STATUS.TRENDING);
-    console.log("trending projects", projects);
     return (
         <div className='trending-projects'>
             <CardSlider carouselSettings={{

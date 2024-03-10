@@ -32,6 +32,12 @@ const SearchBar = ({ locations }) => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const router = useRouter();
     const shrink = searchTerm.length > 0;
+    let [ hydrated, hydrate ] = React.useState(false);
+
+    React.useEffect(()=> {
+        hydrate(true);
+    },[]);
+
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
@@ -41,15 +47,25 @@ const SearchBar = ({ locations }) => {
         setActiveTab(newValue);
     };
 
-    const handleLocation = (event) => {
-        setUserLocation(event.target.value);
+    const handleLocationChange = (event) => {
+        const location = locations.find(item => item.value == event.target.value);
+        setUserLocation(location);
     };
+
+    const currentLocation = React.useMemo(()=> {
+        let location = {}
+        if(userLocation?.value) {
+            location = locations.find(item => item.value == userLocation?.value);        
+        }
+       return location
+
+    }, [userLocation?.value])
 
     const handleSubmit = (event) => {
         event.preventDefault();
         let redirectUrl = `/search/${searchTerm.replaceAll(" ", "-")}`;
-        if((userLocation||"").length > 0) {
-            redirectUrl = redirectUrl + `?city=${userLocation}`
+        if(!!userLocation) {
+            redirectUrl = redirectUrl + `?city=${userLocation.label}`
         }
         if(!!TAB_LABELS[activeTab].param){
             redirectUrl = redirectUrl + (redirectUrl.indexOf("?") > -1 ? "&":"?") + TAB_LABELS[activeTab].param;
@@ -68,7 +84,7 @@ const SearchBar = ({ locations }) => {
         <div className='search-box-row d-flex'>
             <div className='search-box d-flex'>
                 <div className='location-container align-items-center d-lg-flex d-none'>
-                    <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocation} value={userLocation} values={locations} />
+                    <DropDown className={"sub-heading-3 search-location-dropdown"} label={"Location"} handleChange={handleLocationChange} value={hydrated?currentLocation?.value:""} values={locations} suppressHydrationWarning/>
                     <div className='vertical-line'></div>
                 </div>
                 <form onSubmit={handleSubmit} id="search-form">

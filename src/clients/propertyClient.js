@@ -185,6 +185,14 @@ function getPostedPropertiesByUserId(id, accessToken) {
     })
 }
 
+function getUpcomingPropertiesByCityId(cityId, accessToken) {
+    return get(`${API_CLIENT_URL}/get/property/by/property/status/UPCOMING?cityId=${cityId}`, {
+        next: { cache: false },
+        headers: {
+            'x-auth-token': accessToken
+        }
+    })
+}
 
 export {
     getPropertyById,
@@ -198,5 +206,6 @@ export {
     getProjectConfigurationById,
     getPropertyConfigurationByType,
     getPropertiesByProjectId,
-    getPostedPropertiesByUserId
+    getPostedPropertiesByUserId,
+    getUpcomingPropertiesByCityId
 }

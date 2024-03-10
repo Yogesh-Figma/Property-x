@@ -1,20 +1,42 @@
+"use client"
 import React from 'react';
+import { useSession } from "next-auth/react";
 import CardSlider from '@/app/components/slider';
 import './styles.scss'
 import { ProjectCard } from '@/app/components/ui/propertyCard'
+import { getUpcomingProjectByCityId } from '@/clients/projectClient'
+import { useQuery } from 'react-query';
+import { useAppContext } from '@/lib/appContext';
 
 const UpcomingLaunches = () => {
-    return (<div className='upcoming-launches'>
+    let { userLocation, setUserLocation } = useAppContext() || {};
+    const { data: session } = useSession() || {};
+
+    let { data: projects = [], isLoading } = useQuery({
+        enabled: !!userLocation?.value && !!session?.token,
+        queryKey: ['getUpcomingProjectByCityId'],
+        queryFn: () => getUpcomingProjectByCityId(userLocation?.value, session?.token)
+    });
+
+    return (!!projects && projects.length > 0 && <div className='upcoming-launches'>
         <div className='title heading'>Upcoming Launches nearby</div>
-        <CardSlider carouselSettings={{ slidesToShow: null,  slidesToScroll: 1, variableWidth: true }}>
-            {[1, 2, 3, 4, 5, 6].map((item, index) => <ProjectCard 
-            key={index} id={item} 
-            title={"Gaur Krishn Villas"} 
-            bhk={"2, 3, 4 BHK"} address={"Sector 10, Greater Noida West, Greater Noida"}
-             price={"₹40L-85L"} imgsrc={"/samplePropertyImage.jpeg"} width={400} height={"275px"}
-              devImage={"/devSampleImage.jpeg"} 
-              minPrice={"231"}
-              maxPrice={"456"}/>)}
+        <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll: 1, variableWidth: true }}>
+            {projects.map((item, index) => <ProjectCard
+                rating={item.ratingAverage}
+                width={400} height={"275px"}
+                key={index}
+                id={item.id}
+                urlText={item.url}
+                title={item.name}
+                bhk={item.specification}
+                address={item.address}
+                avgPrice={item.ratePerUnitInsqft}
+                price={item.totalPrice}
+                imgsrc={item.logo || ""}
+                devImage={item.developerLogo}
+                by={item.developerName}
+                minPrice={item.minPrice}
+                maxPrice={item.maxPrice} />)}
         </CardSlider>
     </div>)
 }

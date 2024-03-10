@@ -25,7 +25,7 @@ export const TABS = [{ label: "Profile", value: "myprofile" },
 export default ({ userProfileData }) => {
     const searchParams = useSearchParams()
     const selectedTabFromParam = searchParams.get('t');
-    const { data:{user} } = useSession();
+    const { data:{user} = {}  } = useSession();
     
     let selectedTabIndex;
     selectedTabIndex = (selectedTabIndex = TABS.findIndex(x => x.value == selectedTabFromParam)) == -1 ?  0 : selectedTabIndex;

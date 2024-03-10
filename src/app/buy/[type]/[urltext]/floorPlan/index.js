@@ -40,7 +40,7 @@ const FloorPlan = ({ id, isProperty, floorPlan = {}, configuration = {}, propert
         </div>
         {!isProperty && <div className='no-available'>{configurations.length} Plans available</div>}
         <CardSlider hideArrow={isProperty} carouselSettings={{ slidesToShow: null, slidesToShow: null, slidesToScroll: 1, variableWidth: true, centerMode: false }}>
-            {!!configurations && !!configurationNames && !!configurations[configurationNames[selectedPlanIndex]] && configurations[configurationNames[selectedPlanIndex]].map((item, index) => <div key={index} className='floor-plan-card-container' style={{ width: 704 }}>
+            {!!configurations && !!configurationNames && !!configurations[configurationNames[selectedPlanIndex]] && (configurations[configurationNames[selectedPlanIndex]]||[]).map((item, index) => <div key={index} className='floor-plan-card-container' style={{ width: 704 }}>
                 <Card className='d-flex'>
                     <div className='floor-info'>
                         <div className='size-info heading'>

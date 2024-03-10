@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Input } from '@mui/material';
+import FormHelperText from '@mui/material/FormHelperText';
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 
 const ITEM_HEIGHT = 48;
@@ -18,18 +19,20 @@ const MenuProps = {
   },
 };
 
-function DropDownBase({label, handleChange, value, values=[], multiple, width, className, variant="standard", hideLabel= false}) {
+function DropDownBase({ label, handleChange,
+  value, values = [], multiple, width, className, variant = "standard",
+  hideLabel = false, errorMessage,
+ field, error }) {
   const theme = useTheme();
-
   return (
     <div>
-      <FormControl sx={{ width: width }} variant={variant} className={className}>
+      <FormControl sx={{ width: width }} variant={variant} className={className} error={error}  {...field}>
         <Select
           multiple={multiple}
           displayEmpty
           value={value}
-          onChange={handleChange}
-          input={<Input disableUnderline={true}/>}
+          onChange={handleChange}        
+          input={<Input disableUnderline={true} />}
           renderValue={(selected) => {
             if (!hideLabel && !selected?.length) {
               return label;
@@ -38,17 +41,18 @@ function DropDownBase({label, handleChange, value, values=[], multiple, width, c
             return objFnd.label || objFnd.name
           }}
           MenuProps={MenuProps}
-          inputProps={{ 'aria-label': 'Without label',MenuProps: {disableScrollLock: true} }}
+          inputProps={{ 'aria-label': 'Without label', MenuProps: { disableScrollLock: true } }}    
         >
-          {(values||[]).map((item, index) => (
+          {(values || []).map((item, index) => (
             <MenuItem
               key={index}
-              value={item.value||item.id}
+              value={item.value || item.id}
             >
-              {item.label||item.name}
+              {item.label || item.name}
             </MenuItem>
           ))}
         </Select>
+        {error && <FormHelperText>{errorMessage}</FormHelperText>}
       </FormControl>
     </div>
   );
@@ -57,22 +61,25 @@ function DropDownBase({label, handleChange, value, values=[], multiple, width, c
 
 const DropDown = (props) => {
   return (!!props.control ?
-      <Controller
-          control={props.control}
-          name={(props.controllerPrefix||"") + props.name}
-          defaultValue=""
-          rules={{
-              min: props.min,
-              max: props.max,
-              minLength: props.minLength,
-              maxLength: props.maxLength,
-              validate: props.validate,
-              required: props.required,
-              pattern: props.pattern
-          }}
-          render={({ field, fieldState: { error } }) => (
-              <DropDownBase {...props} field={field} error={error} />
-          )} /> : <DropDownBase {...props} />)
+    <>
+    {props.register && <input className='d-none' defaultValue={""} {...props.register((props.controllerPrefix || "") + props.name, { required: true })} value={props.value} />}
+    <Controller
+      control={props.control}
+      name={(props.controllerPrefix || "") + props.name}
+      defaultValue=""
+      rules={{
+        min: props.min,
+        max: props.max,
+        minLength: props.minLength,
+        maxLength: props.maxLength,
+        validate: props.validate,
+        required: props.required,
+        pattern: props.pattern
+      }}
+      render={({ field, fieldState: { error } }) => (
+        <DropDownBase {...props} field={field} error={error} />
+      )} /></> : <DropDownBase {...props} />)
+      
 }
 
 export default DropDown;

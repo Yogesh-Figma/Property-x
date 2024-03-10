@@ -67,15 +67,17 @@ export const authOptions = {
       }
     },
 
-    async session({ session, token }) {
+    async session({ session, token, trigger, newSession }) {
       if (Date.now() / 1000 > token?.accessTokenExpires) {
         throw new Error("Refresh token has expired. Please log in again to get a new refresh token.");
       }
-
       const accessTokenData = JSON.parse(atob(token.accessToken.split(".")?.at(1)));
       session.user = token.user;
       token.accessTokenExpires = accessTokenData.exp;
       session.token = token?.accessToken;
+      if (trigger === "update" && newSession?.name) {
+        session.user = newSession.user
+      }
 
       return session;
     },

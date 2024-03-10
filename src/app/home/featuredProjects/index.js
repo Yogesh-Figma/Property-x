@@ -13,6 +13,7 @@ const FeaturedProjects = async () => {
             {projects.map((item, index) => {
                 return (
                     <ProjectCard
+                        rating={item.ratingAverage}
                         key={index}
                         urlText={item.url}
                         id={item.id}

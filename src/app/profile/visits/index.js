@@ -15,7 +15,7 @@ dayjs.extend(customParseFormat)
 
 export default ({ }) => {
     const sampleDate = new Date();
-    const { data: { user, token } } = useSession();
+    const { data: { user, token } = {}  } = useSession();
     const { data = {}, isLoading, isError, error } = useQuery({
         queryKey: ['getUserVisits'],
         queryFn: () => getUserVisits(user.id, token),
@@ -68,17 +68,17 @@ export default ({ }) => {
                         <div className='property-cards'>
                             {!isLoading && data.visited.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
                                 <Image src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
-                                <div className="message mb-3 heading-4d">Looks like you didn't book any property!</div>
-                                <NextLinkButton rounded={true} height={40} text={"Start Booking Now"} href={"/"} />
+                                <div className="message mb-3 heading-4d">Looks like you didn't schedule any visit.</div>
+                                <NextLinkButton rounded={true} height={40} text={"Schedule a Visit"} href={"/"} />
                             </div> : (data.visited || []).map(visits => {
                                 const data = visits.property || visits.project || {};
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
-                                    <PropertyCard4 title={"Gaur Krishn Villas"}
+                                    <PropertyCard4 
+                                        title={data.name}
                                         bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
                                         address={data.address}
                                         furnishingInfo={data.furnishingStatus?.name}
-                                        priceRange={"₹40L-85L"}
                                         imgsrc={data.logo || ""}
                                         devImage={data.developerLogo}
                                         isProperty={!!visits.property}

@@ -13,7 +13,6 @@ function getSearchData(searchTerm, cityName, onlyProject, propertyCategory) {
     if(!!propertyCategory){
         searchUrl = addSearchParam(searchUrl, "propertyCategory=" + propertyCategory);
     }
-    console.log(" searchUrl", searchUrl);
     return get(searchUrl, { next: { cache: false }});
 }
 

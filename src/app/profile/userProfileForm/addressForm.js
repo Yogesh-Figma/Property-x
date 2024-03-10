@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import DropDown from '@/app/components/dropDown';
 
 
-const AddressForm = ({ type = "", formData, handleChange, control, controllerPrefix, countries = [],
+const AddressForm = ({ type = "", formData, handleChange, control, controllerPrefix, register, countries = [],
     addressData={} }) => {
 
 
@@ -45,8 +45,10 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
         <div className="row form-row">
             <div className="col-md-6 col-12">
                 <DropDown
+                register={register} 
                     name={`${type}CountryId`}
                     value={formData[`${type}CountryId`]}
+                    control={control}
                     controllerPrefix={controllerPrefix}
                     errorMessage={"Required"}
                     className={"post-form-input selection-dropdown fill-dropdown"}
@@ -58,8 +60,10 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
             </div>
             <div className="col-md-6 col-12 mt-md-0 mt-4">
                 <DropDown
+                register={register} 
                     name={`${type}StateId`}
                     value={formData[`${type}StateId`]}
+                    control={control}
                     controllerPrefix={controllerPrefix}
                     errorMessage={"Required"}
                     className={"post-form-input selection-dropdown fill-dropdown"}
@@ -73,8 +77,10 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
         <div className="row form-row">
             <div className="col-md-6 col-12">
                 <DropDown
+                register={register} 
                     name={`${type}CityId`}
                     value={formData[`${type}CityId`]}
+                    control={control}
                     controllerPrefix={controllerPrefix}
                     errorMessage={"Required"}
                     className={"post-form-input selection-dropdown fill-dropdown"}
@@ -86,8 +92,10 @@ const AddressForm = ({ type = "", formData, handleChange, control, controllerPre
             </div>
             {addressData[type]?.localities && <div className="col-md-6 col-12 mt-md-0 mt-4">
                 <DropDown
+                register={register} 
                     name={`${type}LocalityId`}
                     value={formData[`${type}LocalityId`]}
+                    control={control}
                     controllerPrefix={controllerPrefix}
                     errorMessage={"Required"}
                     className={"post-form-input selection-dropdown fill-dropdown"}

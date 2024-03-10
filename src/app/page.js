@@ -15,14 +15,12 @@ import FeaturedProperties from './home/featuredProperties'
 import UpComingProjects from './home/upComingProjects/upComingProjects'
 import Skeleton from '@mui/material/Skeleton';
 import { getAllCities } from '@/clients/cityClient'
-import Signup from './signup';
 
 export default async function Home() {
   const cities = await getAllCities();
-  const LOCATIONS = cities.map(item => { return ({label:item.name,value:item.name}) });
+  const LOCATIONS = cities.map(item => { return ({label:item.name,value:item.id, id:item.id}) });
   return (
     <div className='home'>
-      <Signup />
       <div className='banner no-gutter container-fluid'>
         <div className='d-flex justify-content-end position-relative'>
           <Image className='banner-image overflow-container-fluid' src={bannerImage} />

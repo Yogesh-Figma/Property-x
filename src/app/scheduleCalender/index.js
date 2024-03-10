@@ -33,16 +33,12 @@ const MINUTES = [...Array(60).keys()].map((i, index) => {
 export default function ScheduleCalendar({ id, isProperty }) {
     const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false, isAlreadyScheduled:false };
     const maxDateAllowed = dayjs().add(240, 'day');
-    const sessionData  = useSession();
-    if( sessionData == null || sessionData.data == null) {
-        return;
-    }
-
-    const { data: { user, token } } = sessionData;
     const [date, setDate] = React.useState(dayjs().add(3, 'day'));
     const [formData, setFormData] = React.useState(initialScheduleState);
+    const sessionData  = useSession();
     const router = useRouter();
     const searchParams = useSearchParams();
+
     const idFromQueryParam = searchParams.get('schedule');
     const scheduleModalEnabled = !!idFromQueryParam;
 
@@ -62,6 +58,7 @@ export default function ScheduleCalendar({ id, isProperty }) {
         router.back();
         setFormData(initialScheduleState)
     }
+    
 
     const { mutate, isLoading, isError, data, error } = useMutation(scheduleVisit, {
         onSuccess: data => {
@@ -73,6 +70,12 @@ export default function ScheduleCalendar({ id, isProperty }) {
         onSettled: () => {
         }
     });
+
+    if( sessionData == null || sessionData.data == null) {
+        return;
+    }
+    
+    const { data: { user, token } } = sessionData;  
 
     const submitForm = () => {
         let time = date.hour(Number(formData.hours) + formData.ampm == "PM" ? 12 : 0).minute(formData.minutes).valueOf();

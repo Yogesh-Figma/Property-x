@@ -12,11 +12,15 @@ import './styles.scss'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import propertyGraph from '@/app/icons/property_graph.svg?url'
 import Rating from '@/app/components/rating'
+import SolrShareIcon from '@/app/icons/share.svg';
+import DeleteIcon from '@/app/icons/delete.svg';
+import EditIcon from '@/app/icons/edit.svg';
 import OverflowTip from '@/app/components/OverflowTip';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 import Helper from '@/common/helper';
+import dayjs from 'dayjs';
 
-const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
+const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, rating, isProperty, postedBy, id, urlText }) => {
     return (
         <div style={{ width: width }} key={id}>
             <Card className='project-card'>
@@ -27,8 +31,8 @@ const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, w
                 <div className='info-container'>
                     <div className='row g-0'>
                         <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1} /></div>
-                        {!!rating && <div className='col-4'>
-                            <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
+                        {!!rating && <div className='col d-flex'>
+                            <div className='rating d-flex text-center align-items-center'>{rating||""}<span className='icon'>
                                 <Image src={starIcon} width={10} height={10} /></span>
                             </div>
                         </div>}
@@ -55,7 +59,7 @@ const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, w
 
 }
 
-const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, rating = 4, isProperty, postedBy, id, urlText }) => {
+const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, width, height, rating, isProperty, postedBy, id, urlText }) => {
     return (
         <div style={{ width: width }}>
             <Card className='property-card'>
@@ -66,8 +70,8 @@ const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, 
                 <div className='info-container'>
                     <div className='row g-0'>
                         <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1} /></div>
-                        {!!rating && <div className='col-4'>
-                            <div className='rating d-flex text-center align-items-center'>{rating}<span className='icon'>
+                        {!!rating && <div className='col-4 d-flex'>
+                            <div className='rating d-flex text-center align-items-center'>{rating||""}<span className='icon'>
                                 <Image src={starIcon} width={10} height={10} /></span>
                             </div>
                         </div>}
@@ -249,8 +253,58 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                 </div>
             </div>
         </Card>
-    </div>)
+    </div>)    
 }
 
 
-export { ProjectCard, PropertyCard, PropertyCard2, PropertyCard3, PropertyCard4 };
+const PostedPropertyCard = ({ showChkLeadBtn, className, id, logo, name, address, constructionStatus, configuration, price, listingType, createdOn, superArea, ratePerUnitInsqft}) => {
+    return (
+        <div className={`posted-content ${className}`}>
+        {showChkLeadBtn && <div className={`d-flex id-container justify-content-between align-items-center`}>
+            <div className="id sub-info">
+                ID: {id}
+            </div>
+            <Link href={`checkLeads/${id}`} className="check-leads crimson-txt cursor-pointer">
+                Check Leads
+            </Link>
+        </div>}
+        <div className='row property-info g-0'>
+            <div className='col-3 img-container position-relative'>
+                <Image src={logo || ""} fill={true} />
+            </div>
+            <div className={`info-container d-flex flex-row col-9`}>
+                <div className='section-1 align-items-center justify-content-between'>
+                    <div className='title heading'>{name}</div>
+                    <div className='address'>{address}</div>
+                    <div className='construction-status'>{constructionStatus}</div>
+                    <div className='bhk'>{configuration}</div>
+                    <div className="area d-flex">
+                        <div className="sq-ft">{Helper.sqftSizeFormatter(superArea)}</div>
+                        <div className="sq-ft-price">{Helper.pricePerSqftFormatter(ratePerUnitInsqft)}</div>
+                    </div>
+                    <div className="posted-on">
+                        <div className="posted-txt">Posted on</div>
+                        <div className="posted-date">{dayjs(createdOn).format("DD-MM-YYYY")}</div>
+                    </div>
+                </div>
+                <div className='section-2'>
+                    <div className='avg-price'>
+                        <div className="price "><span className="heading-normal heading">{Helper.currencyFormatter(price)}<span className='per-month'>{((listingType||"").toLowerCase() == "rent" ? "/month":"")} </span></span></div>
+                        <div className="price-title sub-heading">Price</div>
+                    </div>
+                    <div className='rent-sale heading'>
+                        For {listingType}
+                    </div>
+                </div>
+                <div className="section-3 d-flex flex-column align-items-end">
+                    <SolrShareIcon />
+                    <DeleteIcon />
+                    <EditIcon />
+                </div>
+            </div>
+        </div>
+    </div>
+    )}
+
+
+export { ProjectCard, PropertyCard, PropertyCard2, PropertyCard3, PropertyCard4, PostedPropertyCard };

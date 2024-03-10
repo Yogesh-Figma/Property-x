@@ -1,7 +1,4 @@
-
-'use server'
 import { get, post } from './fetchWrapper';
-import { authOptions } from "@/lib/auth"
 const API_CLIENT_URL = process.env.NEXT_PUBLIC_API_CLIENT_URL;
 
 
