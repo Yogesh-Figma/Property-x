@@ -207,8 +207,8 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
     left: 100px;
     bottom: 0;
     right: 0;
-    width: calc(100% - 200px);
-    height: 100%;
+    width: calc(100% - 200px) !important;
+    height: 100% !important;
   }
 }
 

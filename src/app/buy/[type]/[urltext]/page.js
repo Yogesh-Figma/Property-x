@@ -61,11 +61,11 @@ export default async function Page({ params: { urltext, type }, }) {
     const galleryData = {
     };
 
-    (data.videos || []).forEach(element => {
+    (data.videos || []).forEach((element, index) => {
         if(!galleryData["videos"]) {
             galleryData["videos"] = [];
         }
-        galleryData["videos"].push({original: element.videoUrl, thumbnail: element.thumbnailImage });
+        galleryData["videos"].push({index:index, original: "https://youtu.be/zOjov-2OZ0E?feature=shared"||element.videoUrl, thumbnail: element.thumbnailImage });
     });
 
    (data.images || []).forEach(element => {
@@ -77,7 +77,7 @@ export default async function Page({ params: { urltext, type }, }) {
 
 
     return (<div className='property-page container-fluid'>
-        <GalleryModal data={galleryData} />
+        <GalleryModal data={galleryData} title={data.name} logo={data.logo}/>
         <CompareProjectPopup />
         <div className='additional-page-padding'>
             {/* <div className='message sub-heading'>{data["specification"]}</div>

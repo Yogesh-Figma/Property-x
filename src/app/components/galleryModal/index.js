@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 
 const GALLERY_TABS = [{value:"virtualTour", label:"Virtual Tour"},{value:"photos", label:"Photos"},{value:"videos", label:"Videos"},{value:"floorPlan", label:"Floor Plan"} ];
 
-const GalleryModal = ({ data }) => {
+const GalleryModal = ({ data, title, logo }) => {
     const router = useRouter();
     const searchParams = useSearchParams()
     const galleryEnabled = searchParams.get('gallery') || false
@@ -38,8 +38,8 @@ const GalleryModal = ({ data }) => {
         <div className='gallery-image-modal'>
             <div className='property-header d-flex align-items-center justify-content-between'>
                 <div className='prop-name d-flex align-items-center'>
-                    <Image src={"/devSampleLogo.png"} width={90} height={50} />
-                    <div className='project-title heading'>T&T Digitown</div>
+                    <Image src={logo||""} width={90} height={50} />
+                    <div className='project-title heading'>{title}</div>
                 </div>
                 <div className='close-icon'>
                     <Image src={CloseIcon} width={30} height={30} className='close-icon' role="button" onClick={handleClose} />

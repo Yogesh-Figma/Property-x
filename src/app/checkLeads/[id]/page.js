@@ -4,7 +4,7 @@ import LeadsDetails from "./leadsDetails";
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
 import Image from 'next/image';
-import { getAllLeads, getUserContactDetailsByQueryId } from '@/clients/leadClient'
+import { getLeadsByPropertyId } from '@/clients/leadClient'
 import { getPropertyById } from '@/clients/propertyClient';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
@@ -21,7 +21,7 @@ export default async function CheckLeads({ params: { id, type } }) {
     const {user, token } = sessionData;
     const property = await getPropertyById(id);
 
-    const leads = await getAllLeads(id, token);
+    const leads = await getLeadsByPropertyId(id, token);
 
 
 

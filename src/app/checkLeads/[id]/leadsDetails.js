@@ -10,9 +10,9 @@ import { useSession } from "next-auth/react";
 import Card from "@/app/components/card";
 import ProfileRed from '@/app/icons/profile_red.svg'
 import Image from 'next/image';
-import { getAllLeads, getUserContactDetailsByQueryId } from '@/clients/leadClient'
-import { getPropertyById } from '@/clients/propertyClient';
+import { getUserContactDetailsByQueryId } from '@/clients/leadClient'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import NextLinkButton from "@/app/components/nextLinkButton";
 
 import { PostedPropertyCard } from '@/app/components/ui/propertyCard'
 
@@ -56,9 +56,9 @@ const LeadsDetails = ({ leads, property }) => {
 
     return (
         <div className="d-flex additional-page-padding position-relative">
-                 <div className="back-bnt d-flex align-items-center position-absolute cursor-pointer" onClick={goBack}> <KeyboardBackspaceIcon /> Back</div>
+            <div className="back-bnt d-flex align-items-center position-absolute cursor-pointer" onClick={goBack}> <KeyboardBackspaceIcon /> Back</div>
             <div className="leads-cnt pe-xl-5 ">
-           
+
                 <div className="heading-container position-relative">
                     <div className="heading">Check Leads - Property ID: {property.id}</div>
                     <div className="sub-head mb-4">Ensure a Successful Transaction with Go Propify</div>
@@ -79,38 +79,41 @@ const LeadsDetails = ({ leads, property }) => {
                 </div>
                 <div className="sub-head mt-4 mb-4">Please keep the lead information confidential and use it exclusively for property-related transactions.</div>
                 <div className="lead-card-container">
-                    {leads.map((item, index) => {
-                        const createdTime = dayjs(item.createdTime);
-                        return (<Card className="lead-card">
-                            <div className="usr-detail d-flex position-relative" key={index}>
-                                <ProfileRed />
-                                <div className="usr-name-cnt">
-                                    <div className="usr-txt d-flex justify-content-between">
-                                        <div className="heading">{item.userFirstName} {item.userLastName}</div>
-                                        <div className="date">{createdTime.format("DD-MM-YYYY")}</div>
+                    {leads.length == 0 ? <div className="no-result d-flex">                    
+                        <div className="message mb-3 heading-4d heading">Looks like you have no leads.</div>                  
+                    </div> :
+                        leads.map((item, index) => {
+                            const createdTime = dayjs(item.createdTime);
+                            return (<Card className="lead-card">
+                                <div className="usr-detail d-flex position-relative" key={index}>
+                                    <ProfileRed />
+                                    <div className="usr-name-cnt">
+                                        <div className="usr-txt d-flex justify-content-between">
+                                            <div className="heading">{item.userFirstName} {item.userLastName}</div>
+                                            <div className="date">{createdTime.format("DD-MM-YYYY")}</div>
+                                        </div>
+                                        <div className="sub-head mt-1">{item.query || "Interested in your inventory for purchase. Attempted to contact you."}</div>
                                     </div>
-                                    <div className="sub-head mt-1">{item.query || "Interested in your inventory for purchase. Attempted to contact you."}</div>
                                 </div>
-                            </div>
-                            <div className="property-detail">
-                                <div className="">
-                                    {separatedData.map((propData, index) => {
-                                        return <>
-                                            <span className="prop-sub-data">{propData}</span>
-                                        </>
-                                    })}
+                                <div className="property-detail">
+                                    <div className="">
+                                        {separatedData.map((propData, index) => {
+                                            return <>
+                                                <span className="prop-sub-data">{propData}</span>
+                                            </>
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="d-flex btns justify-content-end">
-                                {state.queryid == item.id && !!contactDetails.userId ? <div className="contact-info text-end">
-                                    <div className="mb-2">{contactDetails.email}</div>
-                                    <div>{contactDetails.mobileNo}</div>
-                                </div> :
-                                    <Button className="action-btn" text='View contact details' height={34} rounded={true} onClick={() => showContactDetails(item.id)} />
-                                }
-                            </div>
-                        </Card>)
-                    })}
+                                <div className="d-flex btns justify-content-end">
+                                    {state.queryid == item.id && !!contactDetails.userId ? <div className="contact-info text-end">
+                                        <div className="mb-2">{contactDetails.email}</div>
+                                        <div>{contactDetails.mobileNo}</div>
+                                    </div> :
+                                        <Button className="action-btn" text='View contact details' height={34} rounded={true} onClick={() => showContactDetails(item.id)} />
+                                    }
+                                </div>
+                            </Card>)
+                        })}
                 </div>
             </div>
             <div className="img-cnt d-none d-xl-block">

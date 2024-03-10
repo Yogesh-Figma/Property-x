@@ -19,7 +19,7 @@ export default ({ data, type }) => {
             <div className='property-sub-info col-8'>
                 <div className='d-flex'>
                     <div className='dev-logo-cnt'>
-                        <Image src={"/devSampleLogo.png"} width={90} height={50}></Image>
+                        <Image src={data.logo||""} width={90} height={50}></Image>
                     </div>
                     <div>
                         <div className='project-title heading'>{data["name"]}</div>

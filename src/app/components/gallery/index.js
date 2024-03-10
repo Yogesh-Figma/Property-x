@@ -5,11 +5,15 @@ import "./styles.scss";
 import FormTabs from "../formTabs";
 import PrevArrow from '@/app/icons/prev_arrow.svg';
 import NextArrow from '@/app/icons/next_arrow.svg';
+import ReactPlayer from 'react-player'
 
 
 export default ({ data = {} }) => {
   const galleryTabs = (Object.keys(data) || []).map(item => { return { value: item, label: item } });
+  let [shouldPlay, updatePlayState] = React.useState({0:false});
+  let _imageGallery;
   const [selectedTab, selectTab] = React.useState(galleryTabs ? galleryTabs[0].value : "");
+  const [players, setPlayers] = React.useState([]);
   const handleChange = (event) => {
     const { name, value } = event.target;
     selectTab(value);
@@ -21,10 +25,16 @@ export default ({ data = {} }) => {
     </button>
   );
 
+  const onPlay= (event) => {
+    players.push(event.target);
+    setPlayers([...players]);   
+  }
+
+
   const _renderVideo = (video) => {
     return (
       <div className='video-container position-relative'>
-        <iframe className='video-frame' src={video.original||video.videoUrl} frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+          <ReactPlayer className='video-frame' url={video.original||video.videoUrl} playing={shouldPlay[video.index]||false} onPlay={()=> updatePlayState({[video.index]:true})}/>
       </div>
       // <video controls muted>
       //   <source src={video.original} />
@@ -38,7 +48,9 @@ export default ({ data = {} }) => {
     </button>
   );
 
-
+  const onSlide = () => {
+    updatePlayState(false);
+  }
 
   return (
     <div className="gallery-container">
@@ -56,6 +68,7 @@ export default ({ data = {} }) => {
         items={data[selectedTab] || []}
         thumbnailPosition={"left"}
         renderItem={selectedTab == "videos" ? _renderVideo : null}
+        onSlide={onSlide}
       />
     </div>
   )
