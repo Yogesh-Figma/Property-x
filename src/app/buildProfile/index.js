@@ -2,7 +2,7 @@
 import './styles.scss'
 import React from 'react'
 import { Modal } from "@mui/material";
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import CloseIcon from '@/app/icons/icon_close-small.svg'
 import Button from "@/app/components/button";
 import Input from '@/app/components/input';
@@ -14,8 +14,11 @@ import { useRouter } from 'next/navigation';
 import { InputAdornment } from "@mui/material";
 import { getAllCountries } from '@/clients/addressClient';
 import { sendEmailVerificationOtp, verifyEmailOtp } from '@/clients/verificationClient';
+import { updateUserData } from '@/clients/userClient';
 import { useSession } from "next-auth/react";
 import { getCurrentUser } from '@/clients/authenticationAndLoginClient'
+import BackdropLoader from '@/app/components/backdropLoader';
+import SnackbarAlert from '@/app/components/snackbarAlert';
 
 const regexMatches = [/\/search\/.*/, /\/buy\/project\/.*/, /\/buy\/property\/.*/]
 
@@ -24,6 +27,7 @@ export default ({ }) => {
     const buildProfileModalEnabled = !!searchParams.get('buildProfile');
     const [modalEnabled, enableModal] = React.useState(buildProfileModalEnabled);
     const [timerDisabled, disableTimer] = React.useState(false);
+
     const router = useRouter();
     const { data: session } = useSession();
     const pathName = usePathname();
@@ -36,9 +40,9 @@ export default ({ }) => {
         presentAddressLine1: "",
         presentAddressLine2: "",
         presentCityId: "",
-        presentLocalityId: "",
         presentStateId: "",
-        presentCountryId: ""
+        presentCountryId: "",
+        verificationCode:""
     });
 
     let { data: countries = [], isLoading } = useQuery({ enabled: !!session, queryKey: ['getAllCountries'], queryFn: () => getAllCountries() });
@@ -51,6 +55,27 @@ export default ({ }) => {
         enabled: !!session && !!session.token,
         queryKey: ['getCurrentUser', session],
         queryFn: () => getCurrentUser(session.token)
+    });
+
+    const { mutate, isLoading: sendingOtp, isError, isSuccess:otpSent } = useMutation(sendEmailVerificationOtp);
+
+    const { mutate:updateUser, isLoading: updatingUser, error:updateUserError, isError:updateUserFailed, isSuccess:userUpdated } = useMutation(updateUserData, {
+        onSuccess: data => {
+            stopTimer();
+            disableTimer(true);
+            handleClose();
+        },
+        onError: (error) => {            
+            if(typeof(error) == "string" && error.toLowerCase().indexOf("otp") > -1) {
+                setError("verificationCode", {
+                    type: "manual",
+                    message: error,
+                })
+            }
+            else {
+                handleErrorAlert(true)();
+            }
+        }    
     });
 
 
@@ -66,13 +91,7 @@ export default ({ }) => {
 
     const handleClose = () => {
         stopTimer();
-        // if(!formData.isEmailVerified) {
-        // }
-        // else {
-        //     stopTimer();
-        // }
         enableModal(false);
-        disableTimer(true);
         removeQueryParam('buildProfile');
     }
 
@@ -86,7 +105,7 @@ export default ({ }) => {
         return () => {
             stopTimer();
         };
-    }, [session, timerDisabled]);
+    }, [session, timerDisabled, pathName]);
 
 
 
@@ -101,10 +120,7 @@ export default ({ }) => {
         if(!!userData && !!userData.id) {
             let data = {
                 ...formData,
-                firstName: userData.firstName || "",
-                lastName: userData.lastName || "",
-                email: userData.email || "",
-                isEmailVerified: userData.isEmailVerified || ""
+                ...userData
             }
             setFormData(data);
             reset(data);
@@ -118,7 +134,7 @@ export default ({ }) => {
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     }
 
-    const sendOtp = () => {
+    const sendOtp = async () => {
         if (!formData.email) {
             setError("email", {
                 type: "manual",
@@ -126,18 +142,37 @@ export default ({ }) => {
             })
         }
         else {
-            sendEmailVerificationOtp(formData.email);
+            mutate({userId:userData.id,  email:formData.email});
         }
     }
 
     const submitUserDetails = () => {
-        setFormData((prevFormData) => ({ ...prevFormData, isEmailVerified: true }));
-        stopTimer();
-        handleClose();
+        if(!otpSent && !formData.isEmailVerified){
+            setError("email", {
+                type: "manual",
+                message: "Please verify your email"
+            })
+        }
+        else {
+            let requestData = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phone: userData.phone,
+                emailOTP: formData.verificationCode,               
+                presentZipcode: formData.presentZipcode,
+                addressLine1: formData.presentAddressLine1,
+                addressLine2: formData.presentAddressLine2,
+                permanentAddressLine1:formData.presentAddressLine1,
+                permanentAddressLine2:formData.presentAddressLine2
+              }
+
+            updateUser({data:requestData, accessToken:session?.token, userId:userData.id});            
+        }
     }
 
     const startTimer = () => {
-        if (!modalEnabled && !!session && !timerId && !formData.isEmailVerified && regexMatches.some(x => x.test(pathName))) {
+        if (!modalEnabled && !!session && !timerId && (!formData.isEmailVerified) && regexMatches.some(x => x.test(pathName))) {
             console.log("setting timer");
             timerId = setTimeout(async () => {
                 if (!modalEnabled) {
@@ -154,6 +189,11 @@ export default ({ }) => {
         }
     }
 
+    const handleErrorAlert = (open) => () => {
+        setFormData((prevData) => ({ ...prevData, isError: open }))
+    }
+
+
     const stopTimer = () => {
         if (!!timerId) {
             clearTimeout(timerId);
@@ -168,6 +208,7 @@ export default ({ }) => {
         className='build-profile-modal'
     >
         <div className='build-profile-form'>
+            <BackdropLoader open={sendingOtp||updatingUser} />
             <CloseIcon width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose} />
             <div className='heading text-center'>Build your profile</div>
             <div className='sub-heading text-center mt-1'>Complete all mandatory details before proceeding.</div>
@@ -208,7 +249,7 @@ export default ({ }) => {
                 <div className="form-section">
                     <div className="sub-info">Email</div>
                     <Input
-                        errorMessage={"Required"}
+                        errorMessage={errors?.email?.message || "Required"}
                         control={control}
                         required={true}
                         rounded={true}
@@ -224,14 +265,17 @@ export default ({ }) => {
                         </InputAdornment>}
 
                     />
-                    <div className="form-row">
+                   {otpSent && <div className="form-row">
                         <Input
-                            errorMessage={"Required"}
+                            errorMessage={errors?.verificationCode?.message||"Required"}
                             control={control}
                             required={true}
                             rounded={true}
                             width={"100%"}
-                            className='post-form-input mt-2'
+                            minLength={6}
+                            maxLength={6}
+                            isNumber={true}
+                            className={`post-form-input mt-2`}
                             label={"Enter Verification Code"}
                             name="verificationCode"
                             value={formData.verificationCode}
@@ -239,7 +283,7 @@ export default ({ }) => {
                             height={50}
 
                         />
-                    </div>
+                    </div>}
                 </div>
 
                 <div className='form-section'>
@@ -261,6 +305,12 @@ export default ({ }) => {
                 </div>
             </div>
             <Button className="next-button d-block ml-auto" rounded={true} height={40} text={"Save"} onClick={handleSubmit(submitUserDetails)} />
+            <SnackbarAlert 
+            autohide={true}
+            handleClose={handleErrorAlert(false)}
+            title={"Error"}
+            message={"Something went wrong. Please try again later."}
+            open={formData.isError} />
         </div>
     </Modal>)
 }

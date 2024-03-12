@@ -5,8 +5,8 @@ function verifyEmailOtp(email, otp) {
     return post(`${API_CLIENT_URL}/verify/email-otp?email=${email}&otp=${otp}`, {}, { next: { cache: false } });
 }
 
-function sendEmailVerificationOtp(email) {
-    return post(`${API_CLIENT_URL}/send/email-otp?email=${email}`, {}, { next: { cache: false } });
+function sendEmailVerificationOtp({userId, email}) {
+    return post(`${API_CLIENT_URL}/send/email-otp/${userId}?email=${email}`, {}, { next: { cache: false } });
 }
 
 export {

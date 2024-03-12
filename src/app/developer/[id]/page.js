@@ -1,6 +1,6 @@
 import React from 'react';
 import { getDeveloperById, getAllDevelopers } from '@/clients/developerClient';
-import { getAllProjects } from '@/clients/projectClient';
+import { getProjectsByDeveloperId } from '@/clients/projectClient';
 import Image from 'next/image';
 import Rating from '@/app/components/rating'
 import { PropertyCard4 } from "@/app/components/ui/propertyCard";
@@ -18,7 +18,7 @@ dayjs.extend(customParseFormat)
 
 export default async function Page({ params: { id }, }) {
     const session = await getServerSession(authOptions)
-    const { data = {}, projects = {} } = await Promise.allKeys({ data: getDeveloperById(id, session?.token), projects: getAllProjects() });
+    const { data = {}, projects = {} } = await Promise.allKeys({ data: getDeveloperById(id, session?.token), projects: getProjectsByDeveloperId(id) });
     //const { data1= [], projects={}} = await Promise.allKeys({data:getAllDevelopers(), projects:getAllProjects()});
     //const data = data1[0];
 

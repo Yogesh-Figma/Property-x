@@ -66,6 +66,10 @@ async function getProjectConfigurationById(projectId) {
     return data;
 }
 
+function getProjectsByDeveloperId(developerId){
+    return get(`${API_CLIENT_URL}/get/project/by/developer/id/${developerId}`)
+}
+
 export {
     PROJECT_STATUS,
     getProjectsByStatus,
@@ -76,5 +80,6 @@ export {
     getProjectConfigurationById,
     getProjectTowerByUrlText,
     getProjectTowerById,
-    getUpcomingProjectByCityId
+    getUpcomingProjectByCityId,
+    getProjectsByDeveloperId
 }
