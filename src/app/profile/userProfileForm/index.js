@@ -138,11 +138,12 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
         <div className="col-12 form-row">
             <Input
                 controllerPrefix={index}
-                errorMessage={"Required"}
+                errorMessage={"Please enter valid pan no"}
                 control={control}
                 required={true}
                 rounded={true}
                 width={"100%"}
+                pattern={/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/}
                 minLength={10}
                 maxLength={10}
                 className='post-form-input'

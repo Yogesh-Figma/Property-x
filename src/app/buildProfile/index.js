@@ -42,7 +42,8 @@ export default ({ }) => {
         presentCityId: "",
         presentStateId: "",
         presentCountryId: "",
-        verificationCode:""
+        verificationCode:"",
+        presentLocalityId:""
     });
 
     let { data: countries = [], isLoading } = useQuery({ enabled: !!session, queryKey: ['getAllCountries'], queryFn: () => getAllCountries() });
@@ -50,6 +51,7 @@ export default ({ }) => {
     let { data: presentStates = [] } = useQuery({ enabled: !!formData.presentCountryId && !!session, queryKey: ['getStateByCountry', formData.presentCountryId], queryFn: () => getStateByCountry(formData.presentCountryId) });
 
     let { data: presentCities = [] } = useQuery({ enabled: !!formData.presentStateId && !!session, queryKey: ['getCityByStateId', formData.presentStateId], queryFn: () => getCityByStateId(formData.presentStateId) });
+    let { data: presentLocalities = [] } = useQuery({ enabled: !!formData.presentCityId, queryKey: ['getLocalityByCityId', formData.presentCityId], queryFn: () => getLocalityByCityId(formData.presentCityId) });
 
     let { data: userData = {}, isLoading: userDataLoading } = useQuery({
         enabled: !!session && !!session.token,
@@ -163,8 +165,7 @@ export default ({ }) => {
                 presentZipcode: formData.presentZipcode,
                 addressLine1: formData.presentAddressLine1,
                 addressLine2: formData.presentAddressLine2,
-                permanentAddressLine1:formData.presentAddressLine1,
-                permanentAddressLine2:formData.presentAddressLine2
+                presentLocalityId: formData.presentLocalityId
               }
 
             updateUser({data:requestData, accessToken:session?.token, userId:userData.id});            
@@ -173,11 +174,9 @@ export default ({ }) => {
 
     const startTimer = () => {
         if (!modalEnabled && !!session && !timerId && (!formData.isEmailVerified) && regexMatches.some(x => x.test(pathName))) {
-            console.log("setting timer");
             timerId = setTimeout(async () => {
                 if (!modalEnabled) {
                     const userInfo = await getCurrentUser(session.token);
-                    console.log("userInfo", userInfo)
                     if (userInfo.firstName == "" || !userInfo.isEmailVerified) {
                         enableModal(true);
                     }
@@ -212,7 +211,7 @@ export default ({ }) => {
             <CloseIcon width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose} />
             <div className='heading text-center'>Build your profile</div>
             <div className='sub-heading text-center mt-1'>Complete all mandatory details before proceeding.</div>
-            <div className='form mt-4'>
+            <div className='form mt-4 overflow-cnt'>
                 <div className="form-section">
                     <div className="sub-info">First Name</div>
                     <Input
@@ -298,7 +297,8 @@ export default ({ }) => {
                         addressData={{
                             "present": {
                                 states: presentStates,
-                                cities: presentCities
+                                cities: presentCities,
+                                localities:presentLocalities
                             }
                         }}
                     />
