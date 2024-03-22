@@ -21,9 +21,9 @@ export default function AutoCompleteSearch({ width = 300, value, onChange, heigh
     const [autoCompleteValue, setAutoCompleteValue] = React.useState("");
     const selectedValue = React.useMemo(
         () => autoCompleteOptions.find(item => (item?.value == value || item == value || item?.label == value)) || "",
-        [autoCompleteOptions]
+        [autoCompleteOptions, value]
       );
-
+      
     return (
         <Autocomplete
             clearOnEscape={clearOnEscape}
