@@ -86,6 +86,7 @@ const Login = ({ open }) => {
                 else {        
                     handleClose();
                 }
+                router.refresh();
             }
             else {
                 setError('otp', { type: 'custom', message: 'Invalid otp' });
