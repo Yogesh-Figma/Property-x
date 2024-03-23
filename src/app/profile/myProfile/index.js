@@ -10,15 +10,18 @@ import { useForm } from "react-hook-form";
 import { useQuery } from 'react-query';
 import { useSession } from "next-auth/react"
 import { updateUserProfile } from '@/clients/profileClient'
+import { updateUserData } from '@/clients/userClient';
 import { useAppContext } from '@/lib/appContext';
 import { getAllCountries, getCityByStateId, getLocalityByCityId, getStateByCountry } from '@/clients/addressClient';
+import SnackbarAlert from '@/app/components/snackbarAlert';
 const ADDRESS_TYPES = ["permanent", "present"];
 
 export default ({ userProfileData }) => {
     const [files, setFilesState] = React.useState({});
     const { enableLoader } = useAppContext() || {};
-    const { data: { user, token } = {}  } = useSession();
+    const { data: { user, token } = {} } = useSession();
     const [formData, setFormData] = React.useState({
+        disableBasicDataEdit: true,
         firstName: userProfileData.firstName,
         lastName: userProfileData.lastName,
         email: userProfileData.email,
@@ -41,7 +44,8 @@ export default ({ userProfileData }) => {
         presentLocalityId: userProfileData?.presentAddress?.id,
         presentStateId: userProfileData?.presentAddress?.city?.states?.id,
         presentCountryId: userProfileData?.presentAddress?.city?.states?.country?.id,
-        permanentAddressSame: false
+        permanentAddressSame: false,
+        isError: false
     });
 
     let { data: countries = [], isLoading } = useQuery({ queryKey: ['getAllCountries'], queryFn: () => getAllCountries() });
@@ -80,6 +84,10 @@ export default ({ userProfileData }) => {
 
     const setFiles = (name, files) => {
         setFilesState((prevFormData) => ({ ...prevFormData, [name]: files }));
+    }
+
+    const handleSnackBar = (open, isSuccess, isError) => {
+        setFormData((prevData) => ({ ...prevData, isOpen: open, isSuccess, isError }))
     }
 
 
@@ -122,17 +130,32 @@ export default ({ userProfileData }) => {
                 "aadharPhoto": aadharPhoto,
                 "kycVerified": userProfileData.kycVerified,
                 "presentZipcode": formData.presentZipcode,
-                "permanentZipcode": formData.permanentAddressSame? formData.presentZipcode: formData.permanentZipcode,
+                "permanentZipcode": formData.permanentAddressSame ? formData.presentZipcode : formData.permanentZipcode,
                 "addressLine1": formData.presentAddressLine1,
                 "addressLine2": formData.presentAddressLine2,
-                "permanentAddressLine1": formData.permanentAddressSame? formData.presentAddressLine1:formData.permanentAddressLine1,
-                "permanentAddressLine2": formData.permanentAddressSame? formData.presentAddressLine2:formData.permanentAddressLine2,
+                "permanentAddressLine1": formData.permanentAddressSame ? formData.presentAddressLine1 : formData.permanentAddressLine1,
+                "permanentAddressLine2": formData.permanentAddressSame ? formData.presentAddressLine2 : formData.permanentAddressLine2,
                 "permanentLocalityId": formData.permanentAddressSame ? formData.presentLocalityId : formData.permanentLocalityId,
                 "presentLocalityId": formData.presentLocalityId
             }
+
+            let userBasicData = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phone: formData.phone
+            }
+
+            // if(!formData.disableBasicDataEdit) {
+            //     await updateUserData({ data: userBasicData, accessToken: token, userId: user.id });
+            // }
             await updateUserProfile(user.id, requestJson, token);
+            handleSnackBar(true, true, false);
         }
-        catch (e) { }
+        catch (e) {
+            console.log("error", e);
+            handleSnackBar(true, false, true);
+        }
         finally {
             enableLoader(false)
         }
@@ -148,7 +171,7 @@ export default ({ userProfileData }) => {
         </div>
         <div className='form'>
             <UserProfileForm
-                disableBasicDataEdit={true}
+                disableBasicDataEdit={formData.disableBasicDataEdit}
                 files={files}
                 setFiles={setFiles}
                 control={control}
@@ -173,5 +196,12 @@ export default ({ userProfileData }) => {
         <div className='d-flex justify-content-end'>
             <Button rounded={true} height={40} text={"Update Information"} onClick={handleSubmit(handleNext, onError)} />
         </div>
+        <SnackbarAlert
+            severity={formData.isError ? "error" : "success"}
+            autohide={true}
+            handleClose={() => handleSnackBar(false)}
+            title={formData.isError ? "Error" : "Success"}
+            message={formData.isError ? "Something went wrong. Please try again later." : "Profile updated successfully"}
+            open={formData.isError || formData.isSuccess} />
     </div>)
 }

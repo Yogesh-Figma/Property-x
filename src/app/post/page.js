@@ -23,8 +23,13 @@ export default async ({ }) => {
                 <div className=''>
                     <Heading label={"I want to Post..."} />
                     <div className="property-btn d-sm-flex justify-content-between">
-                        {propertyTypes.map(item => <><NextLinkButton className="mt-4 mt-sm-0 text-capitalize" rounded={true} text={`${item.name} Property`} height={50} href={`/post/${item.name}`} />
+                        {propertyTypes.map(item => {
+                            let name = item.name.charAt(0).toUpperCase() + item.name.slice(1).toLowerCase()
+                        return(<>
+                        <NextLinkButton className="mt-4 mt-sm-0 text-capitalize" 
+                        rounded={true} text={`${name} Property`} height={50} href={`/post/${name}`}/>
                         </>)}
+                        )}
                     </div>
                 </div>
                 <div className='sticky-note-container position-relative d-none d-xl-inline-block'>

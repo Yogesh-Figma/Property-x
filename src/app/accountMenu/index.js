@@ -68,7 +68,7 @@ export default function AccountMenu() {
               <Image src={"/propertyStatsImg.jpeg"} width={120} height={120} />
             </div>
             <div>
-              <div className='name'>{user.firstName + " " + user.lastName}</div>
+              <div className='name'>{(user.firstName||"") + " " + (user.lastName||"")}</div>
               <div className='email'>{user.email}</div>
               <div className='phone-no'>{user.phone}</div>
             </div>

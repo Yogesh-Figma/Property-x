@@ -18,7 +18,7 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
                         controllerPrefix={index}
                         errorMessage={"Required"}
                         control={control}
-                        required={true}
+                        required={!disableBasicDataEdit}
                         rounded={true}
                         width={"100%"}
                         className='post-form-input'
@@ -35,7 +35,7 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
                         controllerPrefix={index}
                         errorMessage={"Required"}
                         control={control}
-                        required={true}
+                        required={!disableBasicDataEdit}
                         rounded={true}
                         width={"100%"}
                         className='post-form-input'
@@ -54,7 +54,7 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
                         controllerPrefix={index}
                         errorMessage={"Required"}
                         control={control}
-                        required={true}
+                        required={!disableBasicDataEdit}
                         rounded={true}
                         width={"100%"}
                         minLength={10}
@@ -73,7 +73,7 @@ export default ({ files, disableBasicDataEdit, setFiles, handleChange, formData,
                     controllerPrefix={index}
                     errorMessage={"Required"}
                     control={control}
-                    required={true}
+                    required={!disableBasicDataEdit}
                     rounded={true}
                     width={"100%"}
                     className='post-form-input'

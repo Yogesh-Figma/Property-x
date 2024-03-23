@@ -59,7 +59,19 @@ export default ({ }) => {
         queryFn: () => getCurrentUser(session.token)
     });
 
-    const { mutate, isLoading: sendingOtp, isError, isSuccess:otpSent } = useMutation(sendEmailVerificationOtp);
+    const { mutate, isLoading: sendingOtp, isError, isSuccess:otpSent } = useMutation(sendEmailVerificationOtp, {
+        onError: (error) => {     
+            if(typeof(error) == "string" && error.toLowerCase().indexOf("email") > -1) {
+                setError("email", {
+                    type: "manual",
+                    message: error,
+                })
+            }
+            else {
+                handleErrorAlert(true)();
+            }
+        }    
+    });
 
     const { mutate:updateUser, isLoading: updatingUser, error:updateUserError, isError:updateUserFailed, isSuccess:userUpdated } = useMutation(updateUserData, {
         onSuccess: data => {
