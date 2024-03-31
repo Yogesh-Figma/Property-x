@@ -4,8 +4,7 @@
     padding-bottom: 17px;
     min-height: 60px;
     background: #fff;
-    z-index: 4;
-    position: relative;
+    z-index: 4;   
     .logo-link {
         margin-left: 20px;
     }
@@ -30,6 +29,43 @@
         width: 24px;
         height: 24px;
         margin-right: 20px;
+    }
+    .mobile-search-container {
+       span {
+        margin-right: 0px;
+       }
+
+        background: #fff;
+        border-bottom: 1px solid #e1e1e1;
+        align-items: center;
+        display: flex;
+        position: absolute;
+        height: 60px;
+        z-index: 4;
+        top: 46px;
+        width: 100%;
+        padding: 10px;
+        left: 0;
+        transform: scale(0);
+
+        &.open {
+            transform: scale(1);
+       }
+        .compact-search-bar-container {
+            background-color: #f8f8f8;
+            padding: 10px;
+            width: 100%;
+        }
+        .location-container {
+            max-width: 40vw;
+        }
+        .compact-search-bar {
+            width: 100%;
+            border: none;
+            .input-label-no-shrink {
+                transform: translate(38px, 7px) scale(1);
+            }
+        }
     }
 }
 .ham-list {

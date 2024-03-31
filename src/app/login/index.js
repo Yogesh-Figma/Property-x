@@ -156,7 +156,7 @@ const Login = ({ open }) => {
                             <div className='terms-of-service d-flex align-items-center'> <Checkbox />I agree to Terms of Services, and Privacy Policy.</div>
                             <Button text={"Verify OTP"} className={"otp-verify-btn"} rounded={true} height={50} onClick={handleSubmit(()=>{ verifyCredentialAndLogin() })}/>
                         </div> : <>
-                            <div className='or-con text-center sub-heading-3'>Or</div>
+                            {/* <div className='or-con text-center sub-heading-3'>Or</div>
                             <div className='login-with-google d-flex align-items-center justify-content-center'>
                                 <Image src={"/googleImage.png"} width={20} height={20} />
                                 <div className='sub-heading-3'>Login with Google</div>
@@ -164,7 +164,7 @@ const Login = ({ open }) => {
                             <div className='login-with-facebook d-flex align-items-center justify-content-center mb-0'>
                                 <Image src={"/facebookImage.png"} width={20} height={20} />
                                 <div className='sub-heading-3'>Login with Facebook</div>
-                            </div>
+                            </div> */}
                         </>}
                     </div>
                 </div>

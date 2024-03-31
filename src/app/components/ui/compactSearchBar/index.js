@@ -10,9 +10,16 @@ import Link from 'next/link'
 import { useQuery } from 'react-query';
 import { useAppContext } from '@/lib/appContext';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import PlaceIcon from '@mui/icons-material/Place';
 
 
-const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", showSearchIcon, showLocationMenu, className, locations }) => {
+const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", mobileSearch, showSearchIcon, showLocationMenu, className, locations }) => {
     const SEARCH_REGEX = /\/search\/(\w+)/
     const pathName = usePathname();
     const searchParams = useSearchParams();
@@ -21,11 +28,12 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", sho
     const cityNameFromParam = !!searchTermFromParam ? searchParams.get("city") : "";
     const [searchTerm, setSearchTerm] = React.useState(searchTermFromParam);
     let { userLocation, setUserLocation } = useAppContext() || {};
-    let [ hydrated, hydrate ] = React.useState(false);
+    let [hydrated, hydrate] = React.useState(false);
+    const [openLocationDropDown, setLocationDropOpen] = React.useState(false);
 
-useEffect(()=> {
+    useEffect(() => {
         hydrate(true);
-    },[]);
+    }, []);
 
     const router = useRouter();
     const shrink = searchTerm.length > 0;
@@ -48,22 +56,50 @@ useEffect(()=> {
         router.push(redirectUrl);
     }
 
-    const currentLocation = React.useMemo(()=> {
+    const currentLocation = React.useMemo(() => {
         let location = {}
-        if(userLocation?.value && !!locations) {
-            location = locations.find(item => item.value == userLocation?.value);        
+        if (userLocation?.value && !!locations) {
+            location = locations.find(item => item.value == userLocation?.value);
         }
-        else if (!!cityNameFromParam && !!locations){
-            location = locations.find(item => item.label.toLowerCase() == cityNameFromParam.toLowerCase());        
+        else if (!!cityNameFromParam && !!locations) {
+            location = locations.find(item => item.label.toLowerCase() == cityNameFromParam.toLowerCase());
         }
-       return location
+        return location
 
     }, [userLocation?.value, cityNameFromParam])
+
+    const handleLocationIconClick = () => {
+        setLocationDropOpen(!openLocationDropDown);
+    };
 
     return (
         <div className={`compact-search-bar-container d-flex ${className}`}>
             {!!showLocationMenu && <div className='location-container'>
-                <DropDown label={"Location"} handleChange={handleLocationChange} value={hydrated ? currentLocation.value:""} values={locations} suppressHydrationWarning /></div>}
+                <DropDown label={"Location"} handleChange={handleLocationChange} value={hydrated ? currentLocation.value : ""} values={locations} suppressHydrationWarning /></div>}
+
+            {mobileSearch && <>
+                <PlaceIcon onClick={handleLocationIconClick} />
+                <Dialog
+                sx={{
+                    "& .MuiDialog-container": {
+                        display: "inline-block",
+                        top: "100px",
+                        position:"relative"
+                    }
+                }}
+                disableEscapeKeyDown open={openLocationDropDown} onClose={handleLocationIconClick}>
+                    <DialogTitle>Select Location</DialogTitle>
+                    <DialogContent>
+                        <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                            <DropDown label={"Location"} handleChange={handleLocationChange} value={hydrated ? currentLocation.value : ""} values={locations} suppressHydrationWarning />
+                        </Box>
+
+                    </DialogContent>
+                    <DialogActions>
+                        <Button text={"Ok"} height={20} rounded={true} onClick={handleLocationIconClick} />
+                    </DialogActions>
+                </Dialog>
+            </>}
             <div className='compact-search-bar body-txt'>
                 <form onSubmit={handleSubmit} id="search-form-2">
                     <TextField
@@ -83,9 +119,14 @@ useEffect(()=> {
                         InputProps={{
                             className: `search-input${showSearchIcon ? "-icon" : ""}`,
                             endAdornment: (
-                                <InputAdornment position="end">
+                                !mobileSearch && <InputAdornment position="end">
                                     {showSearchIcon ? <Image src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} form="search-form-2" type="submit" />}
                                 </InputAdornment>
+                            ),
+                            startAdornment: (
+                                mobileSearch ? <InputAdornment position="start">
+                                    <Image src={searchIcon} width={15} height={15} />
+                                </InputAdornment>: null
                             ),
                         }}
                     />
