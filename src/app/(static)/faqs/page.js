@@ -14,7 +14,7 @@ const FAQs = async () => {
                     <div className='heading'>FAQs</div>
                     <div className='sub-heading'>Explore our FAQs to navigate through the seamless world of property booking on Go Propify..</div>
                 </div>
-                <Image src={"/faqs.png"} className='d-none d-md-block' width={250} height={250} />
+                <Image alt="faqs" src={"/faqs.png"} className='d-none d-md-block' width={250} height={250} />
             </div>
         </div>
         <div className='content-cnt container-fluid'>

@@ -54,7 +54,7 @@ const Footer = () => {
                     <div className="row g-0">
                         <div className='col-xl-4 mb-5'>
                             <div className='trophy-container d-flex align-items-center justify-content-center'>
-                                <Image src={"/trophy.svg"} width={70} height={70} />
+                                <Image alt="trophy" src={"/trophy.svg"} width={70} height={70} />
                             </div>
                         </div>
                         <div className='col-xl-8'>

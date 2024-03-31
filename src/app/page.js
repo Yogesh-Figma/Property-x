@@ -23,7 +23,7 @@ export default async function Home() {
     <div className='home'>
       <div className='banner no-gutter container-fluid'>
         <div className='d-flex justify-content-end position-relative'>
-          <Image className='banner-image overflow-container-fluid' src={bannerImage} />
+          <Image alt="banner-image" className='banner-image overflow-container-fluid' src={bannerImage} />
         </div>
         <div className='banner-content position-absolute  d-none d-lg-block'><span className='content-1 heading'>Prime Property Deals at Your Fingertips <br /></span><span className='content-2 sub-heading'>The Ultimate Property Booking<br />Destination</span>
         </div>

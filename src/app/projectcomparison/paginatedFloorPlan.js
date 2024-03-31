@@ -39,7 +39,7 @@ export default function PaginatedFloorPlan({ id, isProperty, floorPlan = {}, con
                     <Heading label={configurations[page]?.name}/>
                 </div>
                 <div className='floor-img-container'>
-                    <Image src={configurations[page]?.floorPlanImage ||""} width={198} height={165} />
+                    <Image alt="floor plan" src={configurations[page]?.floorPlanImage ||""} width={198} height={165} />
                 </div>
                 <div className='price-container mt-2'>
                     <Heading label={`Price ${Helper.currencyFormatter(configurations[page]?.price)}`} />

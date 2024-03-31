@@ -17,7 +17,7 @@ export default ({ wishlist }) => {
         <div className='wishlist'>
             <div className='property-cards'>
                 {!isLoading && wishlists.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
-                    <Image src={"/wishListNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                    <Image alt="wishlist no result"  src={"/wishListNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                     <div className="message mb-3 heading-4d">No Wishlist found!</div>
                     <NextLinkButton rounded={true} height={40} text={"Explore Properties"} href={"/"} />
                 </div> :

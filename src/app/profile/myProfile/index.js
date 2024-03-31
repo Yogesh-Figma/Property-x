@@ -166,7 +166,7 @@ export default ({ userProfileData }) => {
 
     return (<div className='my-profile'>
         <div className="profile-pic position-relative">
-            <Image src={"/propertyStatsImg.jpeg"} width={120} height={120} />
+            <Image alt="property stats" src={"/propertyStatsImg.jpeg"} width={120} height={120} />
             <EditPencil className='edit-pencil position-absolute cursor-pointer' />
         </div>
         <div className='form'>

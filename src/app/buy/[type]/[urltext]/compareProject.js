@@ -70,7 +70,7 @@ export const CompareProjectPopup = () => {
             {comparisonProjects.map(item => <div className="comparison-item d-flex flex-column align-items-center position-relative">
                 <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
                 <div className='prop-image'>
-                    <Image src={item.logo} width={157} height={94} />
+                    <Image alt="prop logo" src={item.logo} width={157} height={94} />
                 </div>
                 <div className='proj-title'>{item.name}</div>
                 <div className="proj-location sub-info">{item.address}</div>

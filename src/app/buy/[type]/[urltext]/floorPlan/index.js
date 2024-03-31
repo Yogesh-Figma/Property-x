@@ -52,7 +52,7 @@ const FloorPlan = ({ id, isProperty, floorPlan = {}, configuration = {}, propert
                         </ul>
                     </div>
                     <div className='image-container position-relative'>
-                        <Image src={item.floorPlanImage||""} fill={true} />
+                        <Image alt="floor plan image" src={item.floorPlanImage||""} fill={true} />
                     </div>
                 </Card>
             </div>

@@ -67,10 +67,10 @@ export default ({ formData, handleChange, changeStep, selectedProperty, bookProp
                                 {getUserDetails(item)}
                                 <div className="photo-signature g-0 d-md-block d-flex align-items-center">
                                     <div className="col-md-12">
-                                        {!!item.userPhoto && <Image className="user-photo" src={URL.createObjectURL(item.userPhoto)} width={116} height={106} />}
+                                        {!!item.userPhoto && <Image alt="user photo" className="user-photo" src={URL.createObjectURL(item.userPhoto)} width={116} height={106} />}
                                     </div>
                                     <div className="signature-container position-relative col-md-12 ms-4 ms-md-0 mt-0 mt-md-3">
-                                        {!!item.signature && <Image className="signature" src={URL.createObjectURL(item.signature)} fill={true} />}
+                                        {!!item.signature && <Image alt="signature" className="signature" src={URL.createObjectURL(item.signature)} fill={true} />}
                                     </div>
                                 </div>
                             </div>

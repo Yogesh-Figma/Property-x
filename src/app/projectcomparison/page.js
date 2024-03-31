@@ -52,7 +52,7 @@ const TableRow = ({ data = [], field, heading, defaultLen = 3, headingClassName,
 
 const AmenitiesColumn = ({ data }) => {
     return data?.amenities.map((item, index) => <div className='amenity d-flex align-items-center' key={index}>
-        <Image src={item.amenityImage} width={20} height={20} />
+        <Image alt="amenity image"  src={item.amenityImage} width={20} height={20} />
         <div className='sub-info'>{item.amenityName}</div>
     </div>)
 }
@@ -117,7 +117,7 @@ const ProjectComparision = ({ }) => {
                         {projects.map(item => <td className=''><div class="comparison-item d-flex flex-column align-items-center">
                             <span class="remove-item cursor-pointer" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
                             <div className='prop-image'>
-                                <Image src={item.logo} width={157} height={94} />
+                                <Image alt="property logo" src={item.logo} width={157} height={94} />
                             </div>
                             <div className='proj-title'>{item.name}</div>
                             <div class="proj-location sub-info">{item.address}</div>
@@ -188,7 +188,7 @@ const ProjectComparision = ({ }) => {
                         <th>Project Canvas</th>
                         <td className=''>
                             {!!projects[0] && <>
-                                <Image src={"/projectCanvas.png"} className='d-block mx-auto' width={245} height={175} />
+                                <Image alt="project canvas" src={"/projectCanvas.png"} className='d-block mx-auto' width={245} height={175} />
                                 <div className='d-flex align-items-center flex-column'>
                                     <TalkToConsulantBtn height={40} id={projects[0].id} isProperty={isPropertyComparison} />
                                     <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href={`?schedule=${projects[0].id}`} />
@@ -197,7 +197,7 @@ const ProjectComparision = ({ }) => {
                         </td>
                         <td className=''>
                             {!!projects[1] && <>
-                                <Image src={"/projectCanvas.png"} className='d-block mx-auto' width={245} height={175} />
+                                <Image alt="project canvas" src={"/projectCanvas.png"} className='d-block mx-auto' width={245} height={175} />
                                 <div className='d-flex align-items-center flex-column'>
                                     <TalkToConsulantBtn height={40} id={projects[1].id} isProperty={isPropertyComparison} />
                                     <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href={`?schedule=${projects[1].id}`} />

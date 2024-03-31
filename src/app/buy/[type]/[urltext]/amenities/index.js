@@ -26,7 +26,7 @@ export default ({ imageWidth=45, imageHeight=45, data={}}) => {
         <Heading label={"Amenities"} />
         <Card className='property-amenities'>
             {(data.amenities||[]).map((item, index) => <div className='amenity text-center' key={index}>
-                <Image src={item.amenityImage} width={imageWidth} height={imageHeight} />
+                <Image alt="amenity" src={item.amenityImage} width={imageWidth} height={imageHeight} />
                 <div className='sub-info'>{item.amenityName}</div>
             </div>)}
         </Card>

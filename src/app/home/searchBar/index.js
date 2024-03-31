@@ -120,11 +120,11 @@ const SearchBar = ({ locations }) => {
                             endAdornment: (
                                 <InputAdornment position="end" className=''>
                                     <div className='d-lg-flex search-bar-icons d-none'>
-                                        <Image src={fluentLocation} width={24} height={24} />
-                                        <Image src={solidVoice} width={24} height={24} />
+                                        <Image alt="fluent Location" src={fluentLocation} width={24} height={24} />
+                                        <Image alt="solid Voice" src={solidVoice} width={24} height={24} />
                                     </div>
                                     <div className='d-lg-none d-flex'>
-                                        <Button type="submit" form="search-form" text={""} onClick={(event) => !searchTerm ? event.preventDefault() : null} rounded={true} height={72} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-compact-btn"} />
+                                        <Button type="submit" form="search-form" text={""} onClick={(event) => !searchTerm ? event.preventDefault() : null} rounded={true} height={72} icon={<Image src={searchIcon} alt="search icon" width={30} height={30} />} className={"search-bar-compact-btn"} />
                                     </div>
                                 </InputAdornment>
                             ),
@@ -133,7 +133,7 @@ const SearchBar = ({ locations }) => {
                 </form>
             </div>
 
-            <Button text={"Search"} type="submit" form="search-form" rounded={true} height={68} icon={<Image src={searchIcon} width={30} height={30} />} className={"search-bar-btn d-none d-lg-inline-flex"} />
+            <Button text={"Search"} type="submit" form="search-form" rounded={true} height={68} icon={<Image alt="search icon" src={searchIcon} width={30} height={30} />} className={"search-bar-btn d-none d-lg-inline-flex"} />
         </div>
     </div>)
 }

@@ -26,7 +26,7 @@ export default ({ }) => {
             <SlantedTabs className="tab-content">
                 <div label="Currently Posted">
                     {!isLoading && data.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
-                        <Image src={"/propertyNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                        <Image alt="property no result" src={"/propertyNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                         <div className="message mb-3 heading-4d">Looks like you didn't book any property!</div>
                         <NextLinkButton rounded={true} height={40} text={"List a Property"} href={"/"} />
                     </div> : data.map((item, index) => <PostedPropertyCard
@@ -47,7 +47,7 @@ export default ({ }) => {
                 </div>
                 <div label="Expired">
                     {<div className="no-result d-flex align-items-center justify-content-center flex-column">
-                        <Image src={"/propertyNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                        <Image alt="property no result"  src={"/propertyNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                         <div className="message mb-3 heading-4d">No property expired!</div>
                         <NextLinkButton rounded={true} height={40} text={"List a Property"} href={"/"} />
                     </div>}

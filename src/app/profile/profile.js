@@ -46,7 +46,7 @@ export default ({ userProfileData }) => {
             <div className="profile-tabs d-none d-lg-block">
                 <div className="profile-short-info d-flex flex-column align-items-center">
                     <div className="profile-image">
-                        <Image src={"/propertyStatsImg.jpeg"} width={120} height={120} />
+                        <Image alt="profile image" src={"/propertyStatsImg.jpeg"} width={120} height={120} />
                     </div>
                     <div className='name'>{userProfileData.fullName}</div>
                     <div className='email'>{userProfileData.email}</div>

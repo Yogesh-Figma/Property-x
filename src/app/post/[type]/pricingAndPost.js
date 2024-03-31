@@ -44,7 +44,7 @@ export default ({ formData, handleChange, postProperty }) => {
                 />
             </div>
             <div className='undraw-sale d-none d-lg-inline-block'>
-                <Image src={"/undrawSale.svg"} width={480} height={239} />
+                <Image alt="undraw sale" src={"/undrawSale.svg"} width={480} height={239} />
             </div>
         </div>
         <div className='d-flex justify-lg-content-center justify-content-end post-property-cnt'>

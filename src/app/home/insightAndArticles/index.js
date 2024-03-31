@@ -14,7 +14,7 @@ const InsightAndArticles = async ({ }) => {
                 <div style={{width:"370px"}} key={index}>
                     <div className='insight-card'>
                         <div className='position-relative ing-img-container overflow-hidden'>
-                            <Image src={item.urls[0]} fill={true} className="insight-image" />
+                            <Image alt="insight and article" src={item.urls[0]} fill={true} className="insight-image" />
                         </div>
                         <div className='info sub-heading-2'>{item.headings}</div>
                         <div className='sub-info sub-heading-3'>{item.subHeading}</div>

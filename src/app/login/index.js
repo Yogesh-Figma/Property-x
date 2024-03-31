@@ -103,9 +103,9 @@ const Login = ({ open }) => {
             className='login-modal'
         >
             <Box sx={{ ...styles.modal }} className=" position-relative">
-                <Image src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose}/>
+                <Image alt="Close icon" src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose}/>
                 <div className='login-container row g-0'>
-                    <Image className="d-lg-inline-block d-none col-6" src={"/undrawBuilding.svg"} width={438} height={334} />
+                    <Image alt="undraw building" className="d-lg-inline-block d-none col-6" src={"/undrawBuilding.svg"} width={438} height={334} />
                     <div className='login-info col-lg-6 col-12'>
                         <div className='heading'>Log in</div>
                         <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>Property X</span> account.</div>

@@ -117,7 +117,7 @@ const LeadsDetails = ({ leads, property }) => {
                 </div>
             </div>
             <div className="img-cnt d-none d-xl-block">
-                <Image src={"/coupleTogether.png"} width={249} height={417} />
+                <Image alt="leads image" src={"/coupleTogether.png"} width={249} height={417} />
             </div>
         </div>
     );

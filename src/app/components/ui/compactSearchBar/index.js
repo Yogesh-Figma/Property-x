@@ -120,12 +120,12 @@ const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", mob
                             className: `search-input${showSearchIcon ? "-icon" : ""}`,
                             endAdornment: (
                                 !mobileSearch && <InputAdornment position="end">
-                                    {showSearchIcon ? <Image src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} form="search-form-2" type="submit" />}
+                                    {showSearchIcon ? <Image alt="search icon" src={searchIcon} width={30} height={30} /> : <Button text={"Search"} height={20} rounded={true} form="search-form-2" type="submit" />}
                                 </InputAdornment>
                             ),
                             startAdornment: (
                                 mobileSearch ? <InputAdornment position="start">
-                                    <Image src={searchIcon} width={15} height={15} />
+                                    <Image alt="search icon" src={searchIcon} width={15} height={15} />
                                 </InputAdornment>: null
                             ),
                         }}

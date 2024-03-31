@@ -19,7 +19,7 @@ const HighLights = ({ data }) => {
                         </div>
                     </div>
                     <div className='img-cnt d-none d-md-block'>
-                        <Image src={"/highlight.png"} height={367} width={367} />
+                        <Image alt="highlight" src={"/highlight.png"} height={367} width={367} />
                     </div>
                 </div>
             </Card>

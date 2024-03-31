@@ -38,7 +38,7 @@ const TrustedDevelopers = async () => {
                             <div className='sub-container'>
                                 <div className='d-flex'>
                                     <div className='image-container d-flex pe-2'>
-                                        <Image src={data.logo || ""} width={50} height={50} />
+                                        <Image alt="property logo" src={data.logo || ""} width={50} height={50} />
                                     </div>
                                     <div>
                                         <div className='sub-heading-2'>{data.name}</div>

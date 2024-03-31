@@ -28,7 +28,7 @@ export default ({ }) => {
                     <div className='scheduled-visits'>
                         <div className='property-cards'>
                             {!isLoading && data.upcoming.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
-                                <Image src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                                <Image alt="schedule no result" src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                                 <div className="message mb-3 heading-4d">Looks like you didn't schedule any visit!</div>
                                 <NextLinkButton rounded={true} height={40} text={"Start Booking Now"} href={"/"} />
                             </div> : (data.upcoming || []).map(visits => {
@@ -67,7 +67,7 @@ export default ({ }) => {
                     <div className='scheduled-visits'>
                         <div className='property-cards'>
                             {!isLoading && data.visited.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
-                                <Image src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                                <Image alt="schedule no result" src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                                 <div className="message mb-3 heading-4d">Looks like you didn't schedule any visit.</div>
                                 <NextLinkButton rounded={true} height={40} text={"Schedule a Visit"} href={"/"} />
                             </div> : (data.visited || []).map(visits => {

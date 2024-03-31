@@ -17,7 +17,7 @@ const Testimonials = async ({ }) => {
                     <div className="line" />
                     <div className='cust-cont d-flex justify-content-between'>
                         <div className='cust-img-container me-1 position-relative'>
-                            <Image src={testimonial.photo || ""} fill={true}/>                            
+                            <Image alt="testimonial photo" src={testimonial.photo || ""} fill={true}/>                            
                         </div>
                         <div className='cust-info text-end'>
                             <div className='cust-name sub-heading-3'>{testimonial.name||"Anonymous"}</div>

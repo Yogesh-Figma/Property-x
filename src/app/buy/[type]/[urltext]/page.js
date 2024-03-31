@@ -93,7 +93,7 @@ export default async function Page({ params: { urltext, type }, }) {
             <div className='row g-0 property-additional-info'>
                 <div className='col-lg-8'>
                     <div className='property-images position-relative'>
-                        <Image src={data.coverPhoto|| ""} fill={true} />
+                        <Image alt="cover photo" src={data.coverPhoto|| ""} fill={true} />
                         <CompareProjects data={data} isProperty={isProperty}/>
                         <Link href={"?gallery=true"}>
                             <div className='images-video-count position-absolute d-flex'>
@@ -131,7 +131,7 @@ export default async function Page({ params: { urltext, type }, }) {
                         <div className='similar-project-txt'>Similar {type} Nearby</div>
                         <div className='sub-info'>10km away from the searched location</div>
                         <div className='nearby position-relative'>
-                            <Image src={"/samplePropertyImage.jpeg"} className='nearby-prop-image' fill={true} />
+                            <Image alt="nearby prop image" src={"/samplePropertyImage.jpeg"} className='nearby-prop-image' fill={true} />
                             <div className='nearby-prop-info position-absolute'>
                                 <div className='title heading'>Nirala Estate</div>
                                 <div className='address'>Techzone 4, Greater Noida West</div>

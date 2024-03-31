@@ -30,7 +30,7 @@ export default async function Page({ params: { id }, }) {
             <div className='additional-page-padding'>
                 <div className='d-flex align-items-start'>
                     <div className='image-container d-flex pe-3'>
-                        <Image src={data.logo || ""} width={100} height={100} />
+                        <Image alt="property image" src={data.logo || ""} width={100} height={100} />
                     </div>
                     <div className='dev-info'>
                         <div className='heading'>{data.legalName}</div>

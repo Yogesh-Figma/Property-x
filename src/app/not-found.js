@@ -11,7 +11,7 @@ export default function NotFound() {
             <Button rounded={true} height={47} text={"Go To Home"} onClick={() => (window.location.href = '/')} />
         </div>
         <div className='image-container position-relative d-none d-md-block'>
-            <Image src="/notfound.png" fill={true}/>
+            <Image alt="notfound" src="/notfound.png" fill={true}/>
         </div>
     </div>
 }

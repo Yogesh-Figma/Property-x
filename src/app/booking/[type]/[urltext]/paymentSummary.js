@@ -12,7 +12,7 @@ export default ({ variant = "horizontal", data ={} }) => {
                 <div className={variant == "vertical" ? 'col-xl-12 col-md-6 col-12':`col-md-6 col-12`}>
                     <div className="row g-0">
                         <div className="col-6 position-relative">
-                            <Image src={data.logo} fill={true} />
+                            <Image alt="logo" src={data.logo} fill={true} />
                         </div>
                         <div className="col-6 property-details">
                             <div className="title heading">{data.name}</div>
@@ -28,7 +28,7 @@ export default ({ variant = "horizontal", data ={} }) => {
                         <div className="amenty-title">Amenities</div>
                         <div className="amenities d-flex flex-wrap">
                             {(data.amenities||[]).map((item, index) => <div className='amenity text-center' key={index}>
-                                <Image src={item.amenityImage} width={20} height={20} />
+                                <Image alt="amenity image" src={item.amenityImage} width={20} height={20} />
                                 <div className='sub-info'>{item.amenityName}</div>
                             </div>)}
                         </div>
@@ -39,7 +39,7 @@ export default ({ variant = "horizontal", data ={} }) => {
                 </div> */}
                 <div className={(variant == "vertical" ? 'col-xl-12 col-md-6 col-12': "col-md-6 col-12") + " property-payable-container"}>
                     <div className="property-payable">
-                        <div className="title row amount-payable heading"><div className="col-6">Total Payable Amount</div><div className="col-6">₹1,14,39,855</div></div>
+                        <div className="title row amount-payable heading"><div className="col-6">Total Payable Amount</div><div className="col-6">{Helper.indianCurrencyFormatter(data.totalPrice)}</div></div>
                         <div className="title row cost-breakup heading"><div className="col-6">Cost Breakup (In ₹)</div></div>
                         <div className="row sub-info"><div className="col-6">Unit Area ( In sq ft)</div><div className="col-6">{Helper.sqftSizeFormatter(data.coveredArea)}</div></div>
                         <div className="row sub-info"><div className="col-6">Cost per unit area</div><div className="col-6">{Helper.pricePerSqftFormatter(data.ratePerUnitInsqft)}</div></div>

@@ -10,7 +10,7 @@ export default ({ }) => {
             <SlantedTabs className="tab-content">
                 <div label="Booked Properties">
                     <div className="no-result d-flex align-items-center justify-content-center flex-column">
-                        <Image src={"/wishListNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                        <Image alt="wishlist no result"  src={"/wishListNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                         <div className="message mb-3 heading-4d">No transactions done yet!</div>
                         <NextLinkButton rounded={true} height={40} text={"Start Booking Now"} href={"/"} />
                     </div>
@@ -43,7 +43,7 @@ export default ({ }) => {
                 </div>
                 <div label="Sold Properties">
                     <div className="no-result d-flex align-items-center justify-content-center flex-column">
-                        <Image src={"/wishListNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                        <Image alt="wishlist no result" src={"/wishListNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                         <div className="message mb-3 heading-4d">No transactions done yet!</div>
                         <NextLinkButton rounded={true} height={40} text={"Start Booking Now"} href={"/"} />
                     </div>

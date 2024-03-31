@@ -58,7 +58,7 @@ export default ({ formData, handleChange, changeStep, specifications = [],
                     onChange={handleChangeWrapper}
                     height={40}
                 />
-                <Image src={"/location_review.png"} width={342} height={329} className="review-location position-absolute d-none d-lg-block" />
+                <Image alt="location review" src={"/location_review.png"} width={342} height={329} className="review-location position-absolute d-none d-lg-block" />
             </div>
             <div className="form-element-heading">Property Type</div>
             <FormTabs items={propertyType}

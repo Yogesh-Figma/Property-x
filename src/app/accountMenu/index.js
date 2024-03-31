@@ -65,7 +65,7 @@ export default function AccountMenu() {
         <div className="account-menu-tabs">
           <div className="profile-short-info d-flex align-items-center">
             <div className="profile-image">
-              <Image src={"/propertyStatsImg.jpeg"} width={120} height={120} />
+              <Image alt="stats" src={"/propertyStatsImg.jpeg"} width={120} height={120} />
             </div>
             <div>
               <div className='name'>{(user.firstName||"") + " " + (user.lastName||"")}</div>

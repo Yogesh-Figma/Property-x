@@ -14,7 +14,7 @@ const InsightsAndArticles = async ({ params: { id, type }}) => {
                     <div className='heading'>Insights and Articles</div>
                     <div className='sub-heading'>Lorem ipsum dolor sit amet consectetur. Morbi feugiat aliquam aenean mollis nunc feugiat. Purus neque nullam dictumst enim ut vivamus adipiscing dis...</div>
                 </div>
-                <Image src={"/insightsAndArticles.png"} className='d-none d-md-block' width={250} height={250} />
+                <Image alt="insight" src={"/insightsAndArticles.png"} className='d-none d-md-block' width={250} height={250} />
             </div>
         </div>
         <div className='content-cnt container-fluid'>

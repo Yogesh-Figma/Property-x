@@ -24,7 +24,7 @@ const DeveloperCard = async ({ developerId }) => {
             <div className='sub-container w-100'>
                 <div className='d-flex'>
                     <div className='image-container d-flex pe-2'>
-                        <Image src={data.logo || ""} width={80} height={80} />
+                        <Image alt="prop logo" src={data.logo || ""} width={80} height={80} />
                     </div>
                     <div className='my-auto'>
                         <div className='sub-heading-2'>{data.name}</div>

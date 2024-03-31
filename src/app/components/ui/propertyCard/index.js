@@ -25,7 +25,7 @@ const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, w
         <div style={{ width: width }} key={id}>
             <Card className='project-card'>
                 <div className='img-container position-relative'>
-                    <Image src={imgsrc||""} fill={true} />
+                    <Image alt="property image" src={imgsrc||""} fill={true} />
                     {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                 </div>
                 <div className='info-container'>
@@ -33,7 +33,7 @@ const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, w
                         <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1} /></div>
                         {!!rating && <div className='col d-flex'>
                             <div className='rating d-flex text-center align-items-center'>{rating||""}<span className='icon'>
-                                <Image src={starIcon} width={10} height={10} /></span>
+                                <Image alt="star rating" src={starIcon} width={10} height={10} /></span>
                             </div>
                         </div>}
                     </div>
@@ -64,7 +64,7 @@ const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, 
         <div style={{ width: width }}>
             <Card className='property-card'>
                 <div className='img-container position-relative'>
-                    <Image src={imgsrc||""} fill={true} />
+                    <Image alt="property image" src={imgsrc||""} fill={true} />
                     {!!isProperty && <div className='absolute-price position-absolute d-flex align-items-center justify-content-center'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
                 </div>
                 <div className='info-container'>
@@ -72,7 +72,7 @@ const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, 
                         <div className='title sub-heading-2 col-8'><OverflowTip text={title} lines={1} /></div>
                         {!!rating && <div className='col-4 d-flex'>
                             <div className='rating d-flex text-center align-items-center'>{rating||""}<span className='icon'>
-                                <Image src={starIcon} width={10} height={10} /></span>
+                                <Image alt="star rating" src={starIcon} width={10} height={10} /></span>
                             </div>
                         </div>}
                     </div>
@@ -99,7 +99,7 @@ const PropertyCard2 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
     return (<div style={{ width: width }} key={id}>
         <Card className='property-card-2'>
             <div className='img-container  position-relative'>
-                <Image src={imgsrc||""} fill={true} />
+                <Image alt="property image" src={imgsrc||""} fill={true} />
             </div>
             <div className='row info-container justify-content-between'>
                 <div className='col-7'>
@@ -125,7 +125,7 @@ const PropertyCard3 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
     return (<div style={{ width: width, maxWidth: maxWidth }} key={id}>
         <Card className='property-card-3'>
             <div className='img-container position-relative'>
-                <Image src={imgsrc||""} fill={true} />
+                <Image alt="property image" src={imgsrc||""} fill={true} />
             </div>
             <div className='row g-0 property-info'>
                 <div className='info-container'>
@@ -146,7 +146,7 @@ const PropertyCard3 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
 
                     <div className='address-cnt d-flex justify-content-between align-items-start'>
                         <div className='dev-img-container position-relative d-flex'>
-                            <Image src={devImage||""} width={40} height={40} />
+                            <Image alt="dev image" src={devImage||""} width={40} height={40} />
                             <div className='ms-2 '>
                                 <div className='by sub-info'>{by}</div>
                                 <Link href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} className='view-project'>View {isProperty ?"Property":"Project"}</Link>
@@ -187,12 +187,12 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
             </div>}
             <div className='row g-0 property-info'>
                 <div className='img-container position-relative col-4'>
-                    <Image src={imgsrc||""} fill={true} />
+                    <Image alt="property image" src={imgsrc||""} fill={true} />
                 </div>
                 <div className={`info-container d-flex flex-column ${verticalView ? 'col-12' : 'col-12 col-md-8'}`}>
                     <div className='d-flex align-items-center justify-content-between'>
                         <div className='title heading'><OverflowTip text={title} lines={1} /></div>
-                        {!!rera && <div className='rera'>RERA<Image src={tickIcon} width={12} height={12} /></div>}
+                        {!!rera && <div className='rera'>RERA<Image alt="tick icon" src={tickIcon} width={12} height={12} /></div>}
                         {showRateNow ? <div className='rating-cnt d-none d-md-block'>
                             <div className='rate'>Rate now</div>
                             <Rating />
@@ -240,7 +240,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                     </div>
                     {/* <NextLinkButton aClassName="ml-auto" className="schedule-visit btn-gradient" text='Schedule a Visit' height={25} rounded={true} href="/" /> */}
                     <div className='d-flex dev-book-cnt align-items-center'>
-                        <Image src={devImage||""} width={66} height={33} className='dev-image' />
+                        <Image alt="dev image" src={devImage||""} width={66} height={33} className='dev-image' />
                         <div className='by'>
                             <div className='sub-heading-2'>{by}</div>
                             <div className='dev-text sub-heading-3'>Developer</div>
@@ -270,7 +270,7 @@ const PostedPropertyCard = ({ showChkLeadBtn, className, id, logo, name, address
         </div>}
         <div className='row property-info g-0'>
             <div className='col-3 img-container position-relative'>
-                <Image src={logo || ""} fill={true} />
+                <Image alt="property image" src={logo || ""} fill={true} />
             </div>
             <div className={`info-container d-flex flex-row col-9`}>
                 <div className='section-1 align-items-center justify-content-between'>

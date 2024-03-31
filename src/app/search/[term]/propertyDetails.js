@@ -9,7 +9,7 @@ import { getProjectById } from '@/clients/projectClient'
 const PropertyDetails = async ({ data, type }) => {
     return (<>
         <div className='dev-project-image-cnt position-relative'>
-            <Image className='dev-project-image' src={data.logo||""} fill={true} />
+            <Image alt="dev-image"  className='dev-project-image' src={data.logo||""} fill={true} />
         </div>
         <PropertyHeader type={type} data={data}/>
         <Overview  data={data} type={type}/>

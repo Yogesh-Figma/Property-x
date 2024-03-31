@@ -16,7 +16,7 @@ export default ({ formData, handleChange, changeStep, setImages, images }) => {
             <div className='upload-container'>
                 <DragDropFile files={images} updateFilesCb={setImages} supportedFileTypes={[SUPPORTED_FILE_TYPE.image, SUPPORTED_FILE_TYPE.video]} multiple={true}/>
             </div>
-            <Image className='undraw-building d-none d-lg-inline-block' src={"/undrawUpload.svg"} width={304} height={258} />
+            <Image alt="undraw building" className='undraw-building d-none d-lg-inline-block' src={"/undrawUpload.svg"} width={304} height={258} />
         </div>
         <div className='d-flex justify-content-end'>
             <Button className="next-button" rounded={true} height={48} text={"Next"} onClick={handleNext} />

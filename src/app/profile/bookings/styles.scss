@@ -25,7 +25,10 @@
                     .confirm {
                         color: #00AC47;
                     }
-                }     
+                }
+                &:last-child {
+                    border-right: 0px solid #EAEAEA;
+                }
             }
             .title {
                 color: #202124;

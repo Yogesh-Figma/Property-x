@@ -14,7 +14,7 @@ const HomePageStats = () => {
                 <div className='d-flex col-12 col-lg-6 ps-4 ps-lg-0 pb-4 pb-lg-0'>
                     <div className='stats row align-items-center justify-content-center text-lg-right text-sm-center'>
                         <div className='image-container d-flex align-items-center justify-content-center col-7 mb-1 mb-lg-0'>
-                            <Image src={TeenyIconsBuilding} width={51} height={51} />
+                            <Image alt="Teeny Icons Building image"  src={TeenyIconsBuilding} width={51} height={51} />
                         </div>
                         <div className='info col-lg-4 col-7 text-start'>
                             <div className='sub-info'>50 K+</div>
@@ -24,7 +24,7 @@ const HomePageStats = () => {
 
                     <div className='stats row align-items-center justify-content-center text-lg-right text-sm-center'>
                         <div className='image-container d-flex align-items-center justify-content-center col-7 mb-1 mb-lg-0'>
-                            <Image src={RegularHandshake} width={62} height={51} />
+                            <Image alt="Regular Handshake image" src={RegularHandshake} width={62} height={51} />
                         </div>
                         <div className='info col-lg-4 col-7 text-start'>
                             <div className='sub-info'>50 +</div>
@@ -35,7 +35,7 @@ const HomePageStats = () => {
                 <div className='d-flex col-12 col-lg-6 ps-4 ps-lg-0'>
                     <div className='stats row align-items-center justify-content-center text-lg-right text-sm-center'>
                         <div className='image-container d-flex align-items-center justify-content-center col-7 mb-1 mb-lg-0'>
-                            <Image src={IconoirGroup} width={51} height={51} />
+                            <Image alt="Iconoir Group image" src={IconoirGroup} width={51} height={51} />
                         </div>
                         <div className='info col-lg-4 col-7 text-start'>
                             <div className='sub-info'>48 K+</div>
@@ -45,7 +45,7 @@ const HomePageStats = () => {
 
                     <div className='stats row align-items-center justify-content-center text-lg-right text-sm-center'>
                         <div className='image-container d-flex align-items-center justify-content-center col-7 mb-1 mb-lg-0'>
-                            <Image src={PixelArtBuilding} width={51} height={51} />
+                            <Image alt="Pixel Art Building image" src={PixelArtBuilding} width={51} height={51} />
                         </div>
                         <div className='info col-lg-4 col-7 text-start'>
                             <div className='sub-info'>30 K+</div>

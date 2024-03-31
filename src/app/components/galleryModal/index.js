@@ -38,11 +38,11 @@ const GalleryModal = ({ data, title, logo }) => {
         <div className='gallery-image-modal'>
             <div className='property-header d-flex align-items-center justify-content-between'>
                 <div className='prop-name d-flex align-items-center'>
-                    <Image src={logo||""} width={90} height={50} />
+                    <Image alt="logo" src={logo||""} width={90} height={50} />
                     <div className='project-title heading'>{title}</div>
                 </div>
                 <div className='close-icon'>
-                    <Image src={CloseIcon} width={30} height={30} className='close-icon' role="button" onClick={handleClose} />
+                    <Image alt="close-icon" src={CloseIcon} width={30} height={30} className='close-icon' role="button" onClick={handleClose} />
                 </div>
             </div>
             <Gallery galleryTabs={GALLERY_TABS} data={data}/>
