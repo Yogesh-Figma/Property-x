@@ -6,7 +6,6 @@ import './styles.scss';
 
 const UpComingProjects = async () => {
     const projects = await getProjectsByStatus(PROJECT_STATUS.UPCOMING);
-    console.log("UpComingProjects", projects);
     return (<div className='upcoming-projects overflow-container-fluid'>
         <CardSlider carouselSettings={{  slidesToShow: null, slidesToScroll:1, variableWidth:true, autoplay: true, nextArrow: null, prevArrow: null, autoplaySpeed: 2000, infinite: (projects.length > 1 ? true: false) }}>
             {projects.map((item, index) => {
