@@ -25,13 +25,14 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <div className="d-inline-block account-details-cnt">     
-      <IconButton
+      <IconButton        
         onClick={handleClick}
         size="small"
       >
-        <Account />
+         <Image alt="stats" width={32} height={32} src={user.photo||"/user.png"} className="account-btn"/>
       </IconButton>
       <Menu
         anchorEl={anchorEl}
@@ -65,7 +66,7 @@ export default function AccountMenu() {
         <div className="account-menu-tabs">
           <div className="profile-short-info d-flex align-items-center">
             <div className="profile-image">
-              <Image alt="stats" src={"/propertyStatsImg.jpeg"} width={120} height={120} />
+              <Image alt="stats" width={60} height={60} src={user.photo||"/user.png"} />
             </div>
             <div>
               <div className='name'>{(user.firstName||"") + " " + (user.lastName||"")}</div>

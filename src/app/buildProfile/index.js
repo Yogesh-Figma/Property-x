@@ -29,7 +29,7 @@ export default ({ }) => {
     const [timerDisabled, disableTimer] = React.useState(false);
 
     const router = useRouter();
-    const { data: session } = useSession();
+    const { data: session, update } = useSession();
     const pathName = usePathname();
     let timerId;
     const [formData, setFormData] = React.useState({
@@ -78,6 +78,7 @@ export default ({ }) => {
             stopTimer();
             disableTimer(true);
             handleClose();
+            update({firstName:formData.firstName, lastName:formData.lastName, email:formData.email});
         },
         onError: (error) => {            
             if(typeof(error) == "string" && error.toLowerCase().indexOf("otp") > -1) {

@@ -22,17 +22,36 @@ export const TABS = [{ label: "Profile", value: "myprofile" },
 { label: "Posted Properties", value: "postedProperties" },
 { label: "Wishlist", value: "wishlist" }]
 
-export default ({ userProfileData }) => {
+export default ({ initialData }) => {
     const searchParams = useSearchParams()
     const selectedTabFromParam = searchParams.get('t');
     const { data:{user} = {}  } = useSession();
+
+
+
+    let { data: userdata = [], isLoading, refetch:refetchProfile } = useQuery({ queryKey: ['getUserProfile'], 
+    queryFn: () => getUserProfile(user.id), initialData:initialData });
+
+    let userInfo = !!userdata ? userdata[0]||{} : {};
+
+    const userProfileData = {
+        ...userInfo,
+        firstName: userInfo.user?.firstName,
+        lastName:userInfo.user?.lastName,
+        fullName: userInfo.user?.firstName + " "+ userInfo.user?.lastName,
+        email: userInfo.user?.email,
+        phone: userInfo.user?.phone,
+        aadharNo: userInfo.aadhar,
+        panNo: userInfo.pan,
+        photo:userInfo.user?.photo,
+    }
     
     let selectedTabIndex;
     selectedTabIndex = (selectedTabIndex = TABS.findIndex(x => x.value == selectedTabFromParam)) == -1 ?  0 : selectedTabIndex;
 
     const getActiveTab = () => {
         switch (selectedTabIndex) {
-            case 0: return <MyProfile userProfileData={userProfileData} />;
+            case 0: return <MyProfile userProfileData={userProfileData} refetchProfile={refetchProfile}/>;
             case 1: return <Transactions />;
             case 2: return <Bookings />;
             case 3: return <ScheduledVisits />;
@@ -46,7 +65,7 @@ export default ({ userProfileData }) => {
             <div className="profile-tabs d-none d-lg-block">
                 <div className="profile-short-info d-flex flex-column align-items-center">
                     <div className="profile-image">
-                        <Image alt="profile image" src={"/propertyStatsImg.jpeg"} width={120} height={120} />
+                        <Image alt="profile image" src={userProfileData.photo || "/user.png"} width={120} height={120} />
                     </div>
                     <div className='name'>{userProfileData.fullName}</div>
                     <div className='email'>{userProfileData.email}</div>

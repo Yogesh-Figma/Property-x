@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import { sendOtp } from '@/clients/authenticationAndLoginClient';
 import { generateToken, getCurrentUser, getRefreshToken } from '@/clients/authenticationAndLoginClient' 
+import BackdropLoader from '../components/backdropLoader';
 
 
 const styles = {
@@ -44,6 +45,7 @@ const styles = {
 const Login = ({ open }) => {
     let formInputFields = {"mobileno":"", "otp":""};
     const [formData, setFormData] = React.useState(formInputFields);
+    const [loaderEnabled, enableLoader] = React.useState(false);
     const [otpSent, setOtpSent] = React.useState(false);
     const router = useRouter();
     const searchParams = useSearchParams()
@@ -74,6 +76,7 @@ const Login = ({ open }) => {
     }
 
     const verifyCredentialAndLogin = () => {
+        enableLoader(true)
         signIn("credentials", {redirect: false, mobileno:formData.mobileno, password:"amit1234", otp:formData.otp })
         .then(async (res) => {
             if (res?.error === null) {
@@ -91,10 +94,12 @@ const Login = ({ open }) => {
             else {
                 setError('otp', { type: 'custom', message: 'Invalid otp' });
             }
-        });
+        }).finally(x => enableLoader(false));
     }
 
     return (
+        <>
+
         <Modal
             open={loginModalEnabled}
             onClose={handleClose}
@@ -103,6 +108,7 @@ const Login = ({ open }) => {
             className='login-modal'
         >
             <Box sx={{ ...styles.modal }} className=" position-relative">
+            <BackdropLoader open={loaderEnabled} />
                 <Image alt="Close icon" src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose}/>
                 <div className='login-container row g-0'>
                     <Image alt="undraw building" className="d-lg-inline-block d-none col-6" src={"/undrawBuilding.svg"} width={438} height={334} />
@@ -169,7 +175,8 @@ const Login = ({ open }) => {
                     </div>
                 </div>
             </Box>
-        </Modal>)
+        </Modal>
+        </>)
 }
 
 export default Login;

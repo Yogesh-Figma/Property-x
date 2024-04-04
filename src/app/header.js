@@ -24,7 +24,7 @@ const Header = async ({ }) => {
                 </div>
                 <div className='links'>
                     {/* <span className='heading-normal d-none d-xl-inline-block'>Download the App</span> */}
-                    <span className='heading-normal d-none d-xl-inline-block'> <Link href="/post" className='text-decoration-none'>List a Property</Link></span>
+                    <span className='heading-normal d-none d-xl-inline-block'> <Link href="/post-a-property" className='text-decoration-none'>List a Property</Link></span>
                     <MobileSearchBar locations={LOCATIONS}/>
                     <UserAuthHeader />
                 </div>

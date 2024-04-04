@@ -18,7 +18,7 @@ const InsightAndArticles = async ({ }) => {
                         </div>
                         <div className='info sub-heading-2'>{item.headings}</div>
                         <div className='sub-info sub-heading-3'>{item.subHeading}</div>
-                        <Link href={`/insightsAndArticles/${item.id}`} className='sub-info'>Read More</Link>
+                        <Link href={`/insights-and-articles/${item.id}`} className='sub-info'>Read More</Link>
                     </div>
                 </div>
             )}

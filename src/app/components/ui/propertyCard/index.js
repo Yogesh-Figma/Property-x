@@ -49,7 +49,7 @@ const ProjectCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, w
                         </div>
                         <div className='btn-cnt d-flex flex-column col-4 align-self-end align-items-end'>
                             <TalkToConsulantBtn height={20} rounded={true} className='property-card-btn' isProperty={isProperty} id={id} />
-                            <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
+                            <NextLinkButton className="property-card-btn mt-1" text='View More' height={20} rounded={true} href={`/${(isProperty ? "property/" : "project/") + urlText}`} />
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@ const PropertyCard = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc, 
                         <div className='price-container d-flex justify-content-between align-items-start'>
                             <div className='posted-by'>Posted by {postedBy}</div>
                             <div className='btn-cnt'>
-                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
+                                <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/${(isProperty ? "property/" : "project/") + urlText}`} />
                             </div>
                         </div>
                     </div>
@@ -111,9 +111,9 @@ const PropertyCard2 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
                     </div>
                 </div>
                 <div className='price-container col-5 text-end d-flex flex-column justify-content-between'>
-                    {!!price && <div className='price sub-heading-2'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>}
+                    <div className='price sub-heading-2'>{isProperty? Helper.currencyFormatter(price): (Helper.currencyFormatter(minPrice) + "-" + Helper.currencyFormatter(maxPrice))}</div>
                     <div className='btn-cnt'>
-                        <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
+                        <NextLinkButton className="property-card-btn" text='View More' height={20} rounded={true} href={`/${(isProperty ? "property/" : "project/") + urlText}`} />
                     </div>
                 </div>
             </div>
@@ -149,12 +149,12 @@ const PropertyCard3 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
                             <Image alt="dev image" src={devImage||""} width={40} height={40} />
                             <div className='ms-2 '>
                                 <div className='by sub-info'>{by}</div>
-                                <Link href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} className='view-project'>View {isProperty ?"Property":"Project"}</Link>
+                                <Link href={`/${(isProperty ? "property/" : "project/") + urlText}`} className='view-project'>View {isProperty ?"Property":"Project"}</Link>
                             </div>
                         </div>
                         <div className='btn-cnt d-flex'>
                             <TalkToConsulantBtn height={40} rounded={true} className='me-2' isProperty={isProperty} id={id} />
-                            <NextLinkButton className="property-card-btn" text='View More' height={40} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
+                            <NextLinkButton className="property-card-btn mt-1" text='View More' height={40} rounded={true} href={`/${(isProperty ? "property/" : "project/") + urlText}`} />
                         </div>
                     </div>
                 </div>
@@ -246,7 +246,7 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         <div className='booking-btn-container ml-auto'>
-                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/buy/${(isProperty ? "property/" : "project/") + urlText}`} />
+                            <NextLinkButton className="property-card-btn" text='View' height={25} rounded={true} href={`/${(isProperty ? "property/" : "project/") + urlText}`} />
                             {showTalkToConsultant && <TalkToConsulantBtn height={25} rounded={true} isProperty={isProperty} id={id} />}
                         </div>
                     </div>

@@ -37,7 +37,7 @@ const TrustedDevelopers = async () => {
                         <div className='d-flex flex-column justify-content-between h-100 trusted-dev-card-info'>
                             <div className='sub-container'>
                                 <div className='d-flex'>
-                                    <div className='image-container d-flex pe-2'>
+                                    <div className='image-container d-flex'>
                                         <Image alt="property logo" src={data.logo || ""} width={50} height={50} />
                                     </div>
                                     <div>

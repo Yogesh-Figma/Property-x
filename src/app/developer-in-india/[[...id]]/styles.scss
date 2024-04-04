@@ -1,0 +1,69 @@
+.developer-in-india {
+    margin-top: 40px;
+    .heading {
+        font-size: 20px;
+    }
+    .sub-heading {
+        margin-top: 10px;
+        font-size: 20px;
+        font-style: bold;
+    }
+    .dev-link-heading {
+
+    }
+    .dev-links {
+        margin-top: 10px;
+        width: 100%;
+        padding: 20px;
+        border: 1px solid rgb(220, 20, 60);
+    }
+
+    .developers {
+        padding: 25px 5px 28px 5px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 200px);
+        justify-content: space-evenly;
+        .dev-data {
+            .heading {
+                position: relative;
+                margin-bottom: 10px;
+               &::after {
+                position: relative;
+                left: -5px;
+                    width: 40px;
+                    content: "";
+                    border: 2px solid rgb(220, 20, 60);
+                    border-radius: 5px;
+                    display: block;
+               }
+            }
+        }
+        .dev {        
+            // flex:0 0 20%;
+            // min-width: 143px;
+            // max-width: 160px;
+            margin-bottom: 5px;
+
+        }
+    }
+}
+
+
+// .developer-in-india {
+//     .developers {
+//         width: 100%;
+//         border-collapse: separate;
+//         table-layout: fixed;
+//         margin-bottom: 30px;
+//         .th-head {        
+//             padding: 0 20px;
+//             // flex:0 0 20%;
+//             // min-width: 143px;
+//             // max-width: 160px;
+//             margin-bottom: 40px;
+//         }
+//         .list {
+            
+//         }
+//     }
+// }

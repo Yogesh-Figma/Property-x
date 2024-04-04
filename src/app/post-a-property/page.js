@@ -27,7 +27,7 @@ export default async ({ }) => {
                             let name = item.name.charAt(0).toUpperCase() + item.name.slice(1).toLowerCase()
                         return(<>
                         <NextLinkButton className="mt-4 mt-sm-0 text-capitalize" 
-                        rounded={true} text={`${name} Property`} height={50} href={`/post/${name}`}/>
+                        rounded={true} text={`${name} Property`} height={50} href={`/post-a-property/${name}`}/>
                         </>)}
                         )}
                     </div>

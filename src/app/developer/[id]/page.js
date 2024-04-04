@@ -16,7 +16,7 @@ dayjs.extend(customParseFormat)
 
 
 
-export default async function Page({ params: { id }, }) {
+export default async function Page({ params: { id }}) {
     const session = await getServerSession(authOptions)
     const { data = {}, projects = {} } = await Promise.allKeys({ data: getDeveloperById(id, session?.token), projects: getProjectsByDeveloperId(id) });
     //const { data1= [], projects={}} = await Promise.allKeys({data:getAllDevelopers(), projects:getAllProjects()});

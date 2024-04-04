@@ -3,10 +3,10 @@ import { getToken } from "next-auth/jwt"
 
 
 const SECRET = process.env.NEXTAUTH_SECRET;
-const protectedRoutes = ['/post','/profile','/booking'];
+const protectedRoutes = ['/post-a-property','/profile','/book'];
 const matchers = [...protectedRoutes, '/buy']
 const protectedQueryParams = ["?schedule="]
-const regexMatches = [/\/post\/.*/, /\/profile\/.*/, /\/booking\/.*/]
+const regexMatches = [/\/post-a-property\/.*/, /\/profile\/.*/, /\/book\/.*/]
 
 export async function middleware(req) {
     const searchParams = req.nextUrl.search || ""

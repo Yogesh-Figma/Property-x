@@ -6,7 +6,7 @@ import Hamburger from '@/app/icons/hamburger.svg'
 import { Divider } from '@mui/material';
 import Link from 'next/link'
 
-const MENU_ITEMS = [{name:"List a Property", link:"/post"}];
+const MENU_ITEMS = [{name:"List a Property", link:"/post-a-property"}];
 const HeaderMobileDrawer = ({ }) => {
     const [drawerEnabled, setDrawerEnabled] = React.useState(false);
 

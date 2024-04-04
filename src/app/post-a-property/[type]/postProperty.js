@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image';
 import './styles.scss'
 import Stepper from '@/app/components/stepper';
+import SnackbarAlert from '@/app/components/snackbarAlert';
 
 import Button from '@/app/components/button';
 import Heading from '@/app/components/heading';
@@ -11,9 +12,10 @@ import PhotosAndVideos from './photosAndVideos';
 import PricingAndPost from './pricingAndPost';
 import { getPropertyPostData, postProperty, getPropertyConfigurationByType } from '@/clients/propertyClient';
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import { getLocalityByCityId } from '@/clients/localityClient';
 import { getProjectsByCityId } from '@/clients/projectClient';
+import BackdropLoader from '@/app/components/backdropLoader';
 import SuccessPage from './successPage';
 
 const COUNTS = [...Array(20).keys()].map(i => {
@@ -75,7 +77,6 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
         return response.json();
     }
 
-
     const post = async () => {
         let imagesUrl = [];
         if (!!images && images.length > 0) {
@@ -99,7 +100,9 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
             "ownership": formData.ownership,
             "zoneTypeId": formData.zoneTypeId,
             "propertyProjectId": formData.propertyProjectId,
-            "images": imagesUrl,
+            "images": (imagesUrl||[]).map(item => { 
+                return {"category":"View", "imageUrl":item }
+            }),
             "propertyTypeId": formData.propertyTypeId
 
             // "propertyStatusId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -148,9 +151,19 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
             // "logo": "string"
         }
         await postProperty(session.user.id, requestObj, session.token);
-        changeStep(3);
-
     }
+
+    const { mutate, isLoading: submitting, isError, data: submitData, error, isSuccess } = useMutation(post, {
+        onSuccess: data => {
+            changeStep(3);
+        },
+        onError: (error) => {
+            handleErrorAlert(true)();
+        },
+        onSettled: () => {
+        }
+    });
+
 
     const addSpecification = () => {
         const selectedSpecification = formInputData.specifications.find(e => e.id == formData.specificationId) || {};
@@ -174,6 +187,10 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
     const removeAmenity = (id) => {
         const filteredAmenities = formData.amenities.filter(x => x.amenity != id);
         setFormData((prevFormData) => ({ ...prevFormData, amenities: filteredAmenities }));
+    }
+
+    const handleErrorAlert = (open) => () => {
+        setFormData((prevData) => ({ ...prevData, isError: open }))
     }
 
     const getStepForm = () => {
@@ -203,7 +220,7 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
                 projectConfigurationsData={projectConfigurationsData}
             />
             case 1: return <PhotosAndVideos setImages={setImages} formData={formData} handleChange={handleChange} changeStep={changeStep} images={images} />;
-            case 2: return <PricingAndPost formData={formData} handleChange={handleChange} postProperty={post} />
+            case 2: return <PricingAndPost formData={formData} handleChange={handleChange} postProperty={mutate} />
             case 3: return <SuccessPage />
         }
     }
@@ -214,9 +231,15 @@ export default ({ type, formInputData, propertyCategoryId, isResidential }) => {
     return (<div className='post-property-form container-fluid'>
         <div className='heading text-center'>Post a {type} Property</div>
         <div className='sub-info text-center'>If you want to post Commercial Property Click here</div>
+        <BackdropLoader open={submitting} />
         <div className='additional-page-padding steps'>
             <Stepper steps={STEPS} activeStep={activeStep} />
             {getStepForm()}
         </div>
+        <SnackbarAlert autohide={true}
+            handleClose={handleErrorAlert(false)}
+            title={"Error"}
+            message={"Something went wrong. Please try again later."}
+            open={formData.isError} />
     </div>)
 }

@@ -41,6 +41,18 @@ const nextConfig = {
   },
   experimental: {
     serverActions: true,
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/property/:path*',
+        destination: '/buy/property/:path*', // The :path parameter isn't used here so will be automatically passed in the query
+      },
+      {
+        source: '/project/:path*',
+        destination: '/buy/project/:path*', // The :path parameter isn't used here so will be automatically passed in the query
+      },
+    ]
   }
 }
 

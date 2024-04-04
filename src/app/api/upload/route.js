@@ -35,7 +35,7 @@ export async function POST(request) {
   const files = formData.getAll("files");
   let basePath = "userUpload/" + (userId + "").split("").reverse().join("") + "/";
   if(!!customPath) {
-    basePath = basePath + "/" +  customPath;
+    basePath = basePath + customPath + "/";
   }
   
   await Promise.all(

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import Button from '@/app/components/button';
 import Input from '@/app/components/input';
+import { SUPPORTED_FILE_TYPE } from '@/app/components/ui/dragDropFile';
 import EditPencil from "@/app/icons/edit_pencil.svg"
 import './styles.scss'
 import UserProfileForm from '../userProfileForm';
@@ -16,11 +17,13 @@ import { getAllCountries, getCityByStateId, getLocalityByCityId, getStateByCount
 import SnackbarAlert from '@/app/components/snackbarAlert';
 const ADDRESS_TYPES = ["permanent", "present"];
 
-export default ({ userProfileData }) => {
+export default ({ userProfileData, refetchProfile }) => {
     const [files, setFilesState] = React.useState({});
     const { enableLoader } = useAppContext() || {};
-    const { data: { user, token } = {} } = useSession();
+    const { data: { user, token } = {}, update:updateSession } = useSession();
     const [formData, setFormData] = React.useState({
+        panPhoto:userProfileData.panPhoto,
+        aadharPhoto:userProfileData.aadharPhoto,
         disableBasicDataEdit: true,
         firstName: userProfileData.firstName,
         lastName: userProfileData.lastName,
@@ -47,6 +50,8 @@ export default ({ userProfileData }) => {
         permanentAddressSame: false,
         isError: false
     });
+
+    const profilePicRef = React.useRef(null);
 
     let { data: countries = [], isLoading } = useQuery({ queryKey: ['getAllCountries'], queryFn: () => getAllCountries() });
 
@@ -98,12 +103,13 @@ export default ({ userProfileData }) => {
         }, [formData])
     });
 
-    const uploadFile = async (files) => {
+    const uploadFile = async (files, customPath) => {
         const formData = new FormData();
         for (let file of files) {
             formData.append("files", file);
         }
         formData.append("userId", userProfileData.id);
+        formData.append("customPath", customPath);
         const response = await fetch("/api/upload", {
             method: "POST",
             body: formData,
@@ -114,16 +120,22 @@ export default ({ userProfileData }) => {
     const handleNext = async () => {
         try {
             enableLoader(true);
-            let panPhoto, aadharPhoto;
+            let { panPhoto, aadharPhoto, photo } = formData;
             if (files.aadharImage) {
-                const res = await uploadFile(files.aadharImage);
+                const res = await uploadFile(files.aadharImage, "aadharImage");
                 aadharPhoto = res[0];
             }
             if (files.panImage) {
-                const res = await uploadFile(files.panImage);
+                const res = await uploadFile(files.panImage, "panImage");
                 panPhoto = res[0];
             }
+            if (files.photo) {
+                const res = await uploadFile(files.photo, "profilePhoto");
+                photo = res[0];
+            }
+
             let requestJson = {
+                "image":photo,
                 "pan": formData.panNo,
                 "aadhar": formData.aadharNo,
                 "panPhoto": panPhoto,
@@ -138,19 +150,13 @@ export default ({ userProfileData }) => {
                 "permanentLocalityId": formData.permanentAddressSame ? formData.presentLocalityId : formData.permanentLocalityId,
                 "presentLocalityId": formData.presentLocalityId
             }
-
-            let userBasicData = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                phone: formData.phone
-            }
-
             // if(!formData.disableBasicDataEdit) {
             //     await updateUserData({ data: userBasicData, accessToken: token, userId: user.id });
             // }
             await updateUserProfile(user.id, requestJson, token);
             handleSnackBar(true, true, false);
+            refetchProfile();
+            updateSession({photo:photo});
         }
         catch (e) {
             console.log("error", e);
@@ -163,11 +169,22 @@ export default ({ userProfileData }) => {
 
     const onError = (errors, e) => console.log(errors, e)
 
+    const onProfileEditClick = () => {
+        profilePicRef.current.click();
+    };
+
+    const handleProfileImageChange = function (e) {
+        e.preventDefault();
+        if (e.target.files && e.target.files[0]) {
+            setFiles("photo", e.target.files)
+        }
+    };
 
     return (<div className='my-profile'>
         <div className="profile-pic position-relative">
-            <Image alt="property stats" src={"/propertyStatsImg.jpeg"} width={120} height={120} />
-            <EditPencil className='edit-pencil position-absolute cursor-pointer' />
+            <Image alt="profile pic" src={!!files.photo ? URL.createObjectURL(files.photo[0]) : userProfileData.photo || "/user.png"} width={120} height={120} />
+            <EditPencil className='edit-pencil position-absolute cursor-pointer' onClick={onProfileEditClick}/>
+            <input className='d-none' ref={profilePicRef} type="file" id="profile-image-upload" multiple={false} onChange={handleProfileImageChange} accept={[SUPPORTED_FILE_TYPE.image]} />
         </div>
         <div className='form'>
             <UserProfileForm

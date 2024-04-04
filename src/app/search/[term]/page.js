@@ -99,7 +99,7 @@ export default function Page({ params: { term },
                 </Card> */}
                 </div>
             </div >
-            {!!selectedCardData && <Link className='d-xl-flex d-none justify-content-end align-items-center property-detail-link sub-heading' href={"/buy/project/" + (selectedUrlText)}>View Full Details <Image alt="right link" src={RightLink} width={28} height={28} /></Link>}
+            {!!selectedCardData && <Link className='d-xl-flex d-none justify-content-end align-items-center property-detail-link sub-heading' href={"/project/" + (selectedUrlText)}>View Full Details <Image alt="right link" src={RightLink} width={28} height={28} /></Link>}
         </> : <div className="not-found d-flex align-items-center justify-content-center container-fluid">
             <div>
                 <div className='heading sub-text mb-3'>No results for {searchTerm} {!!cityName ? `in ${cityName}`:""}</div>

@@ -178,7 +178,7 @@ export default async function Page({ params: { urltext, type }, }) {
                             <div className='btn-cnt'>
                                 <TalkToConsulantBtn height={34} id={data.id} isProperty={isProperty}/>
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href={`?schedule=${data.id}`} />
-                                <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/booking/${type}/${data.url}`} />
+                                <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/book/${type}/${data.url}`} />
                             </div>
                         </Card>
                     </div>

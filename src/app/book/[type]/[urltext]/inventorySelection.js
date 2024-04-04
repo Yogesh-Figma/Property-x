@@ -69,7 +69,7 @@ export default ({ data, formData, handleChange, changeStep, configurations, proj
                 />
             </div>
             <div className="site-plan position-relative">
-                <Image alt="site plan" className="site-plan-image ms-xl-5" src={"/sampleSitePlan.png"} fill={true} />
+                <Image alt="site plan" className="site-plan-image ms-xl-5" src={data.sitePlan || ""} fill={true} />
             </div>
         </div>
         <Heading label={"Select the Inventory"} />

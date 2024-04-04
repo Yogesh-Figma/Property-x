@@ -66,7 +66,7 @@ export default ({ data, type }) => {
                     <div className="taxes-applicable">+ Taxes applicable</div>
                 </div>
                 <div className='btn-cnt'>
-                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/booking/${type}/${data.url}`} />
+                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />
                 </div>
             </div>
         </div>       

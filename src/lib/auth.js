@@ -39,12 +39,27 @@ export const authOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, trigger, session }) {
+ 
       let userObj = token;
       let expiryTime = token?.exp;
+      if (trigger === "update") {
+        if(!!session?.photo) {
+          userObj.user.photo = session.photo
+        }
+        if(!!session?.firstName) {
+          userObj.user.firstName = session.firstName
+        }
+        if(!!session?.lastName) {
+          userObj.user.lastName = session.lastName
+        }
+        if(!!session?.email) {
+          userObj.user.email = session.email
+        }
+      }
       if (!!user) {
         userObj = {
-          ...token,
+          ...userObj,
           user,
           accessToken: user.token,
           refreshToken: user.refreshToken,
@@ -59,7 +74,7 @@ export const authOptions = {
       else {
         const data = getRefreshToken(token);
         userObj = {
-          ...token,
+          ...userObj,
           user,
           accessToken: data.token
         }
@@ -68,6 +83,7 @@ export const authOptions = {
     },
 
     async session({ session, token, trigger, newSession }) {
+   
       if (Date.now() / 1000 > token?.accessTokenExpires) {
         throw new Error("Refresh token has expired. Please log in again to get a new refresh token.");
       }
@@ -75,10 +91,6 @@ export const authOptions = {
       session.user = token.user;
       token.accessTokenExpires = accessTokenData.exp;
       session.token = token?.accessToken;
-      if (trigger === "update" && newSession?.name) {
-        session.user = newSession.user
-      }
-
       return session;
     },
   },
