@@ -14,7 +14,7 @@ export async function middleware(req) {
         const token = await getToken({ req, SECRET })
         console.log("token", token);
         if (token == null) {
-            const absoluteURL = new URL("?login=true", req.nextUrl.origin);
+            const absoluteURL = new URL(`?login=true&nxtUrl=${encodeURIComponent(req.nextUrl.pathname)}`, req.nextUrl.origin);
             const response =  NextResponse.redirect(absoluteURL.toString());
             response.headers.set('x-middleware-cache', 'no-cache');
             response.headers.set('cache-control', 'no-store');

@@ -5,10 +5,12 @@ import Tooltip from '@mui/material/Tooltip';
 const OverflowTip = ({ tooltip, text, lines }) => {
     // Create Ref
     const textElementRef = useRef();
+     // Define state and function to update the value
+  const [hoverStatus, setHover] = useState(true);
 
     const compareSize = () => {
-        const compare =
-            textElementRef.current.scrollWidth > textElementRef.current.clientWidth;        
+        const compare = textElementRef?.current?.scrollWidth > textElementRef?.current.clientWidth;    
+       // setHover(compare);    
     };
 
     // compare once and add resize listener on "componentDidMount"
@@ -28,6 +30,7 @@ const OverflowTip = ({ tooltip, text, lines }) => {
             interactive="true"
             style={{ fontSize: '2em' }}
             enterTouchDelay={0}
+            disableHoverListener={!hoverStatus}
         >
             <span
                 ref={textElementRef}

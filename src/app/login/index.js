@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@/app/icons/icon_close-small.svg?url'
 import Checkbox from '@mui/material/Checkbox';
 import { useRouter } from 'next/navigation';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, usePathname } from 'next/navigation'
 import Input from '@/app/components/input';
 import { useForm } from "react-hook-form";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
@@ -45,11 +45,13 @@ const styles = {
 const Login = ({ open }) => {
     let formInputFields = {"mobileno":"", "otp":""};
     const [formData, setFormData] = React.useState(formInputFields);
+    const pathName = usePathname();
     const [loaderEnabled, enableLoader] = React.useState(false);
     const [otpSent, setOtpSent] = React.useState(false);
     const router = useRouter();
     const searchParams = useSearchParams()
     const loginModalEnabled = !!searchParams.get('login') || false
+    const nextUrl = searchParams.get("nxtUrl");
     const { control, handleSubmit, setValue, setError } = useForm({
         reValidateMode: "onBlur"
     });
@@ -65,9 +67,19 @@ const Login = ({ open }) => {
         setFormData(formInputFields);
     }
 
-    const handleClose=()=>{
+    const handleClose=(loggedIn)=>{
         resetForm();
-        router.back();
+        if(loggedIn) {
+            if(!!nextUrl) {
+                router.replace(decodeURIComponent(nextUrl));
+            }
+            else {
+                router.back();
+            }
+        }
+        else {
+            router.replace(pathName);
+        }
     }
 
     const sendOtpToClient = async () => {
@@ -82,14 +94,14 @@ const Login = ({ open }) => {
             if (res?.error === null) {
                 const session = await getSession();
                 const userInfo = await getCurrentUser(session.token);
+                router.refresh();
                 if(userInfo.firstName == "" || !userInfo.isEmailVerified){
-                    router.replace("?buildProfile=true");
+                    router.replace(`?buildProfile=true&nxtUrl=${nextUrl}`);
                     resetForm();
                 }
                 else {        
-                    handleClose();
+                    handleClose(true);
                 }
-                router.refresh();
             }
             else {
                 setError('otp', { type: 'custom', message: 'Invalid otp' });
@@ -102,14 +114,14 @@ const Login = ({ open }) => {
 
         <Modal
             open={loginModalEnabled}
-            onClose={handleClose}
+            onClose={()=>handleClose()}
             aria-labelledby="parent-modal-title"
             aria-describedby="parent-modal-description"
             className='login-modal'
         >
             <Box sx={{ ...styles.modal }} className=" position-relative">
             <BackdropLoader open={loaderEnabled} />
-                <Image alt="Close icon" src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose}/>
+                <Image alt="Close icon" src={CloseIcon} width={30} height={30} className='position-absolute close-icon' role="button" onClick={()=>handleClose()}/>
                 <div className='login-container row g-0'>
                     <Image alt="undraw building" className="d-lg-inline-block d-none col-6" src={"/undrawBuilding.svg"} width={438} height={334} />
                     <div className='login-info col-lg-6 col-12'>
