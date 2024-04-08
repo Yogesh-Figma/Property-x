@@ -12,7 +12,7 @@ const AboutUs = async () => {
                     <div className='heading'>About Us</div>
                     <div className='sub-heading'></div>
                 </div>
-                <Image alt="terms and condition" src={"/termsConditions.png"} className='d-none d-md-block' width={369} height={291} />
+                <Image alt="terms and condition" src={"/termsConditions.png"} className='d-none d-md-block ml-auto' width={369} height={291} />
             </div>
         </div>
         <div className='content-cnt container-fluid'>

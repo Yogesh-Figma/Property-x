@@ -33,7 +33,7 @@ const DeveloperCard = async ({ developerId }) => {
                                 <Rating value={Number(data.ratingAverage || 0)} /></>}
                         </div>
                     </div>
-                    <Link href={`/developer/${data.id}`} className='expand-icon ms-auto'><ExpandIcon /></Link>
+                    <Link href={`/developer/${data.url}`} className='expand-icon ms-auto'><ExpandIcon /></Link>
                 </div>
                 <div className='property-info'>
                     <span>{dateObj.format('YYYY')}<span className='body-txt'> Year Estd</span></span>

@@ -9,7 +9,13 @@ function getBlogById(blog_id) {
     return get(`${API_CLIENT_URL}/get/blogs/by/id/${blog_id}`, { next: { revalidate: 3600 }});
 }
 
+function getBlogByUrlText(urlText) {
+    return get(`${API_CLIENT_URL}/get/blogs/by/url/${urlText}`, { next: { revalidate: 3600 }});
+}
+
+
 export {
     getAllBlogs,
-    getBlogById
+    getBlogById,
+    getBlogByUrlText
 }

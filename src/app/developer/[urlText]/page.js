@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDeveloperById, getAllDevelopers } from '@/clients/developerClient';
+import { getDeveloperById, getAllDevelopers, getDeveloperByUrlText } from '@/clients/developerClient';
 import { getProjectsByDeveloperId } from '@/clients/projectClient';
 import Image from 'next/image';
 import Rating from '@/app/components/rating'
@@ -16,9 +16,10 @@ dayjs.extend(customParseFormat)
 
 
 
-export default async function Page({ params: { id }}) {
+export default async function Page({ params: { urlText }}) {
     const session = await getServerSession(authOptions)
-    const { data = {}, projects = {} } = await Promise.allKeys({ data: getDeveloperById(id, session?.token), projects: getProjectsByDeveloperId(id) });
+    const { data = {} } = await Promise.allKeys({ data: getDeveloperByUrlText(urlText, session?.token) });
+    const { projects = {} } = !!data.id ? await Promise.allKeys({ projects: getProjectsByDeveloperId(data.id) }): {};
     //const { data1= [], projects={}} = await Promise.allKeys({data:getAllDevelopers(), projects:getAllProjects()});
     //const data = data1[0];
 

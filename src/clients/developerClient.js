@@ -22,8 +22,19 @@ function getDeveloperById(id, accessToken) {
     });
 }
 
+function getDeveloperByUrlText(urlText, accessToken) {
+    return get(`${API_CLIENT_URL}/get/developer/by/url/${urlText}`, {
+        cache: 'no-store',
+        headers: {
+            'x-auth-token': accessToken
+        }
+    });
+}
+
+
 export {
     getFeaturedDevelopers,
     getAllDevelopers,
-    getDeveloperById
+    getDeveloperById,
+    getDeveloperByUrlText
 }

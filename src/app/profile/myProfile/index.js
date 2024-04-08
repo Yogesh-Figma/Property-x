@@ -15,6 +15,7 @@ import { updateUserData } from '@/clients/userClient';
 import { useAppContext } from '@/lib/appContext';
 import { getAllCountries, getCityByStateId, getLocalityByCityId, getStateByCountry } from '@/clients/addressClient';
 import SnackbarAlert from '@/app/components/snackbarAlert';
+import { authOptions } from "@/lib/auth"
 const ADDRESS_TYPES = ["permanent", "present"];
 
 export default ({ userProfileData, refetchProfile }) => {

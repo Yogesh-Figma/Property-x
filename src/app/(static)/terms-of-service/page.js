@@ -14,7 +14,7 @@ const TermsOfService = async () => {
                     <div className='heading'>Terms Of Service</div>
                     <div className='sub-heading'>Understand the rules and guidelines for using our platform in our Terms of Service.</div>
                 </div>
-                <Image alt="terms and condition" src={"/termsConditions.png"} className='d-none d-md-block' width={369} height={291} />
+                <Image alt="terms and condition" src={"/termsConditions.png"} className='d-none d-md-block ml-auto' width={369} height={291} />
             </div>
         </div>
         <div className='content-cnt container-fluid'>

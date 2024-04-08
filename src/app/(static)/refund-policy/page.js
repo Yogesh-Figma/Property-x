@@ -14,7 +14,7 @@ const RefundPolicy = async () => {
                     <div className='heading'>Refund Policy</div>
                     <div className='sub-heading'>Discover our transparent refund policy, ensuring your peace of mind when booking properties.</div>
                 </div>
-                <Image alt="faqs" src={"/faqs.png"} className='d-none d-md-block' width={250} height={250} />
+                <Image alt="faqs" src={"/faqs.png"} className='d-none d-md-block ml-auto' width={250} height={250} />
             </div>
         </div>
         <div className='content-cnt container-fluid'>
