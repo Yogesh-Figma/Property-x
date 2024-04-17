@@ -4,7 +4,8 @@
     padding-bottom: 17px;
     min-height: 60px;
     background: #fff;
-    z-index: 4;   
+    z-index: 4;
+
     .logo-link {
         margin-left: 20px;
     }
@@ -12,6 +13,16 @@
     .links {
         span {
             margin-right: 30px;
+        }
+        .list-free {
+            display: inline-block;
+            margin-left: 3px;
+            color: #fff;
+            background-color: #f22b68;
+            padding: 2px 4px;
+            font-size: 8px;
+            line-height: 9px;
+            margin-right: 0;       
         }
     }
     .compact-search-bar {

@@ -65,13 +65,13 @@ export default async function Home() {
           <div className='sub-heading-3 text-center sub-title'>Stay Informed, Stay Ahead: Explore Our News and Articles</div>
           <InsightAndArticles />
         </div>
-        <div className='developer-container'>
+        {/* <div className='developer-container'>
           <div className='sub-heading text-center title'>Testimonials</div>
           <div className='sub-heading-3 text-center sub-title'>Words from Our Delighted Customers</div>
           <Suspense fallback={<Skeleton variant="rectangular" width={210} height={118}/>}>
             <Testimonials />
           </Suspense>
-        </div>
+        </div> */}
         {/* <div className='download-app position-relative d-none d-lg-block'>
           <div className='download-app-txt-cnt'>
             <div className='download-app-txt heading'>Open door with a Tap</div>

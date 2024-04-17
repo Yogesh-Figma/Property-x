@@ -12,7 +12,7 @@ function getTabsData(isProperty){
     const tabsData = [
         { txt: "Overview", width: 116, to: "overview" },
         { txt: "About", width: 80, to: "about" },
-        { txt: "Highlights", width: 136, to: "highlights" },
+        { txt: "What's best in it?", width: 180, to: "highlights" },
         { txt: "Amenities", width: 122, to: "amenities" },
         { txt: "Floor Plan", width: 126, to: "floor-plan" },
         { txt: "Payment Plan", width: 154, to: "payment-plan" , disabled:isProperty},

@@ -9,7 +9,7 @@ const HighLights = ({ data }) => {
             <Card className='highlights'>
                 <div className='d-flex justify-content-between align-items-start'>
                     <div>
-                        <div className='title heading'>Highlights</div>
+                        <div className='title heading'>What's best in it?</div>
                         <div className='bullet-points'>
                             {data.map((item, index) => <div className='points'>
                                 <EllipseIcon />

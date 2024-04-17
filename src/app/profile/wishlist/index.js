@@ -23,10 +23,10 @@ export default ({ wishlist }) => {
                 </div> :
                     (wishlists || []).map(wishlist => {
                         const data = wishlist.property || wishlist.project || {};
-                        console.log("data", data)
                         return (
                             <div className='property-card-cont'>
                                 <PropertyCard4
+                                    showBookNow={true}
                                     isWished={true}
                                     title={data.name}
                                     bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
@@ -40,6 +40,7 @@ export default ({ wishlist }) => {
                                     possessionInfo={data.possessionDue}
                                     avgPrice={data.ratePerUnitInsqft || "TO BE ANNOUNCED"}
                                     price={data.totalPrice}
+                                    showTalkToConsultant={true}
                                     id={data.id}
                                     urlText={data.url}
                                     subInfo={data.propertySpecification || data.specification}

@@ -22,7 +22,7 @@ const FeaturedProperties = async () => {
                     avgPrice={item.ratePerUnitInsqft}
                     price={item.totalPrice}
                     imgsrc={item.logo || ""}
-                    width={300}
+                    width={400}
                     height={"275px"}
                     devImage={item.developerLogo} 
                     minPrice={item.minPrice}

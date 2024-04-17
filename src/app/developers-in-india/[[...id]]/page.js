@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link'
 import "./styles.scss"
 import Helper from '@/common/helper';
-import DeveloperDrawer from '@/app/developer-in-india/[[...id]]/allDeveloper';
+import DeveloperDrawer from '@/app/developers-in-india/[[...id]]/allDeveloper';
 
 const alphabet = Array.from(Array(26)).map((e, i) => i + 65).map((x) => String.fromCharCode(x));
 const alphabetChunks = Helper.chunkArray(alphabet, 5);
@@ -22,13 +22,13 @@ export default async function Page({ params: { id }}) {
                     List of Developers across India
                 </div>
                 <div className='dev-links d-flex justify-content-between'>
-                    {alphabet.map(item => <Link href={`developer-in-india/${item}`}>{item}</Link>)}
+                    {alphabet.map(item => <Link href={`developers-in-india/${item}`}>{item}</Link>)}
                 </div>
                 <table className='developers'>
                 {alphabet.map(item => {
                     return (
                         <div className='dev-data'>
-                            <div className='heading'><Link href={`developer-in-india/${item}`}>{item}</Link></div>
+                            <div className='heading'><Link href={`developers-in-india/${item}`}>{item}</Link></div>
                             {data.map(dev => <div className='dev'>
                                 <Link href="/">{dev}</Link>
                             </div>)}

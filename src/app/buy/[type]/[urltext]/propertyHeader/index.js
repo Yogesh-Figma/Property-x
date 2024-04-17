@@ -57,6 +57,7 @@ export default ({ data, type }) => {
                 <div className='btn-cnt'>
                     <TalkToConsulantBtn className="talk-to-consultation" height={30} id={data.id} isProperty={isProperty}/>
                     <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href={`?schedule=${data.id}`} />
+                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />
                 </div>
             </div>
             <div className='property-price-info col-md-4 text-md-end mt-4 mt-md-0'>
@@ -65,9 +66,7 @@ export default ({ data, type }) => {
                     <div className="price sub-heading-2">{isProperty ? (Helper.currencyFormatter(data.totalPrice)): (Helper.currencyFormatter(data.minPrice) + "-" + Helper.currencyFormatter(data.maxPrice))}</div>
                     <div className="taxes-applicable">+ Taxes applicable</div>
                 </div>
-                <div className='btn-cnt'>
-                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />
-                </div>
+
             </div>
         </div>       
     </div>)

@@ -24,7 +24,7 @@ export default ({ variant = "horizontal", data ={} }) => {
                             <div className="sub-info row"><span className="info col-6">Unit No.</span><span className="detail col-6">{data.unitId}</span></div>
                         </div>
                     </div>
-                    <div className="amenities-container">
+                    {/* <div className="amenities-container">
                         <div className="amenty-title">Amenities</div>
                         <div className="amenities d-flex flex-wrap">
                             {(data.amenities||[]).map((item, index) => <div className='amenity text-center' key={index}>
@@ -32,7 +32,7 @@ export default ({ variant = "horizontal", data ={} }) => {
                                 <div className='sub-info'>{item.amenityName}</div>
                             </div>)}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 {/* <div className="divider-cnt col-12 col-xl-1">
                     <Divider className="divider" />

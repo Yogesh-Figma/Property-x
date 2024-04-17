@@ -18,7 +18,7 @@ import { useSession } from "next-auth/react"
 export const TABS = [{ label: "Profile", value: "myprofile" },
 { label: "Transactions", value: "transactions" },
 { label: "Bookings", value: "bookings" },
-{ label: "Visits", value: "visits" },
+{ label: "Visits/Interests", value: "visits" },
 { label: "Posted Properties", value: "postedProperties" },
 { label: "Wishlist", value: "wishlist" }]
 

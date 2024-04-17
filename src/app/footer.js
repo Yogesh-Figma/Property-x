@@ -11,58 +11,47 @@ import Link from 'next/link'
 
 
 const LINKS1 = [
-    { name: "About Us", url: "#" },
-    { name: "Contact Us", url: "/contact-us" },
-    { name: "Post your property", url: "/post-a-property" },
+    { name: "About Us", url: "/about-us" },
+    { name: "List a property (Free)", url: "/post-a-property" },
     { name: "FAQs", url: "/faq" },
+    { name: "Developers in India", url: "/developers-in-india" },
+    { name: "Projects in India", url: "/projects-in-india" },
     { name: "Terms of Services", url: "/terms-of-service" },
     { name: "Refund Policy", url: "/refund-policy" },
-    { name: "Feedback", url: "#" },
-    { name: "Testimonials", url: "#" }
+    { name: "Contact Us", url: "/contact-us" }
 ]
 
-const LINKS2 = [
-    { name: "Mobile App", url: "#" }, { name: "About Us", url: "#" },
-    { name: "Price Trends", url: "#" },
-    { name: "Builders in India", url: "#" },
-    { name: "Articles", url: "#" },
-    { name: "Customer Services", url: "#" },
-    { name: "Sitemap", url: "#" }]
+const LINKS2 = [    
+    { name: "Commercial Property in Greater Noida", url: "#" }, 
+    { name: "Commercial Property in Noida", url: "#" },
+    { name: "Commercial Property in Bengaluru", url: "#" },
+    { name: "Commercial Property in Delhi", url: "#" },
+    { name: "Commercial Property in Ghaziabad", url: "#" },
+    { name: "Commercial Property in Gurgaon", url: "#" },
+    { name: "Commercial Property in Mumbai", url: "#" },
+    { name: "Commercial Property in Pune", url: "#" }]
 
 const LINKS3 = [
-    { name: "Propify Reviews", url: "#" }, { name: "About Us", url: "#" },
-    { name: "Real Estate Guide", url: "#" },
-    { name: "Awards & Recognition", url: "#" },
-    { name: "Media Coverage", url: "#" },
-    { name: "Glossary", url: "#" }]
+    { name: "New Projects in Greater Noida", url: "#" }, 
+    { name: "New Projects in Noida", url: "#" },
+    { name: "New Projects in Bengaluru", url: "#" },
+    { name: "New Projects in Delhi", url: "#" },
+    { name: "New Projects in Ghaziabad", url: "#" },
+    { name: "New Projects in Gurgaon", url: "#" },
+    { name: "New Projects in Mumbai", url: "#" },
+    { name: "New Projects in Pune", url: "#" }]
 
 const Footer = () => {
     return (
         <footer className={"text-center text-lg-start text-muted footer container-fluid"}>
             <section className="">
-                <div className="text-center text-md-starts">
-                    <div className='row search-box-container g-0'>
-                        <div className="col-4 mb-4 mb-lg-0">
-                            <div className='property-x d-flex align-items-center justify-content-center'>
-                                <Logo width={121} height={23} />
-                            </div>
-                        </div>
-                        <div className='foot-search-bar col-lg-8'>
-                            <CompactSearchBar width={"100%"} height="50px" maxWidth={600} showSearchIcon={true} />
-                        </div>
-                    </div>
-                    <div className="row g-0">
-                        <div className='col-xl-4 mb-5'>
-                            <div className='trophy-container d-flex align-items-center justify-content-center'>
-                                <Image alt="trophy" src={"/trophy.svg"} width={70} height={70} />
-                            </div>
-                        </div>
-                        <div className='col-xl-8'>
+                <div className="text-center text-md-starts pt-5">
+                        <div className='col-xl-10'>
                             <div className='row footerLinksColumns g-0'>
-                                <div className='col-lg-4 col-6'>
+                                <div className='col-lg-3'>
                                     {LINKS1.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
-                                <div className='col-lg-4 col-6'>
+                                <div className='col-lg-5'>
                                     {LINKS2.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                                 <div className='col-lg-4'>
@@ -72,6 +61,14 @@ const Footer = () => {
                         </div>
                         <div className='hr'></div>
                         <div className='g-0 additional-page-padding d-lg-flex justify-content-between'>
+                            <div className="col-3 mb-4 mb-lg-0">
+                                <div className='property-x d-flex align-items-center justify-content-center'>
+                                    <Image alt="logo" src={"/gopropifyColoredLogo.png"} width={138} height={30} />
+                                </div>
+                                <div className='trophy-container d-flex align-items-center justify-content-center'>
+                                    <Image alt="trophy" src={"/trophy.svg"} width={70} height={70} />
+                                </div>
+                            </div>
                             <div className='col-lg-4 text-start about-us mb-4 mb-lg-0'>
                                 <div className='head'>About Us</div>
                                 <div className='text-justify'>We're your trusted partners in finding your dream home or making wise property investments. With a passion for delivering excellence, we've curated a diverse selection of properties that cater to every lifestyle and aspiration. Backed by a team of experienced professionals, we bring you personalized solutions that go beyond transactions – we're here to guide you through the entire journey. Welcome to a world of possibilities with Us.</div>
@@ -113,7 +110,6 @@ const Footer = () => {
                             </div>
                             <div className='copy-right text-end mt-5'>Copyright 2023 Property X All Rights Reserved.</div>
                         </div>
-                    </div>
                 </div>
             </section>
         </footer>)

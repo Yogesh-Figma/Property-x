@@ -4,11 +4,13 @@ import React from 'react'
 import { PropertyCard4 } from '@/app/components/ui/propertyCard'
 import { useQuery } from 'react-query';
 import { getUserVisits } from '@/clients/visitClient'
+import { getQueryByUser } from '@/clients/queryClient'
 import { useSession } from "next-auth/react"
 import SlantedTabs from "@/app/components/slantedTabs"
 import dayjs from 'dayjs';
 import NextLinkButton from "@/app/components/nextLinkButton";
 import Image from 'next/image';
+import InterestCard from "./interestCard";
 let customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
@@ -19,6 +21,11 @@ export default ({ }) => {
     const { data = {}, isLoading, isError, error } = useQuery({
         queryKey: ['getUserVisits'],
         queryFn: () => getUserVisits(user.id, token),
+    });
+
+    const { data:queries = [], isLoading:queryLoading } = useQuery({
+        queryKey: ['getQueryByUser'],
+        queryFn: () => getQueryByUser(user.id, token),
     });
 
     return (
@@ -36,6 +43,7 @@ export default ({ }) => {
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
                                     <PropertyCard4
+                                        showBookNow={true}
                                         title={data.name}
                                         bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
                                         address={data.address}
@@ -74,7 +82,8 @@ export default ({ }) => {
                                 const data = visits.property || visits.project || {};
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
-                                    <PropertyCard4 
+                                    <PropertyCard4
+                                        showBookNow={true}
                                         title={data.name}
                                         bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
                                         address={data.address}
@@ -97,6 +106,24 @@ export default ({ }) => {
                                     />
                                 </div>)
                             })}
+                        </div>
+                    </div>
+                </div>
+                <div label="Interests">
+                    <div className='scheduled-visits'>
+                        <div className='property-cards'>
+                            {!queryLoading && queries.length == 0 ? <div className="no-result d-flex align-items-center justify-content-center flex-column">
+                                <Image alt="schedule no result" src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
+                                <div className="message mb-3 heading-4d">Looks like you didn't have any queries!</div>
+                            </div> : (queries || []).map((query, index) => {
+                                return (<InterestCard 
+                                    key={index}
+                                    isProperty={!!query.propertyId}
+                                    date={query.createdTime}
+                                    id={query.projectId || query.propertyId}
+                                />)
+                            })
+                        }
                         </div>
                     </div>
                 </div>

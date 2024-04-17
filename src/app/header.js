@@ -7,6 +7,7 @@ import HeaderMobileDrawer from './headerMobileDrawer';
 import UserAuthHeader from '@/app/userAuthHeader';
 import { getAllCities } from '@/clients/cityClient'
 import MobileSearchBar from './headerComponents/mobileSearchBar'; 
+import Image from 'next/image';
 
 
 const Header = async ({ }) => {
@@ -16,7 +17,7 @@ const Header = async ({ }) => {
             <div className='position-relative d-flex justify-content-between container-fluid sub-heading align-items-center'>
                 <div className="property-x d-flex align-items-center">
                     <HeaderMobileDrawer />
-                    <Link href="/" className='logo-link'><Logo width={121} height={23} />
+                    <Link href="/" className='logo-link'><Image alt="logo" src={"/gopropifyColoredLogo.png"} width={138} height={30} />
                     </Link>
                 </div>
                 <div className='header-search-container'>
@@ -24,7 +25,9 @@ const Header = async ({ }) => {
                 </div>
                 <div className='links'>
                     {/* <span className='heading-normal d-none d-xl-inline-block'>Download the App</span> */}
-                    <span className='heading-normal d-none d-xl-inline-block'> <Link href="/post-a-property" className='text-decoration-none'>List a Property</Link></span>
+                    <span className='heading-normal d-none d-xl-inline-block'>
+                         <Link href="/post-a-property" className='text-decoration-none'>List a Property <Image src={"/freeicon.png"} width={40} height={40}/></Link>
+                         </span>
                     <MobileSearchBar locations={LOCATIONS}/>
                     <UserAuthHeader />
                 </div>

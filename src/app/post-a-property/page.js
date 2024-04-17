@@ -12,7 +12,7 @@ export default async ({ }) => {
     return (<div className='post-property container-fluid'>
         <div className='container additional-page-padding'>
             <div className="property-txt d-flex flex-column align-items-center text-center">
-                <div className="heading">Post a Property</div>
+                <div className="heading">List a Property</div>
                 <p className="maximize-your sub-heading-3">
                     Maximize your property&#39;s exposure by listing it with us.
                     <br />
