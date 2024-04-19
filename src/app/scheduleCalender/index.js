@@ -30,7 +30,7 @@ const MINUTES = [...Array(60).keys()].map((i, index) => {
 });
 
 
-export default function ScheduleCalendar({ id, isProperty }) {
+export default function ScheduleCalendar({ id, isProperty, renderFromClient, onClose }) {
     const initialScheduleState = { hours: "06", minutes: "00", ampm: "AM", scheduled: false, isAlreadyScheduled:false };
     const maxDateAllowed = dayjs().add(240, 'day');
     const [date, setDate] = React.useState(dayjs().add(3, 'day'));
@@ -40,7 +40,7 @@ export default function ScheduleCalendar({ id, isProperty }) {
     const searchParams = useSearchParams();
 
     const idFromQueryParam = searchParams.get('schedule');
-    const scheduleModalEnabled = !!idFromQueryParam;
+    const scheduleModalEnabled = !!idFromQueryParam || (renderFromClient && !!id);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -55,7 +55,12 @@ export default function ScheduleCalendar({ id, isProperty }) {
     });
 
     const handleClose = () => {
-        router.back();
+        if(renderFromClient) {
+            onClose()
+        }
+        else {
+            router.back();
+        }
         setFormData(initialScheduleState)
     }
     

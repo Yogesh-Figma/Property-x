@@ -17,7 +17,7 @@ const Header = async ({ }) => {
             <div className='position-relative d-flex justify-content-between container-fluid sub-heading align-items-center'>
                 <div className="property-x d-flex align-items-center">
                     <HeaderMobileDrawer />
-                    <Link href="/" className='logo-link'><Image alt="logo" src={"/gopropifyColoredLogo.png"} width={138} height={30} />
+                    <Link href="/" className='logo-link'><Image alt="logo" src={"/gopropifyColoredLogo.png"} width={166} height={36} />
                     </Link>
                 </div>
                 <div className='header-search-container'>
@@ -26,7 +26,7 @@ const Header = async ({ }) => {
                 <div className='links'>
                     {/* <span className='heading-normal d-none d-xl-inline-block'>Download the App</span> */}
                     <span className='heading-normal d-none d-xl-inline-block'>
-                         <Link href="/post-a-property" className='text-decoration-none'>List a Property <Image src={"/freeicon.png"} width={40} height={40}/></Link>
+                         <Link href="/post-a-property" className='text-decoration-none'>List a Property<Image src={"/freeicon.png"} width={38} height={36}/></Link>
                          </span>
                     <MobileSearchBar locations={LOCATIONS}/>
                     <UserAuthHeader />

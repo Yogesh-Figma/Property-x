@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 let customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
-export default ({ isProperty, id, date }) => {
+export default ({ isProperty, id, date, scheduleVisit }) => {
     const { data, isLoading, isError, error } = useQuery({
         enabled: !!id,
         queryKey: ['getPropertyById', id],
@@ -40,6 +40,8 @@ export default ({ isProperty, id, date }) => {
             subInfo={data.propertySpecification || data.specification}
             minPrice={data.minPrice}
             maxPrice={data.maxPrice}
+            showScheduleVisitBtn={true}
+            onScheduleClick={scheduleVisit}
         />}
     </div>);
 }

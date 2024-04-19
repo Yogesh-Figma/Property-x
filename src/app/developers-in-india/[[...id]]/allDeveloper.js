@@ -3,8 +3,8 @@ import Drawer from '@mui/material/Drawer';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-export default function DeveloperDrawer({id, data=[]}) {
-  const open = !!id;
+export default function DeveloperDrawer({ id, data = [] }) {
+  const open = !!id && data.length > 0;
   const router = useRouter();
 
   const toggleDrawer = () => {
@@ -13,7 +13,9 @@ export default function DeveloperDrawer({id, data=[]}) {
 
   const DrawerList = (
     <div>
-      {Array.from(Array(10).keys()).map(a =>data.map(item => <div className='mb-1'><Link href={"/"}>{item}</Link></div>))}
+      {(data || []).map(dev => <div className='mb-1'>
+        <Link href={`/developer/${dev.url}`}>{dev.name}</Link>
+      </div>)}
     </div>
   );
 

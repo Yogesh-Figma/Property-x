@@ -70,6 +70,11 @@ function getProjectsByDeveloperId(developerId){
     return get(`${API_CLIENT_URL}/get/project/by/developer/id/${developerId}`)
 }
 
+function getAllProjectsInIndia() {
+    return get(`${API_CLIENT_URL}/get/indian/projects`, { next: { revalidate: 300 } });
+}
+
+
 export {
     PROJECT_STATUS,
     getProjectsByStatus,
@@ -81,5 +86,6 @@ export {
     getProjectTowerByUrlText,
     getProjectTowerById,
     getUpcomingProjectByCityId,
-    getProjectsByDeveloperId
+    getProjectsByDeveloperId,
+    getAllProjectsInIndia
 }

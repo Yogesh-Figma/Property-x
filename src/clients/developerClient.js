@@ -31,10 +31,15 @@ function getDeveloperByUrlText(urlText, accessToken) {
     });
 }
 
+function getAllIndianDevelopers() {
+    return get(`${API_CLIENT_URL}/get/indian/developers`, { next: { revalidate: 300 } });
+}
+
 
 export {
     getFeaturedDevelopers,
     getAllDevelopers,
     getDeveloperById,
-    getDeveloperByUrlText
+    getDeveloperByUrlText,
+    getAllIndianDevelopers
 }

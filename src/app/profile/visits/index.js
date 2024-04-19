@@ -1,6 +1,6 @@
 "use client"
 import "./styles.scss"
-import React from 'react'
+import React, { useState } from 'react'
 import { PropertyCard4 } from '@/app/components/ui/propertyCard'
 import { useQuery } from 'react-query';
 import { getUserVisits } from '@/clients/visitClient'
@@ -11,25 +11,40 @@ import dayjs from 'dayjs';
 import NextLinkButton from "@/app/components/nextLinkButton";
 import Image from 'next/image';
 import InterestCard from "./interestCard";
+import ScheduleCalendar from '@/app/scheduleCalender';
 let customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
 
 export default ({ }) => {
     const sampleDate = new Date();
-    const { data: { user, token } = {}  } = useSession();
+    const { data: { user, token } = {} } = useSession();
+    const [selectedQueryObj, selectQueryObj] = useState({});
     const { data = {}, isLoading, isError, error } = useQuery({
-        queryKey: ['getUserVisits'],
+        queryKey: ['getUserVisits', user.id],
         queryFn: () => getUserVisits(user.id, token),
     });
 
-    const { data:queries = [], isLoading:queryLoading } = useQuery({
-        queryKey: ['getQueryByUser'],
+    const { data: queries = [], isLoading: queryLoading } = useQuery({
+        queryKey: ['getQueryByUser', user.id],
         queryFn: () => getQueryByUser(user.id, token),
     });
 
+    const scheduleVisit = (queryObj) => {
+        selectQueryObj(queryObj);
+    }
+
+    const closeScheduleVisitModal = () => {
+        selectQueryObj({});
+    }
+
+
     return (
         <div>
+            <ScheduleCalendar renderFromClient={true}
+                isProperty={!!selectedQueryObj.propertyId}
+                id={selectedQueryObj.projectId || selectedQueryObj.propertyId}
+                onClose={closeScheduleVisitModal} />
             <SlantedTabs className="tab-content">
                 <div label="Upcoming Visits">
                     <div className='scheduled-visits'>
@@ -116,14 +131,15 @@ export default ({ }) => {
                                 <Image alt="schedule no result" src={"/scheduleNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                                 <div className="message mb-3 heading-4d">Looks like you didn't have any queries!</div>
                             </div> : (queries || []).map((query, index) => {
-                                return (<InterestCard 
+                                return (<InterestCard
+                                    scheduleVisit={() => scheduleVisit(query)}
                                     key={index}
                                     isProperty={!!query.propertyId}
                                     date={query.createdTime}
                                     id={query.projectId || query.propertyId}
                                 />)
                             })
-                        }
+                            }
                         </div>
                     </div>
                 </div>

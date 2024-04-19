@@ -4,7 +4,6 @@ import Image from 'next/image'
 import React from 'react'
 import MyProfile from './myProfile'
 import Transactions from './transactions'
-import Bookings from './bookings'
 import ScheduledVisits from './visits'
 import PostedProperties from './postedProperties'
 import { useSearchParams } from 'next/navigation'
@@ -14,10 +13,11 @@ import Link from 'next/link'
 import { useQuery } from 'react-query';
 import { getUserProfile } from "@/clients/profileClient"
 import { useSession } from "next-auth/react"
+import MyOwnings from "./myOwnings"
 
 export const TABS = [{ label: "Profile", value: "myprofile" },
 { label: "Transactions", value: "transactions" },
-{ label: "Bookings", value: "bookings" },
+{ label: "My Ownings", value: "myOwnings" },
 { label: "Visits/Interests", value: "visits" },
 { label: "Posted Properties", value: "postedProperties" },
 { label: "Wishlist", value: "wishlist" }]
@@ -53,7 +53,7 @@ export default ({ initialData }) => {
         switch (selectedTabIndex) {
             case 0: return <MyProfile userProfileData={userProfileData} refetchProfile={refetchProfile}/>;
             case 1: return <Transactions />;
-            case 2: return <Bookings />;
+            case 2: return <MyOwnings />;
             case 3: return <ScheduledVisits />;
             case 4: return <PostedProperties />;
             case 5: return <Wishlist />;

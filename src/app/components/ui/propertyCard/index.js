@@ -166,14 +166,14 @@ const PropertyCard3 = ({ title, bhk, address, price, minPrice, maxPrice, imgsrc,
 
 // Search page property card
 const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
-    bhk, address, priceRange, imgsrc, subInfo,
+    bhk, address, imgsrc, subInfo,
     avgPrice, possessionInfo, by,
     devImage, height, id, verticalView,
     visitDate, visitTime, useStretchedLink,
     showTalkToConsultant, furnishingInfo,
     showRateNow, rera, hideLikeBtn, urlText, isWished,
     showBookNow,
-    price, minPrice, maxPrice, }) => {
+    price, minPrice, maxPrice,showScheduleVisitBtn, onScheduleClick }) => {
     return (<div style={{ height }} key={id}>
         <Card className={`property-card-4 overflow-hidden row position-relative g-0`}>
             {!!showRateNow && !!visitDate && !!visitTime && <div className='visit-rate-now-section p-2 d-flex justify-content-between align-items-center d-md-none'>
@@ -247,7 +247,8 @@ const PropertyCard4 = ({ title, isProperty, showRating, ratingCnt, ratingValue,
                             <div className='dev-text sub-heading-3'>Developer</div>
                         </div>
                         <div className='booking-btn-container ml-auto'>
-                            {showBookNow && <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={23} href={`/book/${isProperty ? "property/" : "project/"}/${urlText}`} />}
+                        {showScheduleVisitBtn && <Button className="outlined-noborder" text='Schedule a Visit' height={25} rounded={true} onClick={onScheduleClick}/>}
+                            {showBookNow && <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={25} href={`/book/${isProperty ? "property/" : "project/"}/${urlText}`} />}
                             <NextLinkButton variant={showBookNow ? "outlined-noborder":"contained"} className="property-card-btn overview-btn" text='View' height={25} rounded={true} href={`/${(isProperty ? "property/" : "project/") + urlText}`} />
                             {showTalkToConsultant && <TalkToConsulantBtn height={25} rounded={true} isProperty={isProperty} id={id} />}
                         </div>

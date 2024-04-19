@@ -1,30 +1,28 @@
 .footer {
-    background: #EAEAEA;
+
     margin-top: 50px;
+    .list-property {
+        img {
+            top: -5px;
+        }
+    }
+    .seo-links {
+        width: 100%;
+        background-color: #F7F7F7;
+        a {
+            font-size: 12px;
+        }
+    }
+    .site-links {
+        font-size: 14px;
+    }
     .compact-search-bar {
         flex: 1;
         text-align: left;
     }
-    .trophy-container {
-        margin-top: 37px;
-        border-radius: 10px;
-        background: #FFF;
-        width: 98px;
-        height: 98px;
-    }
-    div:not(.property-x) {
-        font-family: var(--microsoft-sans-font);
-        color: var(--text-color-shark);
-    }
-    .property-x {
-        width: 280px;
-        height: 60px;
-        background: #FFF;
-    }
     .footerLinksColumns a {
         display: block;
         font-weight: 400;
-        font-size: 20px;
         color: #202124;
         margin-bottom: 21px;
     }
@@ -78,13 +76,14 @@
     }
     .contact-icons-container {
         margin-top: 20px;
-        .contact-image-wrapper {
-            width: 45px;
-            height: 45px;
-            background: #fff;
-            border-radius: 45px;
-            margin-right: 35px;
-        }
+
+    }
+    .contact-image-wrapper {
+        width: 45px;
+        height: 45px;
+        background: #F7F7F7;
+        border-radius: 45px;
+        margin-right: 12px;
     }
 }
 
