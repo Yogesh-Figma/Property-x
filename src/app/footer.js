@@ -54,16 +54,16 @@ const Footer = () => {
                         <div className='col-xl-10 seo-links pt-5 pb-5'>
                             <div className='row footerLinksColumns container-fluid'>
                                 <div className='col-lg-3'>
-                                    {SEO_LINKS1.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
+                                    {SEO_LINKS1.map((item, index) => <Link key={index} href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                                 <div className='col-lg-3'>
-                                    {SEO_LINKS1.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
+                                    {SEO_LINKS1.map((item, index) => <Link key={index} href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                                 <div className='col-lg-3'>
-                                    {SEO_LINKS1.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
+                                    {SEO_LINKS1.map((item, index) => <Link key={index} href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                                 <div className='col-lg-3'>
-                                    {SEO_LINKS2.map(item => <Link href={item.url} className="text-reset text-start">{item.name}</Link>)}
+                                    {SEO_LINKS2.map((item, index) => <Link key={index} href={item.url} className="text-reset text-start">{item.name}</Link>)}
                                 </div>
                             </div>
                         </div>
@@ -98,12 +98,12 @@ const Footer = () => {
                             </div>
                             <div className='col-3'>
                                 <div className='heading mb-4'>Company</div>
-                                {LINKS1.map(item => <Link href={item.url} className="text-reset text-start d-block mb-4">{item.name}</Link>)}
+                                {LINKS1.map((item, index) => <Link key={index} href={item.url} className="text-reset text-start d-block mb-4">{item.name}</Link>)}
                             </div>
                             <div className='col-3'>
                                 <div className='heading mb-4'>Discover</div>
                                 <Link href="/post-a-property" className='text-reset text-start d-block mb-4 position-relative list-property'>List a Property<Image src={"/freeicon.png"} width={38} height={36} className='position-absolute'/></Link>
-                                {LINKS2.map(item => <Link href={item.url} className="text-reset text-start d-block mb-4">{item.name}</Link>)}
+                                {LINKS2.map((item, index) => <Link key={index} href={item.url} className="text-reset text-start d-block mb-4">{item.name}</Link>)}
                             </div>
                             
                             {/* <div className='col-4 download-app-container d-none d-lg-block'>
