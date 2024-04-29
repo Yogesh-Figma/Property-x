@@ -51,6 +51,15 @@ class Helper {
       }
       return chunks;
   }
+
+  static splitArrayIntoArrays(array, splitLength) {
+    const chunks = [];
+    let length = (array||[]).length / splitLength;
+    for (let i = 0; i < array.length; i= i+length) {
+        chunks.push((array||[]).slice(i, i + length));
+    }
+    return chunks;
+  }
   
 
 }

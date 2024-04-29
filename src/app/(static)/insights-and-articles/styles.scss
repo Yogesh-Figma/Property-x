@@ -1,0 +1,45 @@
+.insight-articles {
+    .heading {
+        color: #202124;
+    }
+
+    .blogs-list {
+        // display: grid;
+        // grid-template-columns: 1fr 1fr 1fr 1fr;
+        // column-gap: 20px;
+        // row-gap: 40px;
+
+        .insight-card {
+            padding: 10px;
+
+            .img-cnt {
+                height: 230px;
+                border-radius: 10px;
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .heading {
+                font-size: 16px;
+            }
+
+            .insight-sub-info {
+                font-size: 12px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+
+                .card-date {
+                    margin-right: 10px;
+                }
+            }
+
+            .info {
+                font-size: 12px;
+            }
+
+            img {
+                overflow: hidden;
+            }
+        }
+    }
+}

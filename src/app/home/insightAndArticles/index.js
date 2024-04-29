@@ -7,10 +7,10 @@ import { getAllBlogs } from '@/clients/blogClient';
 import Link from 'next/link'
 
 const InsightAndArticles = async ({ }) => {
-    const blogs = await getAllBlogs();
+    const blogs = await getAllBlogs(true, 10, 0);
     return (<div className='insight-and-articles'>
         <CardSlider carouselSettings={{ slidesToShow: null, slidesToScroll:1,  variableWidth: true}}>
-            {blogs.map((item, index) =>
+            {(blogs?.content||[]).map((item, index) =>
                 <div style={{width:"370px"}} key={index}>
                     <div className='insight-card'>
                         <div className='position-relative ing-img-container overflow-hidden'>

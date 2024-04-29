@@ -28,7 +28,7 @@ const AboutUs = async () => {
                 </div>
             </div>
         </div>
-        <div className='content-cnt'>
+        <div className='content-cnt container-fluid'>
             <div className='heading'>Welcome to Go Propify!</div>
             <p className='propify-info'>
                 At Go Propify, we're passionate about simplifying the property booking experience. Whether you're searching for your dream home, planning a vacation rental, or seeking an ideal commercial space, we're here to make the process seamless and enjoyable.
@@ -36,16 +36,16 @@ const AboutUs = async () => {
                 <br />
                 Our mission is clear: to connect property seekers with their perfect spaces effortlessly. We believe that finding the right property shouldn't be stressful or time-consuming. Through our user-friendly platform and innovative features, we strive to redefine the way people search for and book properties.
             </p>
-            <div className='d-flex no-gutter set-apart-cnt'>
-                <div className='img-cnt'>
-                    <Image src={"/aboutUsImg1.png"} width={454} height={300}/>
+            <div className='row no-gutter set-apart-cnt'>
+                <div className='img-cnt col-md-4 col-12 position-relative'>
+                    <Image src={"/aboutUsImg1.png"} fill={true}/>
                 </div>
-                <div className='ps-5'>
+                <div className='ps-md-5 col-md-8 col-12 pt-4 pt-md-0'>
                     <div className='heading'>
                         What Sets Us apart
                     </div>
                     <div className='section-cnt row g-0'>
-                        {sections.map(item => <div className='section col-6 d-flex'>
+                        {sections.map(item => <div className='section col-md-6 col-12 d-flex'>
                             <VerticalHighlighter />
                             <span className="section-info w-100">
                                 <div className='heading-4d'>{item.heading}</div>
