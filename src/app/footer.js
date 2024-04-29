@@ -24,7 +24,7 @@ const LINKS1 = [
 const LINKS2 = [
     { name: "Developers in India", url: "/developers-in-india" },
     { name: "Projects in India", url: "/projects-in-india" },
-    { name: "Insights and Articles", url: "insights-and-articles" }
+    { name: "Insights and Articles", url: "/insights-and-articles" }
 ]
 
 const ContactUsSection = () => {
