@@ -20,11 +20,11 @@ import PlaceIcon from '@mui/icons-material/Place';
 
 
 const CompactSearchBar = ({ height = "30px", width = "600px", maxWidth = "", mobileSearch, showSearchIcon, showLocationMenu, className, locations }) => {
-    const SEARCH_REGEX = /\/search\/(\w+)/
+    const SEARCH_REGEX = /\/search\/([^?]+)/
     const pathName = usePathname();
     const searchParams = useSearchParams();
     const matches = SEARCH_REGEX.exec(pathName);
-    const searchTermFromParam = (matches != null && matches.length > 0) ? matches[1] : "";
+    const searchTermFromParam = ((matches != null && matches.length > 0) ? matches[1] : "").replaceAll("-", " ");
     const cityNameFromParam = !!searchTermFromParam ? searchParams.get("city") : "";
     const [searchTerm, setSearchTerm] = React.useState(searchTermFromParam);
     let { userLocation, setUserLocation } = useAppContext() || {};

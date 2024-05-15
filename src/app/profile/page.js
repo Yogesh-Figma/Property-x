@@ -8,6 +8,5 @@ export default async ({ }) => {
     const { user } = await getServerSession(authOptions)
 
     const userInfo = await getUserProfile(user.id);
-    
     return (<Profile initialData={userInfo}/>)
 }

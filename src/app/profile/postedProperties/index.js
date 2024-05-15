@@ -49,7 +49,7 @@ export default ({ }) => {
                     {<div className="no-result d-flex align-items-center justify-content-center flex-column">
                         <Image alt="property no result"  src={"/propertyNoResult.png"} width={221} height={150} className="mb-3 mt-3" />
                         <div className="message mb-3 heading-4d">No property expired!</div>
-                        <NextLinkButton rounded={true} height={40} text={"List a Property"} href={"/"} />
+                        <NextLinkButton rounded={true} height={40} text={"List a Property"} href={"/post-a-property"} />
                     </div>}
                 </div>
             </SlantedTabs>

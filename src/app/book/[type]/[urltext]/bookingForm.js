@@ -46,19 +46,40 @@ export default ({ data, type, configurations, projectTowers }) => {
             permanentAddressSame: false
         }
     }
+    const paymentDetails =  {
+        chequeImageUrl:"",
+        chequeNo:"",
+        utrNo:""
+    };
+
     const [formData, setFormData] = React.useState({
         propertyId: "",
         declaration: false, tower: "", bhkType: "", floor: "",
         apartment: "",
         nomineeName: "", nomineeRelation: "",
-        selectedPaymentMethod: ""
+        selectedPaymentMethod: "",
+        paymentDetails
     });
 
     const [personalData, setPersonalData] = React.useState([getPersonalDataFields()]);
+
     let { towerId, floorId, configId } = formData;
+    const resetPaymentDetails = () => {
+        setFormData((prevFormData) => ({...prevFormData, paymentDetails }));
+    }
+    
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+        setFormData((prevFormData) => {
+            const updatedState = { ...prevFormData };
+            let currentObj = updatedState;
+            const nameParts = name.split('.');
+            for (let i = 0; i < nameParts.length - 1; i++) {
+                currentObj = currentObj[nameParts[i]];
+            }
+            currentObj[nameParts[nameParts.length - 1]] = value;
+            return updatedState;
+        });
     }
 
     const handlePersonalDetails = (index, event) => {
@@ -182,6 +203,7 @@ export default ({ data, type, configurations, projectTowers }) => {
                 personalData={personalData}
                 selectedProperty={selectedProperty}
                 formData={formData}
+                resetPaymentDetails={resetPaymentDetails}
                 handleChange={handleChange}
                 bookProperty={mutate} />
         }
@@ -196,13 +218,15 @@ export default ({ data, type, configurations, projectTowers }) => {
             <BackdropLoader open={submitting} />
 
             <Dialog
+                width={"40vw"}
+                height={"271px"}
                 open={isSuccess}
                 severity="success"
                 variant="filled"
                 onClose={() => { }}
-                title={"Thank You"}
-                message1={"Your property was booked successfully"}
-                message2={"Our expert consultants will reach out to you shortly"}
+                title={"Success"}
+                message1={"Your booking request raised successfully."}
+                message2={""}
             />
             {getStepForm()}
         </div>

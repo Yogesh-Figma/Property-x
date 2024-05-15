@@ -47,6 +47,7 @@ export default ({ variant = "horizontal", data ={} }) => {
                         <div className="row sub-info"><div className="col-6">Other Charges (Lease Rent) 95 per unit</div><div className="col-6">{Helper.pricePerSqftFormatter(data.otherChargesPerUnitSqft)}</div></div>
                         <div className="row sub-info"><div className="col-6">Gross Cost of Unit</div><div className="col-6">{Helper.indianCurrencyFormatter((data.otherChargesPerUnitSqft * data.coveredArea) + (data.ratePerUnitInsqft * data.coveredArea))}</div></div>
                         <div className="row sub-info"><div className="col-6">Discount</div><div className="col-6">{Helper.indianCurrencyFormatter(data.totalPrice * (data.discount/100))}</div></div>
+                        <div className="row sub-info propify-discount"><div className="col-6"><span className="txt">GoPropify Discount</span></div><div className="col-6">{Helper.indianCurrencyFormatter(data.totalPrice * (data.discount/100))}</div></div>
                         <div className="row sub-info"><div className="col-6">GST (5%)</div><div className="col-6">{Helper.indianCurrencyFormatter(data.totalPrice * 0.05)}</div></div>
                         <div className="row sub-info"><div className="col-6">Payable Amount</div><div className="col-6">{Helper.indianCurrencyFormatter(data.totalPrice)}</div></div>
                         <div className="row title heading booking-amount"><div className="col-6">Booking Amount(10%)</div><div className="col-6">{Helper.indianCurrencyFormatter(data.totalPrice * 0.1)}</div></div>

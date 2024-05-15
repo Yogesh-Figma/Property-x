@@ -20,7 +20,7 @@ const getFileType = (file) => {
     return SUPPORTED_FILE_TYPE.file;
 }
 
-function DragDropFile({ uploadText, name, updateFilesCb, multiple, supportedFileTypes = [Object.values(SUPPORTED_FILE_TYPE)], maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES, ...otherProps }) {
+function DragDropFile({ uploadText, errorMessage, register, errors, name, updateFilesCb, multiple, supportedFileTypes = [Object.values(SUPPORTED_FILE_TYPE)], maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES, ...otherProps }) {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
     const [files, setFiles] = React.useState({});
@@ -100,8 +100,8 @@ function DragDropFile({ uploadText, name, updateFilesCb, multiple, supportedFile
     return (
         <div className="file-upload-form">
             <form className="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
-                <input ref={inputRef} type="file" id="input-file-upload" multiple={multiple} onChange={handleChange} accept={supportedFileTypes.join(",")} />
-                <label htmlFor="input-file-upload" className={"label-file-upload " + (dragActive ? "drag-active" : "")}>
+                <input {...(errorMessage && register ? register(name, { required: errorMessage }):{})} ref={inputRef} type="file" id="input-file-upload" multiple={multiple} onChange={handleChange} accept={supportedFileTypes.join(",")} />
+                <label htmlFor="input-file-upload" className={"label-file-upload " + (dragActive ? "drag-active" : "") + (!!errors && !!errors[name]? " error" : '')}>
                     <div>
                         {uploadText ? <div className="upload-text text-left">{uploadText}</div> : <>
                             <UploadFileIcon />
@@ -118,6 +118,7 @@ function DragDropFile({ uploadText, name, updateFilesCb, multiple, supportedFile
                 </label>
                 {dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div>}
             </form>
+            {!!errors && !!errors[name] && <div className='error-helper-text'>{errors[name].message}</div>}
             {multiple && <FilePreviewGrid removeFile={removeFile} files={files} />}
         </div>
     );

@@ -1,0 +1,56 @@
+.payment-modal {
+    .payment-cnt {
+        padding: 40px 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15px;
+        background: #FFF;
+        width: 60%;
+        border: none;
+
+        &:focus {
+            outline: none
+        }
+
+        .close-icon {
+            right: 25px;
+            top: 25px;
+        }
+
+        .project-heading {
+            margin-top: 0px;
+        }
+
+        .heading {
+            font-size: 24px;
+        }
+        .sub-heading {
+            font-size: 16px;
+        }
+        .MuiTextField-root {
+            label {
+                transform: translate(14px, 14px) scale(1);
+            }
+        }
+
+        .file-upload-form {
+            .form-file-upload {
+                max-height: 116px;
+
+                .label-file-upload {
+                    justify-content: flex-start;
+                    padding-left: 38px;
+                }
+
+                .single-file-upload {
+                    .upload-button {
+                        margin-right: 30px;
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+    }
+}

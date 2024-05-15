@@ -13,7 +13,7 @@ const SeoLinks = async () => {
             <div className='row footerLinksColumns container-fluid'>
                 {chunks.map((chunk, index) =>
                     <div className='col-lg-3' key={index}>
-                        {chunk.map((item, index) => <Link key={index} href={'/search/term/' + item.path} className="text-reset text-start">{item.keywords}</Link>)}
+                        {chunk.map((item, index) => <Link key={index} href={'/search/' + item.path} className="text-reset text-start">{item.keywords}</Link>)}
                     </div>)}
             </div>
         </div>

@@ -21,10 +21,10 @@ const ADDRESS_TYPES = ["permanent", "present"];
 export default ({ userProfileData, refetchProfile }) => {
     const [files, setFilesState] = React.useState({});
     const { enableLoader } = useAppContext() || {};
-    const { data: { user, token } = {}, update:updateSession } = useSession();
+    const { data: { user, token } = {}, update: updateSession } = useSession();
     const [formData, setFormData] = React.useState({
-        panPhoto:userProfileData.panPhoto,
-        aadharPhoto:userProfileData.aadharPhoto,
+        panPhoto: userProfileData.panPhoto,
+        aadharPhoto: userProfileData.aadharPhoto,
         disableBasicDataEdit: true,
         firstName: userProfileData.firstName,
         lastName: userProfileData.lastName,
@@ -48,6 +48,11 @@ export default ({ userProfileData, refetchProfile }) => {
         presentLocalityId: userProfileData?.presentAddress?.id,
         presentStateId: userProfileData?.presentAddress?.city?.states?.id,
         presentCountryId: userProfileData?.presentAddress?.city?.states?.country?.id,
+        accountHolderName: userProfileData.accountHolderName,
+        bankName: userProfileData.bankName,
+        branchName: userProfileData.branchName,
+        accountNumber: userProfileData.accountNumber,
+        ifsc: userProfileData.ifsc,
         permanentAddressSame: false,
         isError: false
     });
@@ -136,7 +141,7 @@ export default ({ userProfileData, refetchProfile }) => {
             }
 
             let requestJson = {
-                "image":photo,
+                "image": photo,
                 "pan": formData.panNo,
                 "aadhar": formData.aadharNo,
                 "panPhoto": panPhoto,
@@ -149,7 +154,12 @@ export default ({ userProfileData, refetchProfile }) => {
                 "permanentAddressLine1": formData.permanentAddressSame ? formData.presentAddressLine1 : formData.permanentAddressLine1,
                 "permanentAddressLine2": formData.permanentAddressSame ? formData.presentAddressLine2 : formData.permanentAddressLine2,
                 "permanentLocalityId": formData.permanentAddressSame ? formData.presentLocalityId : formData.permanentLocalityId,
-                "presentLocalityId": formData.presentLocalityId
+                "presentLocalityId": formData.presentLocalityId,
+                "accountHolderName": formData.accountHolderName,
+                "branchName": formData.branchName,
+                "accountNumber": formData.accountNumber,
+                "ifsc": formData.ifsc,
+
             }
             // if(!formData.disableBasicDataEdit) {
             //     await updateUserData({ data: userBasicData, accessToken: token, userId: user.id });
@@ -157,7 +167,7 @@ export default ({ userProfileData, refetchProfile }) => {
             await updateUserProfile(user.id, requestJson, token);
             handleSnackBar(true, true, false);
             refetchProfile();
-            updateSession({photo:photo});
+            updateSession({ photo: photo });
         }
         catch (e) {
             console.log("error", e);
@@ -184,10 +194,10 @@ export default ({ userProfileData, refetchProfile }) => {
     return (<div className='my-profile'>
         <div className="profile-pic position-relative">
             <Image alt="profile pic" src={!!files.photo ? URL.createObjectURL(files.photo[0]) : userProfileData.photo || "/user.png"} width={120} height={120} />
-            <EditPencil className='edit-pencil position-absolute cursor-pointer' onClick={onProfileEditClick}/>
+            <EditPencil className='edit-pencil position-absolute cursor-pointer' onClick={onProfileEditClick} />
             <input className='d-none' ref={profilePicRef} type="file" id="profile-image-upload" multiple={false} onChange={handleProfileImageChange} accept={[SUPPORTED_FILE_TYPE.image]} />
         </div>
-        <div className='form'>
+        <div className='form profile-form'>
             <UserProfileForm
                 disableBasicDataEdit={formData.disableBasicDataEdit}
                 files={files}
@@ -210,6 +220,86 @@ export default ({ userProfileData, refetchProfile }) => {
                 }}
 
             />
+            <div className='additional-form-details form-section post-form-input'>
+                <div className='form-element-head'>Account Details</div>
+                <div className="row form-row">
+                    <div className='col-md-6 col-12'>
+                        <Input
+                            width={"100%"}
+                            errorMessage={"Required"}
+                            control={control}
+                            rounded={true}
+                            maxLength={20}
+                            className='post-form-input'
+                            label={"Account No."}
+                            name="accountNumber"
+                            isNumber={true}
+                            value={formData.accountNumber}
+                            onChange={handleChange}
+                            height={50}
+                        />
+                    </div>
+                    <div className='col-md-6 col-12 mt-md-0 mt-2'>
+                        <Input
+                            width={"100%"}
+                            errorMessage={"Required"}
+                            control={control}
+                            rounded={true}
+                            className='post-form-input'
+                            label={"Account Holder Name"}
+                            name="accountHolderName"
+                            value={formData.accountHolderName}
+                            onChange={handleChange}
+                            height={50}
+                        />
+                    </div>
+                </div>
+                <div className="row form-row">
+                    <div className='col-md-6 col-12'>
+                        <Input
+                            width={"100%"}
+                            errorMessage={"Invalid"}
+                            control={control}
+                            rounded={true}
+                            pattern={/^[A-Z]{4}0[A-Z0-9]{6}$/}
+                            className='post-form-input'
+                            label={"IFSC Code"}
+                            name="ifsc"
+                            value={formData.ifsc}
+                            onChange={handleChange}
+                            height={50}
+                        />
+                    </div>
+                    <div className='col-md-6 col-12 mt-md-0 mt-2'>
+                        <Input
+                            width={"100%"}
+                            errorMessage={"Required"}
+                            control={control}
+                            rounded={true}
+                            className='post-form-input'
+                            label={"Bank Name"}
+                            name="bankName"
+                            value={formData.bankName}
+                            onChange={handleChange}
+                            height={50}
+                        />
+                    </div>
+                </div>
+                <div className='col-md-6 col-12 mt-md-0 mt-2'>
+                        <Input
+                            width={"100%"}
+                            errorMessage={"Required"}
+                            control={control}
+                            rounded={true}
+                            className='post-form-input'
+                            label={"Branch Name"}
+                            name="branchName"
+                            value={formData.branchName}
+                            onChange={handleChange}
+                            height={50}
+                        />
+                </div>
+            </div>
         </div>
         <div className='d-flex justify-content-end'>
             <Button rounded={true} height={40} text={"Update Information"} onClick={handleSubmit(handleNext, onError)} />

@@ -1,9 +1,11 @@
+import React from 'react';
 import Card from "@/app/components/card";
 import Heading from "@/app/components/heading";
 import PaymentSummary from './paymentSummary';
 import Image from "next/image";
-import FormTabs from "@/app/components/formTabs";
 import Button from "@/app/components/button";
+import PaymentMethod from "./paymentMethod";
+
 
 
 const MODE_OF_PAYMENTS = [{ value: "credit", label: "Credit Card" }, { value: "cheque", label: "Cheque" }, { value: "rtgs", label: "RTGS/NEFT" }]
@@ -47,12 +49,17 @@ function getUserDetails({ firstName, lastName, phone, email, aadharNo, panNo,
     </div>)
 }
 
-export default ({ formData, handleChange, changeStep, selectedProperty, bookProperty, personalData }) => {
-    const handleNext = () => {
-        changeStep(1);
-    }
+export default ({ formData, handleChange, changeStep, selectedProperty, bookProperty, personalData, resetPaymentDetails }) => {
+    const [paymentModalEnabled, togglePaymentModal] = React.useState(false);
+
+    const closePaymentModal = () => {
+        resetPaymentDetails();
+        togglePaymentModal(false)
+    } 
+
     return (<div className="payment-and-book">
         <Heading label={"Details Overview"} />
+        <PaymentMethod formData={formData} handleChange={handleChange} paymentModalEnabled={paymentModalEnabled} handleClose={closePaymentModal} save={()=> togglePaymentModal(false)}/>
         <div className="row">
             <div className="col-xl-6 col-12">
                 <PaymentSummary variant="vertical" data={selectedProperty} />
@@ -107,10 +114,12 @@ export default ({ formData, handleChange, changeStep, selectedProperty, bookProp
                         </div> */}
                     </div>
                 </Card>
+                <Button className="d-block payment-details w-100 mt-4 mb-4" variant='outlined' rounded={true} height={48} text={"Payment Details"} onClick={()=> togglePaymentModal(true)} />
+                <Button className="ms-auto d-block" rounded={true} height={48} text={"Raise Booking Request"} onClick={bookProperty} />
             </div>
         </div>
         {/* <Heading label={"Select Payment Method"} /> */}
-        <Button className="next-button ms-auto d-block" rounded={true} height={48} text={"Book Property"} onClick={bookProperty} />
+        
         {/* <FormTabs variant={"contained"} items={MODE_OF_PAYMENTS} name="selectedPaymentMethod" className="payment-methods" selectedTab={formData.selectedPaymentMethod} onClick={handleChange}/> */}
     </div>)
 }

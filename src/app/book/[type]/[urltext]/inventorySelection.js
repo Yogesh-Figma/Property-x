@@ -26,7 +26,7 @@ export default ({ data, formData, handleChange, changeStep, configurations, proj
     let { data: properties = [], isLoading } = useQuery({
         enabled: !!towerId && !!floorId,
         queryKey: ['getPropertiesByProjectId', towerId, floorId, configId],
-        queryFn: () => getPropertiesByProjectId(data.id, token, { towerId, floorId, configId } = formData)
+        queryFn: () => getPropertiesByProjectId(data.id, token, { towerId, floorId, configId })
     });
 
     let { data: floors = [], isLoading: isFloorLoading } = useQuery({
