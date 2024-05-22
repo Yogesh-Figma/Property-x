@@ -30,7 +30,7 @@ const InsightsAndArticles = async ({ params: { urlText, type } }) => {
     const createdOn = dayjs(serviceData.createdDate || "");
     return (<div className='insight-article-detail static-page'>
         <div className='info-container position-relative'>
-            <Image alt="article img" src={serviceData.urls[0] || ""} className='position-absolute bg-img' fill={true} />
+            <Image alt="article img" src={serviceData.urls[0]?.imageUrl || ""} className='position-absolute bg-img' fill={true} />
         </div>
         <div className=' content-cnt container-fluid'>
             <div className='heading mb-4'>{serviceData.headings}</div>
@@ -47,7 +47,7 @@ const InsightsAndArticles = async ({ params: { urlText, type } }) => {
                 </div>
             </div>
             {serviceData.urls.length > 1 && <div className='info-container position-relative mt-3 mb-3'>
-                <Image alt="article img" src={serviceData.urls[1] || ""} className='position-absolute bg-img' fill={true} />
+                <Image alt="article img" src={serviceData.urls[1]?.imageUrl || ""} className='position-absolute bg-img' fill={true} />
             </div>}
             <div className='content' dangerouslySetInnerHTML={{ __html: serviceData.content }} />
             <Heading label="Featured Articles" className='heading' />

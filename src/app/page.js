@@ -40,13 +40,9 @@ export default async function Home() {
           </Suspense>
         </div>
         <div className='developer-container'>
-          <div className='sub-heading text-center title'>Featured Projects</div>
-          <div className='sub-heading-3 text-center sub-title'>Tailored Exclusively to Suit Your Preferences</div>
           <FeaturedProjects />
         </div>
         <div className='developer-container'>
-          <div className='sub-heading text-center title'>Featured Properties</div>
-          <div className='sub-heading-3 text-center sub-title'>Individually Selected to Match Your Desires</div>
           <FeaturedProperties />
         </div>
         <div className='developer-container'>
@@ -60,11 +56,13 @@ export default async function Home() {
           <TrustedDevelopers />
         </div>
         <HomePageStats />
-        <div className='developer-container'>
-          <div className='sub-heading text-center title'>Insights and Articles</div>
-          <div className='sub-heading-3 text-center sub-title'>Stay Informed, Stay Ahead: Explore Our News and Articles</div>
-          <InsightAndArticles />
-        </div>
+        <Suspense>
+          <div className='developer-container'>
+            <div className='sub-heading text-center title'>Insights and Articles</div>
+            <div className='sub-heading-3 text-center sub-title'>Stay Informed, Stay Ahead: Explore Our News and Articles</div>
+            <InsightAndArticles />
+          </div>
+        </Suspense>
         {/* <div className='developer-container'>
           <div className='sub-heading text-center title'>Testimonials</div>
           <div className='sub-heading-3 text-center sub-title'>Words from Our Delighted Customers</div>

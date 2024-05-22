@@ -34,7 +34,7 @@ export default () => {
                 date={item.createdDate}
                 heading={item.heading}
                 subHeading={item.subHeading}
-                image={(item.urls||[])[0]||""}
+                image={item?.urls[0]?.imageUrl||""}
             />)}
 
         </div>

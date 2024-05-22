@@ -6,7 +6,6 @@ import { getAllBlogs } from '@/clients/blogClient';
 import PaginatedSection from './paginatedSection';
 
 const InsightAndArticles = async () => {
-    const blogs = await getAllBlogs(true, 10, 0);
     return (<div className='insight-articles static-page'>
         <div className='info-container position-relative'>
             <div className='info d-flex container-fluid'>

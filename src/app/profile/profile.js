@@ -36,11 +36,11 @@ export default ({ initialData }) => {
 
     const userProfileData = {
         ...userInfo,
-        firstName: userInfo.user?.firstName,
-        lastName:userInfo.user?.lastName,
-        fullName: userInfo.user?.firstName + " "+ userInfo.user?.lastName,
-        email: userInfo.user?.email,
-        phone: userInfo.user?.phone,
+        firstName: userInfo.user?.firstName||"",
+        lastName:userInfo.user?.lastName||"",
+        fullName: (userInfo.user?.firstName||"") + " "+ (userInfo.user?.lastName||""),
+        email: userInfo.user?.email||"",
+        phone: userInfo.user?.phone||"",
         aadharNo: userInfo.aadhar,
         panNo: userInfo.pan,
         photo:userInfo.user?.photo,
@@ -69,7 +69,7 @@ export default ({ initialData }) => {
                     </div>
                     <div className='name'>{userProfileData.fullName}</div>
                     <div className='email'>{userProfileData.email}</div>
-                    <div className='phone-no'>{userProfileData.mobileNo}</div>
+                    <div className='phone-no'>{userProfileData.mobileNo||""}</div>
                 </div>
                 <div className='tabs'>
                     {TABS.map((item, index) => <Link href={"/profile?t=" + item.value}> {index == selectedTabIndex ? <Heading className='tab-items cursor-pointer' label={item.label} /> :

@@ -45,7 +45,7 @@ export async function generateMetadata({ params: { urltext, type }}, parent) {
     const data = type == "property" ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
    
     return {
-      title: data.name
+      title: (data.name||"") + ((data.address||"").length > 0 ? (" | " + (data.address||"")):"")
     }
   }
  
@@ -56,7 +56,7 @@ export default async function Page({ params: { urltext, type }, }) {
     }
     const isProperty = type == "property";
     const data = isProperty ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
-    
+    console.log("data", data);
 
     const galleryData = {
     };
@@ -140,7 +140,7 @@ export default async function Page({ params: { urltext, type }, }) {
                     </div>
                 </div>
             </div>
-            <Tabs isProperty={isProperty}/>
+            <Tabs isProperty={isProperty} data={data}/>
             <Overview showBtn={true} data={data} type={type} />
             <About data={data} type={type} />
             <HighLights data={data.highlights || []} />
@@ -178,7 +178,7 @@ export default async function Page({ params: { urltext, type }, }) {
                             <div className='btn-cnt'>
                                 <TalkToConsulantBtn height={34} id={data.id} isProperty={isProperty}/>
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href={`?schedule=${data.id}`} />
-                                <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/book/${type}/${data.url}`} />
+                                {data.isBookingOpen || data.isBookingOpen == undefined && <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/book/${type}/${data.url}`} />}
                             </div>
                         </Card>
                     </div>

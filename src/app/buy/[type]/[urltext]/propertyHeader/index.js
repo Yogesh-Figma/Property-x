@@ -39,11 +39,11 @@ export default ({ data, type }) => {
             <div className='property-sub-info col-md-8 col-12'>
                 <div className='dev-by'>Developed By {data.developerName}</div>
                 <div className='d-flex align-items-center justify-content-between'>
-                    <div className='rating d-flex align-items-center'>
+                    {data.ratingCount > 0 && <div className='rating d-flex align-items-center'>
                         <span className='rating-value'>{data.ratingAverage}</span>
                         <Rating value={Number(data.ratingAverage||0)} />
                         <span className='rating-count'>({data.ratingCount} Ratings)</span>
-                    </div>
+                    </div>}
                     <div className='property-share-icons d-flex d-md-none align-items-center justify-content-end'>
                         <GoogleMapIcon width={24} height={24}/>
                         <WishListBtn width={22} height={20} id={data.id} isProperty={isProperty}/>
@@ -57,7 +57,7 @@ export default ({ data, type }) => {
                 <div className='btn-cnt'>
                     <TalkToConsulantBtn className="talk-to-consultation" height={30} id={data.id} isProperty={isProperty}/>
                     <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href={`?schedule=${data.id}`} />
-                    <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />
+                    {data.isBookingOpen || data.isBookingOpen == undefined && <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />}
                 </div>
             </div>
             <div className='property-price-info col-md-4 text-md-end mt-4 mt-md-0'>

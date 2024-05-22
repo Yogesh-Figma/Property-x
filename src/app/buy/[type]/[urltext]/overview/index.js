@@ -74,7 +74,7 @@ export default ({ showBtn, data, type }) => {
                         <TalkToConsulantBtn height={40} id={data.id} isProperty={isProperty} />
                         <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={40} rounded={true} href={`?schedule=${data.id}`} />
                     </span>
-                    <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={40} href={`/book/${type}/${data.url}`} />
+                    {data.isBookingOpen || data.isBookingOpen == undefined && <NextLinkButton text='Book Now' className="overview-btn book-btn" rounded={true} height={40} href={`/book/${type}/${data.url}`} />}
                     <WishListBtn width={22} height={20} className='heart-icon d-none d-md-inline' id={data.id} isProperty={isProperty} />
                     <ShareIcon width={24} height={24} className='share-icon d-none d-md-inline' />
                 </div>}

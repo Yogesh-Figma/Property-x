@@ -19,7 +19,7 @@ export default ({ isProperty, id, date, scheduleVisit }) => {
     const visitDate = dayjs.unix(date);
     return (<div className='property-card-cont'>
         {!isLoading && !!data && <PropertyCard4
-            showBookNow={true}
+            showBookNow={data.isBookingOpen || data.isBookingOpen == undefined}
             title={data.name}
             bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
             address={data.address}

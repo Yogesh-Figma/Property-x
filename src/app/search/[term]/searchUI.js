@@ -17,9 +17,10 @@ import Skeleton from '@mui/material/Skeleton';
 import Loading from '../../loading';
 import CircularProgress from '@mui/material/CircularProgress';
 import NextLinkButton from '@/app/components/nextLinkButton';
+import { useAppContext } from '@/lib/appContext';
 
 
-export default function SearchUI({ term, cityName="", onlyProject="", propertyCategory="" }) {
+export default function SearchUI({ term, cityName="", onlyProject="", propertyCategory="", userLocationInfo }) {
     const searchTerm = term.replaceAll("-", " ");
     const [selectedProp, selectProp] = React.useState({});
 
@@ -36,7 +37,10 @@ export default function SearchUI({ term, cityName="", onlyProject="", propertyCa
         queryKey: ['getUserVisits', selectedUrlText],
         queryFn: () => isProperty ? getPropertyByUrlText(selectedUrlText) : getProjectByUrlText(selectedUrlText)
     });
-
+    let { setUserLocation, userLocation } = useAppContext() || {};   
+    if(userLocation?.label != userLocationInfo?.label){
+        setUserLocation(userLocationInfo);
+    }
 
     const selectCard = (url, type) => () => {
         selectProp({ url, type });

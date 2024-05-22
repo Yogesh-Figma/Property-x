@@ -26,7 +26,7 @@ const FloorPlan = ({ id, isProperty, floorPlan = {}, configuration = {}, propert
     const { data: projectConfigurations = {} } = useQuery({ enabled: id && !isProperty, queryKey: ['getProjectConfigurationById', id],     
     queryFn: () => getProjectConfigurations() })
 
-    let configurations = isProperty ? {[configuration.name]: [{price:propertyPrice, ...configuration}]}: projectConfigurations
+    let configurations = isProperty ? {[configuration?.name]: [{price:propertyPrice, ...configuration}]}: projectConfigurations
     const configurationNames = Object.keys(configurations);
 
     const [selectedPlanIndex, selectFloorPlanIndex] = React.useState(0);

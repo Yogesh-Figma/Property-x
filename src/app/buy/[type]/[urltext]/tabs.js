@@ -8,7 +8,7 @@ import { Link } from 'react-scroll'
 
 
 //data is with width because variable width content requires width to function correctly
-function getTabsData(isProperty){
+function getTabsData(isProperty, data){
     const tabsData = [
         { txt: "Overview", width: 116, to: "overview" },
         { txt: "About", width: 80, to: "about" },

@@ -6,30 +6,34 @@ import './styles.scss';
 
 const FeaturedProjects = async () => {
     const projects = await getProjectsByStatus(PROJECT_STATUS.FEATURED);
-    return (<div className='featured-projects'>
-        <CardSlider carouselSettings={{
-            slidesToShow: null, slidesToScroll: 1, variableWidth: true
-        }}>
-            {projects.map((item, index) => {
-                return (
-                    <ProjectCard
-                        rating={item.ratingAverage}
-                        key={index}
-                        urlText={item.url}
-                        id={item.id}
-                        title={item.name}
-                        bhk={item.specification}
-                        address={item.address}
-                        avgPrice={item.ratePerUnitInsqft}
-                        price={item.totalPrice}
-                        imgsrc={item.logo || ""}
-                        width={400}
-                        height={"275px"} 
-                        minPrice={item.minPrice}
-                        maxPrice={item.maxPrice}/>)
-            })}
-        </CardSlider>
-    </div>)
+    return ((projects || []).length > 0 && <>
+            <div className='sub-heading text-center title'>Featured Projects</div>
+            <div className='sub-heading-3 text-center sub-title'>Tailored Exclusively to Suit Your Preferences</div>
+            <div className='featured-projects'>
+                <CardSlider carouselSettings={{
+                    slidesToShow: null, slidesToScroll: 1, variableWidth: true
+                }}>
+                    {projects.map((item, index) => {
+                        return (
+                            <ProjectCard
+                                rating={item.ratingAverage}
+                                key={index}
+                                urlText={item.url}
+                                id={item.id}
+                                title={item.name}
+                                bhk={item.specification}
+                                address={item.address}
+                                avgPrice={item.ratePerUnitInsqft}
+                                price={item.totalPrice}
+                                imgsrc={item.logo || ""}
+                                width={400}
+                                height={"275px"}
+                                minPrice={item.minPrice}
+                                maxPrice={item.maxPrice} />)
+                    })}
+                </CardSlider>
+            </div>
+        </>)
 }
 
 export default FeaturedProjects;

@@ -26,7 +26,7 @@ export default ({ wishlist }) => {
                         return (
                             <div className='property-card-cont'>
                                 <PropertyCard4
-                                    showBookNow={true}
+                                    showBookNow={data.isBookingOpen || data.isBookingOpen == undefined}
                                     isWished={true}
                                     title={data.name}
                                     bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}

@@ -58,7 +58,7 @@ export default ({ }) => {
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
                                     <PropertyCard4
-                                        showBookNow={true}
+                                        showBookNow={data.isBookingOpen || data.isBookingOpen == undefined}
                                         title={data.name}
                                         bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
                                         address={data.address}
@@ -98,7 +98,7 @@ export default ({ }) => {
                                 const visitDate = dayjs.unix(visits.scheduledDateTime);
                                 return (<div className='property-card-cont'>
                                     <PropertyCard4
-                                        showBookNow={true}
+                                        showBookNow={data.isBookingOpen || data.isBookingOpen == undefined}
                                         title={data.name}
                                         bhk={data.configurations || (data.configuration || {}).propertyConfigurationName}
                                         address={data.address}

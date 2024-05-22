@@ -124,7 +124,7 @@ const ProjectComparision = ({ }) => {
                             <div className="price-range-cnt">
                                 <div className="price sub-heading-2">{isPropertyComparison ? (Helper.currencyFormatter(item.totalPrice)): (Helper.currencyFormatter(item.minPrice) + "-" + Helper.currencyFormatter(item.maxPrice))}</div>
                             </div>
-                            {!!item.ratingCount && <div className='rating d-flex align-items-center sub-info'>
+                            {item.ratingCount > 0 && <div className='rating d-flex align-items-center sub-info'>
                                 <span className='rating-value'>{item.ratingAverage}</span>
                                 <Rating value={Number(item.ratingAverage)} />
                                 <span className='rating-count'>({item.ratingCount} Ratings)</span>

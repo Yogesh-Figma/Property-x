@@ -5,8 +5,9 @@ import { authOptions } from "@/lib/auth"
 import { getUserProfile } from '@/clients/profileClient'
 
 export default async ({ }) => {
-    const { user } = await getServerSession(authOptions)
+    const { user, token } = await getServerSession(authOptions)
 
     const userInfo = await getUserProfile(user.id);
+
     return (<Profile initialData={userInfo}/>)
 }
