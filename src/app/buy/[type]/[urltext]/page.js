@@ -43,9 +43,10 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 export async function generateMetadata({ params: { urltext, type }}, parent) {
     // fetch data
     const data = type == "property" ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
-   
+    const propertyInfo = (data.name||"") + ((data.address||"").length > 0 ? (", " + (data.address||"")):"")
     return {
-      title: (data.name||"") + ((data.address||"").length > 0 ? (" | " + (data.address||"")):"")
+      title: propertyInfo,
+      description:propertyInfo + ": Explore prices, floor plans, payment options, location, photos, videos, and more. Download the project brochure now!"
     }
   }
  

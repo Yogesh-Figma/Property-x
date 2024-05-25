@@ -55,7 +55,7 @@ const InsightsAndArticles = async ({ params: { urlText, type } }) => {
                 {(featuredArticles?.content || []).map((item, index) => <ArticleCard
                     href={`/insights-and-articles/${item.url}`}
                     key={index}
-                    imgUrl={item.urls[0]}
+                    imgUrl={item.urls[0]?.imageUrl || ""}
                     heading={item.headings}
                     subHeading={item.subHeading}
                     className={"col-md-6 col-12 mt-3"}
