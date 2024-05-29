@@ -15,17 +15,19 @@ import FeaturedProperties from './home/featuredProperties'
 import UpComingProjects from './home/upComingProjects/upComingProjects'
 import Skeleton from '@mui/material/Skeleton';
 import { getAllCities } from '@/clients/cityClient'
+import Banner from './home/banner';
 
 export default async function Home() {
   const cities = await getAllCities();
   const LOCATIONS = cities.map(item => { return ({label:item.name,value:item.id, id:item.id}) });
   return (
     <div className='home'>
-      <div className='banner no-gutter container-fluid'>
-        <div className='d-flex justify-content-end position-relative'>
-          <Image alt="banner-image" className='banner-image overflow-container-fluid' src={bannerImage} />
+      <div className='banner no-gutter container-fluid position-relative'>
+        <div className='overflow-container-fluid'>
+          <Banner />
         </div>
-        <div className='banner-content position-absolute  d-none d-lg-block'><span className='content-1 heading'>Prime Property Deals at Your Fingertips <br /></span><span className='content-2 sub-heading'>The Ultimate Property Booking<br />Destination</span>
+        <div className='banner-content position-absolute d-none d-lg-block'>
+          <span className='content-1 heading'>Prime Property Deals at Your Fingertips <br /></span><span className='content-2 sub-heading'>The Ultimate Property Booking<br />Destination</span>
         </div>
       </div>
       <div className='search-bar-container d-flex align-items-center justify-content-center position-relative'>

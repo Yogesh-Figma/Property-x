@@ -194,6 +194,10 @@ function getUpcomingPropertiesByCityId(cityId, accessToken) {
     })
 }
 
+function getNearbyProperty(id){
+    return get(`${API_CLIENT_URL}/nearby?propertyId=${id}`);
+}
+
 export {
     getPropertyById,
     getPropertyPostData,
@@ -207,5 +211,6 @@ export {
     getPropertyConfigurationByType,
     getPropertiesByProjectId,
     getPostedPropertiesByUserId,
-    getUpcomingPropertiesByCityId
+    getUpcomingPropertiesByCityId,
+    getNearbyProperty
 }

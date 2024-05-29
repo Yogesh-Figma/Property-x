@@ -74,6 +74,9 @@ function getAllProjectsInIndia() {
     return get(`${API_CLIENT_URL}/get/indian/projects`, { next: { revalidate: 300 } });
 }
 
+function getNearbyProject(id){
+    return get(`${API_CLIENT_URL}/nearby?projectId=${id}`);
+}
 
 export {
     PROJECT_STATUS,
@@ -87,5 +90,6 @@ export {
     getProjectTowerById,
     getUpcomingProjectByCityId,
     getProjectsByDeveloperId,
-    getAllProjectsInIndia
+    getAllProjectsInIndia,
+    getNearbyProject
 }

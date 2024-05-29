@@ -20,10 +20,10 @@ const getFileType = (file) => {
     return SUPPORTED_FILE_TYPE.file;
 }
 
-function DragDropFile({ uploadText, errorMessage, register, errors, name, updateFilesCb, multiple, supportedFileTypes = [Object.values(SUPPORTED_FILE_TYPE)], maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES, ...otherProps }) {
+function DragDropFile({ uploadedFiles, uploadText, errorMessage, register, errors, name, updateFilesCb, multiple, supportedFileTypes = [Object.values(SUPPORTED_FILE_TYPE)], maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES, ...otherProps }) {
     // drag state
     const [dragActive, setDragActive] = React.useState(false);
-    const [files, setFiles] = React.useState({});
+    const [files, setFiles] = React.useState(!!uploadedFiles ? {file:uploadedFiles}:{});
 
     const convertNestedObjectToArray = (nestedObj) =>
         Object.keys(nestedObj).map((key) => nestedObj[key]);
@@ -97,6 +97,8 @@ function DragDropFile({ uploadText, errorMessage, register, errors, name, update
     };
 
     let uploadedFileLength = Object.keys(files).length;
+    console.log("uploadedFileLength", uploadedFileLength)
+    console.log("files", files)
     return (
         <div className="file-upload-form">
             <form className="form-file-upload" onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>

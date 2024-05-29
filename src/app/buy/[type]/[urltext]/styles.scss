@@ -53,13 +53,17 @@
 
             .nearby {
                 height: 195px;
+                .nearby-prop-image {
+                    z-index: -1;
+                }
 
                 .nearby-prop-info {
-                    z-index: 2;
-                    left: 17px;
-                    bottom: 18px;
                     font-family: var(--helvetica-regular-font);
-
+                    background-color: rgba(32,33,36, 0.6);
+                    border-radius: 4px;
+                    margin-bottom: 5px;
+                    width: calc(100% - 10px);
+                    padding:5px 12px;
                     .title,
                     .address {
                         color: #FFF;

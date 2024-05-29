@@ -8,7 +8,6 @@ import PaymentMethod from "./paymentMethod";
 
 
 
-const MODE_OF_PAYMENTS = [{ value: "credit", label: "Credit Card" }, { value: "cheque", label: "Cheque" }, { value: "rtgs", label: "RTGS/NEFT" }]
 function getUserDetails({ firstName, lastName, phone, email, aadharNo, panNo,
     permanentZipcode,
     presentZipcode,
@@ -49,17 +48,26 @@ function getUserDetails({ firstName, lastName, phone, email, aadharNo, panNo,
     </div>)
 }
 
-export default ({ formData, handleChange, changeStep, selectedProperty, bookProperty, personalData, resetPaymentDetails }) => {
+export default ({ formData, handleChange, changeStep, selectedProperty, bookProperty, personalData, resetPaymentDetails, savePaymentDetails }) => {
     const [paymentModalEnabled, togglePaymentModal] = React.useState(false);
 
-    const closePaymentModal = () => {
-        resetPaymentDetails();
+    const closePaymentModal = (isFormValid) => {
+        if (!isFormValid) {
+            resetPaymentDetails();
+        }
         togglePaymentModal(false)
-    } 
+    }
+
+    const savePayment = () => {
+        togglePaymentModal(false);
+        savePaymentDetails()
+    }
 
     return (<div className="payment-and-book">
         <Heading label={"Details Overview"} />
-        <PaymentMethod formData={formData} handleChange={handleChange} paymentModalEnabled={paymentModalEnabled} handleClose={closePaymentModal} save={()=> togglePaymentModal(false)}/>
+        <PaymentMethod formData={formData} handleChange={handleChange}
+            paymentModalEnabled={paymentModalEnabled} handleClose={closePaymentModal}
+            save={savePayment} />
         <div className="row">
             <div className="col-xl-6 col-12">
                 <PaymentSummary variant="vertical" data={selectedProperty} />
@@ -69,7 +77,7 @@ export default ({ formData, handleChange, changeStep, selectedProperty, bookProp
                     <div className="">
 
                         {(personalData || []).map((item, index) => <div className="user-details-summary">
-                            <Heading label={`${item.isOwner ? "Owner" :"User"} Details ${personalData.length > 1 ? (index+1):""}`} />
+                            <Heading label={`${item.isOwner ? "Owner" : "User"} Details ${personalData.length > 1 ? (index + 1) : ""}`} />
                             <div className="d-md-flex justify-content-between">
                                 {getUserDetails(item)}
                                 <div className="photo-signature g-0 d-md-block d-flex align-items-center">
@@ -114,12 +122,12 @@ export default ({ formData, handleChange, changeStep, selectedProperty, bookProp
                         </div> */}
                     </div>
                 </Card>
-                <Button className="d-block payment-details w-100 mt-4 mb-4" variant='outlined' rounded={true} height={48} text={"Payment Details"} onClick={()=> togglePaymentModal(true)} />
+                <Button className="d-block payment-details w-100 mt-4 mb-4" variant='outlined' rounded={true} height={48} text={"Payment Details"} onClick={() => togglePaymentModal(true)} />
                 <Button className="ms-auto d-block" rounded={true} height={48} text={"Raise Booking Request"} onClick={bookProperty} />
             </div>
         </div>
         {/* <Heading label={"Select Payment Method"} /> */}
-        
+
         {/* <FormTabs variant={"contained"} items={MODE_OF_PAYMENTS} name="selectedPaymentMethod" className="payment-methods" selectedTab={formData.selectedPaymentMethod} onClick={handleChange}/> */}
     </div>)
 }

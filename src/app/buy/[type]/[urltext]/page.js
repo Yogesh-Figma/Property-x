@@ -37,6 +37,7 @@ import About from './about';
 import Loading from '@/app/loading';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
 import PaymentPlan from './paymentPlan';
+import Nearby from './nearBy';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -57,7 +58,6 @@ export default async function Page({ params: { urltext, type }, }) {
     }
     const isProperty = type == "property";
     const data = isProperty ? await getPropertyByUrlText(urltext) : await getProjectByUrlText(urltext);
-    console.log("data", data);
 
     const galleryData = {
     };
@@ -128,17 +128,7 @@ export default async function Page({ params: { urltext, type }, }) {
                         <Map lat={data["latitude"]} long={data["longitude"]} apiKey={API_KEY} className={"mb-0"} />
                     </div>
                     <Divider className='divider-line d-none d-lg-block' />
-                    <div className='similar-nearby ps-4 ps-lg-0 pt-lg-3 d-none d-md-block'>
-                        <div className='similar-project-txt'>Similar {type} Nearby</div>
-                        <div className='sub-info'>10km away from the searched location</div>
-                        <div className='nearby position-relative'>
-                            <Image alt="nearby prop image" src={"/samplePropertyImage.jpeg"} className='nearby-prop-image' fill={true} />
-                            <div className='nearby-prop-info position-absolute'>
-                                <div className='title heading'>Nirala Estate</div>
-                                <div className='address'>Techzone 4, Greater Noida West</div>
-                            </div>
-                        </div>
-                    </div>
+                    <Nearby type={type} id={data.id}/>
                 </div>
             </div>
             <Tabs isProperty={isProperty} data={data}/>
@@ -179,7 +169,7 @@ export default async function Page({ params: { urltext, type }, }) {
                             <div className='btn-cnt'>
                                 <TalkToConsulantBtn height={34} id={data.id} isProperty={isProperty}/>
                                 <NextLinkButton variant="outlined-noborder" className="overview-btn" text='Schedule a Visit' height={34} rounded={true} href={`?schedule=${data.id}`} />
-                                {data.isBookingOpen || data.isBookingOpen == undefined && <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/book/${type}/${data.url}`} />}
+                                {(data.isBookingOpen || data.isBookingOpen == undefined) && <NextLinkButton text='Book Now' className="overview-btn" rounded={true} height={34} href={`/book/${type}/${data.url}`} />}
                             </div>
                         </Card>
                     </div>

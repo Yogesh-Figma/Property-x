@@ -57,7 +57,7 @@ export default ({ data, type }) => {
                 <div className='btn-cnt'>
                     <TalkToConsulantBtn className="talk-to-consultation" height={30} id={data.id} isProperty={isProperty}/>
                     <NextLinkButton variant="outlined-noborder" className="schedule-visit" text='Schedule a Visit' height={30} rounded={true} href={`?schedule=${data.id}`} />
-                    {data.isBookingOpen || data.isBookingOpen == undefined && <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />}
+                    {(data.isBookingOpen || data.isBookingOpen == undefined) && <NextLinkButton text='Book Now' height={30} rounded={true} href={`/book/${type}/${data.url}`} />}
                 </div>
             </div>
             <div className='property-price-info col-md-4 text-md-end mt-4 mt-md-0'>

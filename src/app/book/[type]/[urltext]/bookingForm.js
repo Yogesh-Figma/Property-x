@@ -47,7 +47,7 @@ export default ({ data, type, configurations, projectTowers }) => {
         }
     }
     const paymentDetails =  {
-        chequeImageUrl:"",
+        chequeImg:"",
         chequeNo:"",
         utrNo:""
     };
@@ -57,15 +57,17 @@ export default ({ data, type, configurations, projectTowers }) => {
         declaration: false, tower: "", bhkType: "", floor: "",
         apartment: "",
         nomineeName: "", nomineeRelation: "",
-        selectedPaymentMethod: "",
-        paymentDetails
+        paymentMode: "",
+        paymentDetails,
+        paymentMethodSaved:false
     });
 
     const [personalData, setPersonalData] = React.useState([getPersonalDataFields()]);
 
     let { towerId, floorId, configId } = formData;
+
     const resetPaymentDetails = () => {
-        setFormData((prevFormData) => ({...prevFormData, paymentDetails }));
+        setFormData((prevFormData) => ({...prevFormData, paymentMethodSaved: false, paymentMode:"", paymentDetails }));
     }
     
     const handleChange = (event) => {
@@ -129,24 +131,44 @@ export default ({ data, type, configurations, projectTowers }) => {
             "amount": selectedProperty.totalPrice,
             "owners": []
         }
-        await new Promise((resolve, reject) => personalData.forEach(async (item, index) => {
+
+        if(!!formData.paymentMode) {
+            bookingData.paymentMode = formData.paymentMode.toUpperCase();
+        }
+
+        const uploadPromises = [];
+
+        personalData.forEach((item, index) => {
             if (!!item.signature) {
-                const res = await uploadFile([item.signature], data.id + `signature${index}`);
-                item.signatureUrl = res[0];
+                const signaturePromise = uploadFile([item.signature], data.id + `signature${index}`).then(res => {
+                    item.signatureUrl = res[0];
+                });
+                uploadPromises.push(signaturePromise);
             }
             if (!!item.userPhoto) {
-                const res = await uploadFile([item.userPhoto], data.id + `userPhoto${index}`);
-                item.userPhotoUrl = res[0];
+                const userPhotoPromise = uploadFile([item.userPhoto], data.id + `userPhoto${index}`).then(res => {
+                    item.userPhotoUrl = res[0];
+                });
+                uploadPromises.push(userPhotoPromise);
             }
             if (!!item.aadharImage) {
-                const res = await uploadFile([item.aadharImage], data.id + `aadharImage${index}`);
-                item.aadharUrl = res[0];
+                const aadharImagePromise = uploadFile([item.aadharImage], data.id + `aadharImage${index}`).then(res => {
+                    item.aadharUrl = res[0];
+                });
+                uploadPromises.push(aadharImagePromise);
             }
             if (!!item.panImage) {
-                const res = await uploadFile([item.panImage], data.id + `panImage${index}`);
-                item.panImageUrl = res[0];
+                const panImagePromise = uploadFile([item.panImage], data.id + `panImage${index}`).then(res => {
+                    item.panImageUrl = res[0];
+                });
+                uploadPromises.push(panImagePromise);
             }
+        });
 
+        // Wait for all uploads to complete
+        await Promise.all(uploadPromises);
+
+        personalData.forEach((item, index) => {
             bookingData.owners.push({
                 "firstName": item.firstName,
                 "lastName": item.lastName,
@@ -155,15 +177,27 @@ export default ({ data, type, configurations, projectTowers }) => {
                 "panCard": item.panNo,
                 "aadharCard": item.aadharNo,
                 "cityId": item.presentCityId || item.permanentCityId,
-                "address": item.presentAddressLine1 || item.permanentAddressLine1 + " " + item.presentAddressLine2 || item.permanentAddressLine2,
+                "address": `${item.presentAddressLine1 || item.permanentAddressLine1} ${item.presentAddressLine2 || item.permanentAddressLine2}`,
                 "aadharImage": item.aadharUrl,
                 "panImage": item.panImageUrl,
                 "photo": item.userPhotoUrl,
                 "signature": item.signatureUrl
-            })
-            resolve();
-        }));
+            });
+        });
+
+        if(formData.paymentMethodSaved){
+            if(!!formData.paymentDetails?.chequeImg){
+                const res = await uploadFile([formData.paymentDetails?.chequeImg], data.id + `chequeImage`);
+                bookingData.transactionSlip = res[0];
+            }
+            bookingData.transactionReference = formData.paymentMode == "rtgs" ? formData.paymentDetails.utrNo : formData.paymentDetails.chequeNo;
+        }
+        
         await bookProperty(bookingData, token);
+    }
+
+    const savePaymentDetails = () => {
+        setFormData((prevData) => ({ ...prevData, paymentMethodSaved: true }))
     }
 
 
@@ -204,6 +238,7 @@ export default ({ data, type, configurations, projectTowers }) => {
                 selectedProperty={selectedProperty}
                 formData={formData}
                 resetPaymentDetails={resetPaymentDetails}
+                savePaymentDetails={savePaymentDetails}
                 handleChange={handleChange}
                 bookProperty={mutate} />
         }

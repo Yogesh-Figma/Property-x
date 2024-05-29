@@ -12,7 +12,7 @@ import CloseIcon from '@/app/icons/icon_close-small.svg'
 import './paymentMethod.scss'
 
 export default ({ paymentModalEnabled, handleClose, handleChange, formData, save }) => {
-    const { control, handleSubmit, register, setValue, formState: { errors } } = useForm({
+    const { control, handleSubmit, register, setValue, formState: { errors, isValid } } = useForm({
         reValidateMode: "onBlur"
     });
 
@@ -22,29 +22,34 @@ export default ({ paymentModalEnabled, handleClose, handleChange, formData, save
         handleChange(event);
     };
 
+    const handleModalClose = () => {
+        handleClose(isValid);
+    };
+
+
     return (<Modal
         open={paymentModalEnabled}
-        onClose={handleClose}
+        onClose={handleModalClose}
         className='payment-modal'
     >
         <div className='payment-cnt position-relative'>
-        <CloseIcon width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleClose} />
+        <CloseIcon width={30} height={30} className='position-absolute close-icon' role="button" onClick={handleModalClose} />
             <div className='mb-5 d-flex align-items-center flex-column'>
                 <div className="heading">Select Payment Method</div>
                 <div className="sub-heading">Choose the method to raise payment request</div>
             </div>
             <div className="payment-options mb-4">
                 <RadioGroup
-                    name="selectedPaymentMethod"
+                    name="paymentMode"
                     className='d-flex flex-row'
-                    value={formData.selectedPaymentMethod}
+                    value={formData.paymentMode}
                     onChange={handleInputChange}
                 >
                     <FormControlLabel value="cheque" control={<Radio />} label="Cheque" />
                     <FormControlLabel value="rtgs" control={<Radio />} label="RTGS/NEFT" />
                 </RadioGroup>
             </div>
-            {formData.selectedPaymentMethod == 'cheque' && <div className="cheque-detail-cnt">
+            {formData.paymentMode == 'cheque' && <div className="cheque-detail-cnt">
                 <Heading label="Cheque Details" className="" />
                 <div className='mt-4 mb-1'>Upload Cheque</div>
                 <DragDropFile uploadText=" "
@@ -52,6 +57,7 @@ export default ({ paymentModalEnabled, handleClose, handleChange, formData, save
                     register={register}
                     errorMessage={"Required"}
                     name="chequeImg"
+                    uploadedFiles={formData.paymentDetails.chequeImg}
                     updateFilesCb={(files) => handleInputChange({ target:{name: "paymentDetails.chequeImg", originalName:"chequeImg", value: files[0]} })}
                     supportedFileTypes={[SUPPORTED_FILE_TYPE.image]} />
                 <div className="form-element-heading mt-4 mb-1">Cheque No.</div>
@@ -70,7 +76,7 @@ export default ({ paymentModalEnabled, handleClose, handleChange, formData, save
                     isNumber={true}
                 />
             </div>}
-            {formData.selectedPaymentMethod == 'rtgs' &&
+            {formData.paymentMode == 'rtgs' &&
                 <div className="rtgs-detail">
                     <Heading label="Developer Account Details" className="" />
                     <div className="row mt-3"><div className="col-6">Account No.:</div><div className="col-6">12345674123345</div></div>
