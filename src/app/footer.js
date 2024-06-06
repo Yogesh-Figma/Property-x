@@ -38,7 +38,7 @@ const ContactUsSection = () => {
 
 const ShareSection = () => {
     return (<>
-        <div className='head text-start keep-touch heading d-lg-block'>Keep in Touch </div>
+        <div className='text-start keep-touch heading d-lg-block'>Keep in Touch </div>
         <div className="contact-icons-container d-lg-flex align-items-center">
             <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
                 <Image className="img" width={30} height={30} alt="Ri facebook fill" src={facebookIcon} />
@@ -89,7 +89,7 @@ const Footer = () => {
                                 <div className='col-6 connect-info-container d-lg-none d-block'>
                                     <ContactUsSection />
                                 </div>
-                                <div className='col-6 d-lg-none d-block'>
+                                <div className='col-12 col-md-6 d-lg-none d-block mt-4 mt-md-0'>
                                     <ShareSection />
                                 </div>
                             </div>

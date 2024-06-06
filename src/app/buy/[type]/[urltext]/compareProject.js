@@ -10,7 +10,7 @@ import CloseIcon from '@/app/icons/icon_close-small.svg'
 import { useSearchParams, useRouter } from 'next/navigation'
 import NextLinkButton from '@/app/components/nextLinkButton';
 import TalkToConsulantBtn from '@/app/actionBtns/talkToConsultantBtn';
-import { getSearchData, searchProjects , searchProperties  } from '@/clients/searchClient';
+import { getSearchData, searchProjects, searchProperties } from '@/clients/searchClient';
 import { useQuery } from 'react-query';
 import CheckBox from '@/app/components/checkbox';
 
@@ -19,8 +19,8 @@ export const CompareProjects = ({ data, isProperty }) => {
     const { addProjectForComparison, removeProjectFromComparison } = useAppContext();
 
     const compareProject = () => {
-       addProjectForComparison(data, isProperty)
-       router.push("?compare=1", {scroll: false});
+        addProjectForComparison(data, isProperty)
+        router.push("?compare=1", { scroll: false });
     }
 
     return (<div className='cursor-pointer compare position-absolute d-flex align-items-center justify-content-center' onClick={compareProject}><CompareIcon /><span>Compare</span></div>)
@@ -32,7 +32,7 @@ export const CompareProjectPopup = () => {
     const comparePopupEnabled = searchParams.get('compare') || false
     const [searchTerm, setSearchTerm] = React.useState("");
     const { comparisonProjects, removeProjectFromComparison, addProjectForComparison, isPropertyComparison } = useAppContext();
-    
+
     const handleClose = () => {
         router.back();
     }
@@ -44,36 +44,39 @@ export const CompareProjectPopup = () => {
     }
 
     const populateSearchData = async () => {
-        const result = isPropertyComparison ? await searchProperties(searchTerm): await searchProjects(searchTerm);
-        let test = result.map(item => { return {id:item.id, label: item.name, value: item.id, name:item.name, logo:item.logo, address:item.address || ""} });
+        const result = isPropertyComparison ? await searchProperties(searchTerm) : await searchProjects(searchTerm);
+        let test = result.map(item => { return { id: item.id, label: item.name, value: item.id, name: item.name, logo: item.logo, address: item.address || "" } });
         return test;
     }
 
     const { data: searchData = [], isLoading, isError, error } = useQuery({
-        enabled:!!searchTerm,
+        enabled: !!searchTerm,
         queryKey: ['getSearchData', searchTerm],
         queryFn: () => populateSearchData(searchTerm),
     });
 
     const selectProject = (event) => {
         const data = searchData.find(item => item.id == event.target.value);
-        if(!!data) {
+        if (!!data) {
             addProjectForComparison(data, isPropertyComparison);
         }
     };
 
-    return (<div className={`comparison-popup position-fixed ${comparePopupEnabled ? 'visible':''}`}>
-         <span className='close-icon position-absolute cursor-pointer' onClick={handleClose}>
-                <CloseIcon width={30} height={30} className='close-icon' />
-            </span>
-        <div className='d-flex position-relative'>
-            {comparisonProjects.map(item => <div className="comparison-item d-flex flex-column align-items-center position-relative">
-                <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
+    return (<div className={`comparison-popup position-fixed ${comparePopupEnabled ? 'visible' : ''}`}>
+        <span className='close-icon position-absolute cursor-pointer' onClick={handleClose}>
+            <CloseIcon width={30} height={30} className='close-icon' />
+        </span>
+        <div className='d-flex position-relative flex-column flex-lg-row comparision-items-cnt'>
+            {comparisonProjects.map(item => <div className="comparison-item align-items-center position-relative d-flex flex-lg-column flex-row mb-2">
+                <span className="remove-item position-absolute cursor-pointer d-lg-block d-none" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
                 <div className='prop-image'>
                     <Image alt="prop logo" src={item.logo} width={157} height={94} />
                 </div>
-                <div className='proj-title'>{item.name}</div>
-                <div className="proj-location sub-info">{item.address}</div>
+                <div className='text-lg-center text-left'>
+                    <div className='proj-title heading'>{item.name}</div>
+                    <div className="proj-location sub-info">{item.address}</div>
+                </div>
+                <span className="remove-item cursor-pointer d-lg-none d-block ml-auto" onClick={() => removeProjectFromComparison(item.id)}> <CrossIcon className="cross-icon" /></span>
             </div>)}
             {/* <div className="comparison-item d-flex flex-column align-items-center position-relative">
                 <span className="remove-item position-absolute cursor-pointer" onClick={() => removeProjectFromComparison()}> <CrossIcon /></span>
@@ -84,14 +87,14 @@ export const CompareProjectPopup = () => {
                 <div className="proj-location sub-info">Techzone 4, Greater Noida West</div>
             </div> */}
 
-            <div className="comparison-item d-flex flex-column align-items-center justify-content-center">
-                <div className='add-proj'>+ Add a {isPropertyComparison ? "Property":"Project"}</div>
+            <div className="comparison-item d-flex flex-lg-column flex-row align-items-center justify-content-center">
+                <div className='add-proj'>+ Add a {isPropertyComparison ? "Property" : "Project"}</div>
                 <AutoCompleteSearch
                     autoCompleteOptions={searchData}
                     rounded={true}
                     width={"100%"}
                     className='project-form-input'
-                    label={`Enter ${isPropertyComparison ? "Property":"Project"}`}
+                    label={`Enter ${isPropertyComparison ? "Property" : "Project"}`}
                     name="searchTerm"
                     clearOnEscape={true}
                     value={searchTerm}
@@ -100,18 +103,18 @@ export const CompareProjectPopup = () => {
                     height={32}
                     renderOption={(props, option, { selected }) => (
                         <li {...props}>
-                          <CheckBox
-                            style={{ marginRight: 8 }}
-                            checked={selected}
-                            onChange={()=>{}}
-                          />
-                          {option.label}
+                            <CheckBox
+                                style={{ marginRight: 8 }}
+                                checked={selected}
+                                onChange={() => { }}
+                            />
+                            {option.label}
                         </li>
-                      )}
+                    )}
                 />
             </div>
-            <div className="comparisons-btn d-flex flex-column align-items-center justify-content-center">
-                <NextLinkButton className="compare-btn" rounded={true} height={30} text={"Compare"} href={"/projectcomparison"}/>
+            <div className="comparisons-btn d-flex flex-lg-column flex-row align-items-center justify-content-center mt-2 mt-lg-0 ms-lg-4">
+                <NextLinkButton className="compare-btn mb-lg-2 me-2 me-lg-0" rounded={true} height={30} text={"Compare"} href={"/projectcomparison"} />
                 <TalkToConsulantBtn height={30} />
             </div>
         </div>

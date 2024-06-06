@@ -56,7 +56,7 @@ export default ({ data = {} }) => {
     <div className="gallery-container">
       <div className='tabs-container d-flex'>
         <div className='image-gallery-thumbnails-wrapper  image-gallery-thumbnails-left thumbnails-swipe-vertical'></div>
-        <FormTabs variant={"outlined"} items={galleryTabs} name="galleryTabs" className="gallery-tabs" selectedTab={selectedTab} onClick={handleChange} />
+        <FormTabs variant={"outlined"} items={galleryTabs} name="galleryTabs" className="gallery-tabs justify-content-start justify-content-md-center" selectedTab={selectedTab} onClick={handleChange} />
       </div>
       <ImageGallery
         infinite={false}

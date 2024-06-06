@@ -1,13 +1,14 @@
 
 .comparison-table-container {
     margin-top: 54px;
-    min-width: 1060px;
+
+    overflow: scroll;
     .e-visit {
         width: 116px;
         margin-bottom: 10px;
     }
     .comparison-table {
-        width: 100%;
+        min-width: 1060px;
         font-size: .875rem;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
