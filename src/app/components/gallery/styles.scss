@@ -528,3 +528,32 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
     }
   }
 }
+
+@media(max-width: $ig-small-screen) {
+  .video-container {
+    .video-frame {
+      width: 100% !important;
+      left: 0px;
+    }
+  }
+  .tabs-container .form-tab-container {
+    padding: 0px;
+     .tab {
+    margin-right: 5px;
+  }
+}
+  .image-gallery-slide.image-gallery-center {
+    padding: 0px;
+    padding-top: 120px;
+    padding-left: 10px;
+  }
+  .image-gallery-left-nav {
+    left: -50px;
+  }
+  .image-gallery-right-nav {
+    right: -50px;
+  }
+  .gallery-image-modal .gallery-container {
+    padding: 40px 25px !important;
+  }
+}

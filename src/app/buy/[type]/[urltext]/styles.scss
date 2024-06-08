@@ -247,7 +247,7 @@
         box-shadow: 0px -6px 4px rgba(50, 50, 50, 0.20);
         border-radius: 20px 20px 0px 0px;
         background: #FFF;
-        min-height: 232px;
+        height: 232px;
         padding-top: 40px;
         z-index: 101;
         left: 50%;
@@ -258,16 +258,19 @@
 
         &.visible {
             transform: translate(-50%, 0px);
+            min-height: 232px;
+            height: auto;
         }
 
         .close-icon {
             right: 26px;
-            top: 26px;
+            top: 21px;
         }
         
         .comparision-items-cnt {
             width: 100%;
-            padding: 25px;
+            margin: 25px;
+            z-index: -1;
         }
 
 
