@@ -12,9 +12,10 @@ const ContactUs = () => {
         <div className='info text-center d-flex flex-column align-items-center'>
             <div className='heading'>Contact Us</div>
             <p className="connect-with-us text-center text-wrap">
-                Connect with us today for hassle-free booking.
+                Have any Questions or Suggestions?
                 <br />
-                Our team is here to make your property booking experience seamless and enjoyable.
+                Reach out to us in any of the following ways. We would love to make your Property Booking
+                Experience Seamless and Hassle-Free.
             </p>
         </div>
         <div className='contact-details row additional-page-padding'>
