@@ -39,9 +39,6 @@ const nextConfig = {
   sassOptions: {
     additionalData: `@import "src/app/_variables.scss";`,
   },
-  experimental: {
-    serverActions: true,
-  },
   async rewrites() {
     return [
       {
