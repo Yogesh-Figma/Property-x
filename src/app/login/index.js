@@ -126,7 +126,7 @@ const Login = ({ open }) => {
                     <Image alt="undraw building" className="d-lg-inline-block d-none col-6" src={"/undrawBuilding.svg"} width={438} height={334} />
                     <div className='login-info col-lg-6 col-12'>
                         <div className='heading'>Log in</div>
-                        <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>Property X</span> account.</div>
+                        <div className='login-in-to sub-heading-3 '>Log in to your <span className='property-x'>GoPropify</span> account.</div>
                         <div className='sub-heading-3 verify-mobile'>Please Verify your Mobile Number</div>
                         <div className='input-container d-flex'>
                             <div className='d-flex align-items-center'>

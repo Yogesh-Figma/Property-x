@@ -11,6 +11,7 @@ import { getServerSession } from "next-auth/next";
 import Chip from '@/app/components/chip';
 import dayjs from 'dayjs';
 import './styles.scss'
+import { notFound } from 'next/navigation'
 let customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
@@ -18,8 +19,18 @@ dayjs.extend(customParseFormat)
 
 export default async function Page({ params: { urlText }}) {
     const session = await getServerSession(authOptions)
-    const { data = {} } = await Promise.allKeys({ data: getDeveloperByUrlText(urlText, session?.token) });
-    const { projects = {} } = !!data.id ? await Promise.allKeys({ projects: getProjectsByDeveloperId(data.id) }): {};
+    let data = {}, projects = [];
+    try {
+        data = await Promise.allKeys({ data: getDeveloperByUrlText(urlText, session?.token) });
+        projects = !!data.id ? await Promise.allKeys({ projects: getProjectsByDeveloperId(data.id) }) : [];
+    }
+    catch (e) {
+        console.log("Exception: " + e)
+        return notFound();
+    }
+    if(!data.id) {
+        return notFound();
+    }
     //const { data1= [], projects={}} = await Promise.allKeys({data:getAllDevelopers(), projects:getAllProjects()});
     //const data = data1[0];
 
