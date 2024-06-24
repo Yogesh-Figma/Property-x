@@ -15,7 +15,7 @@ const DeveloperCard = async ({ developerId }) => {
 
     
     const data = await getDeveloperById(developerId);
-    const dateObj = dayjs(data.foundedOn, "DD/MM/YYYY");
+    const dateObj = dayjs(data.foundedOn, "YYYY");
     const date2 = dayjs();
     let years = date2.diff(dateObj, 'years');
 

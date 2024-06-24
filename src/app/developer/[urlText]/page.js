@@ -21,12 +21,11 @@ export default async function Page({ params: { urlText }}) {
     const session = await getServerSession(authOptions)
     let data = {}, projects = [];
     try {
-        data = await Promise.allKeys({ data: getDeveloperByUrlText(urlText, session?.token) });
-        projects = !!data.id ? await Promise.allKeys({ projects: getProjectsByDeveloperId(data.id) }) : [];
+        data = await getDeveloperByUrlText(urlText, session?.token);
+        projects = !!data.id ? await getProjectsByDeveloperId(data.id) : [];
     }
     catch (e) {
         console.log("Exception: " + e)
-        return notFound();
     }
     if(!data.id) {
         return notFound();
@@ -61,6 +60,7 @@ export default async function Page({ params: { urlText }}) {
                 <div className='dev-description body-txt'><OverflowTip text={data.description} lines={7} /></div>
                 <Heading label={"Project Accross Cities"} />
                 {operatingCities.map(city => <Chip label={city} variant="randomColor" />)}
+                {projects.length > 0 && <>
                 <Heading label={"Discover Our Projects"} />
                 <div className='property-cards'>
                     {projects.map(item => <div className='property-card-cont'>
@@ -87,13 +87,14 @@ export default async function Page({ params: { urlText }}) {
                         />
                     </div>)}
                 </div>
+                </>}
             </div>
         </div>
     )
 }
 
 const DevInfo = ({ data }) => {
-    const dateObj = dayjs(data.foundedOn, "DD/MM/YYYY");
+    const dateObj = dayjs(data.foundedOn, "YYYY");
     const date2 = dayjs();
     let years = date2.diff(dateObj, 'years');
     return <>

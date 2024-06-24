@@ -24,7 +24,7 @@ const TrustedDevelopers = async () => {
             slidesToShow: null, slidesToScroll: 1, variableWidth: true
         }}>
             {developers.map((data, index) => {
-                const dateObj = dayjs(data.foundedOn, "DD/MM/YYYY");
+                const dateObj = dayjs(data.foundedOn, "YYYY");
                 const date2 = dayjs();
                 let years = date2.diff(dateObj, 'years');
                 let operatingCities = (data.operatingCities || "").split(",") || [];
