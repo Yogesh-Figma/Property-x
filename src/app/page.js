@@ -34,13 +34,9 @@ export default async function Home() {
         <SearchBar locations={LOCATIONS}/>
       </div>
       <div className='dev-card-listing container-fluid'>
-        <div className='developer-container'>
-          <div className='sub-heading text-center title'>Trending Projects</div>
-          <div className='sub-heading-3 text-center sub-title'>A Close Look at Remarkable Listings</div>
           <Suspense fallback={<Skeleton variant="rectangular" width={210} height={118}/>}>
             <TrendingProjects />
           </Suspense>
-        </div>
         <div className='developer-container'>
           <FeaturedProjects />
         </div>
@@ -52,18 +48,10 @@ export default async function Home() {
           <div className='sub-heading-3 text-center sub-title'>The Future of Living: A Glimpse into Our Upcoming Projects</div>
           <UpComingProjects />
         </div>
-        <div className='developer-container'>
-          <div className='sub-heading text-center title'>Trusted Developers</div>
-          <div className='sub-heading-3 text-center sub-title'>Our Top Developer Picks for You</div>
-          <TrustedDevelopers />
-        </div>
+        <TrustedDevelopers />
         <HomePageStats />
         <Suspense>
-          <div className='developer-container'>
-            <div className='sub-heading text-center title'>Insights and Articles</div>
-            <div className='sub-heading-3 text-center sub-title'>Stay Informed, Stay Ahead: Explore Our News and Articles</div>
             <InsightAndArticles />
-          </div>
         </Suspense>
         {/* <div className='developer-container'>
           <div className='sub-heading text-center title'>Testimonials</div>

@@ -29,7 +29,7 @@ export default async function Page({ params: { id } }) {
                 <div className='heading dev-link-heading mt-3'>
                     List of Developers across India
                 </div>
-                <div className='dev-links d-flex flex-wrap'>
+                <div className='dev-links d-flex flex-wrap align-items-center justify-content-between'>
                     {data.map(item => <Link href={`/developers-in-india/${item.group}`} className='me-1'>{item.group}</Link>)}
                 </div>
                 <div className='developers'>

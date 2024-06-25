@@ -68,7 +68,7 @@ export default function SearchUI({ term, cityName="", onlyProject="", propertyCa
                                 price={item.totalPrice}
                                 id={item.id}
                                 urlText={item.url}
-                                subInfo={item.specification}
+                                //subInfo={item.specification}
                                 showRating={true}
                                 ratingCnt={item.ratingCount}
                                 ratingValue={item.ratingAverage}

@@ -26,7 +26,7 @@ const OverflowTip = ({ tooltip, text, lines }) => {
 
     return (
         <Tooltip
-            title={tooltip || text}
+            title={null}
             interactive="true"
             style={{ fontSize: '2em' }}
             enterTouchDelay={0}

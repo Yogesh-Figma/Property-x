@@ -27,27 +27,27 @@ const ContactUs = () => {
                 <div className='col-sm-6 col-md-12'>
                     <div className="sub-heading-2">Office Address</div>
                     <p className="address">
-                        Elegant Greens Residency
+                        11th Floor, Magnus Tower, Plot no 6, 
                         <br />
-                        Sector 25, Greater Noida
+                        Sector 73, Noida,
                         <br />
-                        Uttar Pradesh 201306
+                        Basi Bahuddin Nagar, Uttar Pradesh 201307,
                         <br />
                         India
                     </p>
                     <div className="write-to-us">
                         <div className="sub-heading-2">Write to us at</div>
-                        <div>example@example.com</div>
+                        <div>hello@gopropify.com</div>
                     </div>
                 </div>
                 <div className='col-sm-6 col-md-12'>
                     <div className="write-to-us">
                         <div className="sub-heading-2">Customer Care</div>
-                        <div>customercare@example.com</div>
+                        <div>care@gopropify.com</div>
                     </div>
                     <div className="write-to-us">
                         <div className="sub-heading-2">Call us on</div>
-                        <div>9876 543 2198</div>
+                        <div>9599960529</div>
                     </div>
                     <div className="sub-heading-2 write-to-us">Keep in Touch</div>
                     <div className="contact-icons-container">

@@ -119,10 +119,10 @@ const SearchBar = ({ locations }) => {
                             className: "search-input",
                             endAdornment: (
                                 <InputAdornment position="end" className=''>
-                                    <div className='d-lg-flex search-bar-icons d-none'>
+                                    {/* <div className='d-lg-flex search-bar-icons d-none'>
                                         <Image alt="fluent Location" src={fluentLocation} width={24} height={24} />
                                         <Image alt="solid Voice" src={solidVoice} width={24} height={24} />
-                                    </div>
+                                    </div> */}
                                     <div className='d-lg-none d-flex'>
                                         <Button type="submit" form="search-form" text={""} onClick={(event) => !searchTerm ? event.preventDefault() : null} rounded={true} height={72} icon={<Image src={searchIcon} alt="search icon" width={30} height={30} />} className={"search-bar-compact-btn"} />
                                     </div>

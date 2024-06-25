@@ -136,11 +136,8 @@ export default async function Page({ params: { urltext, type }, }) {
             <About data={data} type={type} />
             <HighLights data={data.highlights || []} />
             <Amenities data={data} type={type} />
-            {<Suspense>
-                <div id="floor-plan">
-                <Heading label={"Floor Plan"} />
+            {<Suspense>                
                 <FloorPlan isProperty={isProperty} id={data.id} configuration={data["configuration"]} propertyPrice={data.totalPrice}/>
-            </div>
             </Suspense>}
             {!isProperty && <Suspense>
                 <PaymentPlan projectId={data.id} />

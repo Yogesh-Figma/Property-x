@@ -30,9 +30,9 @@ const LINKS2 = [
 const ContactUsSection = () => {
     return (<>
         <div className='heading mb-4'>Connect with Us</div>
-        <div className='connect-info'>Write to us at <div className='connect-info-sub'>test@test.com</div></div>
-        <div className='connect-info'>Customer Care <div className='connect-info-sub'>customercare@example.com</div></div>
-        <div className='connect-info'>Call us on <div className='connect-info-sub'>9876 543 2198</div></div>
+        <div className='connect-info'>Write to us at <div className='connect-info-sub'>hello@gopropify.com</div></div>
+        <div className='connect-info'>Customer Care <div className='connect-info-sub'>care@gopropify.com</div></div>
+        <div className='connect-info'>Call us on <div className='connect-info-sub'>9599960529</div></div>
     </>)
 }
 
