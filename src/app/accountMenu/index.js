@@ -83,18 +83,18 @@ export default function AccountMenu() {
           <div className="social-btn d-flex flex-column align-items-center">
             <div className="contact-us-link cursor-pointer">Contact Us</div>
             <div className="contact-icons-container">
-              <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
+              <a href="https://www.facebook.com/GoPropify1/" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
                 <Image className="img" width={16} height={16} alt="Ri facebook fill" src={facebookIcon} />
-              </div>
-              <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
+              </a>
+              <a href="https://x.com/GoPropify" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
                 <Image className="img" width={16} height={16} alt="Ri twitter x fill" src={twitterIcon} />
-              </div>
-              <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
+              </a>
+              <a href="https://www.linkedin.com/company/97220277/admin/feed/posts/" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
                 <Image className="img" width={16} height={16} alt="Ri linkedin fill" src={linkedinIcon} />
-              </div>
-              <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
+              </a>
+              <a href="https://www.instagram.com/gopropify/" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center cursor-pointer">
                 <Image className="img" width={16} height={16} alt="Ant design instagram" src={instagramIcon} />
-              </div>
+              </a>
             </div>
           </div>
         </div>

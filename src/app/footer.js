@@ -40,21 +40,21 @@ const ShareSection = () => {
     return (<>
         <div className='text-start keep-touch heading d-lg-block'>Keep in Touch </div>
         <div className="contact-icons-container d-lg-flex align-items-center">
-            <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+            <a href="https://www.facebook.com/GoPropify1/" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
                 <Image className="img" width={30} height={30} alt="Ri facebook fill" src={facebookIcon} />
-            </div>
-            <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+            </a>
+            <a href="https://x.com/GoPropify" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
                 <Image className="img" width={30} height={30} alt="Ri twitter x fill" src={twitterIcon} />
-            </div>
-            <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+            </a>
+            <a href="https://www.linkedin.com/company/97220277/admin/feed/posts/" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
                 <Image className="img" width={30} height={30} alt="Ri linkedin fill" src={linkedinIcon} />
-            </div>
-            <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+            </a>
+            <a href="https://www.instagram.com/gopropify/" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
                 <Image className="img" width={30} height={30} alt="Ant design instagram" src={instagramIcon} />
-            </div>
-            <div className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
+            </a>
+            <a href="https://www.youtube.com/@gopropify" className="contact-image-wrapper d-inline-flex align-items-center justify-content-center">
                 <YoutubeBW />
-            </div>
+            </a>
         </div>
     </>)
 }
