@@ -1,0 +1,70 @@
+.details-card {
+  width: 190px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+/* .header {
+  justify-content: center;
+  font-weight: bold;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  width: 100%;
+} */
+.leadDetail{
+    background-color:#F5F5F5;
+    margin-left: 20%;
+    width: 110px;
+    font-size: 14px;
+    border-radius: 9px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+    font-weight: bold;
+  color:#344054;
+  font-size: 14px;
+  padding: 8px;
+  text-align: center;
+  justify-content: center;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+.item:last-child {
+  border-bottom: none;
+}
+.deletediv{
+  width: 110px;
+  margin-left: 20%;
+  border-radius: 10px; 
+  border: 1.4px solid #CDD3D8
+}
+/* .delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  margin: 15px;
+  color: #ff4d4f;
+  font-weight: bold;
+  background-color: #fff;
+  border: 1px solid #ff4d4f;
+  border-radius: 8px;
+  cursor: pointer;
+} */
+
+.deletediv:hover {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+.delete-icon {
+  margin-right: 8px;
+}

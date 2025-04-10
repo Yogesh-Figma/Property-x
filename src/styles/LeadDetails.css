@@ -1,0 +1,189 @@
+.Blur-leadDetail{
+    position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.2);  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(1px);  
+      z-index: 999;
+  }
+.lead-details-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
+    background-color: white;
+    max-height: 580px; /* Set your desired height */
+    overflow-y: auto; 
+}
+
+.lead-details-container .closeButton{
+    display: flex;
+    margin-left: 95%;
+    border: none;
+}
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.lead-details-container span{
+    font-size: 14px;
+}
+.left-header {
+    display: flex;
+    align-items: center;
+}
+
+.left-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+/* Client Info Section */
+.client-info h3 {
+    margin-top: 3px;
+    font-size: 16px; 
+    margin-left: 3px;
+}
+.ClientPhoto{
+    width: 20px;
+    height: 20px;
+}
+.client-info p {
+    margin: 0;
+    margin-left: 4px;
+    color: gray;
+    font-size: 14px;
+}
+
+.assigned-info {
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.highlight {
+    font-weight: bold;
+    font-size: 14px ;
+}
+.call-back{
+    margin-left: 100px;
+}
+/* .change-btn {
+    background-color: #f0f0f0;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+} */
+
+/* Contact Info Section */
+.contact-info {
+    margin-top: 10px;
+}
+.change{
+    margin-left: 40px;
+}
+.contact-item {
+    /* margin-bottom: 10px; */
+    display: flex;
+    flex-direction: column;
+    margin: 0.5%;
+}
+.Client-email{
+    margin-left: 30px;
+}
+.ColumnFlex{
+    display: flex;
+    flex-direction: row;
+}
+.assigned-by {
+    margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Feedback Record Section */
+.feedback-record {
+    margin-top: 8px;
+    background-color:  rgba(211, 217, 228, 1);
+    
+}
+.lead-details-container h5{
+    margin-top: 10px    ;
+    font-size: 19px;
+    font-weight: bold;
+}
+.feedback-item {
+    /* padding: 10px; */
+    /* border-radius: 5px; */
+    /* margin-bottom: 10px; */
+    display: flex;
+    flex-direction: column;
+}
+
+.visit-planned {
+    background-color: rgba(24, 119, 242, 1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 120px;
+    margin-top: 10px;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+.smallText{
+    font-size: 13px;
+}
+.call{
+    background-color: rgba(24, 119, 242, 1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 200px;
+    margin-top: 10px;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+/* Share Lead Section */
+.share-lead {
+   display: flex; 
+    flex-direction: column;
+    margin-top: 13px;
+}
+
+.share-btn {
+    background-color: #ffcccc;
+    border: none;
+    color: red;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    margin-top: 2px;
+    display: flex;
+    flex: start;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.delete-btn img{
+    width: 20px;
+}
+.edited{
+   margin-bottom: 7px;
+}

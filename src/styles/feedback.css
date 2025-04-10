@@ -1,0 +1,34 @@
+.Blur-feedback-form{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(1px);  
+    z-index: 999;
+}
+.feedback-form{
+     padding: 10px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 1000px;
+    margin-left: 15%;
+    margin-bottom: 200px;
+    background-color: white;
+    max-height: 580px; /* Set your desired height */
+    overflow-y: auto; 
+}
+.topFeedback{
+    background-color:  #F7F8F9;
+    padding: 10px;
+}
+.FeedbackcloseButton{
+    margin-left: 99%;
+    border: none;
+}

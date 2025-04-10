@@ -1,0 +1,84 @@
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pagination {
+  width: 83%;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  height: 2.0rem;
+  gap: 10%;
+  animation: slideUp 0.8s ease-in-out 0.2s; 
+}
+.paginationBar {
+  margin-left: 26%;
+  margin-top: -8px;
+}
+.pagination-info {
+  padding: 4px;
+  margin-left: 19px;
+  font-weight: bold;
+  color: grey;
+}
+/* .css-16c50h-MuiInputBase-root-MuiTablePagination-select {
+  margin-bottom: 12px;
+}
+.css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar
+  .MuiTablePagination-actions {
+  margin-bottom: 16px;
+  margin-left: 1px;
+}
+.css-pdct74-MuiTablePagination-selectLabel {
+  margin-bottom: 18px;
+}
+.css-194a1fa-MuiSelect-select-MuiInputBase-input.css-194a1fa-MuiSelect-select-MuiInputBase-input.css-194a1fa-MuiSelect-select-MuiInputBase-input{
+  margin-bottom: 6px;
+}
+.css-pdct74-MuiTablePagination-selectLabel {
+  margin-bottom: 20px;
+}
+.css-levciy-MuiTablePagination-displayedRows{
+  margin-bottom: 19px;
+}
+.css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar .MuiTablePagination-actions {
+  margin-bottom: 14px;
+}
+svg.css-i4bv87-MuiSvgIcon-root{
+  margin-left: 30px;
+} */
+
+.MuiTablePagination-root {
+  display: flex;
+  align-items: center;
+}
+
+.MuiTablePagination-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+}
+
+.MuiTablePagination-spacer {
+  flex: 1;
+}
+
+.MuiTablePagination-selectRoot,
+.MuiTablePagination-select,
+.MuiTablePagination-selectLabel,
+.MuiTablePagination-displayedRows,
+.MuiTablePagination-actions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important;
+}
+
+.MuiTablePagination-actions button {
+  margin-bottom: 0 !important;
+}

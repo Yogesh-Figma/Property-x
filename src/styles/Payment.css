@@ -1,0 +1,250 @@
+/* Container for the entire checkout section */
+.checkout-container {
+  position: sticky;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Left side form section */
+  .checkout-form {
+    overflow-y: auto;
+    margin-top: 1%;
+    width: 45%;
+    padding-right: 20px;
+    height: 75vh;  
+  }
+  
+  .checkout-form h2, .checkout-form h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .checkout-form .input-field {
+    width: 100%;
+    padding: 6px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  
+  .address-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .input-field.small {
+    width: 50%;
+  }
+  
+  .checkbox {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox input {
+    margin-right: 10px;
+  }
+  .payment-container {
+    width: 400px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .ssl-info {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px;
+  }
+  
+ 
+  .payment-method, .alternative-payment {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 47px;
+    align-items: center;
+    
+  }
+  .alternative-payment {
+    gap: 79%;
+  }
+  .alternative-payment h3{
+    margin-left: 3%;
+    font-size: 13px;
+  }
+  .payment-method{
+    gap: 23%; 
+   
+  }
+  .paypal{
+    height: 10px;
+  }
+  .payment-method h3{
+    margin-left: 7px;
+    font-size: 13px;
+  }
+
+  .card-logos img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .card-details {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .card-details label {
+    font-size: 0.8rem;
+    color: #929FB1;
+  }
+  
+  .card-details input {
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .expiry-cvv {
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+  
+  .expiry-cvv div {
+    width: 45%;
+  }
+  .expiry-cvv .question{
+    margin-top: 2%;
+    height: 22px;
+    width: 20px;
+  }
+  
+  .auto-purchase {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .auto-purchase input {
+    margin-right: 10px;
+  }
+  
+  .save-info {
+    font-size: 0.9rem;
+    color: #999;
+  }
+  
+  .alternative-payment img {
+    height: 20px;
+    width: 25px;
+  }
+  
+  /* Right side order summary section */
+  .outer-checkout-summary{
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    /* height: 500px; */
+  }
+  .checkout-summary {
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .plan-details-1{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .image-placeholder {
+    width: 161px;
+    height: 151px;
+    background-color: #ccc;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  
+  .plan-info h3 {
+    font-weight: bold;
+    margin-top: 55px;
+    font-size: 15px;
+  }
+  .plan-info p{
+    margin-bottom: 0;
+  }
+  .plan-info span{
+    color: #808080;
+    font-weight: bold;
+    margin-top: 55px;
+    font-size: 15px;
+  }
+  .order-summary h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .order-summary .update{
+    color: #000000;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+  .order-item {
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+  
+  .order-item.total {
+    font-weight: bold;
+    margin-top: 12px;
+  }
+  
+  .coupon {
+    margin-top: 21px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .coupon img {
+    margin-right: 10px;
+  }
+  .coupon label{
+    text-decoration: underline;
+  }
+  .Place-Order{
+    margin-top: 3%;
+   color: #FFFFFF;
+   background-color:  var(--Text-colors-text-highlight, #3348FF);
+   border: none;
+   border-radius: 4px;
+   height: 35px;
+  }
+  

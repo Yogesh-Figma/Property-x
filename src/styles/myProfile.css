@@ -1,0 +1,76 @@
+.my-Profile {
+  margin-top: 30px;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: linear-gradient(90deg, #bad3f2 0%, #dee2eb 35%, #faf5e1 100%);
+  border-radius: 8px;
+}
+
+.profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text {
+  flex: 1;
+  margin-left: 20px;
+  color: #0e0e0e;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.designation {
+  color: #9d9ea2;
+  font-weight: bold;
+}
+
+.text .email {
+  color:  grey;
+}
+
+.edit-btn {
+  background-color: #4182f9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.input-box {
+  box-shadow: 0 2px 2px lightgrey;
+  border-radius: 5px;
+  background-color: rgba(249, 249, 249, 1);
+  width: 20rem;
+  height: 2.7rem;
+  border: none;
+}
+.input-box:hover {
+  border: none;
+}
+.profilediv {
+  padding: 20px;
+  margin-left: 10%;
+}
+.form {
+  gap: 15%;
+  margin-bottom: 40px;
+}
+.emailpng {
+  height: 3rem;
+  width: 3rem;
+}
+.email-div {
+  display: flex;
+  gap: 2%;
+}

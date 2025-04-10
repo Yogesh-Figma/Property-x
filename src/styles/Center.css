@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  height: 100%;
+}
+
+.leftdiv {
+  width: 4%;
+  background-color: rgba(245, 249, 245, 1);
+  padding: 10px;
+  height: 100%;
+  transition: width 0.3s ease;
+  position: relative;
+  z-index: 1000;
+}
+
+.leftdiv.open {
+  width: 15%;
+}
+.rightdiv {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  overflow-y: auto;
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imlogo {
+  width: 100px;
+  margin-bottom: 20px;
+  margin-left: 3rem;
+}
+
+.section {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.button img {
+  margin-right: 0;
+}
+
+.section-title {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: grey;
+  display: none;
+  margin-right: 2%;
+}
+.leftdiv.open .section-title {
+  display: block;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  border: 1px solid #ced4da;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 14px;
+  border: none;
+  gap: 8%;
+}
+
+.selected-button {
+  background-color: white;
+  display: flex;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #495057;
+  align-items: center;
+  gap: 8%;
+}
+
+@media (max-width: 768px) {
+  .rightdiv {
+    width: 100%;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,265 @@
+/* ------Your Plans------ */
+.subscription-container {
+    width: 100%;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  .Pricing{
+  font-weight: bold;
+  color: rgba(73, 90, 255, 1);
+  size: 20px;
+  }
+  .top{
+    display: flex;
+    gap: 40%;
+    text-align: left;
+  }
+  .top h2{
+    font-weight: bold;
+  }
+  .plan-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e6e6e6;
+  }
+  
+  .plan-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .plan-type {
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+  
+  .plan-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .upgrade-now {
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upgrade-now:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .plan-details {
+    padding-top: 10px;
+  }
+  
+  .plan-price-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .plan-price {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .plan-price span {
+    font-size: 14px;
+    font-weight: normal;
+    color: #888;
+    margin-left: 5px;
+  }
+  
+  .trial-info {
+    background-color: rgba(236, 253, 243, 1);
+    border-radius: 7px;
+    color: #28a745;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .plan-description {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .feature-list {
+    margin-top: 37px;
+  }
+  
+  .feature-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-top: 1px solid #f0f0f0;
+    gap: 10px;
+  }
+  .feature-item-1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-top: 1px solid #f0f0f0;
+    gap: 10px;
+  }
+  .feature-item-1 img{
+    float: right;
+  }
+  .feature-item span {
+    font-weight: bold;
+   
+  }
+  .feature-item .feature-status-1{
+   float: right;
+   margin-left: 84%;
+  }
+  .feature-item .feature-status-12{
+    margin-left: 95%;
+  }
+  .pricing-plans h3{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .feature-value img,
+  .feature-status img {
+    display: block;
+    margin: 0 auto;
+  }
+  .feature-status-1 img {
+    display: block;
+    margin: 0 auto;
+    float: right;
+  }
+  .feature-heading{
+    text-align: start;
+  }
+  
+ 
+ /* ------Plans------------ */
+ .pricing-plans {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.billing-toggle {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.billing-toggle .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin: 0 10px;
+}
+
+.billing-toggle .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.billing-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.billing-toggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.billing-toggle input:checked + .slider {
+  background-color: #2196F3;
+}
+
+.billing-toggle input:checked + .slider:before {
+  transform: translateX(26px);
+}
+.benifits {
+  float: left;
+}
+.plans {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-left: 25%;
+  gap: 4%;
+}
+
+.support{
+  margin-top: 10px;
+  float: left;
+  font-weight: bold;
+ 
+}
+.feature-list h4{
+  font-size: 18px;
+}
+
+.plan h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.plan button {
+  background-color: #000;
+  color: #fff;
+  padding: 6px 28px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.plan button:hover {
+  background-color: #444;
+}
+.feature-value-1{
+  font-weight: bold;
+}
+
+.check {
+  color: green;
+}
+
+.cross {
+  color: red;
+}
+
