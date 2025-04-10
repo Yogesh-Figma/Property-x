@@ -21,8 +21,8 @@ jobs:
 
     - name: Build & Push Docker image
       run: |
-        docker build -t yudhishthira/bma:latest .
-        docker push yudhishthira/bma:latest
+        docker build -t yudhishthira/CRM:latest .
+        docker push yudhishthira/CRM:latest
 
     - name: Debug Host
       run: echo "Host is ${{ secrets.EC2_HOST }}" #To check if the secret is set correctly
@@ -35,7 +35,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker pull yudhishthira/bma:latest
-          docker stop bma || true
-          docker rm bma || true
-          docker run -d --name bma -p 80:80 yudhishthira/bma:latest
+          docker pull yudhishthira/CRM:latest
+          docker stop CRM || true
+          docker rm CRM || true
+          docker run -d --name CRM -p 80:80 yudhishthira/CRM:latest
