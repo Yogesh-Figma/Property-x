@@ -72,7 +72,7 @@ const LandingPage = () => {
       <main className="flex flex-col md:flex-row items-center justify-between flex-1 px-8 md:pl-16 pr-0">
 <div className="md:text-left max-w-[43rem] mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Docker hub Automation final checks
+            CRM DEPLOYMENT TEST
           </h1>
           <p className="text-lg text-gray-600 mb-6">
             Automated CI/CD pipeline for Docker Hub images. This tool helps you to
