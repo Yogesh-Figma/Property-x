@@ -13,5 +13,4 @@ COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy custom NGINX configuration file
 EXPOSE 80
- # Optional: You can add a custom NGINX configuration file if needed
 CMD ["nginx", "-g", "daemon off;"] 
