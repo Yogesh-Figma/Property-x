@@ -38,5 +38,5 @@ jobs:
             docker pull yudhishthira/crm:latest
             docker stop crm || true
             docker rm crm || true
-            docker run -d --name crm --network webnet yudhishthira/crm:latest
+            docker run -d --name bma -p 81:80 yudhishthira/bma:latest
 
