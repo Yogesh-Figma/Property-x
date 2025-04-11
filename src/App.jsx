@@ -43,7 +43,4 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  {
-    basename: "/crm", // 👈 Yeh add kiya gaya hai
-  }
 );
